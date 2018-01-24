@@ -1,3 +1,92 @@
+/*key is the bot's token; mention is the bot @mention*; logserv is the server for bot log*/
+var key = ﻿process.env.TOKEN;
+var mention = ﻿process.env.BOTMENTION;
+var mention2 = "<@"+mention+">"
+var logserv = process.env.LOGSERV;
+var botowner = process.env.BOTW;
+var invite = 'https://discordapp.com/oauth2/authorize?client_id='+mention+'&scope=bot&permissions=67628096';
+const Discord = require('discord.js');
+const client = new Discord.Client();
+const token = key;
+var prefix = new Object();
+var isasked = new Object();
+var userasked = new Object();
+userasked = undefined;
+isasked = false;
+nprefix ='cat:';
+prefix = nprefix;
+
+
+
+
+
+
+/*Images de chat*/
+
+var catimg = new Array() ;
+catimg = [
+    "https://yt3.ggpht.com/-xMN6CtD0oAM/AAAAAAAAAAI/AAAAAAAAAAA/3rguRakaom8/s900-c-k-no-mo-rj-c0xffffff/photo.jpg",
+    "https://wallpaper.wiki/wp-content/uploads/2017/05/wallpaper.wiki-Anime-Cat-Full-HD-Wallpaper-PIC-WPC0012460.jpg",
+    "https://i.pinimg.com/736x/a6/8b/fb/a68bfb3aa12707c10335a4b40611719e--black-cat-anime-anime-cat.jpg",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY6AnbOswJ5Z3UIAyMxgb-hO0l4X7fLz4e1YlmnLxjCsmUR5vq",
+    "http://www.flipcat.us/wp-content/uploads/2017/11/captivating-artwork-cat-anime-glowing-clouds-apofiss-wallpapers-hd-also-marvelous-cat-wallpaper-anime.jpg",
+    "J'ai la flemme, si tu veux une image fait le toi même",
+    "https://pbs.twimg.com/profile_images/1798927817/Chi001.jpg",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk4G02HepCrUM_JswsuADFZFf4OUyMrXyDpEF_7m-jNEpTJRgO",
+    "https://media.giphy.com/media/A6JOgQslWdYqI/giphy-facebook_s.jpg",
+    "https://myanimelist.cdn-dena.com/s/common/uploaded_files/1449565712-5aafae0c93dc1277f3b714736537eb1d.gif",
+    "https://i.imgur.com/vs2IkYB.gif",
+    "http://clipground.com/images/cute-anime-cat-clipart-19.jpg",
+    "https://wallpaper.wiki/wp-content/uploads/2017/04/wallpaper.wiki-Cute-Anime-Cat-Background-HQ-PIC-WPC001902.jpg",
+    "http://i.imgur.com/kkqZHi8.jpg",
+    "https://data.whicdn.com/images/21075753/original.png",
+    "J'ai la flemme, si tu veux une image fait le toi même",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBvORlETA2KGz95tGZHAGti4TWphRYTHc-H14niFvHYk-3-tEK"
+];
+
+
+
+
+
+
+
+//lorsque Nya!bot est pret
+client.on('ready', () => {
+    console.log(`Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} servers.`);
+    //envoyer un message au server log
+    var channel = client.channels.get(logserv);
+    channel.send(`Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} servers.`);
+    client.user.setGame(`Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} servers.`);
+});
+
+//Lorsque il a rejoins un serv
+client.on("guildCreate", guild => {
+  console.log(`Nouveau serv: ${guild.name} (id: ${guild.id}). Nmb de membres: ${guild.memberCount}`);
+  var channel = client.channels.get(logserv);
+  channel.send(`Nouveau serv: ${guild.name} (id: ${guild.id}). Nmb de membres: ${guild.memberCount}`);
+});
+
+//Lorsqu'il a été kick d'un serv
+client.on("guildDelete", guild => {
+  console.log(`Un server a suppr nya!bot: ${guild.name} (id: ${guild.id})`);
+  var channel = client.channels.get(logserv);
+  channel.send(`Un server a suppr nya!bot: ${guild.name} (id: ${guild.id})`)
+});
+
+//lors de reconnection
+client.on('reconnecting', reconnecting=> {
+console.log('Reconnection')
+var channel = client.channels.get(logserv);
+channel.send('Reconnection')
+})
+
+
+
+
+
+
+
+
 client.on('message', message => {
     //ignorer si c'est un bot
     if(message.author.bot) return;
@@ -282,3 +371,19 @@ client.on('message', message => {
     }
     
 })
+
+
+
+
+
+
+
+
+//lors de déconection
+client.on('disconnect', disconnect => {
+console.log('déconecté');
+var channel = client.channels.get(logserv);
+channel.send('Déconecté');
+})
+
+client.login(key);
