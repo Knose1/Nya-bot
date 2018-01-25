@@ -1,12 +1,5 @@
 /*key is the bot's token; mention is the bot @mention*; logserv is the server for bot log*/
 
-const aws = require('aws-sdk');
-
-let s3 = new aws.S3({
-  accessKeyId: process.env.S3_KEY,
-  secretAccessKey: process.env.S3_SECRET
-});
-
 var key = ﻿process.env.TOKEN;
 var mention = ﻿process.env.BOTMENTION;
 var mention2 = "<@"+mention+">"
