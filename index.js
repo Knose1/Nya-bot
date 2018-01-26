@@ -638,7 +638,7 @@ client.on('message', message => {
         iscommand = false;
     }
     
-})
+});
 
 
 
@@ -652,6 +652,6 @@ client.on('disconnect', disconnect => {
 console.log('déconecté');
 var channel = client.channels.get(logserv);
 channel.send('Déconecté');
-})
+});
 
 client.login(key);
