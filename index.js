@@ -119,8 +119,22 @@ client.on('message', message => {
                 .then(msg => console.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
                 .catch(console.error);
         }
+    
+    //Virtual Channel
+	var vschan = new Array();
+	/*client.guilds.forEach(function (chid) {
+                var guild = client.guilds.get(chid);
+                guild.channels.find('name', 'nya-bot-vs');
+            });*/
+	
+	if (message.channel.name == 'nya-bot-vs') {
+		message.channel.send('Bonjour');
+	}
+	
+	/*End of Virtual Channel*/
+	
     //Say hello to bot
-    if (message.content == "Bonjour "+mention2 || message.content == "bonjour "+mention2 || message.content == "bjr "+mention2 || message.content == "Bjr "+mention2) {
+    else if (message.content == "Bonjour "+mention2 || message.content == "bonjour "+mention2 || message.content == "bjr "+mention2 || message.content == "Bjr "+mention2) {
     message.channel.send('Bonjour '+message.author+" !")
     }
     else if (message.content == "Coucou "+mention2 || message.content == "coucou "+mention2 || message.content == "cc "+mention2 || message.content == "Cc "+mention2) {
