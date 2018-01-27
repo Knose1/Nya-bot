@@ -21,13 +21,6 @@ prefix = nprefix;
 
 
 
-var vsban = new Array();
-vsban;
-
-
-
-
-
 
 var catimg = new Array() ;
 catimg = [
@@ -129,13 +122,27 @@ client.on('message', message => {
         }
 	
     /*Virtual Channel*/
+    
+    //On récupère la liste des ban
+    var guild = client.guilds.get('406926403628695556');
+    var vsban = new Array();
+    var vsx = -1;
+    guild.roles.forEach(function (role) {
+    vsx +=;
+    vsban[vsx] = role.name;
+    });
+	
+    //On regarde si la personne est ban
     var isbanned = false;
 	vsban.forEach(function (banned) {
-	    if (message.author == vsban) {
+	    if (message.author.id == vsban) {
             isbanned = true;
         }
     });
-	if (message.channel.name == 'nya-bot-vs' && isbanned == true) {
+	/*ON VAS BAN DES GENS !!! */
+	if 
+	
+	else if (message.channel.name == 'nya-bot-vs' && isbanned == true) {
 	    message.author.sendMessage(message.author+' vous êtes ban du Virtual server et ne pouvez donc pas parler dans le VS');
 		message.delete(500)
                 .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
