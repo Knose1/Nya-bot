@@ -1,5 +1,4 @@
 /*key is the bot's token; mention is the bot @mention*; logserv is the server for bot log*/
-
 var key = ﻿process.env.TOKEN;
 var mention = ﻿process.env.BOTMENTION;
 var mention2 = "<@"+mention+">"
@@ -22,8 +21,6 @@ prefix = nprefix;
 
 
 
-/*Images de chat*/
-
 var catimg = new Array() ;
 catimg = [
     "https://yt3.ggpht.com/-xMN6CtD0oAM/AAAAAAAAAAI/AAAAAAAAAAA/3rguRakaom8/s900-c-k-no-mo-rj-c0xffffff/photo.jpg",
@@ -44,7 +41,6 @@ catimg = [
     "J'ai la flemme, si tu veux une image fait le toi même",
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBvORlETA2KGz95tGZHAGti4TWphRYTHc-H14niFvHYk-3-tEK"
 ];
-
 
 
 
@@ -79,7 +75,7 @@ client.on('reconnecting', reconnecting=> {
 console.log('Reconnection')
 var channel = client.channels.get(logserv);
 channel.send('Reconnection')
-})
+});
 
 
 
@@ -88,230 +84,7 @@ channel.send('Reconnection')
 
 
 
-client.on('message', message => {
-    //ignorer si c'est un bot
-    if(message.author.bot) return;
-    
-    //si c'est une commande, récupérer les arguments, la commande et supprimer le message
-        if (message.content.indexOf(prefix) == 0) {
-            var iscommand = true;
-            var args = message.content.slice(prefix.length).trim().split(/ +/g);
-            var command = args.shift().toLowerCase();
-    
-            message.delete(500)
-                .then(msg => console.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
-                .catch(console.error);
-        }
-    //Say hello to bot
-    if (message.content == "Bonjour "+mention2 || message.content == "bonjour "+mention2 || message.content == "bjr "+mention2 || message.content == "Bjr "+mention2) {
-    message.channel.send('Bonjour '+message.author+" !")
-    }
-    else if (message.content == "Coucou "+mention2 || message.content == "coucou "+mention2 || message.content == "cc "+mention2 || message.content == "Cc "+mention2) {
-    message.channel.send('Nyon '+message.author+" !")
-    }
-    else if (message.content == "Salut "+mention2 || message.content == "salut "+mention2 || message.content == "slt "+mention2 || message.content == "Slt "+mention2) {
-    message.channel.send('Salut '+message.author+" !")
-    }
-    else if (message.content == "Yo "+mention2 || message.content == "yo "+mention2){
-    message.channel.send('Yoplait '+message.author+" !")
-    }
-    else if (message.content == "Hi "+mention2 || message.content == "hi "+mention2){
-    message.channel.send('Hi '+message.author+" !")
-    }
-    else if (message.content == "Hello "+mention2 || message.content == "hello "+mention2){
-    message.channel.send('Hello '+message.author+" !")
-    }
-    else if ( message.content == "Ohayô "+mention2 || message.content == "ohayô "+mention2 || message.content == "Ohayo "+mention2 || message.content == "ohayo "+mention2){
-    message.channel.send('Ohayô gozaimasu '+message.author+" !")
-    }
-    //end say hello to bot
-    //Réponses random:
-    else if (message.content == "Nya "+mention2 || message.content == "nya "+mention2 || message.content == "Nya! "+mention2 || message.content == "nya! "+mention2 || message.content == "Nya ! "+mention2 || message.content == "nya! "+mention2 || message.content == "Nya "+mention2+" !" || message.content == "nya "+mention2+" !" || message.content == "Nya "+mention2+"!" || message.content == "nya "+mention2+"!") {
-        message.channel.send(message.author+", ne m'insulte pas !!! Nyon! <:Tsuuuuu:378668647809417226>")
-    }
-    
-    else if (message.content == mention2+" fait son thug" || message.content == mention2+" Fait son thug" || message.content == mention2+" fais son thug" || message.content == mention2+" Fais son thug." || message.content == mention2+" fait son thug." || message.content == mention2+" Fait son thug." || message.content == mention2+" fais son thug." || message.content == mention2+" Fais son thug." || message.content == mention2+" fait son thug ." || message.content == mention2+" Fait son thug ." || message.content == mention2+" fais son thug ." || message.content == mention2+" fait son thug!" || message.content == mention2+" Fait son thug!" || message.content == mention2+" fais son thug!" || message.content == mention2+" fait son thug !" || message.content == mention2+" Fait son thug !" || message.content == mention2+" fais son thug !" || message.content == mention2+" fait son thug ?" || message.content == mention2+" Fait son thug ?" || message.content == mention2+" fais son thug ?" || message.content == mention2+" fait son thug?" || message.content == mention2+" Fait son thug?" || message.content == mention2+" fais son thug?") {
-        message.channel.send(message.author+", Ouais et alors ?! <:sealO:378292331473797120>");
-    }
-    
-    else if (message.content == mention2+" t'es nul" || message.content == mention2+" T'es nul" || message.content == mention2+" t'es nulle" || message.content == mention2+" T'es nulle" || message.content == mention2+" t'es nule" || message.content == mention2+" T'es nule" || message.content == mention2+" t'es nul." || message.content == mention2+" T'es nul." || message.content == mention2+" t'es nulle." || message.content == mention2+" T'es nulle." || message.content == mention2+" t'es nule." || message.content == mention2+" T'es nule." || message.content == mention2+" t'es nul ." || message.content == mention2+" T'es nul ." || message.content == mention2+" t'es nulle ." || message.content == mention2+" T'es nulle ." || message.content == mention2+" t'es nule ." || message.content == mention2+" T'es nule .") {
-        message.channel.send("Chute ! C'est une diversion ! :cat: :Fuse:");
-    }
-    //end réponses random
-    
-    /**/
-    
-     //start isasked
-    else if (isasked == true) {
-        if (userasked == message.author && (message.content == 'quelle heur est-il ?' || message.content == 'quelle heur est il ?' || message.content == 'quel heur est-il ?' || message.content == 'quel heur est il ?' || message.content == 'quelle heure est-il ?' || message.content == 'quelle heure est il ?' || message.content == 'quel heure est-il ?' || message.content == 'quel heure est il ?' || message.content == 'Quelle heur est-il ?' || message.content == 'Quelle heur est il ?' || message.content == 'Quel heur est-il ?' || message.content == 'Quel heur est il ?' || message.content == 'Quelle heure est-il ?' || message.content == 'Quelle heure est il ?' || message.content == 'Quel heure est-il ?' || message.content == 'Quel heure est il ?' || message.content == 'Heure ?' || message.content == 'heure ?')) {
-        
-            //Demande l'heure
-        console.log(userasked+" a demandé l'heure");
-        var channel = client.channels.get(logserv);
-        channel.send(userasked+" a demandé l'heure")
-        var day;
-	       switch (new Date().getDay()) {
-	       case 0:
-	           day = "dimanche";
-        	   break;
-	       case 1:
-		      day = "lundi";
-		      break;
-	       case 2:
-		      day = "mardi";
-		      break;
-	       case 3:
-		      day = "mercedi";
-		      break;
-	       case 4:
-		      day = "jeudi";
-		      break;
-	       case 5:
-		      day = "vendredi";
-		      break;
-	       case  6:
-		      day = "samedi";
-            }
-			
-            var month;
-            switch (new Date().getMonth()) {
-	        case 0:
-              month = "décembre";
-		      break;
-	        case 1:
-		      month = "janvier";
-		      break;
-	        case 2:
-		      month = "février";
-		      break;
-	        case 3:
-		      month = "mars";
-		      break;
-	        case 4:
-		      month = "avril";
-		      break;
-	        case 5:
-		      month = "mai";
-		      break;
-	        case 6:
-		      month = "juin";
-	          break;
-	        case 7:
-		      month = "juillet";
-		      break;
-	        case 8:
-		      month = "août";
-		      break;
-	        case 9:
-		      month = "septembre";
-		      break;	
-	        case 10:
-		      month = "octobre";
-		      break;
-	        case 11:
-		      month = "novembre";
-            }
- message.reply("Nya ! Nous sommes le " + day + " " + new Date().getDate()+ " " + month + " " + new Date().getFullYear() + " et il est " + new Date().toLocaleTimeString());
-            userasked = undefined;
-            isasked = false;
-            }
-                //déconection autorisé
-            else if (userasked == botowner && userasked == message.author && (message.content == 'Disconect' || message.content == 'disconect')) {
-            message.channel.send("D'accord, au revoir @here")
-                .then(message => console.log(`Message: ${message.content}`))
-                .catch(console.error);
-            userasked = undefined;
-            isasked = false;
-            client.destroy();
-            }
-                //déconection interdit
-            else if (userasked != botowner && userasked == message.author && (message.content == 'Disconect' || message.content == 'disconect')) {
-            message.channel.send("Désolé je ne peux pas faire ça !")
-                .then(message => console.log(`Message: ${message.content}`))
-                .catch(console.error);
-            userasked = undefined;
-            isasked = false;
-            }
-                //Tait-toi (Maitre)
-            else if (userasked == message.author && (message.content == 'tait-toi' || message.content == 'tait-toi !' || message.content == 'tait-toi!' || message.content == 'Tait-Toi' || message.content == 'Tait-Toi !' || message.content == 'Tait-Toi!' || message.content == 'Tait-toi' || message.content == 'Tait-toi !' || message.content == 'Tait-toi!' || message.content == 'tait-toi' || message.content == 'tait-toi !' || message.content == 'tait-toi!' || message.content == 'Tait Toi' || message.content == 'Tait Toi !' || message.content == 'Tait Toi!' || message.content == 'Tait toi' || message.content == 'Tait toi !' || message.content == 'Tait toi!' ||message.content == 'tait toi' || message.content == 'tait toi !' || message.content == 'tait toi!') && userasked == botowner) {
-            message.channel.send("Oui maitre vénéré ! https://orig00.deviantart.net/979a/f/2012/100/1/4/_acchi_kocchi__twitchy_twitchy_by_tach_ko-d4vo596.gif")
-                .then(message => console.log(`Message: ${message.content}`))
-                .catch(console.error);
-            userasked = undefined;
-            isasked = false;
-            }
-                //Tait-toi (Pas Maitre)
-            else if (userasked == message.author && (message.content == 'tait-toi' || message.content == 'tait-toi !' || message.content == 'tait-toi!' || message.content == 'Tait-Toi' || message.content == 'Tait-Toi !' || message.content == 'Tait-Toi!' || message.content == 'Tait-toi' || message.content == 'Tait-toi !' || message.content == 'Tait-toi!' || message.content == 'tait-toi' || message.content == 'tait-toi !' || message.content == 'tait-toi!' || message.content == 'Tait Toi' || message.content == 'Tait Toi !' || message.content == 'Tait Toi!' || message.content == 'Tait toi' || message.content == 'Tait toi !' || message.content == 'Tait toi!' ||message.content == 'tait toi' || message.content == 'tait toi !' || message.content == 'tait toi!') && userasked != botowner) {
-            message.channel.send("Non j'ai pas envie, t'es pas mon maître ! <:Tsuuuuu:378668647809417226>")
-                .then(message => console.log(`Message: ${message.content}`))
-                .catch(console.error);
-            userasked = undefined;
-            isasked = false;
-            }
-                //Non rien
-            else if (userasked == message.author && (message.content == 'annuler' || message.content == 'non rien' || message.content == 'Non rien' || message.content == 'Annuler')) {
-            message.channel.send("D'accord")
-                .then(message => console.log(`Message: ${message.content}`))
-                .catch(console.error);
-            userasked = undefined;
-            isasked = false;
-            }
-                //Impossible de répondre      
-            else if (userasked == message.author){
-            message.channel.send(userasked+' désolé je ne peux vous répondre')
-                .then(message => console.log(`Message: ${message.content}`))
-                .catch(console.error);
-            userasked = undefined;
-            isasked = false;
-            }
-            
-            
-}
-    //Nya bot mentioné
-    else if (message.isMentioned(mention) == 1 && message.content === mention2 && userasked === undefined) {
-        userasked = message.author;
-        isasked = true;
-        message.reply('que puis-je faire pour vous ?');
-        console.log('Nya!Bot a été mentioné par '+userasked);
-        var channel = client.channels.get(logserv);
-        channel.send('Nya!Bot a été mentioné par '+userasked);
-    }
-    
-    /*Commandes*/
-    
-    else if (iscommand == true) {
-        //Changer le jeu
-        if (command == 'game' && message.author == botowner) {
-            client.user.setGame(args.join(' '));
-            console.log('Changement du jeu: '+args.join(' '));
-            var channel = client.channels.get(logserv);
-            channel.send('Changement du jeu: '+args.join(' '));
-        }
-        else if (command == 'game' && message.author != botowner) {
-            message.author.sendMessage("Vous n'avez pas le droit d'utiliser "+"\""+message.content+"\"");
-        }
-        else if (command == 'nya' && message.author == botowner && (args[0] == 'owner' || args[0] == 'strict')) {
-            args[0] = '';
-            message.channel.send(args.join(' '));
-            console.log('Message envoyé: '+args.join(' '));
-            var channel = client.channels.get(logserv);
-            channel.send('Message envoyé: '+args.join(' '));
-        }
-        else if (command == 'nya') {
-            message.channel.send(message.author+" : "+args.join(' '));
-            console.log(message.author+'. Message envoyé: '+args.join(' '));
-            var channel = client.channels.get(logserv);
-            channel.send(message.author+'. Message envoyé: '+args.join(' '));
-        }
-        else if (command == 'invite') {
-            message.channel.send("Je sers un peu à rien mais bon voila mon invite:");
-            message.channel.send(invite);
-            console.log('Invitation envoyé');
-            var channel = client.channels.get(logserv);
-            channel.send('Invitation envoyé');
-        }
-        else if (command == 'runkit') {
-            message.channel.send(message.author+", voici mon lien runkit");
+
 client.on('message', message => {
     
     //ignorer si c'est un bot
@@ -646,12 +419,11 @@ client.on('message', message => {
 
 
 
-
 //lors de déconection
 client.on('disconnect', disconnect => {
 console.log('déconecté');
 var channel = client.channels.get(logserv);
 channel.send('Déconecté');
-});
+})
 
 client.login(key);
