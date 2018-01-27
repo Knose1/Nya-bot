@@ -148,11 +148,13 @@ client.on('message', message => {
                 if (channel.name == "nya-bot-vs" || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) {
                     
                     //On envoie une bare latéral (----)
-
+			        channel.send("---------------------------------------------------------------------------------------------------------");
+				    
                     //On envoie l'image de l'utilisateur    
                     new Discord.Attachment(message.author.avatarURL);
-                    Attachment.message = message.author.username;
-                    channel.send(Attachement);
+                    attachment.message = message.author.username;
+                    channel.send(attachement);
+                    
                     //On envoie son message
                     channel.send(message.author+': '+vsmessage);
                 }
