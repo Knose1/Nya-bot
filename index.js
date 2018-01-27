@@ -121,14 +121,17 @@ client.on('message', message => {
         }
     
     //Virtual Channel
-	var vschan = new Array();
-	/*client.guilds.forEach(function (chid) {
-                var guild = client.guilds.get(chid);
-                guild.channels.find('name', 'nya-bot-vs');
-            });*/
-	
-	if (message.channel.name == 'nya-bot-vs') {
-		message.channel.send('Bonjour');
+	else if (message.channel.name == 'nya-bot-vs') {
+		var vschan = new Array();
+		
+		client.guilds.forEach(function (chid) {
+			//On récupère le serv
+			var guild = client.guilds.get(chid);
+			//On récupère le channel nya-bot-vs
+			var channel = guild.channels.find('name', 'nya-bot-vs');
+			//On envoie le message
+			message.channel.send('Bonjour');
+		});
 	}
 	
 	/*End of Virtual Channel*/
