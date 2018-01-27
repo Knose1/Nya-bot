@@ -119,7 +119,6 @@ client.on('message', message => {
                 .then(msg => console.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
                 .catch(console.error);
         }
-    
 	
     //Virtual Channel
 	if (message.channel.name == 'nya-bot-vs' && iscommand == true) {
@@ -131,31 +130,40 @@ client.on('message', message => {
 	else if (message.channel.name == 'nya-bot-vs' && message.content.indexOf('--') != 0) {
 		message.author.sendMessage(message.author+' utilisez -- pour parler dans le vs');
 		message.delete(500)
-                .then(msg => console.log(`Messagmessage.author.sendMessage(e supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
+                .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
                 .catch(console.error);
 	}
 	else if (message.channel.name == 'nya-bot-vs' && message.content.indexOf('--') == 0) {
 	var words = message.content.slice('--'.length).trim().split(/ +/g);
 	var vsmessage = words.join(' ');
-        //Pour chaque serv:
+        //On créer un embed
         
+        var nbmois = new Date().getMonth();
+	    nbmois = nbmois-1;
+	    if (nbmois == -1) {
+		    nbmois = 12;
+	    }
+                    
+        const embed = new Discord.RichEmbed()
+            .setTitle("Virtual Channel")
+            .setAuthor(message.author.username+"#"+message.author.discriminator/*, message.author.avatarURL*/)
+            .setColor("#ff1a8c")
+            .setDescription(vsmessage)
+            .setFooter("Le "+new Date().getDate()+"/"+ nbmois+"/"+new Date().getFullYear()+" à "+new Date().toLocaleTimeString()+" | "+message.guild.name , message.author.avatarURL)
+            .setThumbnail(message.author.avatarURL)
+        /*Fin embed*/
+        
+        //Pour chaque serv:
+     
 		client.guilds.forEach(function (guild) {
 			//Pour chaque channel
             
             guild.channels.forEach(function (channel) {
                 //On regarde s'il se nome nya-bot-vs ou nya-bot-vs-log (dans le serv log)
-                
                 if (channel.name == "nya-bot-vs" || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) {
-                    	 
-                    const embed = new Discord.RichEmbed()
-                        .setTitle("Virtual Channel")
-                        .setAuthor(message.author.username, message.author.avatarURL)
-                        .setColor("#ff1a8c")
-                        .setDescription(vsmessage)
-                        .setFooter(message.author.username+"#"+message.author.discriminator, message.author.avatarURL)
-                        .setThumbnail(message.author.avatarURL)
-                    
-                    message.channel.send({embed});
+                
+                    //On envoie l'embed
+                    channel.send({embed});
                 }
             });
 	    });
