@@ -120,15 +120,20 @@ client.on('message', message => {
                 .catch(console.error);
         }
     
+	if (message.channel.name == 'nya-bot-vs' && iscommand == true) {
+		message.channel.send(message.author+' les commandes sont interdits dans se channel');
+	}
     //Virtual Channel
 	else if (message.channel.name == 'nya-bot-vs') {
-		var vschan = new Array();
-		
+        //Pour chaque serv:
 		client.guilds.forEach(function (guild) {
-			//On récupère le channel nya-bot-vs
-			var channel = guild.channels.find('name', 'nya-bot-vs');
-			//On envoie le message
-			message.channel.send('Bonjour');
+			//Pour chaque channel
+            guild.channels.forEach(function (channel) {
+                //On regarde s'il se nome nya-bot-vs ou nya-bot-vs-log
+                if (channel.name == "nya-bot-vs" || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) {
+                    message.channel.send('Bonjour');
+                }
+            });
 		});
 	}
 	
