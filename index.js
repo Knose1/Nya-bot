@@ -21,6 +21,14 @@ prefix = nprefix;
 
 
 
+var vsban = new Array();
+vsban;
+
+
+
+
+
+
 var catimg = new Array() ;
 catimg = [
     "https://yt3.ggpht.com/-xMN6CtD0oAM/AAAAAAAAAAI/AAAAAAAAAAA/3rguRakaom8/s900-c-k-no-mo-rj-c0xffffff/photo.jpg",
@@ -120,20 +128,33 @@ client.on('message', message => {
                 .catch(console.error);
         }
 	
-    //Virtual Channel
-	if (message.channel.name == 'nya-bot-vs' && iscommand == true) {
+    /*Virtual Channel*/
+    var isbanned = false;
+	vsban.foreachforEach(function (banned) {
+	    if (message.author == vsban) {
+            isbanned = true;
+        }
+    }
+	if (message.channel.name == 'nya-bot-vs' && isbanned = true) {
+	    message.author.sendMessage(message.author+' vous êtes ban du Virtual server et ne pouvez donc pas parler dans le VS');
+		message.delete(500)
+                .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
+                .catch(console.error);
+	}
+	
+	else if ((message.channel.name == 'nya-bot-vs' || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) && iscommand == true) {
 		message.author.sendMessage(message.author+' les commandes sont interdits dans se channel');
 		message.delete(500)
                 .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
                 .catch(console.error);
 	}
-	else if (message.channel.name == 'nya-bot-vs' && message.content.indexOf('--') != 0) {
+	else if ((message.channel.name == 'nya-bot-vs' || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) && message.content.indexOf('--') != 0) {
 		message.author.sendMessage(message.author+' utilisez -- pour parler dans le vs');
 		message.delete(500)
                 .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
                 .catch(console.error);
 	}
-	else if (message.channel.name == 'nya-bot-vs' && message.content.indexOf('--') == 0) {
+	else if ((message.channel.name == 'nya-bot-vs' || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) && message.content.indexOf('--') == 0) {
 	var words = message.content.slice('--'.length).trim().split(/ +/g);
 	var vsmessage = words.join(' ');
         //On créer un embed
