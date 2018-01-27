@@ -131,7 +131,7 @@ client.on('message', message => {
             guild.channels.forEach(function (channel) {
                 //On regarde s'il se nome nya-bot-vs ou nya-bot-vs-log
                 if (channel.name == "nya-bot-vs" || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) {
-                    message.channel.send('Bonjour');
+                    channel.send('Bonjour');
                 }
             });
 		});
