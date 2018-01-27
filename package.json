@@ -7,7 +7,7 @@
      "start":"node index.js"
   },
   "dependencies": {
-    "discord.js": "11.2.1",
+    "discord.js": "11.2.1"
   },
   "author": "knose1",
   "license": "ISC"
