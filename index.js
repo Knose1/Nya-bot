@@ -420,9 +420,9 @@ client.on('message', message => {
             var channel = client.channels.get(logserv);
             channel.send('Log Invitation envoyé');
         }
-        else if (command == 'runkit') {
-            message.channel.send(message.author+", voici mon lien runkit");
-            message.channel.send("https://runkit.com/knose1/runkit-npm-discord-js");
+        else if (command == 'git' || command == 'github') {
+            message.channel.send(message.author+", voici mon lien git");
+            message.channel.send("https://github.com/Knose1/Nya-bot");
         }
         else if (command == 'cat' && args.length == 0) {
         var randcat = Math.floor(Math.random() * catimg.length);
@@ -461,9 +461,18 @@ client.on('message', message => {
         
         //commande help
         
+	else if ((command == 'help' || command == 'aide') && args[0] == 'Vs' || args[0] == 'VS' || args[0] == 'vs' || args[0] == 'vS') {
+        message.channel.send("__**Virtual Server:**__ \n\n\
+     Pour obtenir le virtual server il vous suffie simplement de créer un channel appelé `nya-bot-vs`\n\
+https://media.discordapp.net/attachments/406802264540315648/406898903187980308/unknown.png\
+");
+        }
+	    
         else if ((command == 'help' || command == 'aide') && args[0] == 'here' ) {
         message.channel.send("__**Commandes:**__ \n\n\
-    `cat:runkit` Obtenir le lien runkit du bot\n\
+    `cat:help vs` Obtenir de l'aide sur la mise en place du Virtual Server\n\
+    \n\
+    `cat:git` Obtenir le lien git du bot\n\
     `cat:invite` Permet d'ajouter Nya!bot à votre server\n\
     `cat:logserv` Permet d'enoyer le lien du server log du bot\n\
     \n\
@@ -477,8 +486,10 @@ client.on('message', message => {
         
         else if ((command == 'help' || command == 'aide') && message.author == botowner) {
         message.author.sendMessage("__**Commandes:**__ \n\n\
+    `cat:help vs` Obtenir de l'aide sur la mise en place du Virtual Server\n\
+    \n\
     `cat:serv` Voir tout les serv de nya!bot\n\
-    `cat:runkit` Obtenir le lien runkit du bot\n\
+    `cat:git` Obtenir le lien git du bot\n\
     `cat:invite` Permet d'ajouter Nya!bot à votre server\n\
     `cat:logserv` Permet d'enoyer le lien du server log du bot\n\
     \n\
@@ -496,7 +507,9 @@ client.on('message', message => {
         
         else if (command == 'help' || command == 'aide') {
         message.author.sendMessage("__**Commandes bot owner:**__ \n\n\
-    `cat:runkit` Obtenir le lien runkit du bot\n\
+    `cat:help vs` Obtenir de l'aide sur la mise en place du Virtual Server\n\
+    \n\
+    `cat:git` Obtenir le lien git du bot\n\
     `cat:invite` Permet d'ajouter Nya!bot à votre server\n\
     `cat:logserv` Permet d'enoyer le lien du server log du bot\n\
     \n\
