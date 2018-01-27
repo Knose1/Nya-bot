@@ -142,19 +142,19 @@ client.on('message', message => {
                 .catch(console.error);
 	}
 	
-	else if ((message.channel.name == 'nya-bot-vs' || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) && iscommand == true) {
+	else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && iscommand == true) {
 		message.author.sendMessage(message.author+' les commandes sont interdits dans se channel');
 		message.delete(500)
                 .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
                 .catch(console.error);
 	}
-	else if ((message.channel.name == 'nya-bot-vs' || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) && message.content.indexOf('--') != 0) {
+	else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && message.content.indexOf('--') != 0) {
 		message.author.sendMessage(message.author+' utilisez -- pour parler dans le vs');
 		message.delete(500)
                 .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
                 .catch(console.error);
 	}
-	else if ((message.channel.name == 'nya-bot-vs' || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) && message.content.indexOf('--') == 0) {
+	else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && message.content.indexOf('--') == 0) {
 	var words = message.content.slice('--'.length).trim().split(/ +/g);
 	var vsmessage = words.join(' ');
         //On créer un embed
