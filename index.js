@@ -151,8 +151,8 @@ client.on('message', message => {
 
                     //On envoie l'image de l'utilisateur    
                     new Discord.Attachment(message.author.avatarURL);
-                    message.attachment.message = message.author.username;
-                    channel.send(message.attachement)
+                    Attachment.message = message.author.username;
+                    channel.send(Attachement);
                     //On envoie son message
                     channel.send(message.author+': '+vsmessage);
                 }
