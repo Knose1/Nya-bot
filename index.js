@@ -130,7 +130,7 @@ client.on('message', message => {
 	
     /*Virtual Channel*/
     var isbanned = false;
-	vsban.foreachforEach(function (banned) {
+	vsban.foreach(function (banned) {
 	    if (message.author == vsban) {
             isbanned = true;
         }
