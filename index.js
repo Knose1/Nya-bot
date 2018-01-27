@@ -146,17 +146,27 @@ client.on('message', message => {
                 //On regarde s'il se nome nya-bot-vs ou nya-bot-vs-log (dans le serv log)
                 
                 if (channel.name == "nya-bot-vs" || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) {
+                    	 
+                    const embed = new Discord.RichEmbed()
+                        .setTitle("Virtual Channel")
+                        .setAuthor(message.author.username, message.author.avatarURL)
+                        .setColor("#ff1a8c")
+                        .setDescription(vsmessage)
+                        .setFooter(message.author.username+"#"+message.author.discriminator, message.author.avatarURL)
+                        .setThumbnail(message.author.avatarURL)
+
+                        message.channel.send({embed});
                     
-                    //On envoie une bare latéral (----)
-			        channel.send("---------------------------------------------------------------------------------------------------------");
-				    
-                    //On envoie l'image de l'utilisateur    
-                    new Discord.Attachment(message.author.avatarURL);
-                    attachment.message = message.author.username;
-                    channel.send(attachement);
                     
-                    //On envoie son message
-                    channel.send(message.author+': '+vsmessage);
+		            /*channel.send({
+                        "content": message.author.username+"#"+message.author.discriminator+': '+vsmessage,
+                        "embed":{
+                            color:3224375,
+                            image: {
+                                "url": message.author.avatarURL
+                            }
+                        }
+                    });*/
                 }
             });
 	    });
