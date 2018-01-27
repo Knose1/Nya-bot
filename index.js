@@ -150,7 +150,7 @@ client.on('message', message => {
                     //On envoie une bare latéral (----)
 
                     //On envoie l'image de l'utilisateur    
-                    new Discord.attachment(message.author.avatarURL);
+                    new Discord.Attachment(message.author.avatarURL);
                     message.attachment.message = message.author.username;
                     channel.send(message.attachement)
                     //On envoie son message
