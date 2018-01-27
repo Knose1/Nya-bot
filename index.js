@@ -124,9 +124,7 @@ client.on('message', message => {
 	else if (message.channel.name == 'nya-bot-vs') {
 		var vschan = new Array();
 		
-		client.guilds.forEach(function (chid) {
-			//On récupère le serv
-			var guild = client.guilds.get(chid);
+		client.guilds.forEach(function (guild) {
 			//On récupère le channel nya-bot-vs
 			var channel = guild.channels.find('name', 'nya-bot-vs');
 			//On envoie le message
@@ -393,9 +391,9 @@ client.on('message', message => {
         else if ((command == 'guilds' || command == 'serv') && message.author == botowner) {
         var nyaguilds = '__Serveurs:__ \n\n';
         //console.log(client.guilds);
-             client.guilds.forEach(function (chid) {
-                var guild = client.guilds.get(chid);
-                nyaguilds = nyaguilds+chid.name+"\n";
+             client.guilds.forEach(function (guild) {
+                //var guild = client.guilds.get(chid);
+                nyaguilds = nyaguilds+guild.name+"\n";
             });
             message.channel.send(nyaguilds);
         }
