@@ -368,9 +368,12 @@ client.on('message', message => {
         
         else if ((command == 'help' || command == 'aide') && args[0] == 'here' ) {
         message.channel.send("__**Commandes:**__ \n\n\
-    `cat:nya` Envoyer des messages en tant que bot (mention de l'utilisateur)\n\
-    `cat:invite` Permet d'ajouter Nya!bot à votre server\n\
     `cat:runkit` Obtenir le lien runkit du bot\n\
+    `cat:invite` Permet d'ajouter Nya!bot à votre server\n\
+    `cat:logserv` Permet d'enoyer le lien du server log du bot\n\
+    \n\
+    `cat:nya` Envoyer des messages en tant que bot (mention de l'utilisateur)\n\
+    \n\
     `cat:cat` Met des images de chats mignions :cat:\n\
     `cat:cat size` Obtenire le nombre total d'images contenus dans cat:cat\n\
     `cat:cat share <url>` Permet de proposer une image à l'owner du bot\
@@ -380,11 +383,16 @@ client.on('message', message => {
         else if ((command == 'help' || command == 'aide') && message.author == botowner) {
         message.author.sendMessage("__**Commandes:**__ \n\n\
     `cat:serv` Voir tout les serv de nya!bot\n\
-    `cat:game` Changer le jeu du bot\n\
-    `cat:nya owner` Envoyer des messages en tant que bot\n\
-    `cat:nya` Envoyer des messages en tant que bot (mention de l'utilisateur)\n\
     `cat:runkit` Obtenir le lien runkit du bot\n\
     `cat:invite` Permet d'ajouter Nya!bot à votre server\n\
+    `cat:logserv` Permet d'enoyer le lien du server log du bot\n\
+    \n\
+    `cat:game <Jeu>` Changer le jeu du bot\n\
+    \n\
+    `cat:nya <message>` Envoyer des messages en tant que bot (mention de l'utilisateur)\n\
+    `cat:nya owner <message>` Envoyer des messages en tant que bot\n\
+    `cat:nya redirect <channel> <message>` Envoyer des messages en tant que bot dans d'autre channel\n\
+    \n\
     `cat:cat` Met des images de chats mignions :cat:\n\
     `cat:cat size` Obtenire le nombre total d'images contenus dans cat:cat\n\
     `cat:cat share <url>` Permet de proposer une image à l'owner du bot\
@@ -392,10 +400,13 @@ client.on('message', message => {
         }
         
         else if (command == 'help' || command == 'aide') {
-        message.author.sendMessage("__**Commandes:**__ \n\n\
-    `cat:nya` Envoyer des messages en tant que bot (mention de l'utilisateur)\n\
-    `cat:invite` Permet d'ajouter Nya!bot à votre server\n\
+        message.author.sendMessage("__**Commandes bot owner:**__ \n\n\
     `cat:runkit` Obtenir le lien runkit du bot\n\
+    `cat:invite` Permet d'ajouter Nya!bot à votre server\n\
+    `cat:logserv` Permet d'enoyer le lien du server log du bot\n\
+    \n\
+    `cat:nya` Envoyer des messages en tant que bot (mention de l'utilisateur)\n\
+    \n\
     `cat:cat` Met des images de chats mignions :cat:\n\
     `cat:cat size` Obtenire le nombre total d'images contenus dans cat:cat\n\
     `cat:cat share <url>` Permet de proposer une image à l'owner du bot\
