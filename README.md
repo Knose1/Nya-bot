@@ -29,7 +29,7 @@
 `cat:invite` Get nya!bot's invite link   
 `cat:logserv` Get the log server's invite   
 
-`cat:game <Jeu>` Change the bot's game **\*\*Owner only\*\***   
+`cat:game <game>` Change the bot's game **\*\*Owner only\*\***   
 
 `cat:nya <message>` Do the bot repeat the message (do mention)   
 `cat:nya owner <message>` Do the bot repeat the message (without mention) **\*\*Owner only\*\***   
