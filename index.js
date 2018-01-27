@@ -123,15 +123,15 @@ client.on('message', message => {
 	
     //Virtual Channel
 	if (message.channel.name == 'nya-bot-vs' && iscommand == true) {
-		message.channel.send(message.author+' les commandes sont interdits dans se channel');
+		message.author.sendMessage(message.author+' les commandes sont interdits dans se channel');
 		message.delete(500)
                 .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
                 .catch(console.error);
 	}
 	else if (message.channel.name == 'nya-bot-vs' && message.content.indexOf('--') != 0) {
-		message.channel.send(message.author+' utilisez -- pour parler dans le vs');
+		message.author.sendMessage(message.author+' utilisez -- pour parler dans le vs');
 		message.delete(500)
-                .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
+                .then(msg => console.log(`Messagmessage.author.sendMessage(e supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
                 .catch(console.error);
 	}
 	else if (message.channel.name == 'nya-bot-vs' && message.content.indexOf('--') == 0) {
@@ -154,19 +154,8 @@ client.on('message', message => {
                         .setDescription(vsmessage)
                         .setFooter(message.author.username+"#"+message.author.discriminator, message.author.avatarURL)
                         .setThumbnail(message.author.avatarURL)
-
-                        message.channel.send({embed});
                     
-                    
-		            /*channel.send({
-                        "content": message.author.username+"#"+message.author.discriminator+': '+vsmessage,
-                        "embed":{
-                            color:3224375,
-                            image: {
-                                "url": message.author.avatarURL
-                            }
-                        }
-                    });*/
+                    message.channel.send({embed});
                 }
             });
 	    });
