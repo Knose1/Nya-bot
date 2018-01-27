@@ -23,23 +23,23 @@ prefix = nprefix;
 
 var catimg = new Array() ;
 catimg = [
-    	"https://yt3.ggpht.com/-xMN6CtD0oAM/AAAAAAAAAAI/AAAAAAAAAAA/3rguRakaom8/s900-c-k-no-mo-rj-c0xffffff/photo.jpg",
-    	"https://wallpaper.wiki/wp-content/uploads/2017/05/wallpaper.wiki-Anime-Cat-Full-HD-Wallpaper-PIC-WPC0012460.jpg",
-    	"https://i.pinimg.com/736x/a6/8b/fb/a68bfb3aa12707c10335a4b40611719e--black-cat-anime-anime-cat.jpg",
-    	"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY6AnbOswJ5Z3UIAyMxgb-hO0l4X7fLz4e1YlmnLxjCsmUR5vq",
-    	"http://www.flipcat.us/wp-content/uploads/2017/11/captivating-artwork-cat-anime-glowing-clouds-apofiss-wallpapers-hd-also-marvelous-cat-wallpaper-anime.jpg",
-    	"J'ai la flemme, si tu veux une image fait le toi même",
-    	"https://pbs.twimg.com/profile_images/1798927817/Chi001.jpg",
-    	"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk4G02HepCrUM_JswsuADFZFf4OUyMrXyDpEF_7m-jNEpTJRgO",
-    	"https://media.giphy.com/media/A6JOgQslWdYqI/giphy-facebook_s.jpg",
-    	"https://myanimelist.cdn-dena.com/s/common/uploaded_files/1449565712-5aafae0c93dc1277f3b714736537eb1d.gif",
-    	"https://i.imgur.com/vs2IkYB.gif",
-    	"http://clipground.com/images/cute-anime-cat-clipart-19.jpg",
-    	"https://wallpaper.wiki/wp-content/uploads/2017/04/wallpaper.wiki-Cute-Anime-Cat-Background-HQ-PIC-WPC001902.jpg",
-    	"http://i.imgur.com/kkqZHi8.jpg",
-    	"https://data.whicdn.com/images/21075753/original.png",
-    	"J'ai la flemme, si tu veux une image fait le toi même",
-    	"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBvORlETA2KGz95tGZHAGti4TWphRYTHc-H14niFvHYk-3-tEK",
+    "https://yt3.ggpht.com/-xMN6CtD0oAM/AAAAAAAAAAI/AAAAAAAAAAA/3rguRakaom8/s900-c-k-no-mo-rj-c0xffffff/photo.jpg",
+    "https://wallpaper.wiki/wp-content/uploads/2017/05/wallpaper.wiki-Anime-Cat-Full-HD-Wallpaper-PIC-WPC0012460.jpg",
+    "https://i.pinimg.com/736x/a6/8b/fb/a68bfb3aa12707c10335a4b40611719e--black-cat-anime-anime-cat.jpg",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY6AnbOswJ5Z3UIAyMxgb-hO0l4X7fLz4e1YlmnLxjCsmUR5vq",
+    "http://www.flipcat.us/wp-content/uploads/2017/11/captivating-artwork-cat-anime-glowing-clouds-apofiss-wallpapers-hd-also-marvelous-cat-wallpaper-anime.jpg",
+    "J'ai la flemme, si tu veux une image fait le toi même",
+    "https://pbs.twimg.com/profile_images/1798927817/Chi001.jpg",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk4G02HepCrUM_JswsuADFZFf4OUyMrXyDpEF_7m-jNEpTJRgO",
+    "https://media.giphy.com/media/A6JOgQslWdYqI/giphy-facebook_s.jpg",
+    "https://myanimelist.cdn-dena.com/s/common/uploaded_files/1449565712-5aafae0c93dc1277f3b714736537eb1d.gif",
+    "https://i.imgur.com/vs2IkYB.gif",
+    "http://clipground.com/images/cute-anime-cat-clipart-19.jpg",
+    "https://wallpaper.wiki/wp-content/uploads/2017/04/wallpaper.wiki-Cute-Anime-Cat-Background-HQ-PIC-WPC001902.jpg",
+    "http://i.imgur.com/kkqZHi8.jpg",
+    "https://data.whicdn.com/images/21075753/original.png",
+    "J'ai la flemme, si tu veux une image fait le toi même",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBvORlETA2KGz95tGZHAGti4TWphRYTHc-H14niFvHYk-3-tEK",
 	"https://i.pinimg.com/736x/0f/00/9b/0f009b24bb1c63a1bc56fd2580ea813c--chibi-kawaii-neko-girl-kawaii.jpg",
 	"https://i.ytimg.com/vi/4Ns47GgF4D4/maxresdefault.jpg",
 	"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwtWEOgHUdqyhR2LLkj3jstn0Q4uWyyJj7lizS018dyaFrCoFA",
@@ -120,19 +120,31 @@ client.on('message', message => {
                 .catch(console.error);
         }
     
+	
+    //Virtual Channel
 	if (message.channel.name == 'nya-bot-vs' && iscommand == true) {
 		message.channel.send(message.author+' les commandes sont interdits dans se channel');
 	}
-    //Virtual Channel
 	else if (message.channel.name == 'nya-bot-vs' && message.content.indexOf('--') == 0) {
 	var words = message.content.slice('--'.length).trim().split(/ +/g);
 	var vsmessage = words.join(' ');
         //Pour chaque serv:
+        
 		client.guilds.forEach(function (guild) {
 			//Pour chaque channel
+            
             guild.channels.forEach(function (channel) {
                 //On regarde s'il se nome nya-bot-vs ou nya-bot-vs-log (dans le serv log)
+                
                 if (channel.name == "nya-bot-vs" || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) {
+                    
+                    //On envoie une bare latéral (----)
+
+                    //On envoie l'image de l'utilisateur    
+                    client.sendFile(message, 'http://i.imgur.com/6CbxaPc.jpg', 'kappa.jpg', 'Check out this cool file!', (err, m) => {
+                        if (err) console.log(err);
+                    });
+                    //On envoie son message
                     channel.send(message.author+': '+vsmessage);
                 }
             });
