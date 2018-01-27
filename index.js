@@ -124,6 +124,15 @@ client.on('message', message => {
     //Virtual Channel
 	if (message.channel.name == 'nya-bot-vs' && iscommand == true) {
 		message.channel.send(message.author+' les commandes sont interdits dans se channel');
+		message.delete(500)
+                .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
+                .catch(console.error);
+	}
+	else if (message.channel.name == 'nya-bot-vs' && message.content.indexOf('--') != 0) {
+		message.channel.send(message.author+' utilisez -- pour parler dans le vs');
+		message.delete(500)
+                .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
+                .catch(console.error);
 	}
 	else if (message.channel.name == 'nya-bot-vs' && message.content.indexOf('--') == 0) {
 	var words = message.content.slice('--'.length).trim().split(/ +/g);
@@ -141,14 +150,17 @@ client.on('message', message => {
                     //On envoie une bare latéral (----)
 
                     //On envoie l'image de l'utilisateur    
-                    client.sendFile(message, 'http://i.imgur.com/6CbxaPc.jpg', 'kappa.jpg', 'Check out this cool file!', (err, m) => {
-                        if (err) console.log(err);
-                    });
+                    new Discord.attachment(message.author.avatarURL);
+                    message.attachment.message = message.author.username;
+                    channel.send(message.attachement)
                     //On envoie son message
                     channel.send(message.author+': '+vsmessage);
                 }
             });
 	    });
+    message.delete(500)
+        .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
+        .catch(console.error);
 	}
 	
 	/*End of Virtual Channel*/
