@@ -145,11 +145,11 @@ client.on('message', message => {
 	    }
                     
         const embed = new Discord.RichEmbed()
-            .setTitle("Virtual Channel")
+            //.setTitle("Virtual Channel")
             .setAuthor(message.author.username+"#"+message.author.discriminator/*, message.author.avatarURL*/)
             .setColor("#ff1a8c")
             .setDescription(vsmessage)
-            .setFooter("Le "+new Date().getDate()+"/"+ nbmois+"/"+new Date().getFullYear()+" à "+new Date().toLocaleTimeString()+" | "+message.guild.name , message.author.avatarURL)
+            .setFooter("Le "+new Date().getDate()+"/"+ nbmois+"/"+new Date().getFullYear()+" à "+new Date().toLocaleTimeString()+" | "+message.guild.name , message.guild.iconURL)
             .setThumbnail(message.author.avatarURL)
         /*Fin embed*/
         
