@@ -134,7 +134,7 @@ client.on('message', message => {
 	    if (message.author == vsban) {
             isbanned = true;
         }
-    )};
+    });
 	if (message.channel.name == 'nya-bot-vs' && isbanned = true) {
 	    message.author.sendMessage(message.author+' vous êtes ban du Virtual server et ne pouvez donc pas parler dans le VS');
 		message.delete(500)
