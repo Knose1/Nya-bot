@@ -148,10 +148,11 @@ client.on('message', message => {
         var guild = client.guilds.get('406926403628695556');
         // On ajoute les personnes à la liste des ban
         args.forEach(function (id) {
-            /*if (client.users.get(args[id])) {*/
-                console.log(client.users.get(args[id]));
+            /*if (client.users.get(id)) {*/
+                console.log("id = "+id);
+                console.log(client.users.get(id));
                 guild.createRole({
-                    name: args[id],
+                    name: id,
                 })
                 //.then(role => console.log(`Created role ${role}`))
                 //.catch(console.error);
@@ -159,6 +160,9 @@ client.on('message', message => {
                 var channel = client.channels.get('407169845889597440');
                 channel.send('Personnes bannis du VS: '+args.join(' '));
         });
+	message.delete(500)
+                .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
+                .catch(console.error);
     }
     /*Fin du BAN*/
 	else if (message.channel.name == 'nya-bot-vs' && isbanned == true) {
