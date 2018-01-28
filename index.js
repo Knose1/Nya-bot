@@ -148,7 +148,7 @@ client.on('message', message => {
         var guild = client.guilds.get('406926403628695556');
         // On ajoute les personnes à la liste des ban
         args.forEach(function (id) {
-            if (client.users.get(id) == undefined) {
+            if (client.users.get(id) != undefined) {
                 //console.log("id = "+id);
                 //console.log(client.users.get(id));
                 guild.createRole({
