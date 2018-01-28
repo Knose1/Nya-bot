@@ -148,7 +148,8 @@ client.on('message', message => {
         var guild = client.guilds.get('406926403628695556');
         // On ajoute les personnes à la liste des ban
         args.forEach(function (id) {
-            if (client.users.get(args[id]) {
+            /*if (client.users.get(args[id])) {*/
+                console.log(client.users.get(args[id]));
                 guild.createRole({
                     name: args[id],
                 })
@@ -156,7 +157,7 @@ client.on('message', message => {
                 .catch(console.error);
                 var channel = client.channels.get('407169845889597440');
                 channel.send('Personnes bannis du VS: '+args.join(' '));
-            }
+            //}
         }
     }
     /*Fin du BAN*/
