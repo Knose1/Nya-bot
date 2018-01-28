@@ -137,7 +137,7 @@ client.on('message', message => {
     //On regarde si la personne est ban
     var isbanned = false;
 	vsban.forEach(function (banned) {
-	    if (message.author.id == vsban) {
+	    if (message.author.id == banned) {
             isbanned = true;
         }
     });
