@@ -148,17 +148,17 @@ client.on('message', message => {
         var guild = client.guilds.get('406926403628695556');
         // On ajoute les personnes à la liste des ban
         args.forEach(function (id) {
-            /*if (client.users.get(id)) {*/
-                console.log("id = "+id);
-                console.log(client.users.get(id));
+            if (client.users.get(id) == undefined) {
+                //console.log("id = "+id);
+                //console.log(client.users.get(id));
                 guild.createRole({
                     name: id,
                 })
                 //.then(role => console.log(`Created role ${role}`))
                 //.catch(console.error);
-          //}
                 var channel = client.channels.get('407169845889597440');
-                channel.send('Personnes bannis du VS: '+args.join(' '));
+                channel.send('Personne banni du VS: '+id);
+            }
         });
 	message.delete(500)
                 .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
@@ -200,7 +200,7 @@ client.on('message', message => {
             .setAuthor(message.author.username+"#"+message.author.discriminator/*, message.author.avatarURL*/)
             .setColor("#ff1a8c")
             .setDescription(vsmessage)
-            .setFooter("Le "+new Date().getDate()+"/"+ nbmois+"/"+new Date().getFullYear()+" à "+new Date().toLocaleTimeString()+" | "+message.guild.name , message.guild.iconURL+" | "+message.author.id)
+            .setFooter("Le "+new Date().getDate()+"/"+ nbmois+"/"+new Date().getFullYear()+" à "+new Date().toLocaleTimeString()+" | "+message.guild.name+" | "+message.author.id , message.guild.iconURL)
             .setThumbnail(message.author.avatarURL);
         /*Fin embed*/
         
