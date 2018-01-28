@@ -198,7 +198,7 @@ client.on('message', message => {
                 .catch(console.error);
 	}
     //Si pas de -- et pas de //
-	else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--') != 0 || message.content.indexOf('//') != 0)) {
+	else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--') != 0 && message.content.indexOf('//') != 0)) {
 		message.author.sendMessage(message.author+' utilisez -- ou // pour parler dans le vs');
 		message.delete(500)
                 .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
