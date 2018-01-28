@@ -110,10 +110,10 @@ client.on('message', message => {
     //ignorer si c'est un bot
     if(message.author.bot == true) {
         if((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--') == 0 || message.content.indexOf('//') == 0)) {
-	}
+        }
         else {
             return;
-	}
+        }
     }
     //si c'est une commande, récupérer les arguments, la commande et supprimer le message
         if (message.content.indexOf(prefix) == 0) {
@@ -222,10 +222,19 @@ client.on('message', message => {
         
         var nbmois = new Date().getMonth();
 	    nbmois = nbmois-1;
-	    if (nbmois == -1) {
-		    nbmois = 12;
-	    }
-                    
+        if (nbmois == -1) {
+            nbmois = 12;
+        }
+        if (message.author.bot) {
+        const embed = new Discord.RichEmbed()
+            //.setTitle("Virtual Channel")
+            .setAuthor("**BOT:** "+message.author.username+"#"+message.author.discriminator/*, message.author.avatarURL*/)
+            .setColor("#ff1a8c")
+            .setDescription(vsmessage)
+            .setFooter("Le "+new Date().getDate()+"/"+ nbmois+"/"+new Date().getFullYear()+" à "+new Date().toLocaleTimeString()+" | "+message.guild.name+" | "+message.author.id , message.guild.iconURL)
+            .setThumbnail(message.author.avatarURL);
+        
+        }else{
         const embed = new Discord.RichEmbed()
             //.setTitle("Virtual Channel")
             .setAuthor(message.author.username+"#"+message.author.discriminator/*, message.author.avatarURL*/)
@@ -233,6 +242,7 @@ client.on('message', message => {
             .setDescription(vsmessage)
             .setFooter("Le "+new Date().getDate()+"/"+ nbmois+"/"+new Date().getFullYear()+" à "+new Date().toLocaleTimeString()+" | "+message.guild.name+" | "+message.author.id , message.guild.iconURL)
             .setThumbnail(message.author.avatarURL);
+        }
         /*Fin embed*/
         
         //Pour chaque serv:
