@@ -130,9 +130,9 @@ client.on('message', message => {
     guild.roles.forEach(function (role) {
         vsx = vsx+1;
         vsban[vsx] = role.name;
-	    console.log(role.name);
+	    //console.log(role.name);
     });
-    console.log(message.author.id);
+    //console.log(message.author.id);
     
     //On regarde si la personne est ban
     var isbanned = false;
