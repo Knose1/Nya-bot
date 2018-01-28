@@ -145,7 +145,7 @@ client.on('message', message => {
 	if (message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log") && message.content.indexOf('--ban') == 0 && message.author == botowner) {
         var args = message.content.slice('--'.length).trim().split(/ +/g);
         var command = args.shift().toLowerCase();
-        var guild = client.guilds.get('406926403628695556');=;
+        var guild = client.guilds.get('406926403628695556');
         // On ajoute les personnes à la liste des ban
         args.forEach(function (id) {
             if (client.users.get(args[id]) {
