@@ -161,7 +161,7 @@ client.on('message', message => {
             }
         });
 	message.delete(500)
-                .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
+                .then(msg => console.log(`Message supprimé, raison: Ban Virtual channel; Auteur: ${msg.author}`))
                 .catch(console.error);
     }
     /*Fin du BAN*/
