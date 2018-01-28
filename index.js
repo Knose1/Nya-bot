@@ -225,24 +225,21 @@ client.on('message', message => {
         if (nbmois == -1) {
             nbmois = 12;
         }
-        if (message.author.bot) {
+	var auth = '';
+        if (message.author.bot == true) {
+	auth = "**BOT:** "+message.author.username+"#"+message.author.discriminator;
+	}
+	else {
+	auth = message.author.username+"#"+message.author.discriminator;
+	}
         const embed = new Discord.RichEmbed()
             //.setTitle("Virtual Channel")
-            .setAuthor("**BOT:** "+message.author.username+"#"+message.author.discriminator/*, message.author.avatarURL*/)
+            .setAuthor(auth /*, message.author.avatarURL*/)
             .setColor("#ff1a8c")
             .setDescription(vsmessage)
             .setFooter("Le "+new Date().getDate()+"/"+ nbmois+"/"+new Date().getFullYear()+" à "+new Date().toLocaleTimeString()+" | "+message.guild.name+" | "+message.author.id , message.guild.iconURL)
             .setThumbnail(message.author.avatarURL);
         
-        }else{
-        const embed = new Discord.RichEmbed()
-            //.setTitle("Virtual Channel")
-            .setAuthor(message.author.username+"#"+message.author.discriminator/*, message.author.avatarURL*/)
-            .setColor("#ff1a8c")
-            .setDescription(vsmessage)
-            .setFooter("Le "+new Date().getDate()+"/"+ nbmois+"/"+new Date().getFullYear()+" à "+new Date().toLocaleTimeString()+" | "+message.guild.name+" | "+message.author.id , message.guild.iconURL)
-            .setThumbnail(message.author.avatarURL);
-        }
         /*Fin embed*/
         
         //Pour chaque serv:
