@@ -225,21 +225,18 @@ client.on('message', message => {
         if (nbmois == -1) {
             nbmois = 12;
         }
-	var auth = '';
-        if (message.author.bot == true) {
-	auth = "**BOT:** "+message.author.username+"#"+message.author.discriminator;
-	}
-	else {
-	auth = message.author.username+"#"+message.author.discriminator;
-	}
+    
         const embed = new Discord.RichEmbed()
             //.setTitle("Virtual Channel")
-            .setAuthor(auth /*, message.author.avatarURL*/)
+            .setAuthor(message.author.username+"#"+message.author.discriminator /*, message.author.avatarURL*/)
             .setColor("#ff1a8c")
             .setDescription(vsmessage)
             .setFooter("Le "+new Date().getDate()+"/"+ nbmois+"/"+new Date().getFullYear()+" à "+new Date().toLocaleTimeString()+" | "+message.guild.name+" | "+message.author.id , message.guild.iconURL)
             .setThumbnail(message.author.avatarURL);
         
+        if (message.author.bot == true) {
+	    embed.setAuthor("BOT: "+message.author.username+"#"+message.author.discriminator, "https://media.discordapp.net/attachments/407271018516971532/407272279416766475/BOT.png");
+	    }
         /*Fin embed*/
         
         //Pour chaque serv:
