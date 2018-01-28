@@ -148,7 +148,16 @@ client.on('message', message => {
         var guild = client.guilds.get('406926403628695556');
         // On ajoute les personnes à la liste des ban
         args.forEach(function (id) {
-            if (client.users.get(id) != undefined) {
+			
+			//On regarde si la personne est deja ban
+    		var isbanned = false;
+			vsban.forEach(function (banned) {
+	    		if (id == banned) {
+            		isbanned = true;
+        		}
+    		});
+			
+            if (client.users.get(id) != undefined && isbanned == false) {
                 //console.log("id = "+id);
                 //console.log(client.users.get(id));
                 guild.createRole({
@@ -156,8 +165,9 @@ client.on('message', message => {
                 })
                 //.then(role => console.log(`Created role ${role}`))
                 //.catch(console.error);
+				var banuser = client.users.get(id);
                 var channel = client.channels.get('407169845889597440');
-                channel.send('Personne banni du VS: '+id);
+                channel.send('Personne banni du VS: '+banuser.username+"#"+banuser.discriminator+" ("+id+")");
             }
         });
 	message.delete(500)
