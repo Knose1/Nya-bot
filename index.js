@@ -108,7 +108,7 @@ channel.send('Reconnection')
 client.on('message', message => {
     
     //ignorer si c'est un bot
-    if(message.author.bot) return;
+    if(message.author.bot == true && message.channel.name != 'nya-bot-vs' && message.content.indexOf('--') != 0 && message.content.indexOf('//') != 0 && (message.guild.id == "377892426569744387" && message.channel.name != "nya-bot-vs-log") return;
     
     //si c'est une commande, récupérer les arguments, la commande et supprimer le message
         if (message.content.indexOf(prefix) == 0) {
