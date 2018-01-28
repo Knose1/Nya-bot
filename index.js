@@ -142,9 +142,25 @@ client.on('message', message => {
         }
     });
 	/*ON VAS BAN DES GENS !!! */
-	/*if 
-	
-	else*/ if (message.channel.name == 'nya-bot-vs' && isbanned == true) {
+	if (message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log") && message.content.indexOf('--ban') == 0 && message.author == botowner) {
+        var args = message.content.slice('--'.length).trim().split(/ +/g);
+        var command = args.shift().toLowerCase();
+        var guild = client.guilds.get('406926403628695556');=;
+        // On ajoute les personnes à la liste des ban
+        args.forEach(function (id) {
+            if (client.users.get(args[id]) {
+                guild.createRole({
+                    name: args[id],
+                })
+                .then(role => console.log(`Created role ${role}`))
+                .catch(console.error);
+                var channel = client.channels.get('407169845889597440');
+                channel.send('Personnes bannis du VS: '+args.join(' '));
+            }
+        }
+    }
+    /*Fin du BAN*/
+	else if (message.channel.name == 'nya-bot-vs' && isbanned == true) {
 	    message.author.sendMessage(message.author+' vous êtes ban du Virtual server et ne pouvez donc pas parler dans le VS');
 		message.delete(500)
                 .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
@@ -179,8 +195,8 @@ client.on('message', message => {
             .setAuthor(message.author.username+"#"+message.author.discriminator/*, message.author.avatarURL*/)
             .setColor("#ff1a8c")
             .setDescription(vsmessage)
-            .setFooter("Le "+new Date().getDate()+"/"+ nbmois+"/"+new Date().getFullYear()+" à "+new Date().toLocaleTimeString()+" | "+message.guild.name , message.guild.iconURL)
-            .setThumbnail(message.author.avatarURL)
+            .setFooter("Le "+new Date().getDate()+"/"+ nbmois+"/"+new Date().getFullYear()+" à "+new Date().toLocaleTimeString()+" | "+message.guild.name , message.guild.iconURL+" | "+message.author.id)
+            .setThumbnail(message.author.avatarURL);
         /*Fin embed*/
         
         //Pour chaque serv:
