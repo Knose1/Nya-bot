@@ -183,13 +183,16 @@ client.on('message', message => {
         args.shift().toLowerCase();
         
         message.channel.send("--"+args.join(' '));
+	message.delete(500)
+                .then(msg => console.log(`Message supprimé, raison: Ban Virtual channel; Auteur: ${msg.author}`))
+                .catch(console.error);
     }
     /*FIN DE --NYA*/
     
     
 	/*ON VAS BAN DES GENS !!! */
     
-    if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--ban') == 0 || message.content.indexOf('--Ban') == 0 || message.content.indexOf('//ban') == 0 || message.content.indexOf('//Ban') == 0) && message.author == botowner) {
+    else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--ban') == 0 || message.content.indexOf('--Ban') == 0 || message.content.indexOf('//ban') == 0 || message.content.indexOf('//Ban') == 0) && message.author == botowner) {
         if (message.content.indexOf('//') == 0){
             var args = message.content.slice('//'.length).trim().split(/ +/g);
         }
