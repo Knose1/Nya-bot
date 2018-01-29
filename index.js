@@ -123,8 +123,8 @@ client.on('message', message => {
     
     //ignorer si c'est un bot (sauf s'il parle dans le vs sous certaines conditions
     if(message.author.bot == true) {
-        //Bot ban
-        if (message.channel.name == 'nya-bot-vs' && isbanned == true) {
+        //Bot ban et bot différent de nya!bot
+        if (message.channel.name == 'nya-bot-vs' && isbanned == true && message.author.id != mention) {
             message.delete(500)
                 .then(msg => console.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
                 .catch(console.error);
@@ -137,8 +137,8 @@ client.on('message', message => {
                 .catch(console.error);
             return;
         }
-        //Si pas de -- et pas de //
-	    else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--') != 0 && message.content.indexOf('//') != 0)) {
+        //Si pas de -- et pas de // et différent de nya!bot
+	    else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--') != 0 && message.content.indexOf('//') != 0) && message.author.id != mention) {
             message.delete(500)
                 .then(msg => console.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
                 .catch(console.error);
@@ -230,7 +230,7 @@ client.on('message', message => {
     /*Fin du BAN*/
 	
     //Si (Personne Ban)
-    else if (message.channel.name == 'nya-bot-vs' && isbanned == true) {
+    else if (message.channel.name == 'nya-bot-vs' && isbanned == true  && message.author.id != mention  && message.author.id != botowner) {
 	    message.author.sendMessage(message.author+' vous êtes ban du Virtual server et ne pouvez donc pas parler dans le VS');
 		message.delete(500)
                 .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
@@ -244,7 +244,7 @@ client.on('message', message => {
                 .catch(console.error);
 	}
     //Si pas de -- et pas de //
-	else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--') != 0 && message.content.indexOf('//') != 0)) {
+	else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--') != 0 && message.content.indexOf('//') != 0) && message.author.id != mention) {
 		message.author.sendMessage(message.author+' utilisez -- ou // pour parler dans le vs');
 		message.delete(500)
                 .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
