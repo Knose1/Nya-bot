@@ -148,8 +148,24 @@ client.on('message', message => {
             isbanned = true;
         }
     });
+    /*On envoie des messages en tant que nya!bot*/
+    
+    if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--nya') == 0 || message.content.indexOf('--Nya') == 0 || message.content.indexOf('//nya') == 0 || message.content.indexOf('//Nya') == 0) && message.author == botowner) {
+        if (message.content.indexOf('//') == 0){
+            var args = message.content.slice('//'.length).trim().split(/ +/g);
+        }
+        else {
+            var args = message.content.slice('--'.length).trim().split(/ +/g);
+        }
+        args.shift().toLowerCase();
+        
+        message.channel.send("--"+args.join(' '));
+    }
+    /*FIN DE --NYA*/
+    
     
 	/*ON VAS BAN DES GENS !!! */
+    
     if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--ban') == 0 || message.content.indexOf('--Ban') == 0 || message.content.indexOf('//ban') == 0 || message.content.indexOf('//Ban') == 0) && message.author == botowner) {
         if (message.content.indexOf('//') == 0){
             var args = message.content.slice('//'.length).trim().split(/ +/g);
@@ -158,7 +174,7 @@ client.on('message', message => {
             var args = message.content.slice('--'.length).trim().split(/ +/g);
         }
         
-        var command = args.shift().toLowerCase();
+        args.shift().toLowerCase();
         var guild = client.guilds.get('406926403628695556');
         // On ajoute les personnes à la liste des ban
         args.forEach(function (id) {
