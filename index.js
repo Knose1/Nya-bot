@@ -107,7 +107,7 @@ channel.send('Reconnection')
 
 client.on('message', message => {
 
-    if(message.guild) {return;}
+    if(message.guild) {} else {return;}
     
     //ignorer si c'est un bot
     if(message.author.bot == true) {
