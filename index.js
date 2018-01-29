@@ -109,14 +109,6 @@ client.on('message', message => {
 
     if(message.guild) {} else {return;}
     
-    //ignorer si c'est un bot
-    if(message.author.bot == true) {
-        if((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--') == 0 || message.content.indexOf('//') == 0)) {
-        }
-        else {
-            return;
-        }
-    }
     //si c'est une commande, récupérer les arguments, la commande et supprimer le message
         if (message.content.indexOf(prefix) == 0) {
             var iscommand = true;
@@ -128,6 +120,37 @@ client.on('message', message => {
                 .catch(console.error);
         }
 	
+    
+    //ignorer si c'est un bot (sauf s'il parle dans le vs sous certaines conditions
+    if(message.author.bot == true) {
+        //Bot ban
+        if (message.channel.name == 'nya-bot-vs' && isbanned == true) {
+            message.delete(500)
+                .then(msg => console.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
+                .catch(console.error);
+            return;
+        }
+        //Nya!bot commande
+        else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && iscommand == true) {
+            message.delete(500)
+                .then(msg => console.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
+                .catch(console.error);
+            return;
+        }
+        //Si pas de -- et pas de //
+	    else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--') != 0 && message.content.indexOf('//') != 0)) {
+            message.delete(500)
+                .then(msg => console.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
+                .catch(console.error);
+            return;
+        }
+        else if((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--') == 0 || message.content.indexOf('//') == 0)) {
+        }
+        else {
+            return;
+        }
+    }
+    
     /*Virtual Channel*/
     
     //On récupère la liste des ban
