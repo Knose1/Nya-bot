@@ -265,10 +265,7 @@ client.on('message', message => {
         //On créer un embed
         
         var nbmois = new Date().getMonth();
-	    nbmois = nbmois-1;
-        if (nbmois == -1) {
-            nbmois = 12;
-        }
+	    nbmois = nbmois+1;
     
         const embed = new Discord.RichEmbed()
             //.setTitle("Virtual Channel")
