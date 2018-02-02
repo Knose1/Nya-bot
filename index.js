@@ -480,7 +480,13 @@ client.on('message', message => {
     
     else if (iscommand == true) {
         //Changer le jeu
-        if (command == 'game' && message.author == botowner) {
+        if (command == 'game' && message.author == botowner && args.length == 0) {
+            client.user.setGame(client.user.setGame(`Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} servers.`);
+            console.log('Changement du jeu: Par défaut');
+            var channel = client.channels.get(logserv);
+            channel.send('Changement du jeu: Par défaut');
+        }
+	else if (command == 'game' && message.author == botowner) {
             client.user.setGame(args.join(' '));
             console.log('Changement du jeu: '+args.join(' '));
             var channel = client.channels.get(logserv);
