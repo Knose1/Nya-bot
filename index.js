@@ -270,14 +270,18 @@ client.on('message', message => {
         const embed = new Discord.RichEmbed()
             //.setTitle("Virtual Channel")
             .setAuthor(message.author.username+"#"+message.author.discriminator /*, message.author.avatarURL*/)
-            .setColor("#ff1a8c")
+            .setColor("#ffffff")
             .setDescription(vsmessage)
             .setFooter("Le "+new Date().getDate()+"/"+ nbmois+"/"+new Date().getFullYear()+" à "+new Date().toLocaleTimeString()+" | "+message.guild.name+" | "+message.author.id , message.guild.iconURL)
             .setThumbnail(message.author.avatarURL);
-        
+        var IsMod = client.guilds.get('377892426569744387').roles.get('407229590948413440').members.get(message.author.id);
+		console.log(IsMod);
         if (message.author.bot == true) {
 	    embed.setAuthor("BOT: "+message.author.username+"#"+message.author.discriminator, "https://media.discordapp.net/attachments/407271018516971532/407272279416766475/BOT.png");
-	    }
+	    	if (message.author.id == mention) {embed.setColor("#ff1a8c");}
+		}
+		
+		
         /*Fin embed*/
         
         //Pour chaque serv:
