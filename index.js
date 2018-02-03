@@ -218,7 +218,7 @@ client.on('message', message => {
                     isbanned = true;
                 }
                 //Si la personne esseille de se ban lui-même
-                else if (id = message.author.id) {
+                else if (id == message.author.id) {
                     message.author.sendMessage('Vous ne pouvez pas vous ban vous-même');
                 }
                 
