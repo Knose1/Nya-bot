@@ -106,7 +106,7 @@ channel.send('Reconnection')
 
 
 client.on('message', message => {
-
+	console.log(message.content);
     if(message.guild) {} else {return;}
     //On regarde si l'utilisateur est un modérateur
     var isMod = client.guilds.get('377892426569744387').roles.get('407229590948413440').members.get(message.author.id);
