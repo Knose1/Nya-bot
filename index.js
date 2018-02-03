@@ -292,6 +292,9 @@ client.on('message', message => {
         message.attachments.forEach(attachment => {
             message.author.sendMessage(attachment.url);
         });
+	message.delete(500)
+                .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
+                .catch(console.error);
     }
     
     //Commande-VS = Ok
