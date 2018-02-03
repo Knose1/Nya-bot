@@ -303,12 +303,12 @@ client.on('message', message => {
     var vsImage = new Array();
     words.forEach(word => {
         wordsIndex = wordsIndex + 1 ;
-        if (!vsIsImage && word.indexOf('//img:') == 0) {
+        if (!vsIsImage && word.indexOf('//img:http') == 0) {
             vsImage = word.slice('//img:'.length).trim().split(/ +/g);
             vsImage = vsImage[0];
             vsIsImage = true;
         }
-        else if (!vsIsImage && word.indexOf('--img:') == 0) {
+        else if (!vsIsImage && word.indexOf('--img:http') == 0) {
             vsImage = word.slice('--img:'.length).trim().split(/ +/g);
             vsImage = vsImage[0];
             vsIsImage = true;
