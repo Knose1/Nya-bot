@@ -272,6 +272,16 @@ client.on('message', message => {
                 .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
                 .catch(console.error);
 	}
+    //Si contient un attachement
+    else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && message.attachments.size != 0) {
+        message.author.sendMessage('Voici l\'url de vos attachments :');
+        message.attachments.forEach(attachment => {
+            message.author.sendMessage(attachment.url);
+        });
+	message.delete(500)
+                .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
+                .catch(console.error);
+    }
 	//Si (Commande Nya!bot)
 	else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && iscommand == true) {
 		message.author.sendMessage(message.author+' les commandes sont interdits dans se channel');
@@ -286,16 +296,6 @@ client.on('message', message => {
                 .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
                 .catch(console.error);
 	}
-    //Si contient un attachement
-    else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--') == 0 || message.content.indexOf('//') == 0) && message.attachments.size != 0) {
-        message.author.sendMessage('Voici l\'url de vos attachments :');
-        message.attachments.forEach(attachment => {
-            message.author.sendMessage(attachment.url);
-        });
-	message.delete(500)
-                .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
-                .catch(console.error);
-    }
     
     //Commande-VS = Ok
 	else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--') == 0 || message.content.indexOf('//') == 0)) {
