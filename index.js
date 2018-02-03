@@ -305,13 +305,17 @@ client.on('message', message => {
         if (!vsIsImage && word.indexOf('//') == 0) {
             var vsImage = word.slice('//'.length).trim().split(/ +/g);
             console.log(vsImage);
+            console.log(vsImage[0]);
             vsImage = vsImage[0];
+            console.log(vsImage);
             vsIsImage = true;
         }
         else if (!vsIsImage && word.indexOf('--') == 0) {
             var vsImage = word.slice('--'.length).trim().split(/ +/g);
             console.log(vsImage);
+            console.log(vsImage[0]);
             vsImage = vsImage[0];
+            console.log(vsImage);
             vsIsImage = true;
         }
         if (!vsIsImage) {newwords[wordsIndex] = word;}
