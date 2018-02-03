@@ -302,10 +302,16 @@ client.on('message', message => {
     var newwords = new Array();
     words.forEach(word => {
         var wordsIndex = wordsIndex + 1 ;
-        if (!vsIsImage && (word.indexOf('//') == 0 || word.indexOf('--') == 0)) {
+        if (!vsIsImage && word.indexOf('//') == 0) {
             var vsImage = word.slice('//'.length).trim().split(/ +/g);
             console.log(vsImage);
-            //vsImage = vsImage[0];
+            vsImage = vsImage[0];
+            vsIsImage = true;
+        }
+        else if (!vsIsImage && word.indexOf('--') == 0) {
+            var vsImage = word.slice('--'.length).trim().split(/ +/g);
+            console.log(vsImage);
+            vsImage = vsImage[0];
             vsIsImage = true;
         }
         if (!vsIsImage) {newwords[wordsIndex] = word;}
