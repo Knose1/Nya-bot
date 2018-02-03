@@ -295,6 +295,17 @@ client.on('message', message => {
     else {
         var words = message.content.slice('--'.length).trim().split(/ +/g);
     }
+    
+    //On regarde s'il y a une image à ajouter à l'embed
+    var vsIsImage = false;
+    words.forEach(word => {
+        if (!vsIsImage && (word.indexOf('//') == 0 || word.indexOf('--') == 0)) {
+            var vsImage = word.slice('//'.length).trim().split(/ +/g);
+            vsImage = vsImage[0];
+            vsIsImage = true;
+        }
+    });
+    
     var vsmessage = words.join(' ');
         //On créer un embed
         
@@ -309,6 +320,10 @@ client.on('message', message => {
             .setFooter("Le "+new Date().getDate()+"/"+ nbmois+"/"+new Date().getFullYear()+" à "+new Date().toLocaleTimeString()+" | "+message.guild.name+" | "+message.author.id , message.guild.iconURL)
             .setThumbnail(message.author.avatarURL);
         
+        if (vsIsImage) {
+            embed.setImage()
+        }
+		
         if (message.author.bot == true) {
             embed.setAuthor("BOT: "+message.author.username+"#"+message.author.discriminator, "https://media.discordapp.net/attachments/407271018516971532/407272279416766475/BOT.png");
             if (message.author.id == mention) {embed.setColor("#DD00FF");}
