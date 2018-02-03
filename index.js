@@ -300,22 +300,17 @@ client.on('message', message => {
     var vsIsImage = false;
     var wordsIndex = -1;
     var newwords = new Array();
+    var vsImage = new Array();
     words.forEach(word => {
         var wordsIndex = wordsIndex + 1 ;
         if (!vsIsImage && word.indexOf('//') == 0) {
             var vsImage = word.slice('//'.length).trim().split(/ +/g);
-            //console.log(vsImage);
-            //console.log(vsImage[0]);
-            //vsImage = vsImage[0];
-            //console.log(vsImage);
+            vsImage = vsImage[0];
             vsIsImage = true;
         }
         else if (!vsIsImage && word.indexOf('--') == 0) {
             var vsImage = word.slice('--'.length).trim().split(/ +/g);
-            //console.log(vsImage);
-            //console.log(vsImage[0]);
-            //vsImage = vsImage[0];
-            //console.log(vsImage);
+            vsImage = vsImage[0];
             vsIsImage = true;
         }
         if (!vsIsImage) {newwords[wordsIndex] = word;}
@@ -323,7 +318,7 @@ client.on('message', message => {
     
     if (vsIsImage) {
     words = newwords;
-    var vsmessage = words.join(' ') + "\n " + vsImage[0];
+    var vsmessage = words.join(' ') + "\n " + vsImage;
     } else {var vsmessage = words.join(' ');}
         //On créer un embed
         
