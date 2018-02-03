@@ -220,6 +220,7 @@ client.on('message', message => {
                 //Si la personne esseille de se ban lui-même
                 else if (id == message.author.id) {
                     message.author.sendMessage('Vous ne pouvez pas vous ban vous-même');
+                    isbanned = true;
                 }
                 
                 //Si l'utilisateur est un modérateur mais que ce n'est pas l'owner du bot
