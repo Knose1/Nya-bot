@@ -302,7 +302,7 @@ client.on('message', message => {
     var newwords = new Array();
     var vsImage = new Array();
     words.forEach(word => {
-        var wordsIndex = wordsIndex + 1 ;
+        wordsIndex = wordsIndex + 1 ;
         if (!vsIsImage && word.indexOf('//') == 0) {
             vsImage = word.slice('//'.length).trim().split(/ +/g);
             vsImage = vsImage[0];
@@ -317,9 +317,10 @@ client.on('message', message => {
     });
     
     if (vsIsImage) {
-    words = newwords;
-    var vsmessage = words.join(' ') + "\n " + vsImage;
-    } else {var vsmessage = words.join(' ');}
+        var vsmessage = newwords.join(' ') + "\n " + vsImage;
+    } else {
+        var vsmessage = words.join(' ');
+    }
         //On créer un embed
         
         var nbmois = new Date().getMonth();
