@@ -296,7 +296,7 @@ client.on('message', message => {
 	}
     
     //Commande-VS = Ok
-	else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--') == 0 || message.content.indexOf('//') == 0)) {
+	else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.attachments.size != 0 || message.content.indexOf('--') == 0 || message.content.indexOf('//') == 0)) {
     if (message.content.indexOf('//') == 0){
         var words = message.content.slice('//'.length).trim().split(/ +/g);
     }
