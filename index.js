@@ -207,19 +207,31 @@ client.on('message', message => {
         var guild = client.guilds.get('406926403628695556');
         // On ajoute les personnes à la liste des ban
         args.forEach(function (id) {
-			var isgood = true;
-            //On regarde les conditions pour ban la personnes:
+            var isgood = true;
             
-		        //Si la personne esseille de se ban lui-même
-                    else if (id == message.author.id) {
-                        message.author.sendMessage('Vous ne pouvez pas vous ban vous-même');
-                        isgood = false;
-                    }
+            //Si la personne est déjà ban
+            vsban.forEach(function (banned) {
+            
+                //Si la personne est déja ban
+                if (id == banned) {
+                    message.author.sendMessage(client.users.get(id).username+"#"+client.users.get(id).discriminator+'est déja ban');
+                    isgood = false;
+                }
+            });
+            
+            if (isgood == true) {
+                //On regarde si les conditions pour ban la personnes (qui n'est pas ban) sont ok:
+
+                    //Si la personne esseille de se ban lui-même
+                        if (id == message.author.id) {
+                            message.author.sendMessage('Vous ne pouvez pas vous ban vous-même');
+                            isgood = false;
+                        }
                 
-                    //Si l'utilisateur est un modérateur mais que ce n'est pas l'owner du bot
-                    else if (message.author != botowner && undefined != isMod) {
+                        //Si l'utilisateur est un modérateur mais que ce n'est pas l'owner du bot
+                        else if (message.author != botowner && undefined != isMod) {
                 
-                        var banIsMod = client.guilds.get('377892426569744387').roles.get('407229590948413440').members.get(id);
+                            var banIsMod = client.guilds.get('377892426569744387').roles.get('407229590948413440').members.get(id);
                 
                         //Si l'utilisateur esseille de ban l'owner
                         if ("<@"+id+">" == botowner) {
@@ -232,17 +244,8 @@ client.on('message', message => {
                             isgood = false;
                         }
                     }
-            
-            //Si la personne est déjà ban
-            vsban.forEach(function (banned) {
-            
-                //Si la personne est déja ban
-                if (id == banned ) {
-                    message.author.sendMessage(client.users.get(id).username+"#"+client.users.get(id).discriminator+'est déja ban');
-                    isgood = false;
-                }
-            });
-	        
+                /*Fin de conditions de ban*/
+            }
 			
             if (client.users.get(id) != undefined && isgood == true) {
                 //console.log("id = "+id);
