@@ -106,7 +106,6 @@ channel.send('Reconnection')
 
 
 client.on('message', message => {
-	if (botowner == message.author) {console.log(message.content);}
     if(message.guild) {} else {return;}
     //On regarde si l'utilisateur est un modérateur
     var isMod = client.guilds.get('377892426569744387').roles.get('407229590948413440').members.get(message.author.id);
@@ -287,6 +286,14 @@ client.on('message', message => {
                 .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
                 .catch(console.error);
 	}
+    //Si contient
+    else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--') == 0 || message.content.indexOf('//') == 0) && undefined != message.attachements) {
+        message.author.sendMessage('Voici l\'url de vos images :');
+        message.attachements.forEach(attachement => {
+            message.author.sendMessage(attachement.url);
+        });
+    }
+    
     //Commande-VS = Ok
 	else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--') == 0 || message.content.indexOf('//') == 0)) {
     if (message.content.indexOf('//') == 0){
