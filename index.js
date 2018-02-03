@@ -309,8 +309,11 @@ client.on('message', message => {
         }
         if (!vsIsImage) {newwords[wordsIndex] = word;}
     });
+    
+    if (vsIsImage) {
     words = newwords;
     var vsmessage = words.join(' ')+"\n "+vsImage;
+    } else {var vsmessage = words.join(' ');}
         //On créer un embed
         
         var nbmois = new Date().getMonth();
