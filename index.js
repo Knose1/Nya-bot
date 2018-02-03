@@ -275,9 +275,7 @@ client.on('message', message => {
     //Si contient un attachement
     else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && message.attachments.size != 0) {
         message.author.sendMessage('Voici l\'url de vos attachments :');
-        message.attachments.forEach(attachment => {
-            message.author.sendMessage(attachment.url);
-        });
+        
 	message.delete(500)
                 .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
                 .catch(console.error);
@@ -311,20 +309,31 @@ client.on('message', message => {
     var wordsIndex = -1;
     var newwords = new Array();
     var vsImage = new Array();
-    words.forEach(word => {
-        wordsIndex = wordsIndex + 1 ;
-        if (!vsIsImage && word.indexOf('//img:http') == 0) {
-            vsImage = word.slice('//img:'.length).trim().split(/ +/g);
-            vsImage = vsImage[0];
-            vsIsImage = true;
-        }
-        else if (!vsIsImage && word.indexOf('--img:http') == 0) {
-            vsImage = word.slice('--img:'.length).trim().split(/ +/g);
-            vsImage = vsImage[0];
-            vsIsImage = true;
-        }
-        if (!vsIsImage) {newwords[wordsIndex] = word;}
-    });
+        
+    if (message.attachments.size == 0) {
+        words.forEach(word => {
+            wordsIndex = wordsIndex + 1 ;
+            if (!vsIsImage && word.indexOf('//img:http') == 0) {
+                vsImage = word.slice('//img:'.length).trim().split(/ +/g);
+                vsImage = vsImage[0];
+                vsIsImage = true;
+            }
+            else if (!vsIsImage && word.indexOf('--img:http') == 0) {
+                vsImage = word.slice('--img:'.length).trim().split(/ +/g);
+                vsImage = vsImage[0];
+                vsIsImage = true;
+            }
+            if (!vsIsImage) {newwords[wordsIndex] = word;}
+        });
+    } else {
+        message.attachments.forEach(attachment => {
+            wordsIndex = wordsIndex + 1 ;
+            vsImage[wordsIndex] = attachment.url;
+        });
+        vsImage = vsImage.join('\n');
+        vsIsImage = true;
+        newwords = words;
+    }
     
     if (vsIsImage) {
         var vsmessage = newwords.join(' ') + "\n\n" + vsImage;
