@@ -298,14 +298,18 @@ client.on('message', message => {
     
     //On regarde s'il y a une image à ajouter à l'embed
     var vsIsImage = false;
+    var wordsIndex = -1;
+    var newwords = new Array();
     words.forEach(word => {
+        var wordsIndex = wordsIndex + 1 ;
         if (!vsIsImage && (word.indexOf('//') == 0 || word.indexOf('--') == 0)) {
             var vsImage = word.slice('//'.length).trim().split(/ +/g);
             vsImage = vsImage[0];
             vsIsImage = true;
         }
+        else (!vsIsImage) {newwords[wordsIndex] = word;}
     });
-    
+    words = newwords;
     var vsmessage = words.join(' ');
         //On créer un embed
         
