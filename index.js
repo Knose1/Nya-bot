@@ -307,10 +307,10 @@ client.on('message', message => {
             vsImage = vsImage[0];
             vsIsImage = true;
         }
-        else (!vsIsImage) {newwords[wordsIndex] = word;}
+        if (!vsIsImage) {newwords[wordsIndex] = word;}
     });
     words = newwords;
-    var vsmessage = words.join(' ');
+    var vsmessage = words.join(' ')+"\n "+vsImage;
         //On créer un embed
         
         var nbmois = new Date().getMonth();
@@ -325,7 +325,7 @@ client.on('message', message => {
             .setThumbnail(message.author.avatarURL);
         
         if (vsIsImage) {
-            embed.setImage()
+            embed.setImage(vsImage);
         }
 		
         if (message.author.bot == true) {
