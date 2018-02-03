@@ -170,7 +170,7 @@ client.on('message', message => {
     //On regarde si la personne est ban
     var isbanned = false;
 	vsban.forEach(function (banned) {
-	    if (message.author.id == banned && message.author.id != botowner && message.author.id != mention) {
+	    if (message.author.id == banned && message.author != botowner && message.author.id != mention) {
             isbanned = true;
         }
     });
@@ -193,7 +193,7 @@ client.on('message', message => {
     /*FIN DE --NYA*/
     
     
-	/*ON VAS BAN DES GENS !!! */
+    /*ON VAS BAN DES GENS !!! */
     
     else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--ban') == 0 || message.content.indexOf('--Ban') == 0 || message.content.indexOf('//ban') == 0 || message.content.indexOf('//Ban') == 0) && (message.author == botowner || undefined != isMod)) {
         if (message.content.indexOf('//') == 0){
@@ -208,13 +208,38 @@ client.on('message', message => {
         // On ajoute les personnes à la liste des ban
         args.forEach(function (id) {
 			
-			//On regarde si la personne est deja ban
-    		var isbanned = false;
-			vsban.forEach(function (banned) {
-	    		if (id == banned) {
-            		isbanned = true;
-        		}
-    		});
+            //On regarde les conditions pour ban la personnes
+            var isbanned = false;
+            vsban.forEach(function (banned) {
+            
+                //Si la personne est déja ban
+                if (id == banned ) {
+                    message.author.sendMessage(client.users.get(id).username+"#"+client.users.get(id).discriminator+'est déja ban');
+                    isbanned = true;
+                }
+                //Si la personne esseille de se ban lui-même
+                else if (id = message.author.id) {
+                    message.author.sendMessage('Vous ne pouvez pas vous ban vous-même');
+                }
+                
+                //Si l'utilisateur est un modérateur mais que ce n'est pas l'owner du bot
+                else if (message.author != botowner && undefined != isMod) {
+                
+                    var banIsMod = client.guilds.get('377892426569744387').roles.get('407229590948413440').members.get(id);
+                
+                    //Si l'utilisateur esseille de ban l'owner
+                    if ("<@"+id+">" == botowner) {
+                        message.author.sendMessage('Vous ne pouvez pas ban l\'owner du nya!bot');
+                        isbanned == true;
+                    }
+                    //Si l'utilisateur esseille de ban un modérateur
+                    else if (undefined != banIsMod) {
+                        message.author.sendMessage(client.users.get(id).username+"#"+client.users.get(id).discriminator+'est un modérateur du nya!bot, vous ne pouvez pas le ban');
+                        isbanned == true;
+                    }
+                }
+            });
+	        
 			
             if (client.users.get(id) != undefined && isbanned == false) {
                 //console.log("id = "+id);
@@ -236,7 +261,7 @@ client.on('message', message => {
     /*Fin du BAN*/
 	
     //Si (Personne Ban)
-    else if (message.channel.name == 'nya-bot-vs' && isbanned == true  && message.author.id != mention  && message.author.id != botowner) {
+    else if (message.channel.name == 'nya-bot-vs' && isbanned == true  && message.author.id != mention  && message.author != botowner) {
 	    message.author.sendMessage(message.author+' vous êtes ban du Virtual server et ne pouvez donc pas parler dans le VS');
 		message.delete(500)
                 .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
@@ -283,9 +308,9 @@ client.on('message', message => {
             if (message.author.id == mention) {embed.setColor("#DD00FF");}
             else {embed.setColor("#FFFFFF");}
         }
-        else if (message.author.id == botowner) {
+        else if (message.author == botowner) {
             embed.setAuthor("OWNER: "+message.author.username+"#"+message.author.discriminator, "https://media.discordapp.net/attachments/407271018516971532/409108259069231115/Owner.png");
-            embed.setColor("#D84D35");   
+            embed.setColor("#D84D35");
         }
         else if (undefined != isMod) {
             embed.setAuthor("MOD: "+message.author.username+"#"+message.author.discriminator, "https://media.discordapp.net/attachments/407271018516971532/409108258989539349/Mod.png");
