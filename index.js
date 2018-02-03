@@ -108,6 +108,8 @@ channel.send('Reconnection')
 client.on('message', message => {
 
     if(message.guild) {} else {return;}
+    //On regarde si l'utilisateur est un modérateur
+    var isMod = client.guilds.get('377892426569744387').roles.get('407229590948413440').members.get(message.author.id);
     
     //si c'est une commande, récupérer les arguments, la commande et supprimer le message
         if (message.content.indexOf(prefix) == 0) {
@@ -120,7 +122,7 @@ client.on('message', message => {
                 .catch(console.error);
         }
 	
-    
+    /*DEBUT BOT*/
     //ignorer si c'est un bot (sauf s'il parle dans le vs sous certaines conditions
     if(message.author.bot == true) {
         //Bot ban et bot différent de nya!bot
@@ -150,6 +152,7 @@ client.on('message', message => {
             return;
         }
     }
+    /*Fin BOT*/
     
     /*Virtual Channel*/
     
@@ -167,13 +170,13 @@ client.on('message', message => {
     //On regarde si la personne est ban
     var isbanned = false;
 	vsban.forEach(function (banned) {
-	    if (message.author.id == banned) {
+	    if (message.author.id == banned && message.author.id != botowner && message.author.id != mention) {
             isbanned = true;
         }
     });
     /*On envoie des messages en tant que nya!bot*/
     
-    if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--nya') == 0 || message.content.indexOf('--Nya') == 0 || message.content.indexOf('//nya') == 0 || message.content.indexOf('//Nya') == 0) && message.author == botowner) {
+    if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--nya') == 0 || message.content.indexOf('--Nya') == 0 || message.content.indexOf('//nya') == 0 || message.content.indexOf('//Nya') == 0) && (message.author == botowner || undefined != isMod)) {
         if (message.content.indexOf('//') == 0){
             var args = message.content.slice('//'.length).trim().split(/ +/g);
         }
@@ -192,7 +195,7 @@ client.on('message', message => {
     
 	/*ON VAS BAN DES GENS !!! */
     
-    else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--ban') == 0 || message.content.indexOf('--Ban') == 0 || message.content.indexOf('//ban') == 0 || message.content.indexOf('//Ban') == 0) && message.author == botowner) {
+    else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--ban') == 0 || message.content.indexOf('--Ban') == 0 || message.content.indexOf('//ban') == 0 || message.content.indexOf('//Ban') == 0) && (message.author == botowner || undefined != isMod)) {
         if (message.content.indexOf('//') == 0){
             var args = message.content.slice('//'.length).trim().split(/ +/g);
         }
@@ -270,16 +273,24 @@ client.on('message', message => {
         const embed = new Discord.RichEmbed()
             //.setTitle("Virtual Channel")
             .setAuthor(message.author.username+"#"+message.author.discriminator /*, message.author.avatarURL*/)
-            .setColor("#ffffff")
+            .setColor("#ff1a8c")
             .setDescription(vsmessage)
             .setFooter("Le "+new Date().getDate()+"/"+ nbmois+"/"+new Date().getFullYear()+" à "+new Date().toLocaleTimeString()+" | "+message.guild.name+" | "+message.author.id , message.guild.iconURL)
             .setThumbnail(message.author.avatarURL);
-        var IsMod = client.guilds.get('377892426569744387').roles.get('407229590948413440').members.get(message.author.id);
-		console.log(IsMod);
+        
         if (message.author.bot == true) {
-	    embed.setAuthor("BOT: "+message.author.username+"#"+message.author.discriminator, "https://media.discordapp.net/attachments/407271018516971532/407272279416766475/BOT.png");
-	    	if (message.author.id == mention) {embed.setColor("#ff1a8c");}
-		}
+            embed.setAuthor("BOT: "+message.author.username+"#"+message.author.discriminator, "https://media.discordapp.net/attachments/407271018516971532/407272279416766475/BOT.png");
+            if (message.author.id == mention) {embed.setColor("#DD00FF");}
+            else {embed.setColor("#FFFFFF");}
+        }
+        else if (message.author.id == botowner) {
+            embed.setAuthor("OWNER: "+message.author.username+"#"+message.author.discriminator, "https://media.discordapp.net/attachments/407271018516971532/409108259069231115/Owner.png");
+            embed.setColor("#D84D35");   
+        }
+        else if (undefined != isMod) {
+            embed.setAuthor("MOD: "+message.author.username+"#"+message.author.discriminator, "https://media.discordapp.net/attachments/407271018516971532/409108258989539349/Mod.png");
+            embed.setColor("#0077DD");
+        }
 		
 		
         /*Fin embed*/
