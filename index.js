@@ -304,12 +304,12 @@ client.on('message', message => {
     words.forEach(word => {
         var wordsIndex = wordsIndex + 1 ;
         if (!vsIsImage && word.indexOf('//') == 0) {
-            var vsImage = word.slice('//'.length).trim().split(/ +/g);
+            vsImage = word.slice('//'.length).trim().split(/ +/g);
             vsImage = vsImage[0];
             vsIsImage = true;
         }
         else if (!vsIsImage && word.indexOf('--') == 0) {
-            var vsImage = word.slice('--'.length).trim().split(/ +/g);
+            vsImage = word.slice('--'.length).trim().split(/ +/g);
             vsImage = vsImage[0];
             vsIsImage = true;
         }
