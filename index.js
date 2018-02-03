@@ -287,7 +287,7 @@ client.on('message', message => {
                 .catch(console.error);
 	}
     //Si contient un attachement
-    else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--') == 0 || message.content.indexOf('//') == 0) && {} != message.attachments) {
+    else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--') == 0 || message.content.indexOf('//') == 0) && message.attachments.size != 0) {
         message.author.sendMessage('Voici l\'url de vos attachments :');
         message.attachments.forEach(attachment => {
             message.author.sendMessage(attachment.url);
