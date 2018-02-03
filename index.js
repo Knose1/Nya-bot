@@ -381,7 +381,7 @@ client.on('message', message => {
                 }
             });
 	    });
-    message.delete(5000)
+    message.delete(1000)
         .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
         .catch(console.error);
 	}
