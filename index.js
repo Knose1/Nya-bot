@@ -286,8 +286,8 @@ client.on('message', message => {
                 .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
                 .catch(console.error);
 	}
-    //Si contient
-    else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--') == 0 || message.content.indexOf('//') == 0) && undefined != message.attachements) {
+    //Si contient un attachement
+    else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--') == 0 || message.content.indexOf('//') == 0) && undefined != message.attachments) {
         message.author.sendMessage('Voici l\'url de vos images :');
         message.attachements.forEach(attachement => {
             message.author.sendMessage(attachement.url);
