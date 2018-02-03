@@ -303,13 +303,13 @@ client.on('message', message => {
     var vsImage = new Array();
     words.forEach(word => {
         wordsIndex = wordsIndex + 1 ;
-        if (!vsIsImage && word.indexOf('//') == 0) {
-            vsImage = word.slice('//'.length).trim().split(/ +/g);
+        if (!vsIsImage && word.indexOf('//img:') == 0) {
+            vsImage = word.slice('//img:'.length).trim().split(/ +/g);
             vsImage = vsImage[0];
             vsIsImage = true;
         }
-        else if (!vsIsImage && word.indexOf('--') == 0) {
-            vsImage = word.slice('--'.length).trim().split(/ +/g);
+        else if (!vsIsImage && word.indexOf('--img:') == 0) {
+            vsImage = word.slice('--img:'.length).trim().split(/ +/g);
             vsImage = vsImage[0];
             vsIsImage = true;
         }
@@ -317,7 +317,7 @@ client.on('message', message => {
     });
     
     if (vsIsImage) {
-        var vsmessage = newwords.join(' ') + "\n " + vsImage;
+        var vsmessage = newwords.join(' ') + "\n\n" + vsImage;
     } else {
         var vsmessage = words.join(' ');
     }
