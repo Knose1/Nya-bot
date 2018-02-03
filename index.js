@@ -304,7 +304,8 @@ client.on('message', message => {
         var wordsIndex = wordsIndex + 1 ;
         if (!vsIsImage && (word.indexOf('//') == 0 || word.indexOf('--') == 0)) {
             var vsImage = word.slice('//'.length).trim().split(/ +/g);
-            vsImage = vsImage[0];
+            console.log(vsImage);
+            //vsImage = vsImage[0];
             vsIsImage = true;
         }
         if (!vsIsImage) {newwords[wordsIndex] = word;}
