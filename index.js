@@ -173,7 +173,57 @@ client.on('message', message => {
             isbanned = true;
         }
     });
-    /*On envoie des messages en tant que nya!bot*/
+	
+    //Si (Personne Ban)
+    else if (message.channel.name == 'nya-bot-vs' && isbanned == true  && message.author.id != mention  && message.author != botowner) {
+	    message.author.sendMessage(message.author+' vous êtes ban du Virtual server et ne pouvez donc pas parler dans le VS');
+		message.delete(500)
+                .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
+                .catch(console.error);
+	}
+    
+	//Si (Commande Nya!bot)
+	else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && iscommand == true) {
+		message.author.sendMessage(message.author+' les commandes sont interdits dans se channel');
+		message.delete(500)
+                .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
+                .catch(console.error);
+	}
+    //Si pas de -- et pas de //
+	else if (
+                (
+                message.channel.name == 'nya-bot-vs' || 
+                    (
+                    message.guild.id == "377892426569744387" && 
+                    message.channel.name == "nya-bot-vs-log"
+                    )
+                ) && 
+                (
+                message.author.id != mention &&
+                    (
+                        (
+                        message.attachments.size == 0 &&
+                        message.content.indexOf('--') != 0 && 
+                        message.content.indexOf('//') != 0 
+                        ) || 
+                        (
+                        message.attachments.size != 0 &&
+                        message.content.length != 0 && 
+                        message.content.lenght < 2 &&  
+                        message.content.indexOf('--') != 0 && 
+                        message.content.indexOf('//') != 0
+                        )
+                    )
+                )
+            ){
+        
+        message.author.sendMessage(message.author+' utilisez -- ou // pour parler dans le vs');
+		message.delete(500)
+                .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
+                .catch(console.error);
+	}
+    
+	/*On envoie des messages en tant que nya!bot*/
     
     if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--nya') == 0 || message.content.indexOf('--Nya') == 0 || message.content.indexOf('//nya') == 0 || message.content.indexOf('//Nya') == 0) && (message.author == botowner || undefined != isMod)) {
         if (message.content.indexOf('//') == 0){
@@ -185,8 +235,8 @@ client.on('message', message => {
         args.shift().toLowerCase();
         
         message.channel.send("--"+args.join(' '));
-	message.delete(500)
-                .then(msg => console.log(`Message supprimé, raison: Ban Virtual channel; Auteur: ${msg.author}`))
+        message.delete(500)
+                .then(msg => console.log(`Message supprimé, raison: Nya Virtual channel; Auteur: ${msg.author}`))
                 .catch(console.error);
     }
     /*FIN DE --NYA*/
@@ -265,31 +315,8 @@ client.on('message', message => {
     }
     /*Fin du BAN*/
 	
-    //Si (Personne Ban)
-    else if (message.channel.name == 'nya-bot-vs' && isbanned == true  && message.author.id != mention  && message.author != botowner) {
-	    message.author.sendMessage(message.author+' vous êtes ban du Virtual server et ne pouvez donc pas parler dans le VS');
-		message.delete(500)
-                .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
-                .catch(console.error);
-	}
-    
-	//Si (Commande Nya!bot)
-	else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && iscommand == true) {
-		message.author.sendMessage(message.author+' les commandes sont interdits dans se channel');
-		message.delete(500)
-                .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
-                .catch(console.error);
-	}
-    //Si pas de -- et pas de //
-	else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.attachments.size == 0 && message.content.indexOf('--') != 0 && message.content.indexOf('//') != 0) && message.author.id != mention) {
-		message.author.sendMessage(message.author+' utilisez -- ou // pour parler dans le vs');
-		message.delete(500)
-                .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
-                .catch(console.error);
-	}
-    
     //Commande-VS = Ok
-	else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.attachments.size != 0 || message.content.indexOf('--') == 0 || message.content.indexOf('//') == 0)) {
+	else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.attachments.size != 0 && (message.content.length == 0  ||  message.content.lenght >= 2)) || message.content.indexOf('--') == 0 || message.content.indexOf('//') == 0)) {
     if (message.content.indexOf('//') == 0){
         var words = message.content.slice('//'.length).trim().split(/ +/g);
     }
