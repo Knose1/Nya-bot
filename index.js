@@ -285,7 +285,7 @@ client.on('message', message => {
                     }
                 });
             } else {
-                message.author.send(`L' id '${id}'est introuvable`);
+                message.author.send(`L'id  \`${id}\`  est introuvable`);
             }
             
             if (isgood == true) {
