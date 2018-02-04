@@ -471,9 +471,9 @@ client.on('message', message => {
     //end réponses random
     
     /**/
-    
+    var isaskactivated = 'désactivé';
      //start isasked
-    else if (isasked == true) {
+    else if (isasked == true && isaskactivated != 'désactivé') {
         if (userasked == message.author && (message.content == 'quelle heur est-il ?' || message.content == 'quelle heur est il ?' || message.content == 'quel heur est-il ?' || message.content == 'quel heur est il ?' || message.content == 'quelle heure est-il ?' || message.content == 'quelle heure est il ?' || message.content == 'quel heure est-il ?' || message.content == 'quel heure est il ?' || message.content == 'Quelle heur est-il ?' || message.content == 'Quelle heur est il ?' || message.content == 'Quel heur est-il ?' || message.content == 'Quel heur est il ?' || message.content == 'Quelle heure est-il ?' || message.content == 'Quelle heure est il ?' || message.content == 'Quel heure est-il ?' || message.content == 'Quel heure est il ?' || message.content == 'Heure ?' || message.content == 'heure ?')) {
         
             //Demande l'heure
