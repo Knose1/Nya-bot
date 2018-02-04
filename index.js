@@ -708,7 +708,7 @@ client.on('message', message => {
 	else if ((command == 'help' || command == 'aide') && args[0] == 'Vs' || args[0] == 'VS' || args[0] == 'vs' || args[0] == 'vS') {
         message.channel.send("__**Virtual Server:**__ \n\n\
      Pour obtenir le virtual server il vous suffie simplement de créer un channel appelé `nya-bot-vs`\n\
-https://media.discordapp.net/attachments/406802264540315648/406898903187980308/unknown.png\
+https://media.discordapp.net/attachments/407271018516971532/409747122749964288/unknown.png\
 ");
         }
 	    
