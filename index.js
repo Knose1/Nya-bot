@@ -270,7 +270,7 @@ client.on('message', message => {
             //On regarde si la personne existe
             client.users.forEach(user => {
                 if (user.id == id) {
-                isgood = true
+                    isgood = true;
                 }
             });
             
@@ -321,9 +321,9 @@ client.on('message', message => {
                 //console.log(client.users.get(id));
                 guild.createRole({
                     name: id,
-                });
+                })
                 //.then(role => console.log(`Created role ${role}`))
-                //.catch(console.error);
+                .catch(console.error);
 				var banuser = client.users.get(id);
                 var channel = client.channels.get('407169845889597440');
                 channel.send('Personne banni du VS: '+banuser.username+"#"+banuser.discriminator+" ("+id+")");
@@ -353,12 +353,13 @@ client.on('message', message => {
         var guild = client.guilds.get('406926403628695556');
         // On regarde pour chaque argument
         args.forEach(id => {
+            var undefvar = 0;
             var isgood = false;
             
             //On regarde si la personne existe
             client.users.forEach(user => {
                 if (user.id == id) {
-                isgood = true
+                    isgood = true
                 }
             });
             
@@ -374,6 +375,7 @@ client.on('message', message => {
                 });
             } else {
                 message.author.send(`L' id '${id}'est introuvable`);
+                var undefvar = 1;
             }
             if (isgood == true) {
                 //On regarde si les conditions pour unban la personnes (qui est ban) sont ok:
@@ -401,7 +403,7 @@ client.on('message', message => {
                             }
                         }
                 /*Fin de conditions de unban*/
-            } else {
+            } else if (undefvar == 0) {
                 var user = client.users.get(id);
                 message.author.send(`${user.username}#${user.discriminator} n'est pas ban`);
             }
@@ -410,7 +412,7 @@ client.on('message', message => {
                 //console.log("id = "+id);
                 //console.log(client.users.get(id));
                 guild.roles.find('name', id).delete()
-                    .then(r => console.log(`Deleted role ${r}`))
+                    //.then(r => console.log(`Deleted role ${r}`))
                     .catch(console.error);
                 
 				var unbanuser = client.users.get(id);
