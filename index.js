@@ -321,7 +321,7 @@ client.on('message', message => {
                 //console.log(client.users.get(id));
                 guild.createRole({
                     name: id,
-                })
+                });
                 //.then(role => console.log(`Created role ${role}`))
                 //.catch(console.error);
 				var banuser = client.users.get(id);
@@ -409,7 +409,7 @@ client.on('message', message => {
             if (client.users.get(id) != undefined && isgood == true) {
                 //console.log("id = "+id);
                 //console.log(client.users.get(id));
-                guild.roles.find('name', id).delete();
+                guild.roles.find('name', id).delete()
                     .then(r => console.log(`Deleted role ${r}`))
                     .catch(console.error);
                 
