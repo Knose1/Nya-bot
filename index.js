@@ -280,7 +280,7 @@ client.on('message', message => {
             
                     //Si la personne est déja ban
                     if (id == banned) {
-                        message.author.send(client.users.get(id).username+"#"+client.users.get(id).discriminator+'est déja ban');
+                        message.author.send(client.users.get(id).username+"#"+client.users.get(id).discriminator+' est déja ban');
                         isgood = false;
                     }
                 });
