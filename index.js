@@ -543,14 +543,7 @@ client.on('message', message => {
 	}
 	
     /*End of Virtual Channel*/
-	
     
-    
-    
-    
-    /* RPG */
-    require('./rpg.js');
-    /* FIN DE RPG */    
     
     
     
@@ -895,6 +888,11 @@ https://media.discordapp.net/attachments/407271018516971532/409747122749964288/u
         }
         iscommand = false;
     }
+    
+    
+    /* RPG */
+    //require('./rpg.js');
+    /* FIN DE RPG */
     
 });
 
