@@ -317,7 +317,24 @@ client.on('message', message => {
     /*Fin du BAN*/
 	
     //Commande-VS = Ok
-	else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.attachments.size != 0 && (message.content.length == 0  ||  message.content.lenght >= 2)) || message.content.indexOf('--') == 0 || message.content.indexOf('//') == 0)) {
+    else if     (
+                    (
+                        message.channel.name == 'nya-bot-vs' || 
+                        (
+                            message.guild.id == "377892426569744387" && 
+                            message.channel.name == "nya-bot-vs-log"
+                        )
+                    ) //Conditions du channel (nya-bot-vs)
+                        && 
+                    (
+                        message.content.indexOf('--') == 0 ||   /**/
+                        message.content.indexOf('//') == 0 ||   /*Préfix ou attachement*/
+                        message.attachments.size != 0 &&        /**/
+                        (
+                            message.content.length == 0 //Si c'est un attachement sans préfix il faut pas de contenu
+                        )
+                    )
+                ){
     if (message.content.indexOf('//') == 0){
         var words = message.content.slice('//'.length).trim().split(/ +/g);
     }
