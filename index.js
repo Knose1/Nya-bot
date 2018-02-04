@@ -153,6 +153,14 @@ client.on('message', message => {
     }
     /*Fin BOT*/
     
+    
+    
+    
+    
+    
+    
+    
+    
     /*Virtual Channel*/
     
     //On récupère la liste des ban
@@ -316,6 +324,79 @@ client.on('message', message => {
     }
     /*Fin du BAN*/
 	
+    /*DEBUT DU UNBAN*/
+    
+    else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--unban') == 0 || message.content.indexOf('--Unban') == 0 || message.content.indexOf('//unban') == 0 || message.content.indexOf('//Unban') == 0) && (message.author == botowner || undefined != isMod)) {
+        if (message.content.indexOf('//') == 0){
+            var args = message.content.slice('//'.length).trim().split(/ +/g);
+        }
+        else {
+            var args = message.content.slice('--'.length).trim().split(/ +/g);
+        }
+        
+        args.shift().toLowerCase();
+        var guild = client.guilds.get('406926403628695556');
+        // On ajoute les personnes à la liste des ban
+        args.forEach(function (id) {
+            var isgood = true;
+            
+            //Si la personne est déjà ban
+            vsban.forEach(function (banned) {
+            
+                //Si la personne est déja ban
+                if (id == banned) {
+                    message.author.send(client.users.get(id).username+"#"+client.users.get(id).discriminator+'est déja ban');
+                    isgood = false;
+                }
+            });
+            
+            if (isgood == true) {
+                //On regarde si les conditions pour ban la personnes (qui n'est pas ban) sont ok:
+
+                    //Si la personne esseille de se ban lui-même
+                        if (id == message.author.id) {
+                            message.author.send('Vous ne pouvez pas vous ban vous-même');
+                            isgood = false;
+                        }
+                
+                        //Si l'utilisateur est un modérateur mais que ce n'est pas l'owner du bot
+                        else if (message.author != botowner && undefined != isMod) {
+                
+                            var banIsMod = client.guilds.get('377892426569744387').roles.get('407229590948413440').members.get(id);
+                
+                        //Si l'utilisateur esseille de ban l'owner
+                        if ("<@"+id+">" == botowner) {
+                            message.author.send('Vous ne pouvez pas ban l\'owner du nya!bot');
+                            isgood = false;
+                        }
+                        //Si l'utilisateur esseille de ban un modérateur
+                        else if (undefined != banIsMod) {
+                            message.author.send(client.users.get(id).username+"#"+client.users.get(id).discriminator+'est un modérateur du nya!bot, vous ne pouvez pas le ban');
+                            isgood = false;
+                        }
+                    }
+                /*Fin de conditions de ban*/
+            }
+			
+            if (client.users.get(id) != undefined && isgood == true) {
+                //console.log("id = "+id);
+                //console.log(client.users.get(id));
+                guild.createRole({
+                    name: id,
+                })
+                //.then(role => console.log(`Created role ${role}`))
+                //.catch(console.error);
+				var banuser = client.users.get(id);
+                var channel = client.channels.get('407169845889597440');
+                channel.send('Personne banni du VS: '+banuser.username+"#"+banuser.discriminator+" ("+id+")");
+            }
+        });
+	message.delete(500)
+                .then(msg => console.log(`Message supprimé, raison: Ban Virtual channel; Auteur: ${msg.author}`))
+                .catch(console.error);
+    }
+    /*Fin du UNBAN*/
+    
     //Commande-VS = Ok
     else if     (
                     (
@@ -431,8 +512,15 @@ client.on('message', message => {
         .catch(console.error);
 	}
 	
-	/*End of Virtual Channel*/
+    /*End of Virtual Channel*/
 	
+    
+    
+    
+    
+    
+    
+    
     //Say hello to bot
     else if (message.content == "Bonjour "+mention2 || message.content == "bonjour "+mention2 || message.content == "bjr "+mention2 || message.content == "Bjr "+mention2) {
     message.channel.send('Bonjour '+message.author+" !")
