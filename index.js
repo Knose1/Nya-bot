@@ -173,10 +173,10 @@ client.on('message', message => {
             isbanned = true;
         }
     });
-	console.log(message.content.length);
+    
     //Si (Personne Ban)
     if (message.channel.name == 'nya-bot-vs' && isbanned == true  && message.author.id != mention  && message.author != botowner) {
-	    message.author.sendMessage(message.author+' vous êtes ban du Virtual server et ne pouvez donc pas parler dans le VS');
+        message.author.sendMessage(message.author+' vous êtes ban du Virtual server et ne pouvez donc pas parler dans le VS');
 		message.delete(500)
                 .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
                 .catch(console.error);
@@ -184,7 +184,7 @@ client.on('message', message => {
     
 	//Si (Commande Nya!bot)
 	else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && iscommand == true) {
-		message.author.sendMessage(message.author+' les commandes sont interdits dans se channel');
+		message.author.send(message.author+' les commandes sont interdits dans se channel');
 		message.delete(500)
                 .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
                 .catch(console.error);
@@ -219,7 +219,7 @@ client.on('message', message => {
                 )
             ){
         
-        message.author.sendMessage(message.author+' utilisez -- ou // pour parler dans le vs');
+        message.author.send(message.author+' utilisez -- ou // pour parler dans le vs');
 		message.delete(500)
                 .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
                 .catch(console.error);
@@ -264,7 +264,7 @@ client.on('message', message => {
             
                 //Si la personne est déja ban
                 if (id == banned) {
-                    message.author.sendMessage(client.users.get(id).username+"#"+client.users.get(id).discriminator+'est déja ban');
+                    message.author.send(client.users.get(id).username+"#"+client.users.get(id).discriminator+'est déja ban');
                     isgood = false;
                 }
             });
@@ -274,7 +274,7 @@ client.on('message', message => {
 
                     //Si la personne esseille de se ban lui-même
                         if (id == message.author.id) {
-                            message.author.sendMessage('Vous ne pouvez pas vous ban vous-même');
+                            message.author.send('Vous ne pouvez pas vous ban vous-même');
                             isgood = false;
                         }
                 
@@ -285,12 +285,12 @@ client.on('message', message => {
                 
                         //Si l'utilisateur esseille de ban l'owner
                         if ("<@"+id+">" == botowner) {
-                            message.author.sendMessage('Vous ne pouvez pas ban l\'owner du nya!bot');
+                            message.author.send('Vous ne pouvez pas ban l\'owner du nya!bot');
                             isgood = false;
                         }
                         //Si l'utilisateur esseille de ban un modérateur
                         else if (undefined != banIsMod) {
-                            message.author.sendMessage(client.users.get(id).username+"#"+client.users.get(id).discriminator+'est un modérateur du nya!bot, vous ne pouvez pas le ban');
+                            message.author.send(client.users.get(id).username+"#"+client.users.get(id).discriminator+'est un modérateur du nya!bot, vous ne pouvez pas le ban');
                             isgood = false;
                         }
                     }
@@ -625,7 +625,7 @@ client.on('message', message => {
             channel.send('Changement du jeu: '+args.join(' '));
         }
         else if (command == 'game' && message.author != botowner) {
-            message.author.sendMessage("Vous n'avez pas le droit d'utiliser "+"\""+message.content+"\"");
+            message.author.send("Vous n'avez pas le droit d'utiliser "+"\""+message.content+"\"");
         }
         else if (command == 'nya' && message.author == botowner && (args[0] == 'owner' || args[0] == 'strict')) {
             args[0] = '';
@@ -681,13 +681,13 @@ client.on('message', message => {
     '+args[1]);
         }
         else if (command == 'cat' && args.length != 2 && (args[0] == 'purpose' || args[0] == 'share')) {
-        message.author.sendMessage("Utilisation: \n\n\
+        message.author.send("Utilisation: \n\n\
         `cat:cat`\n\
         `cat:cat purpose <url>` \n\
         `cat:cat share <url>`");
         }
         else if (command == 'cat') {
-        message.author.sendMessage("Utilisation: \n\n\
+        message.author.send("Utilisation: \n\n\
         `cat:cat`\n\
         `cat:cat purpose <url>` \n\
         `cat:cat share <url>`");
@@ -729,7 +729,7 @@ https://media.discordapp.net/attachments/406802264540315648/406898903187980308/u
         }
         
         else if ((command == 'help' || command == 'aide') && message.author == botowner) {
-        message.author.sendMessage("__**Commandes:**__ \n\n\
+        message.author.send("__**Commandes:**__ \n\n\
     `cat:help vs` Obtenir de l'aide sur la mise en place du Virtual Server\n\
     \n\
     `cat:serv` Voir tout les serv de nya!bot\n\
@@ -750,7 +750,7 @@ https://media.discordapp.net/attachments/406802264540315648/406898903187980308/u
         }
         
         else if (command == 'help' || command == 'aide') {
-        message.author.sendMessage("__**Commandes bot owner:**__ \n\n\
+        message.author.send("__**Commandes bot owner:**__ \n\n\
     `cat:help vs` Obtenir de l'aide sur la mise en place du Virtual Server\n\
     \n\
     `cat:git` Obtenir le lien git du bot\n\
@@ -769,7 +769,7 @@ https://media.discordapp.net/attachments/406802264540315648/406898903187980308/u
         else if (command == '') {
         }
         else {
-            message.author.sendMessage('"'+message.content+' "'+" n'est pas une commande");
+            message.author.send('"'+message.content+' "'+" n'est pas une commande");
         }
         iscommand = false;
     }
