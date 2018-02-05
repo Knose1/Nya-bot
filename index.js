@@ -264,6 +264,7 @@ client.on('message', message => {
         args.shift().toLowerCase();
         var guild = client.guilds.get('406926403628695556');
         // On regarde pour chaque argument
+        var stop = 0;
         args.forEach(id => {
             var isgood = false;
             var foundedOne = 0;
@@ -271,9 +272,12 @@ client.on('message', message => {
             args.forEach( id2 => {
                 if (id == id2 && foundedOne == 0) {
                     foundedOne = 1;
+                    isgood = true;
                 }
                 else if (id == id2 && foundedOne == 1) {
                     message.author.send('Impossible d\'executer la commande `--ban`: un argument à été trouvé en __doublon__');
+                    stop = 1;
+                    isgood = false;
                     return;
                 }
             });
