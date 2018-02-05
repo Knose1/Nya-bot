@@ -266,7 +266,17 @@ client.on('message', message => {
         // On regarde pour chaque argument
         args.forEach(id => {
             var isgood = false;
-            
+            var foundedOne = 0;
+            //Si la personne à mis 2 fois le même ID en arg
+            args.forEach( id2 => {
+                if (id == id2 && foundedOne == 0) {
+                    foundedOne = 1;
+                }
+                else if (id == id2 && foundedOne == 1) {
+                    message.author.send('Impossible d\'executer la commande `--ban`: un argument à été trouvé en __doublon__');
+                    return;
+                }
+            });
             //On regarde si la personne existe
             client.users.forEach(user => {
                 if (user.id == id) {
@@ -355,7 +365,17 @@ client.on('message', message => {
         args.forEach(id => {
             var undefvar = 0;
             var isgood = false;
-            
+            var foundedOne = 0;
+            //Si la personne à mis 2 fois le même ID en arg
+            args.forEach( id2 => {
+                if (id == id2 && foundedOne == 0) {
+                    foundedOne = 1;
+                }
+                else if (id == id2 && foundedOne == 1) {
+                    message.author.send('Impossible d\'executer la commande `--unban`: un argument à été trouvé en __doublon__');
+                    return;
+                }
+            });
             //On regarde si la personne existe
             client.users.forEach(user => {
                 if (user.id == id) {
