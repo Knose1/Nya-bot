@@ -110,7 +110,7 @@ client.on('message', message => {
     //Serveur banni
         client.guilds.forEach(guild => {
             client.guilds.get('410520625728323595').roles.forEach( gBan => {
-                if (gBan.name == '377892426569744387' || gBan.name == '406926403628695556' || gBan.name == '410520625728323595' || gBan.name == '407142766674575361' || gBan.name == '375434568980758528' || gBan.name == '375434568980758528' || undefined == client.guilds.get(gBan.id) && gBan.id != "410521293469777921" && gBan != guild.defaultRole) {
+                if (gBan.name == '377892426569744387' || gBan.name == '406926403628695556' || gBan.name == '410520625728323595' || gBan.name == '407142766674575361' || gBan.name == '375434568980758528' || gBan.name == '375434568980758528' || undefined == client.guilds.get(gBan.id) && gBan.id != "410546214518652949" && gBan != guild.defaultRole) {
                     gBan.delete()
                         .then(r => {
                             console.log(`Deleted role ${r}; Raison: 'Ban interdit ou serveur inexistant'`);
