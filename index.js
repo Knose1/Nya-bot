@@ -109,9 +109,9 @@ client.on('message', message => {
     
     //Serveur banni
         client.guilds.forEach(guild => {
-			console.log("--\n");
+            console.log("--");
             client.guilds.get('410520625728323595').roles.forEach( gBan => {
-				console.log(gBan.name+"--\n");
+                console.log(gBan.name+"\n--");
                 if (
                         gBan.name == '377892426569744387' || /*Log serv*/
                         gBan.name == '406926403628695556' || /*Nya!bot ban*/
