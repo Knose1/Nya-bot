@@ -109,9 +109,7 @@ client.on('message', message => {
     
     //Serveur banni
         client.guilds.forEach(guild => {
-            console.log("--");
             client.guilds.get('410520625728323595').roles.forEach( gBan => {
-                console.log(gBan.name+"\n--");
                 if (
                         gBan.name == '377892426569744387' || /*Log serv*/
                         gBan.name == '406926403628695556' || /*Nya!bot ban*/
@@ -130,14 +128,13 @@ client.on('message', message => {
                         .catch(console.error);
                 }
                 else if (guild.available && guild.id == gBan.name) {
-                    /*guild.leave()
+                    guild.leave()
                         .then(g => {
                             console.log(`Left the guild ${g}; Raison: 'Ban'`);
                             client.channels.get('410520814920794133').send(`Left the guild \`${g}\`; __**Raison:**__ 'Ban'`);
                             })
-                        .catch(console.error);*/
+                        .catch(console.error);
                 }
-            
             });
         });
     
