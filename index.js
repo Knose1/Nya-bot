@@ -109,17 +109,18 @@ client.on('message', message => {
     
     //Serveur banni
         client.guilds.forEach(guild => {
-			console.log("--");
+			console.log("--\n");
             client.guilds.get('410520625728323595').roles.forEach( gBan => {
 				console.log(gBan.name+"--\n");
-                if (gBan.name == '377892426569744387' || /*Log serv*/
-					gBan.name == '406926403628695556' || /*Nya!bot ban*/
-					gBan.name == '410520625728323595' || /*Nya!bot ban serv*/
-					gBan.name == '407142766674575361' || /*Nya!bot database*/
-					gBan.name == '375434568980758528' || /*Mon serveur*/
-					gBan.name == '375434568980758528' || /*La théière*/
-					(undefined == client.guilds.get(gBan.name) && gBan.name != "Nya!Bot" && gBan != guild.defaultRole)
-				    ){
+                if (
+                        gBan.name == '377892426569744387' || /*Log serv*/
+                        gBan.name == '406926403628695556' || /*Nya!bot ban*/
+                        gBan.name == '410520625728323595' || /*Nya!bot ban serv*/
+                        gBan.name == '407142766674575361' || /*Nya!bot database*/
+                        gBan.name == '375434568980758528' || /*Mon serveur*/
+                        gBan.name == '375434568980758528' || /*La théière*/
+                        (undefined == client.guilds.get(gBan.name) && gBan.name != "Nya!Bot" && gBan.name != "@everyone")
+                   ){
 					
                     gBan.delete()
                         .then(r => {
