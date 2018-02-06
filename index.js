@@ -273,12 +273,10 @@ client.on('message', message => {
                 args.forEach( id2 => {
                     if (id == id2 && foundedOne == 0) {
                         foundedOne = 1;
-                        isgood = true;
                     }
                     else if (id == id2 && foundedOne == 1) {
                         message.author.send('Impossible d\'executer la commande `--ban`: un argument à été trouvé en __doublon__');
                         stop = 1;
-                        isgood = false;
                         return;
                     }
                 });
@@ -381,7 +379,8 @@ client.on('message', message => {
                     }
                     else if (id == id2 && foundedOne == 1) {
                         message.author.send('Impossible d\'executer la commande `--unban`: un argument à été trouvé en __doublon__');
-                        return;
+                        stop = 1;
+			return;
                     }
                 });
                 //On regarde si la personne existe
