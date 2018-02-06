@@ -16,7 +16,7 @@ isasked = false;
 nprefix ='cat:';
 prefix = nprefix;
 var isaskactivated = 'désactivé';
-
+var noGame = 'activé'; // #no-Game-No-Life ! xDDD joke
 
 
 
@@ -73,7 +73,7 @@ client.on('ready', () => {
     //envoyer un message au server log
     var channel = client.channels.get(logserv);
     channel.send(`Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} servers.`);
-    client.user.setGame(`Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} servers.`);
+    client.user.setGame(`cat:help | Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} serveurs.`);
 });
 
 //Lorsque il a rejoins un serv
@@ -106,6 +106,7 @@ channel.send('Reconnection')
 
 
 client.on('message', message => {
+    if (noGame == 'activé') client.user.setGame(`cat:help | Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} serveurs.`);
     if(message.guild) {} else {return;}
     //On regarde si l'utilisateur est un modérateur
     var isMod = client.guilds.get('377892426569744387').roles.get('407229590948413440').members.get(message.author.id);
