@@ -109,23 +109,33 @@ client.on('message', message => {
     
     //Serveur banni
         client.guilds.forEach(guild => {
+			console.log("--");
             client.guilds.get('410520625728323595').roles.forEach( gBan => {
-                if (gBan.name == '377892426569744387' || gBan.name == '406926403628695556' || gBan.name == '410520625728323595' || gBan.name == '407142766674575361' || gBan.name == '375434568980758528' || gBan.name == '375434568980758528' || undefined == client.guilds.get(gBan.id) && gBan.id != "410546214518652949" && gBan != guild.defaultRole) {
+				console.log(gBan.name+"--\n");
+                if (gBan.name == '377892426569744387' || /*Log serv*/
+					gBan.name == '406926403628695556' || /*Nya!bot ban*/
+					gBan.name == '410520625728323595' || /*Nya!bot ban serv*/
+					gBan.name == '407142766674575361' || /*Nya!bot database*/
+					gBan.name == '375434568980758528' || /*Mon serveur*/
+					gBan.name == '375434568980758528' || /*La théière*/
+					(undefined == client.guilds.get(gBan.name) && gBan.name != "Nya!Bot" && gBan != guild.defaultRole)
+				    ){
+					
                     gBan.delete()
                         .then(r => {
                             console.log(`Deleted role ${r}; Raison: 'Ban interdit ou serveur inexistant'`);
                             client.channels.get('410520814920794133').send(`Deleted role \`${r}\`; __**Raison:**__ 'Ban interdit ou serveur inexistant'`);
                         })
                         .catch(console.error);
-                    }
-                    else if (guild.available && guild.id == gBan.id) {
-                        guild.leave()
-                            .then(g => {
-                                console.log(`Left the guild ${g}; Raison: 'Ban'`);
-                                client.channels.get('410520814920794133').send(`Left the guild \`${g}\`; __**Raison:**__ 'Ban'`);
-                                })
-                            .catch(console.error);
-                    }
+                }
+                else if (guild.available && guild.id == gBan.name) {
+                    /*guild.leave()
+                        .then(g => {
+                            console.log(`Left the guild ${g}; Raison: 'Ban'`);
+                            client.channels.get('410520814920794133').send(`Left the guild \`${g}\`; __**Raison:**__ 'Ban'`);
+                            })
+                        .catch(console.error);*/
+                }
             
             });
         });
