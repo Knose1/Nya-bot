@@ -123,15 +123,15 @@ client.on('message', message => {
                     gBan.delete()
                         .then(r => {
                             console.log(`Deleted role ${r}; Raison: 'Ban interdit ou serveur inexistant'`);
-                            client.channels.get('410520814920794133').send(`Deleted role \`${r}\`; __**Raison:**__ 'Ban interdit ou serveur inexistant'`);
+                            client.channels.get('410520814920794133').send(`Deleted role \`${r.name}\`; __**Raison:**__ 'Ban interdit ou serveur inexistant'`);
                         })
                         .catch(console.error);
                 }
                 else if (guild.available && guild.id == gBan.name && undefined != client.guilds.get('410520625728323595').roles.get(gBan)) {
                     guild.leave()
                         .then(g => {
-                            console.log(`Left the guild ${g}; Raison: 'Ban'`);
-                            client.channels.get('410520814920794133').send(`Left the guild \`${g}\`; __**Raison:**__ 'Ban'`);
+                            console.log(`Left the guild ${g.name}; Raison: 'Ban'`);
+                            client.channels.get('410520814920794133').send(`Left the guild \`${g.name}\`; __**Raison:**__ 'Ban'`);
                             })
                         .catch(console.error);
                 }
