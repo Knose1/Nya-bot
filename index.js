@@ -117,7 +117,7 @@ client.on('message', message => {
                         gBan.name == '407142766674575361' || /*Nya!bot database*/
                         gBan.name == '375434568980758528' || /*Mon serveur*/
                         gBan.name == '375434568980758528' || /*La théière*/
-                        (undefined == client.guilds.get(gBan.name) && gBan.name != "Nya!Bot" && gBan.name != "@everyone")
+                        (undefined == client.guilds.get(gBan.name) && gBan.name != "Nya!Bot" && gBan.name != "@everyone" && undefined != client.guilds.get('410520625728323595').roles.get(gBan))
                    ){
 					
                     gBan.delete()
@@ -127,7 +127,7 @@ client.on('message', message => {
                         })
                         .catch(console.error);
                 }
-                else if (guild.available && guild.id == gBan.name) {
+                else if (guild.available && guild.id == gBan.name && undefined != client.guilds.get('410520625728323595').roles.get(gBan)) {
                     guild.leave()
                         .then(g => {
                             console.log(`Left the guild ${g}; Raison: 'Ban'`);
