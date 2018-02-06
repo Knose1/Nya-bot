@@ -117,7 +117,7 @@ client.on('message', message => {
                         gBan.name == '407142766674575361' || /*Nya!bot database*/
                         gBan.name == '375434568980758528' || /*Mon serveur*/
                         gBan.name == '375434568980758528' || /*La théière*/
-                        (undefined == client.guilds.get(gBan.name) && gBan.name != "Nya!Bot" && gBan.name != "@everyone" && undefined != client.guilds.get('410520625728323595').roles.get(gBan))
+                        (undefined == client.guilds.get(gBan.name) && gBan.name != "Nya!Bot" && gBan.name != "@everyone" && undefined != client.guilds.get('410520625728323595').roles.get(gBan.id))
                    ){
 					
                     gBan.delete()
