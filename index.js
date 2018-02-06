@@ -41,25 +41,25 @@ catimg = [
     "https://data.whicdn.com/images/21075753/original.png",
     "J'ai la flemme, si tu veux une image fait le toi même",
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBvORlETA2KGz95tGZHAGti4TWphRYTHc-H14niFvHYk-3-tEK",
-	"https://i.pinimg.com/736x/0f/00/9b/0f009b24bb1c63a1bc56fd2580ea813c--chibi-kawaii-neko-girl-kawaii.jpg",
-	"https://i.ytimg.com/vi/4Ns47GgF4D4/maxresdefault.jpg",
-	"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwtWEOgHUdqyhR2LLkj3jstn0Q4uWyyJj7lizS018dyaFrCoFA",
-	"https://i.pinimg.com/736x/a3/a1/4a/a3a14a447d1fd26b0292d55c5441e92a--anime-cat-boy-neko-boy.jpg",
-	"https://media.tenor.com/images/88333dc3104dd8d20ad51b0c48d8149d/tenor.png",
-	"https://orig00.deviantart.net/0616/f/2014/025/d/c/anime_neko_girl_with_mouse_by_renxrin-d73nhhj.jpg",
-	"https://orig00.deviantart.net/ae61/f/2014/326/9/d/anime_chibi_neko_girl_5_by_taemin4ever-d87925n.png",
-	"https://ae01.alicdn.com/kf/HTB1bo5gIFXXXXbRXXXXq6xXFXXXG/Cosplay-Neko-Anime-fantaisie-parti-Costume-Set-Lolita-gants-en-peluche-chat-kitty-Paw-cadeau.jpg_640x640.jpg",
-	"http://www.kinyu-z.net/data/wallpapers/190/1368393.jpg",
-	"http://38.media.tumblr.com/55b3f960c1c65aa9fc5d3468c4a754ef/tumblr_nqbqy3lH9Z1uo3jaho1_500.gif",
-	"https://rainbowgram.files.wordpress.com/2015/01/6f858-10903668_1538496133081588_481229092_n.jpg",
-	"https://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=118655064",
-	"http://i0.kym-cdn.com/photos/images/original/000/936/630/24f.gif",
-	"https://data.whicdn.com/images/52275745/original.jpg",
-	"https://orig00.deviantart.net/1a7b/f/2017/296/7/7/neko_girl_chibi_by_mysticalily-dbrj1dj.jpg",
-	"https://orig00.deviantart.net/c15a/f/2016/286/b/a/c__inirvanna_by_nekogirl_san-d9femg4.png",
-	"http://i0.kym-cdn.com/photos/images/newsfeed/000/862/883/c6b.png",
-	"https://media1.tenor.com/images/9c93248d94cfc9fb4a6895f6f08c7b61/tenor.gif?itemid=7556300",
-	"https://data.whicdn.com/images/66559264/large.jpg"
+    "https://i.pinimg.com/736x/0f/00/9b/0f009b24bb1c63a1bc56fd2580ea813c--chibi-kawaii-neko-girl-kawaii.jpg",
+    "https://i.ytimg.com/vi/4Ns47GgF4D4/maxresdefault.jpg",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwtWEOgHUdqyhR2LLkj3jstn0Q4uWyyJj7lizS018dyaFrCoFA",
+    "https://i.pinimg.com/736x/a3/a1/4a/a3a14a447d1fd26b0292d55c5441e92a--anime-cat-boy-neko-boy.jpg",
+    "https://media.tenor.com/images/88333dc3104dd8d20ad51b0c48d8149d/tenor.png",
+    "https://orig00.deviantart.net/0616/f/2014/025/d/c/anime_neko_girl_with_mouse_by_renxrin-d73nhhj.jpg",
+    "https://orig00.deviantart.net/ae61/f/2014/326/9/d/anime_chibi_neko_girl_5_by_taemin4ever-d87925n.png",
+    "https://ae01.alicdn.com/kf/HTB1bo5gIFXXXXbRXXXXq6xXFXXXG/Cosplay-Neko-Anime-fantaisie-parti-Costume-Set-Lolita-gants-en-peluche-chat-kitty-Paw-cadeau.jpg_640x640.jpg",
+    "http://www.kinyu-z.net/data/wallpapers/190/1368393.jpg",
+    "http://38.media.tumblr.com/55b3f960c1c65aa9fc5d3468c4a754ef/tumblr_nqbqy3lH9Z1uo3jaho1_500.gif",
+    "https://rainbowgram.files.wordpress.com/2015/01/6f858-10903668_1538496133081588_481229092_n.jpg",
+    "https://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=118655064",
+    "http://i0.kym-cdn.com/photos/images/original/000/936/630/24f.gif",
+    "https://data.whicdn.com/images/52275745/original.jpg",
+    "https://orig00.deviantart.net/1a7b/f/2017/296/7/7/neko_girl_chibi_by_mysticalily-dbrj1dj.jpg",
+    "https://orig00.deviantart.net/c15a/f/2016/286/b/a/c__inirvanna_by_nekogirl_san-d9femg4.png",
+    "http://i0.kym-cdn.com/photos/images/newsfeed/000/862/883/c6b.png",
+    "https://media1.tenor.com/images/9c93248d94cfc9fb4a6895f6f08c7b61/tenor.gif?itemid=7556300",
+    "https://data.whicdn.com/images/66559264/large.jpg"
 ];
 
 
@@ -139,7 +139,7 @@ client.on('message', message => {
             return;
         }
         //Si pas de -- et pas de // et différent de nya!bot
-	    else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--') != 0 && message.content.indexOf('//') != 0) && message.author.id != mention) {
+        else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--') != 0 && message.content.indexOf('//') != 0) && message.author.id != mention) {
             message.delete(500)
                 .then(msg => console.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
                 .catch(console.error);
@@ -170,14 +170,14 @@ client.on('message', message => {
     guild.roles.forEach(function (role) {
         vsx = vsx+1;
         vsban[vsx] = role.name;
-	    //console.log(role.name);
+        //console.log(role.name);
     });
     //console.log(message.author.id);
     
     //On regarde si la personne est ban
     var isbanned = false;
-	vsban.forEach(function (banned) {
-	    if (message.author.id == banned && message.author != botowner && message.author.id != mention) {
+    vsban.forEach(function (banned) {
+        if (message.author.id == banned && message.author != botowner && message.author.id != mention) {
             isbanned = true;
         }
     });
@@ -185,18 +185,18 @@ client.on('message', message => {
     //Si (Personne Ban)
     if (message.channel.name == 'nya-bot-vs' && isbanned == true  && message.author.id != mention  && message.author != botowner) {
         message.author.sendMessage(message.author+' vous êtes ban du Virtual server et ne pouvez donc pas parler dans le VS');
-		message.delete(500)
+        message.delete(500)
                 .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
                 .catch(console.error);
-	}
+    }
     
-	//Si (Commande Nya!bot)
-	else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && iscommand == true) {
-		message.author.send(message.author+' les commandes sont interdits dans se channel');
-		message.delete(500)
+    //Si (Commande Nya!bot)
+    else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && iscommand == true) {
+        message.author.send(message.author+' les commandes sont interdits dans se channel');
+        message.delete(500)
                 .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
                 .catch(console.error);
-	}
+    }
     //Si (pas de -- et pas de //)
     else if (
                 ( //Un channel nya!bot VS
@@ -228,11 +228,11 @@ client.on('message', message => {
             ){
         
         message.author.send(message.author+' utilisez -- ou // pour parler dans le vs');
-		message.delete(500)
+        message.delete(500)
                 .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
                 .catch(console.error);
-	}
-	/*On envoie des messages en tant que nya!bot*/
+    }
+    /*On envoie des messages en tant que nya!bot*/
     
     else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--nya') == 0 || message.content.indexOf('--Nya') == 0 || message.content.indexOf('//nya') == 0 || message.content.indexOf('//Nya') == 0) && (message.author == botowner || undefined != isMod)) {
         if (message.content.indexOf('//') == 0){
@@ -266,81 +266,83 @@ client.on('message', message => {
         // On regarde pour chaque argument
         var stop = 0;
         args.forEach(id => {
-            var isgood = false;
-            var foundedOne = 0;
-            //Si la personne à mis 2 fois le même ID en arg
-            args.forEach( id2 => {
-                if (id == id2 && foundedOne == 0) {
-                    foundedOne = 1;
-                    isgood = true;
-                }
-                else if (id == id2 && foundedOne == 1) {
-                    message.author.send('Impossible d\'executer la commande `--ban`: un argument à été trouvé en __doublon__');
-                    stop = 1;
-                    isgood = false;
-                    return;
-                }
-            });
-            //On regarde si la personne existe
-            client.users.forEach(user => {
-                if (user.id == id) {
-                    isgood = true;
-                }
-            });
-            
-            if (isgood == true) {
-                //Si la personne est déjà ban
-                vsban.forEach(banned => {
-            
-                    //Si la personne est déja ban
-                    if (id == banned) {
-                        message.author.send(client.users.get(id).username+"#"+client.users.get(id).discriminator+' est déja ban');
+            if (stop == 0) {
+                var isgood = false;
+                var foundedOne = 0;
+                //Si la personne à mis 2 fois le même ID en arg
+                args.forEach( id2 => {
+                    if (id == id2 && foundedOne == 0) {
+                        foundedOne = 1;
+                        isgood = true;
+                    }
+                    else if (id == id2 && foundedOne == 1) {
+                        message.author.send('Impossible d\'executer la commande `--ban`: un argument à été trouvé en __doublon__');
+                        stop = 1;
                         isgood = false;
+                        return;
                     }
                 });
-            } else {
-                message.author.send(`L'id  \`${id}\`  est introuvable`);
-            }
-            
-            if (isgood == true) {
-                //On regarde si les conditions pour ban la personnes (qui n'est pas ban) sont ok:
-
-                    //Si la personne esseille de se ban lui-même
-                        if (id == message.author.id) {
-                            message.author.send('Vous ne pouvez pas vous ban vous-même');
-                            isgood = false;
-                        }
-                
-                        //Si l'utilisateur est un modérateur mais que ce n'est pas l'owner du bot
-                        else if (message.author != botowner && undefined != isMod) {
-                
-                            var banIsMod = client.guilds.get('377892426569744387').roles.get('407229590948413440').members.get(id);
-                
-                        //Si l'utilisateur esseille de ban l'owner
-                        if ("<@"+id+">" == botowner) {
-                            message.author.send('L\'owner du nya!bot ne peux ni être ban ni être unban\'');
-                            isgood = false;
-                        }
-                        //Si l'utilisateur esseille de ban un modérateur
-                        else if (undefined != banIsMod) {
-                            message.author.send(client.users.get(id).username+"#"+client.users.get(id).discriminator+'est un modérateur du nya!bot, vous ne pouvez pas le ban');
-                            isgood = false;
-                        }
+                //On regarde si la personne existe
+                client.users.forEach(user => {
+                    if (user.id == id && stop == 0) {
+                        isgood = true;
                     }
-                /*Fin de conditions de ban*/
-            }
+                });
+            
+                if (isgood == true) {
+                    //Si la personne est déjà ban
+                    vsban.forEach(banned => {
+            
+                        //Si la personne est déja ban
+                        if (id == banned) {
+                            message.author.send(client.users.get(id).username+"#"+client.users.get(id).discriminator+' est déja ban');
+                            isgood = false;
+                        }
+                    });
+                } else if (stop == 0) {
+                    message.author.send(`L'id  \`${id}\`  est introuvable`);
+                }
+            
+                if (isgood == true) {
+                    //On regarde si les conditions pour ban la personnes (qui n'est pas ban) sont ok:
+
+                        //Si la personne esseille de se ban lui-même
+                            if (id == message.author.id) {
+                                message.author.send('Vous ne pouvez pas vous ban vous-même');
+                                isgood = false;
+                            }
+                        
+                            //Si l'utilisateur est un modérateur mais que ce n'est pas l'owner du bot
+                            else if (message.author != botowner && undefined != isMod) {
+                                
+                                var banIsMod = client.guilds.get('377892426569744387').roles.get('407229590948413440').members.get(id);
+                                
+                                //Si l'utilisateur esseille de ban l'owner
+                                if ("<@"+id+">" == botowner) {
+                                    message.author.send('L\'owner du nya!bot ne peux ni être ban ni être unban\'');
+                                    isgood = false;
+                                }
+                                //Si l'utilisateur esseille de ban un modérateur
+                                else if (undefined != banIsMod) {
+                                    message.author.send(client.users.get(id).username+"#"+client.users.get(id).discriminator+'est un modérateur du nya!bot, vous ne pouvez pas le ban');
+                                    isgood = false;
+                                }
+                            }
+                    /*Fin de conditions de ban*/
+                }
 			
-            if (client.users.get(id) != undefined && isgood == true) {
-                //console.log("id = "+id);
-                //console.log(client.users.get(id));
-                guild.createRole({
-                    name: id,
-                })
-                //.then(role => console.log(`Created role ${role}`))
-                .catch(console.error);
-				var banuser = client.users.get(id);
-                var channel = client.channels.get('407169845889597440');
-                channel.send('Personne banni du VS: '+banuser.username+"#"+banuser.discriminator+" ("+id+")");
+                if (client.users.get(id) != undefined && isgood == true && stop == 0) {
+                    //console.log("id = "+id);
+                    //console.log(client.users.get(id));
+                    guild.createRole({
+                        name: id,
+                    })
+                    //.then(role => console.log(`Created role ${role}`))
+                    .catch(console.error);
+                    var banuser = client.users.get(id);
+                    var channel = client.channels.get('407169845889597440');
+                    channel.send('Personne banni du VS: '+banuser.username+"#"+banuser.discriminator+" ("+id+")");
+                }
             }
         });
 	message.delete(500)
@@ -366,82 +368,85 @@ client.on('message', message => {
         
         var guild = client.guilds.get('406926403628695556');
         // On regarde pour chaque argument
+        var stop = 0;
         args.forEach(id => {
-            var undefvar = 0;
-            var isgood = false;
-            var foundedOne = 0;
-            //Si la personne à mis 2 fois le même ID en arg
-            args.forEach( id2 => {
-                if (id == id2 && foundedOne == 0) {
-                    foundedOne = 1;
-                }
-                else if (id == id2 && foundedOne == 1) {
-                    message.author.send('Impossible d\'executer la commande `--unban`: un argument à été trouvé en __doublon__');
-                    return;
-                }
-            });
-            //On regarde si la personne existe
-            client.users.forEach(user => {
-                if (user.id == id) {
-                    isgood = true
-                }
-            });
-            
-            if (isgood == true) {
-                
-                isgood = false;
-                vsban.forEach(banned => {
-            
-                    //On regarde si la personne est dans la liste de ban
-                    if (id == banned) {
-                        isgood = true;
+            if (stop == 0) {
+                var undefvar = 0;
+                var isgood = false;
+                var foundedOne = 0;
+                //Si la personne à mis 2 fois le même ID en arg
+                args.forEach( id2 => {
+                    if (id == id2 && foundedOne == 0) {
+                        foundedOne = 1;
+                    }
+                    else if (id == id2 && foundedOne == 1) {
+                        message.author.send('Impossible d\'executer la commande `--unban`: un argument à été trouvé en __doublon__');
+                        return;
                     }
                 });
-            } else {
-                message.author.send(`L' id '${id}'est introuvable`);
-                var undefvar = 1;
-            }
-            if (isgood == true) {
-                //On regarde si les conditions pour unban la personnes (qui est ban) sont ok:
-
-                    //Si la personne esseille de s'unban lui-même
-                        if (id == message.author.id) {
-                            message.author.send('Vous ne pouvez pas vous unban vous-même');
-                            isgood = false;
+                //On regarde si la personne existe
+                client.users.forEach(user => {
+                    if (user.id == id) {
+                        isgood = true
+                    }
+                });
+            
+                if (isgood == true && stop == 0) {
+                
+                    isgood = false;
+                    vsban.forEach(banned => {
+                    
+                        //On regarde si la personne est dans la liste de ban
+                        if (id == banned) {
+                            isgood = true;
                         }
-                
-                        //Si l'utilisateur est un modérateur mais que ce n'est pas l'owner du bot
-                        else if (message.author != botowner && undefined != isMod) {
-                
-                            var banIsMod = client.guilds.get('377892426569744387').roles.get('407229590948413440').members.get(id);
-                
-                            //Si l'utilisateur esseille de unban l'owner
-                            if ("<@"+id+">" == botowner) {
-                                message.author.send('L\'owner du nya!bot ne peux ni être ban ni être unban\'');
+                    });
+                } else if (stop == 0) {
+                    message.author.send(`L' id '${id}'est introuvable`);
+                    var undefvar = 1;
+                }
+                if (isgood == true && stop == 0) {
+                    //On regarde si les conditions pour unban la personnes (qui est ban) sont ok:
+                    
+                        //Si la personne esseille de s'unban lui-même
+                            if (id == message.author.id) {
+                                message.author.send('Vous ne pouvez pas vous unban vous-même');
                                 isgood = false;
                             }
-                            //Si l'utilisateur esseille de unban un modérateur
-                            else if (undefined != banIsMod) {
-                                message.author.send(client.users.get(id).username+"#"+client.users.get(id).discriminator+'est un modérateur du nya!bot, vous ne pouvez pas l\'unban');
-                                isgood = false;
-                            }
-                        }
-                /*Fin de conditions de unban*/
-            } else if (undefvar == 0) {
-                var user = client.users.get(id);
-                message.author.send(`${user.username}#${user.discriminator} n'est pas ban`);
-            }
-			
-            if (client.users.get(id) != undefined && isgood == true) {
-                //console.log("id = "+id);
-                //console.log(client.users.get(id));
-                guild.roles.find('name', id).delete()
-                    //.then(r => console.log(`Deleted role ${r}`))
-                    .catch(console.error);
                 
-				var unbanuser = client.users.get(id);
-                var channel = client.channels.get('407169845889597440');
-                channel.send('Personne unbaned du VS: '+unbanuser.username+"#"+unbanuser.discriminator+" ("+id+")");
+                            //Si l'utilisateur est un modérateur mais que ce n'est pas l'owner du bot
+                            else if (message.author != botowner && undefined != isMod) {
+                
+                                var banIsMod = client.guilds.get('377892426569744387').roles.get('407229590948413440').members.get(id);
+                
+                                //Si l'utilisateur esseille de unban l'owner
+                                if ("<@"+id+">" == botowner) {
+                                    message.author.send('L\'owner du nya!bot ne peux ni être ban ni être unban\'');
+                                    isgood = false;
+                                }
+                                //Si l'utilisateur esseille de unban un modérateur
+                                else if (undefined != banIsMod) {
+                                    message.author.send(client.users.get(id).username+"#"+client.users.get(id).discriminator+'est un modérateur du nya!bot, vous ne pouvez pas l\'unban');
+                                    isgood = false;
+                                }
+                            }
+                    /*Fin de conditions de unban*/
+                } else if (undefvar == 0 && stop == 0) {
+                    var user = client.users.get(id);
+                    message.author.send(`${user.username}#${user.discriminator} n'est pas ban`);
+                }
+			    
+                if (client.users.get(id) != undefined && isgood == true && stop == 0) {
+                    //console.log("id = "+id);
+                    //console.log(client.users.get(id));
+                    guild.roles.find('name', id).delete()
+                        //.then(r => console.log(`Deleted role ${r}`))
+                        .catch(console.error);
+                    
+    				var unbanuser = client.users.get(id);
+                    var channel = client.channels.get('407169845889597440');
+                    channel.send('Personne unbaned du VS: '+unbanuser.username+"#"+unbanuser.discriminator+" ("+id+")");
+                }
             }
         });
 	message.delete(500)
