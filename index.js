@@ -274,7 +274,7 @@ client.on('message', message => {
                     if (id == id2 && foundedOne == 0) {
                         foundedOne = 1;
                     }
-                    else if (id == id2 && foundedOne == 1) {
+                    else if (id == id2 && foundedOne == 1 && stop == 0) {
                         message.author.send('Impossible d\'executer la commande `--ban`: un argument à été trouvé en __doublon__');
                         stop = 1;
                         return;
@@ -377,7 +377,7 @@ client.on('message', message => {
                     if (id == id2 && foundedOne == 0) {
                         foundedOne = 1;
                     }
-                    else if (id == id2 && foundedOne == 1) {
+                    else if (id == id2 && foundedOne == 1 && stop == 0) {
                         message.author.send('Impossible d\'executer la commande `--unban`: un argument à été trouvé en __doublon__');
                         stop = 1;
 			return;
