@@ -116,7 +116,7 @@ client.on('message', message => {
             gBan.name == '407142766674575361' || /*Nya!bot database*/
             gBan.name == '375434568980758528' || /*Mon serveur*/
             gBan.name == '375434568980758528' || /*La théière*/
-            (undefined == client.guilds.get(gBan.name) && gBan.name != "Nya!Bot" && gBan.name != "@everyone" && undefined != client.guilds.get('410520625728323595').roles.get(gBan.id))
+            (undefined == client.guilds.get(gBan.name) && gBan.name != "Nya!Bot" && gBan.name != "@everyone")
             ){
 					
                 gBan.delete()
@@ -125,8 +125,8 @@ client.on('message', message => {
                         client.channels.get('410520814920794133').send(`Deleted role \`${r.name}\`; __**Raison:**__ 'Ban interdit ou serveur inexistant'`);
                     })
                     .catch(console.error);
-                }
-            });
+        }
+    });
     
     //Serveur banni
         client.guilds.forEach(guild => {
