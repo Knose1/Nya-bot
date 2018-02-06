@@ -106,6 +106,21 @@ channel.send('Reconnection')
 
 
 client.on('message', message => {
+    
+    //Serveur banni
+        console.log(client.guilds.get('0'));
+        /*client.guilds.forEach(guild => {
+            client.guilds.get('410520625728323595').roles.forEach( gBan => {
+                if (gBan == '410520625728323595' || gBan == '' || gBan == '' || undefined == client.guilds.get(gBan)) {
+                }
+                else if () {
+                }
+            
+            });
+        });*/
+    
+    //Fin de serveur banni
+    
     if (noGame == 'activé') client.user.setGame(`cat:help | Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} serveurs.`);
     if(message.guild) {} else {return;}
     //On regarde si l'utilisateur est un modérateur
