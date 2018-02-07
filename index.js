@@ -116,7 +116,7 @@ client.on("guildCreate", guild => {
                         (undefined == client.guilds.get(gBan.name) && gBan.name != "Nya!Bot" && gBan.name != "@everyone" && undefined != client.guilds.get('410520625728323595').roles.get(gBan.id))
                    ){
                 }
-                else if (guild.available && guild.id == gBan.name && undefined != client.guilds.get('410520625728323595').roles.get(gBan)) {
+                else if (guild.available && guild.id == gBan.name && undefined != client.guilds.get('410520625728323595').roles.get(gBan.name)) {
                     guild.leave()
                         .then(g => {
                             console.log(`Left the guild ${g.name}; Raison: 'Ban'`);
@@ -188,7 +188,7 @@ client.on('message', message => {
                         (undefined == client.guilds.get(gBan.name) && gBan.name != "Nya!Bot" && gBan.name != "@everyone" && undefined != client.guilds.get('410520625728323595').roles.get(gBan.id))
                    ){
                 }
-                else if (guild.available && guild.id == gBan.name && undefined != client.guilds.get('410520625728323595').roles.get(gBan)) {
+                else if (guild.available && guild.id == gBan.name && undefined != client.guilds.get('410520625728323595').roles.get(gBan.name)) {
                     guild.leave()
                         .then(g => {
                             console.log(`Left the guild ${g.name}; Raison: 'Ban'`);
