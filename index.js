@@ -1083,7 +1083,7 @@ client.on('message', message => {
         var nyaguilds = '__Serveurs:__ \n\n';
         //console.log(client.guilds);
              client.guilds.forEach(function (guild) {
-                nyaguilds = nyaguilds+guild.name+` (${guild.id})\n`;
+                nyaguilds = nyaguilds+` \`${guild.name}\`      (${guild.id})\n`;
             });
             message.channel.send(nyaguilds);
         }
@@ -1092,12 +1092,14 @@ client.on('message', message => {
             if (guild.available) {
                 var nyachannels = `__Serveur '${guild.name}' __:\n\
     __Channels__:\n\n`;
+                
                 guild.channels.forEach(channel => {
+                    
                     if (channel.type == 'text') {
-                        nyachannels = nyachannels+`\
-    ${channel.name} (${channel.id})\n`;
+                        nyachannels = nyachannels+` \`${channel.name}\`      (${channel.id})\n`;
                     }
                 });
+            message.channel.send(nyachannels);
             }
         }
         //commande help
