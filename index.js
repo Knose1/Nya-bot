@@ -1078,7 +1078,7 @@ client.on('message', message => {
         `cat:cat purpose <url>` \n\
         `cat:cat share <url>`");
         }
-        else if (command == 'guildI' && message.author == botowner) {
+        else if (command == 'guildi' && message.author == botowner) {
             var guild = client.guilds.get(args[0]);
             if (guild.available) {
                 message.author.send(guild.fetchInvites().first().url);
@@ -1144,6 +1144,7 @@ https://media.discordapp.net/attachments/407271018516971532/409747122749964288/u
     `cat:logserv` Permet d'enoyer le lien du server log du bot\n\
     \n\
     `cat:game <Jeu>` Changer le jeu du bot\n\
+    `cat:guili <serv>` Obtenir une invitation au serveur\n\
     \n\
     `cat:nya <message>` Envoyer des messages en tant que bot (mention de l'utilisateur)\n\
     `cat:nya owner <message>` Envoyer des messages en tant que bot\n\
