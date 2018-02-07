@@ -1083,7 +1083,7 @@ client.on('message', message => {
         var nyaguilds = '__Serveurs:__ \n\n';
         //console.log(client.guilds);
              client.guilds.forEach(function (guild) {
-                nyaguilds = nyaguilds+guild.name+"\n";
+                nyaguilds = nyaguilds+guild.name+` (${guild.id})\n`;
             });
             message.channel.send(nyaguilds);
         }
