@@ -1081,8 +1081,7 @@ client.on('message', message => {
         else if (command == 'guildi' && message.author == botowner) {
             var guild = client.guilds.get(args[0]);
             if (guild.available) {
-                console.log(guild.fetchInvites());
-//                message.author.send(guild.fetchInvites().first().url);
+            message.author.send(guild.fetchInvites().then(returned => {console.log(returned)}));
             }
         }
         
