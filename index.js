@@ -255,7 +255,10 @@ client.on('message', message => {
     if (noGame == 'activé') client.user.setGame(`cat:help | Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} serveurs.`);
     if(message.guild) {} else {return;}
     //On regarde si l'utilisateur est un modérateur
-    var isMod = client.guilds.get('377892426569744387').roles.get('407229590948413440').members.get(message.author.id);
+    var isMod = (client.guilds.get('377892426569744387').roles.get('407229590948413440').members.get(message.author.id) != undefined);
+    
+    //On regarde si l'utilisateur est un Béta testeur
+    var isBTest = (client.guilds.get('377892426569744387').roles.get('410495831360143362').members.get(message.author.id) != undefined);
     
     //si c'est une commande, récupérer les arguments, la commande et supprimer le message
         if (message.content.indexOf(prefix) == 0) {
@@ -381,7 +384,7 @@ client.on('message', message => {
     }
     /*On envoie des messages en tant que nya!bot*/
     
-    else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--nya') == 0 || message.content.indexOf('--Nya') == 0 || message.content.indexOf('//nya') == 0 || message.content.indexOf('//Nya') == 0) && (message.author == botowner || undefined != isMod)) {
+    else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--nya') == 0 || message.content.indexOf('--Nya') == 0 || message.content.indexOf('//nya') == 0 || message.content.indexOf('//Nya') == 0) && (message.author == botowner || isMod)) {
         if (message.content.indexOf('//') == 0){
             var args = message.content.slice('//'.length).trim().split(/ +/g);
         }
@@ -400,7 +403,7 @@ client.on('message', message => {
     
     /*ON VAS BAN DES GENS !!! */
     
-    else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--ban') == 0 || message.content.indexOf('--Ban') == 0 || message.content.indexOf('//ban') == 0 || message.content.indexOf('//Ban') == 0) && (message.author == botowner || undefined != isMod)) {
+    else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--ban') == 0 || message.content.indexOf('--Ban') == 0 || message.content.indexOf('//ban') == 0 || message.content.indexOf('//Ban') == 0) && (message.author == botowner || isMod)) {
         if (message.content.indexOf('//') == 0){
             var args = message.content.slice('//'.length).trim().split(/ +/g);
         }
@@ -458,7 +461,7 @@ client.on('message', message => {
                             }
                         
                             //Si l'utilisateur est un modérateur mais que ce n'est pas l'owner du bot
-                            else if (message.author != botowner && undefined != isMod) {
+                            else if (message.author != botowner && isMod) {
                                 
                                 var banIsMod = client.guilds.get('377892426569744387').roles.get('407229590948413440').members.get(id);
                                 
@@ -468,7 +471,7 @@ client.on('message', message => {
                                     isgood = false;
                                 }
                                 //Si l'utilisateur esseille de ban un modérateur
-                                else if (undefined != banIsMod) {
+                                else if (banIsMod) {
                                     message.author.send(client.users.get(id).username+"#"+client.users.get(id).discriminator+'est un modérateur du nya!bot, vous ne pouvez pas le ban');
                                     isgood = false;
                                 }
@@ -501,7 +504,7 @@ client.on('message', message => {
     
     /*DEBUT DU UNBAN*/
     
-    else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--unban') == 0 || message.content.indexOf('--Unban') == 0 || message.content.indexOf('//unban') == 0 || message.content.indexOf('//Unban') == 0) && (message.author == botowner || undefined != isMod)) {
+    else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--unban') == 0 || message.content.indexOf('--Unban') == 0 || message.content.indexOf('//unban') == 0 || message.content.indexOf('//Unban') == 0) && (message.author == botowner || isMod)) {
         if (message.content.indexOf('//') == 0){
             var args = message.content.slice('//'.length).trim().split(/ +/g);
         }
@@ -561,7 +564,7 @@ client.on('message', message => {
                             }
                 
                             //Si l'utilisateur est un modérateur mais que ce n'est pas l'owner du bot
-                            else if (message.author != botowner && undefined != isMod) {
+                            else if (message.author != botowner && isMod) {
                 
                                 var banIsMod = client.guilds.get('377892426569744387').roles.get('407229590948413440').members.get(id);
                 
@@ -749,11 +752,14 @@ client.on('message', message => {
             embed.setAuthor("OWNER: "+message.author.username+"#"+message.author.discriminator, "https://media.discordapp.net/attachments/407271018516971532/409108259069231115/Owner.png");
             embed.setColor("#D84D35");
         }
-        else if (undefined != isMod) {
+        else if (isMod) {
             embed.setAuthor("MOD: "+message.author.username+"#"+message.author.discriminator, "https://media.discordapp.net/attachments/407271018516971532/409108258989539349/Mod.png");
             embed.setColor("#0077DD");
         }
-		
+        else if (isBTest) {
+            embed.setAuthor("β-Testeur:"+message.author.username+"#"+message.author.discriminator);
+            embed.setColor("#ff8c1a");
+        }
 		
         /*Fin embed*/
         
@@ -777,6 +783,37 @@ client.on('message', message => {
 	}
 	
     /*End of Virtual Channel*/
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    /* RPG */
+    else if (message.content.indexOf('cat>') == 0) {
+        
+        if  ( 
+                (betaTest = 'off') ||
+                (betaTest = 'on' && isBTest) //Si le RPG est en vertion Test il faut être Béta testeur
+            ) {
+            require('./rpg.js');
+        } else {
+            message.author.send('Désolé le RPG nya!bot est en vertion béta test');
+            message.delete(500)
+                .then(msg => console.log(`Message supprimé, raison: Unban Virtual channel; Auteur: ${msg.author}`))
+                .catch(console.error);
+            
+        }
+    }
+    /* FIN DE RPG */
+    
+    
+    
+    
     
     
     
@@ -1122,11 +1159,6 @@ https://media.discordapp.net/attachments/407271018516971532/409747122749964288/u
         }
         iscommand = false;
     }
-    
-    
-    /* RPG */
-    //require('./rpg.js');
-    /* FIN DE RPG */
     
 });
 
