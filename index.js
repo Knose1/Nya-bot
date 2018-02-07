@@ -188,11 +188,16 @@ client.on("guildDelete", guild => {
 
 //lors de reconnection
 client.on('reconnecting', reconnecting=> {
-console.log('Reconnection')
-var channel = client.channels.get(logserv);
-channel.send('Reconnection')
+    console.log('Reconnection');
+    var channel = client.channels.get(logserv);
+    channel.send('Reconnection');
 });
 
+client.on('resume', resume => {
+    console.log('Reprise du nya!bot');
+    var channel = client.channels.get(logserv);
+    channel.send('Reprise du nya!bot');
+});
 
 
 
