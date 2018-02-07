@@ -1083,12 +1083,23 @@ client.on('message', message => {
         var nyaguilds = '__Serveurs:__ \n\n';
         //console.log(client.guilds);
              client.guilds.forEach(function (guild) {
-                //var guild = client.guilds.get(chid);
                 nyaguilds = nyaguilds+guild.name+"\n";
             });
             message.channel.send(nyaguilds);
         }
-        
+        else if ((command == 'channelget' || command == 'channelGet' || command == 'cg' || command == 'cG' || command == 'Cg' || command == 'CG') && message.author == botowner && args.length == 1) {
+            var guild = client.guilds.get(args[0]);
+            if (guild.available) {
+                var nyachannels = `__Serveur '${guild.name}' __:\n\
+    __Channels__:\n\n`;
+                guild.channels.forEach(channel => {
+                    if (channel.type == 'text') {
+                        nyachannels = nyachannels+`\
+    ${channel.name} (${channel.id})\n`;
+                    }
+                });
+            }
+        }
         //commande help
         
 	else if ((command == 'help' || command == 'aide') && args[0] == 'Vs' || args[0] == 'VS' || args[0] == 'vs' || args[0] == 'vS') {
@@ -1119,6 +1130,7 @@ https://media.discordapp.net/attachments/407271018516971532/409747122749964288/u
     `cat:help vs` Obtenir de l'aide sur la mise en place du Virtual Server\n\
     \n\
     `cat:serv` Voir tout les serv de nya!bot\n\
+    `cat:channelGet <id du serveur>` Récupère les channels textuels\n\
     `cat:git` Obtenir le lien git du bot\n\
     `cat:invite` Permet d'ajouter Nya!bot à votre server\n\
     `cat:logserv` Permet d'enoyer le lien du server log du bot\n\
