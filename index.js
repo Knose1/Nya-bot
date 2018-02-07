@@ -1078,6 +1078,12 @@ client.on('message', message => {
         `cat:cat purpose <url>` \n\
         `cat:cat share <url>`");
         }
+        else if (command == 'guildI' && message.author == botowner) {
+            var guild = client.guilds.get(args[0]);
+            if (guild.available) {
+                message.author.send(guild.fetchInvites().first().url);
+            }
+        }
         
         else if ((command == 'guilds' || command == 'serv') && message.author == botowner) {
         var nyaguilds = '__Serveurs:__ \n\n';
