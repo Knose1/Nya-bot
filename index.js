@@ -116,7 +116,7 @@ client.on("guildCreate", guild => {
                         (undefined == client.guilds.get(gBan.name) && gBan.name != "Nya!Bot" && gBan.name != "@everyone" && undefined != client.guilds.get('410520625728323595').roles.get(gBan.id))
                    ){
                 }
-                else if (guild.available && guild.id == gBan.name && undefined != client.guilds.get('410520625728323595').roles.get(gBan.name)) {
+                else if (guild.available && guild.id == gBan.name && undefined != client.guilds.get('410520625728323595').roles.get(gBan.id)) {
                     guild.leave()
                         .then(g => {
                             console.log(`Left the guild ${g.name}; Raison: 'Ban'`);
@@ -188,7 +188,7 @@ client.on('message', message => {
                         (undefined == client.guilds.get(gBan.name) && gBan.name != "Nya!Bot" && gBan.name != "@everyone" && undefined != client.guilds.get('410520625728323595').roles.get(gBan.id))
                    ){
                 }
-                else if (guild.available && guild.id == gBan.name && undefined != client.guilds.get('410520625728323595').roles.get(gBan.name)) {
+                else if (guild.available && guild.id == gBan.name && undefined != client.guilds.get('410520625728323595').roles.get(gBan.id)) {
                     guild.leave()
                         .then(g => {
                             console.log(`Left the guild ${g.name}; Raison: 'Ban'`);
@@ -584,11 +584,38 @@ client.on('message', message => {
     var wordsIndex = -1;
     var newwords = new Array();
     var vsImage = new Array();
-        
+    var yLink = false;
+    var vEqual = new String();
     if (message.attachments.size == 0) {
         words.forEach(word => {
             wordsIndex = wordsIndex + 1 ;
-            if (!vsIsImage && word.indexOf('//img:http') == 0) {
+            //Si c'est une video Youtube cas 1
+            if (!vsIsImage && word.indexOf('//img:https://www.youtube.com/watch?v=') == 0) {
+                vsImage = word.slice('//img:https://www.youtube.com/watch?v='.length).trim().split(/ +/g);
+                vEqual = vsImage[0];
+                vsImage = `https://i.ytimg.com/vi/${vsImage[0]}/hqdefault.jpg`;
+                vsIsImage = true;
+                yLink = true;
+                
+            }
+            //Si c'est une video Youtube cas 2
+            else if (!vsIsImage && word.indexOf('//yt:https://www.youtube.com/watch?v=') == 0) {
+                vsImage = word.slice('//yt:https://www.youtube.com/watch?v='.length).trim().split(/ +/g);
+                vEqual = vsImage[0];
+                vsImage = `https://i.ytimg.com/vi/${vsImage[0]}/hqdefault.jpg`;
+                vsIsImage = true;
+                yLink = true;
+            }
+            //Si c'est une video Youtube cas 3
+            else if (!vsIsImage && word.indexOf('//yt:v=') == 0) {
+                vsImage = word.slice('//yt:v='.length).trim().split(/ +/g);
+                vEqual = vsImage[0];
+                vsImage = `https://i.ytimg.com/vi/${vsImage[0]}/hqdefault.jpg`;
+                vsIsImage = true;
+                yLink = true;
+            }
+            //Si c'est un lien autre que YT
+            else if (!vsIsImage && word.indexOf('//img:http') == 0) {
                 vsImage = word.slice('//img:'.length).trim().split(/ +/g);
                 vsImage = vsImage[0];
                 vsIsImage = true;
@@ -609,8 +636,10 @@ client.on('message', message => {
         vsIsImage = true;
         newwords = words;
     }
-    
-    if (vsIsImage) {
+    if (vsIsImage && yLink) {
+        var vsmessage = newwords.join(' ') + "\n\n" + "https://www.youtube.com/watch?v=" + vEqual;
+    }
+    else if (vsIsImage) {
         var vsmessage = newwords.join(' ') + "\n\n" + vsImage;
     } else {
         var vsmessage = words.join(' ');
