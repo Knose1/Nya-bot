@@ -6,6 +6,7 @@
   "dependencies": {
     "discord.js": "11.2.1"
   },
+  "heroku-postbuild": "heroku-nextjs-build",
   "author": "knose1",
   "license": "ISC"
 }
