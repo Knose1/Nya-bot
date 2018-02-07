@@ -17,7 +17,7 @@ nprefix ='cat:';
 prefix = nprefix;
 var isaskactivated = 'désactivé';
 var noGame = 'activé'; // #no-Game-No-Life ! xDDD joke
-
+var betaTest = 'on';
 
 
 
