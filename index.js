@@ -1167,6 +1167,34 @@ https://media.discordapp.net/attachments/407271018516971532/409747122749964288/u
 ");
         }
         
+        else if (command == 'help' && ((args[0].toLowerCase() == 'vs' && args[1].toLowerCase() == 'here') || (args[0].toLowerCase() == 'here' && args[1].toLowerCase() == 'vs'))) {
+            message.author.send('-----\n\
+__Commandes utilisable **UNIQUEMENT** dans le nya!bot vs :__ \n\
+\n\
+:warning: Pour chaque commande les `--` peuvent être remplacés par des `//`\n\
+\n\
+Pour envoyer une vidéo youtube `----yt:<url>`\n\
+\n\
+Pour envoyer une vidéo youtube avec du text: `--<message> --yt:<url>`\n\
+\n\
+Pour envoyer des images `----img:<url>`\n\
+\n\
+Pour envoyer des images avec du text: `--<message> --img:<url>`\n\
+\n\
+\n\
+(bien évidement vous remplacez les `<blablabla>` par leur valeur et vous retirer les <>)\n\
+\n\
+-----------------------\n\
+\n\
+__Uniquement pour les **MODÉRATEURS DU BOT** :__ \n\
+\n\
+--ban <id de l\'utilisateur> (les -- peuvent être remplacé par des //)\n\
+--unban <id de l\'utilisateur> (les -- peuvent être remplacé par des //)\n\
+--nya <message>(les -- peuvent être remplacé par des //)\n\
+\n\
+Les id sont marqués en bas des messages du VirtualServeur (VS)');
+        }
+        
         else if (command == 'help' && args[0].toLowerCase() == 'vs') {
             message.author.send('-----\n\
 __Commandes utilisable **UNIQUEMENT** dans le nya!bot vs :__ \n\
