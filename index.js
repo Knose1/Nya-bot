@@ -1168,7 +1168,7 @@ https://media.discordapp.net/attachments/407271018516971532/409747122749964288/u
         }
         
         else if (command == 'help' && ((args[0].toLowerCase() == 'vs' && args[1].toLowerCase() == 'here') || (args[0].toLowerCase() == 'here' && args[1].toLowerCase() == 'vs'))) {
-            message.author.send('-----\n\
+            message.channel.send('-----\n\
 __Commandes utilisable **UNIQUEMENT** dans le nya!bot vs :__ \n\
 \n\
 :warning: Pour chaque commande les `--` peuvent être remplacés par des `//`\n\
