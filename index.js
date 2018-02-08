@@ -1053,7 +1053,7 @@ client.on('message', message => {
             var channel = client.channels.get(logserv);
             channel.send('Changement du jeu: Par défaut');
         }
-	else if (command == 'game' && message.author == botowner) {
+        else if (command == 'game' && message.author == botowner) {
             client.user.setGame(args.join(' '));
             console.log('Changement du jeu: '+args.join(' '));
             var channel = client.channels.get(logserv);
@@ -1062,14 +1062,14 @@ client.on('message', message => {
         else if (command == 'game' && message.author != botowner) {
             message.author.send("Vous n'avez pas le droit d'utiliser "+"\""+message.content+"\"");
         }
-        else if (command == 'nya' && message.author == botowner && (args[0] == 'owner' || args[0] == 'strict')) {
+        else if (command == 'nya' && message.author == botowner && (args[0].toLowerCase() == 'owner' || args[0].toLowerCase() == 'strict')) {
             args[0] = '';
             message.channel.send(args.join(' '));
             console.log('Message envoyé: '+args.join(' '));
             var channel = client.channels.get(logserv);
             channel.send('Message envoyé: '+args.join(' '));
         }
-        else if (command == 'nya' && message.author == botowner && (args[0] == 'redirect' || args[0] == 'rd')) {
+        else if (command == 'nya' && message.author == botowner && (args[0].toLowerCase() == 'redirect' || args[0].toLowerCase() == 'rd')) {
             args[0] = '';
             var channel = client.channels.get(args[1]);
             var argchan = args[1];
@@ -1107,15 +1107,15 @@ client.on('message', message => {
         var randcat = Math.floor(Math.random() * catimg.length);
         message.channel.send(message.author+", "+catimg[randcat]);
         }
-        else if (command == 'cat' && (args[0] == 'length' || args[0] == 'size')) {
+        else if (command == 'cat' && (args[0].toLowerCase() == 'length' || args[0].toLowerCase() == 'size')) {
         message.channel.send(message.author+", il y a "+catimg.length+" images dans cat:cat");
         }
-        else if (command == 'cat' && args.length == 2 && (args[0] == 'purpose' || args[0] == 'share')) {
+        else if (command == 'cat' && args.length == 2 && (args[0].toLowerCase() == 'purpose' || args[0].toLowerCase() == 'share')) {
         var channel = client.channels.get('405119142962659350');
         channel.send(message.author+': \n\
     '+args[1]);
         }
-        else if (command == 'cat' && args.length != 2 && (args[0] == 'purpose' || args[0] == 'share')) {
+        else if (command == 'cat' && args.length != 2 && (args[0].toLowerCase() == 'purpose' || args[0].toLowerCase() == 'share')) {
         message.author.send("Utilisation: \n\n\
         `cat:cat`\n\
         `cat:cat purpose <url>` \n\
@@ -1142,7 +1142,7 @@ client.on('message', message => {
             });
             message.channel.send(nyaguilds);
         }
-        else if ((command == 'channelget' || command == 'channelGet' || command == 'cg' || command == 'cG' || command == 'Cg' || command == 'CG') && message.author == botowner && args.length == 1) {
+        else if ((command.toLowerCase() == 'channelget' || command.toLowerCase() == 'cg') && message.author == botowner && args.length == 1) {
             var guild = client.guilds.get(args[0]);
             if (guild.available) {
                 var nyachannels = `__Serveur '${guild.name.replace(/`/g,"").replace(/_/g,"-")}' __:\n\
@@ -1159,16 +1159,47 @@ client.on('message', message => {
         }
         //commande help
         
-	else if ((command == 'help' || command == 'aide') && args[0] == 'Vs' || args[0] == 'VS' || args[0] == 'vs' || args[0] == 'vS') {
-        message.channel.send("__**Virtual Server:**__ \n\n\
-     Pour obtenir le virtual server il vous suffie simplement de créer un channel appelé `nya-bot-vs`\n\
+        else if ((command == 'help' || command == 'aide') && args[0].toLowerCase() == 'new(vs)') {
+            message.channel.send("-----\n\
+__**Virtual Server:**__ \n\n\
+    Pour obtenir le virtual server il vous suffie simplement de créer un channel appelé `nya-bot-vs`\n\
 https://media.discordapp.net/attachments/407271018516971532/409747122749964288/unknown.png\
 ");
         }
+        
+        else if (command == 'help' && args[0].toLowerCase() == 'vs') {
+            message.author.send('-----\n\
+__Commandes utilisable **UNIQUEMENT** dans le nya!bot vs :__ \n\
+\n\
+:warning: Pour chaque commande les `--` peuvent être remplacés par des `//`\n\
+\n\
+Pour envoyer une vidéo youtube `----yt:<url>`\n\
+\n\
+Pour envoyer une vidéo youtube avec du text: `--<message> --yt:<url>`\n\
+\n\
+Pour envoyer des images `----img:<url>`\n\
+\n\
+Pour envoyer des images avec du text: `--<message> --img:<url>`\n\
+\n\
+\n\
+(bien évidement vous remplacez les `<blablabla>` par leur valeur et vous retirer les <>)\n\
+\n\
+-----------------------\n\
+\n\
+__Uniquement pour les **MODÉRATEURS DU BOT** :__ \n\
+\n\
+--ban <id de l\'utilisateur> (les -- peuvent être remplacé par des //)\n\
+--unban <id de l\'utilisateur> (les -- peuvent être remplacé par des //)\n\
+--nya <message>(les -- peuvent être remplacé par des //)\n\
+\n\
+Les id sont marqués en bas des messages du VirtualServeur (VS)');
+        }
 	    
         else if ((command == 'help' || command == 'aide') && args[0] == 'here' ) {
-        message.channel.send("__**Commandes:**__ \n\n\
-    `cat:help vs` Obtenir de l'aide sur la mise en place du Virtual Server\n\
+        message.channel.send("-----\n\
+__**Commandes:**__ \n\n\
+    `cat:help new(vs)` Obtenir de l'aide sur la mise en place du Virtual Server\n\
+    `cat:help vs` Obtenir les commandes du Virtual Server\n\
     \n\
     `cat:git` Obtenir le lien git du bot\n\
     `cat:invite` Permet d'ajouter Nya!bot à votre server\n\
@@ -1183,8 +1214,10 @@ https://media.discordapp.net/attachments/407271018516971532/409747122749964288/u
         }
         
         else if ((command == 'help' || command == 'aide') && message.author == botowner) {
-        message.author.send("__**Commandes:**__ \n\n\
-    `cat:help vs` Obtenir de l'aide sur la mise en place du Virtual Server\n\
+        message.author.send("-----\n\
+__**Commandes:**__ \n\n\
+    `cat:help new(vs)` Obtenir de l'aide sur la mise en place du Virtual Server\n\
+    `cat:help vs` Obtenir les commandes du Virtual Server\n\
     \n\
     `cat:serv` Voir tout les serv de nya!bot\n\
     `cat:channelGet <id du serveur>` Récupère les channels textuels\n\
@@ -1206,8 +1239,10 @@ https://media.discordapp.net/attachments/407271018516971532/409747122749964288/u
         }
         
         else if (command == 'help' || command == 'aide') {
-        message.author.send("__**Commandes bot owner:**__ \n\n\
-    `cat:help vs` Obtenir de l'aide sur la mise en place du Virtual Server\n\
+        message.author.send("-----\n\
+__**Commandes bot owner:**__ \n\n\
+    `cat:help new(vs)` Obtenir de l'aide sur la mise en place du Virtual Server\n\
+    `cat:help vs` Obtenir les commandes du Virtual Server\n\
     \n\
     `cat:git` Obtenir le lien git du bot\n\
     `cat:invite` Permet d'ajouter Nya!bot à votre server\n\
