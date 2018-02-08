@@ -833,8 +833,8 @@ client.on('message', message => {
     else if (message.content.indexOf('cat>') == 0) {
         
         if  ( 
-                (betaTest = 'off') ||
-                (betaTest = 'on' && isBTest) //Si le RPG est en vertion Test il faut être Béta testeur
+                (betaTest == 'off') ||
+                (betaTest == 'on' && isBTest) //Si le RPG est en vertion Test il faut être Béta testeur
             ) {
             message.author.send('Le nya!bot n\'est pas encore prêt');
             return;
