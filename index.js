@@ -21,7 +21,7 @@ var betaTest = 'on';
 var db = {
     new:    function (allRolePrefix) {
                 //Si on a donner une liste de prefix
-                if (allRolePrefix.isArray && allRolePrefix.count > 0) {
+                if (Array.isArray(allRolePrefix) && allRolePrefix.count > 0) {
                     var toReturn = new Array();
                     //Pour chaque préfix
                     allRolePrefix.forEach(rolePrefix => {
@@ -55,7 +55,7 @@ var db = {
                     return toReturn;
                 } else {
                     //Si on a pas donner de liste de préfix
-                    if(!allRolePrefix.isArray) console.log(`Not an array at 'db.new(${allRolePrefix.toString()})'`);
+                    if(!Array.isArray(allRolePrefix)) console.log(`Not an array at 'db.new(${allRolePrefix.toString()})'`);
                     if(allRolePrefix.count <= 0)console.log(`Can't read count < 0 at 'db.new(${allRolePrefix.toString()})'`);
                     
                 }
