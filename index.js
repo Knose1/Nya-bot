@@ -1125,20 +1125,20 @@ client.on('message', message => {
         var nyaguilds = '__Serveurs:__ \n\n';
         //console.log(client.guilds);
              client.guilds.forEach(function (guild) {
-                nyaguilds = nyaguilds+` \`${guild.name}\`      (${guild.id})\n`;
+                nyaguilds = nyaguilds+` \`${guild.name.replace(/`/g,"")}\`      (${guild.id})\n`;
             });
             message.channel.send(nyaguilds);
         }
         else if ((command == 'channelget' || command == 'channelGet' || command == 'cg' || command == 'cG' || command == 'Cg' || command == 'CG') && message.author == botowner && args.length == 1) {
             var guild = client.guilds.get(args[0]);
             if (guild.available) {
-                var nyachannels = `__Serveur '${guild.name}' __:\n\
+                var nyachannels = `__Serveur '${guild.name.replace(/`/g,"").replace(/_/g,"-")}' __:\n\
     __Channels__:\n\n`;
                 
                 guild.channels.forEach(channel => {
                     
                     if (channel.type == 'text') {
-                        nyachannels = nyachannels+` \`${channel.name}\`      (${channel.id})\n`;
+                        nyachannels = nyachannels+` \`${channel.name.replace(/`/g,"")}\`      (${channel.id})\n`;
                     }
                 });
             message.channel.send(nyachannels);
