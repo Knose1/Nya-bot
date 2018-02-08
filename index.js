@@ -836,7 +836,16 @@ client.on('message', message => {
                 (betaTest = 'off') ||
                 (betaTest = 'on' && isBTest) //Si le RPG est en vertion Test il faut être Béta testeur
             ) {
-            require('./rpg.js');
+            message.author.send('Le nya!bot n\'est pas encore prêt');
+            return;
+
+            //Si c'est une commande, récupérer les arguments
+            if (message.content.indexOf('cat>') == 0) {
+                var iscommand = true;
+                var args = message.content.slice(prefix.length).trim().split(/ +/g);
+                var command = args.shift().toLowerCase();
+            }
+
         } else {
             message.author.send('Désolé le RPG nya!bot est en vertion béta test');
             message.delete(500)
