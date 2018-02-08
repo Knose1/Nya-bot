@@ -55,7 +55,8 @@ var db = {
                     return toReturn;
                 } else {
                     //Si on a pas donner de liste de préfix
-                    if(typeof(allRolePrefix) != 'array') console.log(`Not an array at 'db.get(${allRolePrefix.toString()})'`);
+                    if(!allRolePrefix.isArray) console.log(`Not an array at 'db.new(${allRolePrefix.toString()})'`);
+                    if(allRolePrefix.count =< 0)console.log(`Can't read count < 0 at 'db.new(${allRolePrefix.toString()})'`);
                     
                 }
             },
@@ -894,7 +895,8 @@ client.on('message', message => {
             }
             
             /*J'ai pas de compte 0.0 INSCRIT TOI ESCLAVE ! xD*/
-            console.log(db.new(['user:','cash:']));
+            var dbArray = ['user:','cash:'];
+            console.log(db.new(dbArray));
             
             
             /*Fin de "J'ai pas de compte"*/
