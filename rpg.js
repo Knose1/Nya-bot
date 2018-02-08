@@ -1,4 +1,4 @@
-message.autho.send('Le nya!bot n\'est pas encore prêt');
+message.author.send('Le nya!bot n\'est pas encore prêt');
 return;
 
 //Si c'est une commande, récupérer les arguments
