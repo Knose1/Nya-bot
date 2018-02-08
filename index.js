@@ -56,7 +56,7 @@ var db = {
                 } else {
                     //Si on a pas donner de liste de préfix
                     if(!allRolePrefix.isArray) console.log(`Not an array at 'db.new(${allRolePrefix.toString()})'`);
-                    if(allRolePrefix.count =< 0)console.log(`Can't read count < 0 at 'db.new(${allRolePrefix.toString()})'`);
+                    if(allRolePrefix.count <= 0)console.log(`Can't read count < 0 at 'db.new(${allRolePrefix.toString()})'`);
                     
                 }
             },
