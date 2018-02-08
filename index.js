@@ -653,7 +653,7 @@ client.on('message', message => {
             if (!vsIsImage && word.indexOf('//img:https://www.youtube.com/watch?v=') == 0) {
                 vsImage = word.slice('//img:https://www.youtube.com/watch?v='.length).trim().split(/ +/g);
                 vEqual = vsImage[0];
-                vsImage = `https://i.ytimg.com/vi/${vsImage[0]}/hqdefault.jpg`;
+                vsImage = `https://i.ytimg.com/vi/${vsImage[0].split('&')[0]}/hqdefault.jpg`;
                 vsIsImage = true;
                 yLink = true;
                 
@@ -662,7 +662,7 @@ client.on('message', message => {
             else if (!vsIsImage && word.indexOf('//yt:https://www.youtube.com/watch?v=') == 0) {
                 vsImage = word.slice('//yt:https://www.youtube.com/watch?v='.length).trim().split(/ +/g);
                 vEqual = vsImage[0];
-                vsImage = `https://i.ytimg.com/vi/${vsImage[0]}/hqdefault.jpg`;
+                vsImage = `https://i.ytimg.com/vi/${vsImage[0].split('&')[0]}/hqdefault.jpg`;
                 vsIsImage = true;
                 yLink = true;
             }
@@ -670,7 +670,23 @@ client.on('message', message => {
             else if (!vsIsImage && word.indexOf('//yt:v=') == 0) {
                 vsImage = word.slice('//yt:v='.length).trim().split(/ +/g);
                 vEqual = vsImage[0];
-                vsImage = `https://i.ytimg.com/vi/${vsImage[0]}/hqdefault.jpg`;
+                vsImage = `https://i.ytimg.com/vi/${vsImage[0].split('&')[0]}/hqdefault.jpg`;
+                vsIsImage = true;
+                yLink = true;
+            }
+            //Si c'est une video Youtube cas 4
+            else if (!vsIsImage && word.indexOf('//yt:https://youtu.be/') == 0) {
+                vsImage = word.slice('//yt:https://youtu.be/'.length).trim().split(/ +/g);
+                vEqual = vsImage[0];
+                vsImage = `https://i.ytimg.com/vi/${vsImage[0].split('?')[0]}/hqdefault.jpg`;
+                vsIsImage = true;
+                yLink = true;
+            }
+            //Si c'est une video Youtube cas 5
+            else if (!vsIsImage && word.indexOf('//img:https://youtu.be/') == 0) {
+                vsImage = word.slice('//img:https://youtu.be/'.length).trim().split(/ +/g);
+                vEqual = vsImage[0];
+                vsImage = `https://i.ytimg.com/vi/${vsImage[0].split('?')[0]}/hqdefault.jpg`;
                 vsIsImage = true;
                 yLink = true;
             }
@@ -679,7 +695,7 @@ client.on('message', message => {
             if (!vsIsImage && word.indexOf('--img:https://www.youtube.com/watch?v=') == 0) {
                 vsImage = word.slice('--img:https://www.youtube.com/watch?v='.length).trim().split(/ +/g);
                 vEqual = vsImage[0];
-                vsImage = `https://i.ytimg.com/vi/${vsImage[0]}/hqdefault.jpg`;
+                vsImage = `https://i.ytimg.com/vi/${vsImage[0].split('&')[0]}/hqdefault.jpg`;
                 vsIsImage = true;
                 yLink = true;
                 
@@ -688,7 +704,7 @@ client.on('message', message => {
             else if (!vsIsImage && word.indexOf('--yt:https://www.youtube.com/watch?v=') == 0) {
                 vsImage = word.slice('--yt:https://www.youtube.com/watch?v='.length).trim().split(/ +/g);
                 vEqual = vsImage[0];
-                vsImage = `https://i.ytimg.com/vi/${vsImage[0]}/hqdefault.jpg`;
+                vsImage = `https://i.ytimg.com/vi/${vsImage[0].split('&')[0]}/hqdefault.jpg`;
                 vsIsImage = true;
                 yLink = true;
             }
@@ -696,11 +712,26 @@ client.on('message', message => {
             else if (!vsIsImage && word.indexOf('--yt:v=') == 0) {
                 vsImage = word.slice('--yt:v='.length).trim().split(/ +/g);
                 vEqual = vsImage[0];
-                vsImage = `https://i.ytimg.com/vi/${vsImage[0]}/hqdefault.jpg`;
+                vsImage = `https://i.ytimg.com/vi/${vsImage[0].split('&')[0]}/hqdefault.jpg`;
                 vsIsImage = true;
                 yLink = true;
             }
-            
+            //Si c'est une video Youtube cas 4
+            else if (!vsIsImage && word.indexOf('--yt:https://youtu.be/') == 0) {
+                vsImage = word.slice('--yt:https://youtu.be/'.length).trim().split(/ +/g);
+                vEqual = vsImage[0];
+                vsImage = `https://i.ytimg.com/vi/${vsImage[0].split('?')[0]}/hqdefault.jpg`;
+                vsIsImage = true;
+                yLink = true;
+            }
+            //Si c'est une video Youtube cas 5
+            else if (!vsIsImage && word.indexOf('--img:https://youtu.be/') == 0) {
+                vsImage = word.slice('--img:https://youtu.be/'.length).trim().split(/ +/g);
+                vEqual = vsImage[0];
+                vsImage = `https://i.ytimg.com/vi/${vsImage[0].split('?')[0]}/hqdefault.jpg`;
+                vsIsImage = true;
+                yLink = true;
+            }
             //Si c'est un lien autre que YT
             else if (!vsIsImage && word.indexOf('//img:http') == 0) {
                 vsImage = word.slice('//img:'.length).trim().split(/ +/g);
