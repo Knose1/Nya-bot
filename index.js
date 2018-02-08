@@ -18,6 +18,50 @@ prefix = nprefix;
 var isaskactivated = 'désactivé';
 var noGame = 'activé'; // #no-Game-No-Life ! xDDD joke
 var betaTest = 'on';
+var db = {
+    new:    function (allRolePrefix) {
+                //Si on a donner une liste de prefix
+                if (typeof(allRolePrefix) == 'array' && allRolePrefix.count > 0) {
+                    var toReturn = new Array();
+                    //Pour chaque préfix
+                    allRolePrefix.forEach(rolePrefix => {
+                        var noError = true;
+                        
+                        //S'il y a pas d'erreur:
+                        if (noError) {
+                            
+                            //On regarde si le préfix est un txt
+                            if (typeof(rolePrefix) == 'string') {
+                                toReturn[rolePrefix.replace(/:/g, "")] = new Array();
+                                
+                                //On récupère les data de chaque role
+                                client.guilds.get('407142766674575361').roles.forEach(role => {
+                                    //On regarde si le role correspond au préfix
+                                    if (role.name.indexOf(rolePrefix) == 0) {
+                                        //On récupère les data `${prefix}${data0} ${data1} ${data2}` exemple: user:1 1000
+                                        var data = role.slice(rolePrefix.length).trim().split(/ +/g);
+                                        toReturn[rolePrefix.replace(/:/g, "")][data[0]] = data.slice(1);
+                                        //toReturn[prefix (sans ":")][data0] = [data1, data2]; exemple: toReturn[user][1] = [1000]
+                                    }
+                                });
+                            } else {
+                                //Si le préfix est pas un txt on retourne une erreur
+                                var noError = false;
+                                toReturn = undefined;
+                                return console.log(`Not a string at allRolePrefix.forEach(role =>{}) && role = ${rolePrefix}`);
+                            }
+                        } else return;
+                    });
+                    return toReturn;
+                } else {
+                    //Si on a pas donner de liste de préfix
+                    if(typeof(allRolePrefix) != 'array') console.log(`Not an array at 'db.get(${allRolePrefix.toString})'`);
+                    
+                }
+            },
+};
+
+
 
 
 
@@ -829,6 +873,11 @@ client.on('message', message => {
     
     
     
+    
+    
+    
+    
+    
     /* RPG */
     else if (message.content.indexOf('cat>') == 0) {
         
@@ -845,7 +894,7 @@ client.on('message', message => {
             }
             
             /*J'ai pas de compte 0.0 INSCRIT TOI ESCLAVE ! xD*/
-            
+            console.log(db.new(['user:','cash:']));
             
             
             /*Fin de "J'ai pas de compte"*/
@@ -859,6 +908,11 @@ client.on('message', message => {
         }
     }
     /* FIN DE RPG */
+    
+    
+    
+    
+  
     
     
     
