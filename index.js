@@ -1074,7 +1074,6 @@ console.log(Database(${arg1}).get(${arg1}[0],${arg2},${arg1}));\`\`\`\n\n\
 :speech_left:  __**Result 1 :**__`);
                     
                     arg1Defaut = arg1Defaut.replace(/\[/g,"").replace(/\]/g,"").split(',');
-                    arg2Defaut = arg2Defaut.replace(/\[/g,"").replace(/\]/g,"").split(',');
                     
                     var result1 = DatabaseTest(arg1Defaut);
                     if (result1 != undefined) {
