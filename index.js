@@ -1074,15 +1074,14 @@ console.log(Database(${arg1}).get(${arg1}[0],${arg2},${arg1}));\`\`\`\n\
                     arg1Defaut = arg1Defaut.replace(/\[/g,"").replace(/\]/g,"").replace(/\"/g,"").replace(/\'/g,"").split(',');
                     arg2Defaut = arg2Defaut.replace(/\"/g,"").replace(/\'/g,"");
                     
-                    var result1 = DatabaseTest(arg1Defaut,message);
-                    if (typeof(result1) != 'string') {
+                    var result1 = Database(arg1Defaut);
+                    if (result1 != undefined) {
                         message.channel.send("```"+result1.toString()+"```\n\
 :speech_left:  __**Result 2 :**__");
-                        DatabaseTest(arg1Defaut,message).get(arg1Defaut[0],arg2Defaut,arg1Defaut);
+                        message.channel.send("```"+Database(arg1Defaut).get(arg1Defaut[0],arg2Defaut,arg1Defaut)+"```");
                     } else {
-                        message.channel.send("```"+result1+"```\n");
+                        message.channel.send("```"+"Undefined"+"```");
                     }
-                 //"```"+TestError+"```"   
                 }
             }
             else {
