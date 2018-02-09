@@ -948,9 +948,11 @@ client.on('message', message => {
             
             /*J'ai pas de compte 0.0 INSCRIT TOI ESCLAVE ! xD*/
             var dbArray = ['user:','cash:'];
-            console.log(db.new(dbArray));
+            console.log(Database(dbArray).get(dbArray[0],command,dbArray));
             
-            
+            message.delete(500)
+                .then(msg => console.log(`Message supprimé, raison: Unban Virtual channel; Auteur: ${msg.author}`))
+                .catch(console.error);
             /*Fin de "J'ai pas de compte"*/
 
         } else {
