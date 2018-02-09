@@ -945,7 +945,12 @@ client.on('message', message => {
             var command = args.shift().toLowerCase();
             
             if (command = 'db' && message.author == botowner) {
-                args.
+                if (args[0].toLowerCase() == 'display') {
+                    
+                }
+                else if (args[0].toLowerCase() == 'execute') {
+                    args[1].replace(/_/g," ").replace(/[/g,"").replace(/]/g,"")
+                }
             }
             else {
             /*J'ai pas de compte 0.0 INSCRIT TOI ESCLAVE ! xD*/
