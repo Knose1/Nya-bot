@@ -22,7 +22,7 @@ var db = {
     new:    function (allRolePrefix) {
                 //Si on a donner une liste de prefix
                 if (Array.isArray(allRolePrefix) && allRolePrefix.count > 0) {
-                    var toReturn = new Array();
+                    let toReturn = {};
                     //Pour chaque préfix
                     allRolePrefix.forEach(rolePrefix => {
                         var noError = true;
