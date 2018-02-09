@@ -1080,7 +1080,7 @@ console.log(Database(${arg1}).get(${arg1}[0],${arg2},${arg1}));\`\`\`\n\
 :speech_left:  __**Result 2 :**__");
                         DatabaseTest(arg1Defaut,message).get(arg1Defaut[0],arg2Defaut,arg1Defaut);
                     } else {
-                        message.channel.send("```"+result1+"```\n\");
+                        message.channel.send("```"+result1+"```\n");
                     }
                  //"```"+TestError+"```"   
                 }
