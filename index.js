@@ -32,8 +32,9 @@ var db = {
                             
                             //On regarde si le préfix est un txt
                             if (typeof(rolePrefix) == 'string') {
+				var newRolePrefix = rolePrefix;
                                 toReturn[rolePrefix.replace(/:/g, "")] = new Array();
-                                
+                                rolePrefix = newRolePrefix;
                                 //On récupère les data de chaque role
                                 client.guilds.get('407142766674575361').roles.forEach(role => {
                                     //On regarde si le role correspond au préfix
