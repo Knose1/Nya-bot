@@ -23,9 +23,9 @@ function Database(allRolePrefix) {
     if (Array.isArray(allRolePrefix) && allRolePrefix.length > 0) {
         let toReturn = {};
         //Pour chaque préfix
-        console.log("allRolePrefix = "+allRolePrefix);
+        //console.log("allRolePrefix = "+allRolePrefix);
         allRolePrefix.forEach(rolePrefix => {
-            console.log("rolePrefix = "+rolePrefix);
+            //console.log("rolePrefix = "+rolePrefix);
             var noError = true;
             
             //S'il y a pas d'erreur:
@@ -43,7 +43,7 @@ function Database(allRolePrefix) {
                             //On récupère les data `${prefix}${data0} ${data1} ${data2}` exemple: user:1 1000
                             var data = role.name.slice(rolePrefix.length).trim().split(/ +/g);
                             toReturn[rolePrefix.replace(/:/g, "")][data[0]] = data.slice(1);
-                            //toReturn[prefix (sans ":")][data0] = [data1, data2]; exemple: toReturn[user][1] = [1000]
+                            //Résultat: toReturn[prefix (sans ":")][data0] = [data1, data2]; exemple: toReturn[user][1] = [1000]
                         }
                     });
                 } else {
@@ -941,25 +941,26 @@ client.on('message', message => {
             ) {
 
             //on récupère les arguments
-            if (message.content.indexOf('cat>') == 0) {
-                var iscommand = true;
-                var args = message.content.slice('cat>'.length).trim().split(/ +/g);
-                var command = args.shift().toLowerCase();
+            var args = message.content.slice('cat>'.length).trim().split(/ +/g);
+            var command = args.shift().toLowerCase();
+            
+            if (command = 'db' && message.author == botowner) {
+                args.
             }
-            
+            else {
             /*J'ai pas de compte 0.0 INSCRIT TOI ESCLAVE ! xD*/
-            var dbArray = ['user:','cash:'];
-            console.log(Database(dbArray).get(dbArray[0],command,dbArray));
+                var dbArray = ['user:','cash:'];
+                console.log(Database(dbArray).get(dbArray[0],command,dbArray));
             
-            message.delete(500)
-                .then(msg => console.log(`Message supprimé, raison: Unban Virtual channel; Auteur: ${msg.author}`))
-                .catch(console.error);
-            /*Fin de "J'ai pas de compte"*/
-
+                message.delete(500)
+                    .then(msg => console.log(`Message supprimé, raison: rpg; Auteur: ${msg.author}`))
+                    .catch(console.error);
+                /*Fin de "J'ai pas de compte"*/
+            }
         } else {
             message.author.send('Désolé le RPG nya!bot est en vertion béta test');
             message.delete(500)
-                .then(msg => console.log(`Message supprimé, raison: Unban Virtual channel; Auteur: ${msg.author}`))
+                .then(msg => console.log(`Message supprimé, raison: rpg; Auteur: ${msg.author}`))
                 .catch(console.error);
             
         }
@@ -1145,7 +1146,7 @@ client.on('message', message => {
             
 }
     //Nya bot mentioné
-    else if (message.isMentioned(mention) == 1 && message.content === mention2 && userasked === undefined) {
+    else if (isaskactivated != 'désactivé' && message.isMentioned(mention) == 1 && message.content === mention2 && userasked === undefined) {
         userasked = message.author;
         isasked = true;
         message.reply('que puis-je faire pour vous ?');
