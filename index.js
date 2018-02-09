@@ -46,6 +46,12 @@ function Database(allRolePrefix) {
                             //Résultat: toReturn[prefix (sans ":")][data0] = [data1, data2]; exemple: toReturn[user][1] = [1000]
                         }
                     });
+                    if (toReturn[rolePrefix.replace(/:/g, "")].length == 0) {
+                        var noError = false;
+                        toReturn = undefined;
+                        console.log(`Error: ${rolePrefix} unfounded in the db`);
+                        return;
+                    }
                 } else {
                     //Si le préfix est pas un txt on retourne une erreur
                     var noError = false;
