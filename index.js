@@ -116,7 +116,7 @@ function Database(allRolePrefix) {
 };
 
 //Fonction de test
-function DatabaseTest(allRolePrefix) {
+function DatabaseTest(allRolePrefix, message) {
     let TestError = "";
     
     //Si on a donner une liste de prefix
@@ -1075,7 +1075,7 @@ console.log(Database(${arg1}).get(${arg1}[0],${arg2},${arg1}));\`\`\`\n\n\
                     
                     arg1Defaut = arg1Defaut.replace(/\[/g,"").replace(/\]/g,"").split(',');
                     
-                    var result1 = DatabaseTest(arg1Defaut);
+                    var result1 = DatabaseTest(arg1Defaut,message);
                     if (result1 != undefined) {
                         message.channel.send("```"+result1.toString()+"```\n\
 :speech_left:  __**Result 2 :**__");
