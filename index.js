@@ -80,6 +80,7 @@ function Database(allRolePrefix) {
                                     console.log(`toBeReturned[${prefixI.replace(/:/g, "")}] = undefined`);
                                 }
                             });
+                            return toBeReturned;
                         }
                         //On a pas donné de préfixInclude
                         else if (prefixInclude == undefined) {
