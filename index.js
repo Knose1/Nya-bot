@@ -1071,8 +1071,8 @@ console.log(Database(${arg1}));\n\
 console.log(Database(${arg1}).get(${arg1}[0],${arg2},${arg1}));\`\`\`\n\
 :speech_left:  __**Result 1 :**__`);
                     
-                    arg1Defaut = arg1Defaut.replace(/\[/g,"").replace(/\]/g,"").remplace(/\"/g,"").remplace(/\'/g,"").split(',');
-                    arg2Defaut = arg2Defaut.remplace(/\"/g,"").remplace(/\'/g,"");
+                    arg1Defaut = arg1Defaut.replace(/\[/g,"").replace(/\]/g,"").replace(/\"/g,"").replace(/\'/g,"").split(',');
+                    arg2Defaut = arg2Defaut.replace(/\"/g,"").replace(/\'/g,"");
                     
                     var result1 = DatabaseTest(arg1Defaut,message);
                     if (result1.indexOf('`') != 0) {
