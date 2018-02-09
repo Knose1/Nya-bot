@@ -1075,7 +1075,7 @@ console.log(Database(${arg1}).get(${arg1}[0],${arg2},${arg1}));\`\`\`\n\
                     arg2Defaut = arg2Defaut.replace(/\"/g,"").replace(/\'/g,"");
                     
                     var result1 = DatabaseTest(arg1Defaut,message);
-                    if (result1.indexOf('`') != 0) {
+                    if (typeof(result1) != 'string') {
                         message.channel.send("```"+result1.toString()+"```\n\
 :speech_left:  __**Result 2 :**__");
                         DatabaseTest(arg1Defaut,message).get(arg1Defaut[0],arg2Defaut,arg1Defaut);
