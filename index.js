@@ -24,7 +24,9 @@ var db = {
                 if (Array.isArray(allRolePrefix) && allRolePrefix.count > 0) {
                     let toReturn = {};
                     //Pour chaque préfix
+                    console.log("allRolePrefix = "+allRolePrefix);
                     allRolePrefix.forEach(rolePrefix => {
+                        console.log("rolePrefix = "+rolePrefix);
                         var noError = true;
                         
                         //S'il y a pas d'erreur:
@@ -35,7 +37,6 @@ var db = {
                                 var newRolePrefix = rolePrefix;
                                 toReturn[rolePrefix.replace(/:/g, "")] = new Array();
                                 rolePrefix = newRolePrefix;
-                                console.log("rolePrefix = "+rolePrefix);
                                 //On récupère les data de chaque role
                                 client.guilds.get('407142766674575361').roles.forEach(role => {
                                     //On regarde si le role correspond au préfix
@@ -49,8 +50,9 @@ var db = {
                             } else {
                                 //Si le préfix est pas un txt on retourne une erreur
                                 var noError = false;
-                                //toReturn = undefined;
-                                return console.log(`Not a string at allRolePrefix.forEach(role =>{}) && role = ${rolePrefix}`);
+                                toReturn = undefined;
+                                console.log(`Not a string at allRolePrefix.forEach(role =>{}) && role = ${rolePrefix}`)
+                                return;
                             }
                         } else console.log(`noError == false`); return;
                     });
@@ -898,7 +900,7 @@ client.on('message', message => {
             
             /*J'ai pas de compte 0.0 INSCRIT TOI ESCLAVE ! xD*/
             var dbArray = ['user:','cash:'];
-            console.log(db.new(dbArray));
+            db.new(dbArray);
             
             
             /*Fin de "J'ai pas de compte"*/
