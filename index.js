@@ -900,7 +900,7 @@ client.on('message', message => {
             
             /*J'ai pas de compte 0.0 INSCRIT TOI ESCLAVE ! xD*/
             var dbArray = ['user:','cash:'];
-            db.new(dbArray);
+            console.log(db.new(dbArray));
             
             
             /*Fin de "J'ai pas de compte"*/
