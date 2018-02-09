@@ -22,7 +22,7 @@ var db = {
     new:    function (allRolePrefix) {
                 //Si on a donner une liste de prefix
                 if (Array.isArray(allRolePrefix) && allRolePrefix.count > 0) {
-                    var toReturn = new Object();
+                    let toReturn = {};
                     //Pour chaque préfix
                     allRolePrefix.forEach(rolePrefix => {
                         var noError = true;
@@ -32,9 +32,10 @@ var db = {
                             
                             //On regarde si le préfix est un txt
                             if (typeof(rolePrefix) == 'string') {
-				var newRolePrefix = rolePrefix;
+                                var newRolePrefix = rolePrefix;
                                 toReturn[rolePrefix.replace(/:/g, "")] = new Array();
                                 rolePrefix = newRolePrefix;
+                                console.log("rolePrefix = "+rolePrefix);
                                 //On récupère les data de chaque role
                                 client.guilds.get('407142766674575361').roles.forEach(role => {
                                     //On regarde si le role correspond au préfix
@@ -48,7 +49,7 @@ var db = {
                             } else {
                                 //Si le préfix est pas un txt on retourne une erreur
                                 var noError = false;
-                                toReturn = undefined;
+                                //toReturn = undefined;
                                 return console.log(`Not a string at allRolePrefix.forEach(role =>{}) && role = ${rolePrefix}`);
                             }
                         } else console.log(`noError == false`); return;
