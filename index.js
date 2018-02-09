@@ -1071,7 +1071,8 @@ console.log(Database(${arg1}));\n\
 console.log(Database(${arg1}).get(${arg1}[0],${arg2},${arg1}));\`\`\`\n\
 :speech_left:  __**Result 1 :**__`);
                     
-                    arg1Defaut = arg1Defaut.replace(/\[/g,"").replace(/\]/g,"").split(',');
+                    arg1Defaut = arg1Defaut.replace(/\[/g,"").replace(/\]/g,"").split(',').remplace(/\"/g,"").remplace(/\'/g,"");
+                    arg2Defaut = arg2Defaut.remplace(/\"/g,"").remplace(/\'/g,"");
                     
                     var result1 = DatabaseTest(arg1Defaut,message);
                     if (result1.indexOf('`') != 0) {
@@ -1079,7 +1080,7 @@ console.log(Database(${arg1}).get(${arg1}[0],${arg2},${arg1}));\`\`\`\n\
 :speech_left:  __**Result 2 :**__");
                         DatabaseTest(arg1Defaut,message).get(arg1Defaut[0],arg2Defaut,arg1Defaut);
                     } else {
-                        message.channel.send("```"+result1+"```\n\)
+                        message.channel.send("```"+result1+"```\n\");
                     }
                  //"```"+TestError+"```"   
                 }
