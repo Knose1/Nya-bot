@@ -186,7 +186,7 @@ function DatabaseTest(allRolePrefix) {
                             if (TestErrorGet != "") {
                                 message.channel.send("```"+TestErrorGet+"\n\n"+toBeReturned.toString()+"```");
                             } else {
-                                message.channel.send("```"toBeReturned.toString()+"```");
+                                message.channel.send("```"+toBeReturned.toString()+"```");
                             };
                         }
                         //On a pas donné de préfixInclude
