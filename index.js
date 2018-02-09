@@ -22,7 +22,7 @@ var db = {
     new:    function (allRolePrefix) {
                 //Si on a donner une liste de prefix
                 if (Array.isArray(allRolePrefix) && allRolePrefix.count > 0) {
-                    let toReturn = {};
+                    var toReturn = new Object();
                     //Pour chaque préfix
                     allRolePrefix.forEach(rolePrefix => {
                         var noError = true;
@@ -39,7 +39,7 @@ var db = {
                                     //On regarde si le role correspond au préfix
                                     if (role.name.indexOf(rolePrefix) == 0) {
                                         //On récupère les data `${prefix}${data0} ${data1} ${data2}` exemple: user:1 1000
-                                        var data = role.slice(rolePrefix.length).trim().split(/ +/g);
+                                        var data = role.name.slice(rolePrefix.length).trim().split(/ +/g);
                                         toReturn[rolePrefix.replace(/:/g, "")][data[0]] = data.slice(1);
                                         //toReturn[prefix (sans ":")][data0] = [data1, data2]; exemple: toReturn[user][1] = [1000]
                                     }
