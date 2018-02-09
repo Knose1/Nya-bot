@@ -1075,7 +1075,7 @@ console.log(Database(${arg1}).get(${arg1}[0],${arg2},${arg1}));\`\`\`\n\
                     
                     arg1Defaut = arg1Defaut.replace(/\[/g,"").replace(/\]/g,"").replace(/\"/g,"").replace(/\'/g,"").split(',');
                     arg2Defaut = arg2Defaut.replace(/\"/g,"").replace(/\'/g,"");
-                    
+                    console.log(Database(arg1Defaut));
                     var result1 = Database(arg1Defaut);
                     if (result1 != undefined) {
                         message.channel.send("```"+result1.toString()+"```\n\
