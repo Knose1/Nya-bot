@@ -149,12 +149,11 @@ function DatabaseTest(allRolePrefix, message) {
                 } else {
                     //Si le préfix est pas un txt on retourne une erreur
                     var noError = false;
-                    toReturn = undefined;
-                    TestError = `Not a string at allRolePrefix.forEach(role =>{}) && role = ${rolePrefix}`
-                    message.channel.send("```"+TestError+"```");
-                    return undefined;
+                    toReturn = "```"+TestError+"```";
+                    TestError = `Not a string at allRolePrefix.forEach(role =>{}) && role = ${rolePrefix}`;
+                    return;
                 }
-            } else return undefined;
+            } else return;
         });
         //On a récupéré les data de toReturn mais on a pas encors crée de méthode pour obtenir ${data0} à partir de ${data1} pour chaque préfix
         toReturn.get = function (dataPrefix, data1, prefixInclude) {
@@ -214,7 +213,6 @@ function DatabaseTest(allRolePrefix, message) {
             } else {
                 if (typeof(dataPrefix) == 'string') TestErrorGet = `dataPrefix :Not a string at Database().get(${dataPrefix.toString()},${data1.toString()})`;
                 if (typeof(data1) == 'string') TestErrorGet += `data1 :Not a string at Database().get(${dataPrefix.toString()},${data1.toString()})`;
-                message.channel.send("```"+TestError+"```");
                 return undefined;
             }
         };
@@ -1070,18 +1068,20 @@ client.on('message', message => {
 :tools:  __**Code to be executed :**__\n\
 \`\`\`javascript\n\
 console.log(Database(${arg1}));\n\
-console.log(Database(${arg1}).get(${arg1}[0],${arg2},${arg1}));\`\`\`\n\n\
+console.log(Database(${arg1}).get(${arg1}[0],${arg2},${arg1}));\`\`\`\n\
 :speech_left:  __**Result 1 :**__`);
                     
                     arg1Defaut = arg1Defaut.replace(/\[/g,"").replace(/\]/g,"").split(',');
                     
                     var result1 = DatabaseTest(arg1Defaut,message);
-                    if (result1 != undefined) {
+                    if (result1.indexOf('`') != 0) {
                         message.channel.send("```"+result1.toString()+"```\n\
 :speech_left:  __**Result 2 :**__");
-                        result1.get(arg1Defaut[0],arg2Defaut,arg1Defaut);
+                        DatabaseTest(arg1Defaut,message).get(arg1Defaut[0],arg2Defaut,arg1Defaut);
+                    } else {
+                        message.channel.send("```"+result1+"```\n\)
                     }
-                    
+                 //"```"+TestError+"```"   
                 }
             }
             else {
