@@ -51,61 +51,63 @@ function Database(allRolePrefix) {
                     var noError = false;
                     toReturn = undefined;
                     console.log(`Not a string at allRolePrefix.forEach(role =>{}) && role = ${rolePrefix}`)
-                    return;
+                    return undefined;
                 }
-            } else return;
+            } else return undefined;
         });
         //On a récupéré les data de toReturn mais on a pas encors crée de méthode pour obtenir ${data0} à partir de ${data1} pour chaque préfix
-        toReturn.get = function (dataPrefix, data1, prefixInclude) {
-            let toBeReturned = {};
-            if (typeof(dataPrefix) == 'string' && typeof(data1) == 'string') {
-                if (undefined != toReturn[dataPrefix.replace(/:/g, "")] ) {
-                    //On récupère l'id de la data à partir de la primary (dataPrefix)
-                    var id = toReturn[dataPrefix.replace(/:/g, "")].findIndex(data => {
-                        return data1 == data;
-                    });
-                    if (id != -1) {
-                        //On a donné une liste de préfixInclude
-                        if (prefixInclude != undefined && Array.isArray(prefixInclude)) {
-                            //Pour chaque préfix inclue
-                            prefixInclude.forEach(prefixI => {
-                                //Si toReturn contient le préfix
-                                if (undefined != toReturn[prefixI.replace(/:/g, "")]) {
-                                    //On récupère la data correspondant à l'id
-                                    toBeReturned[prefixI.replace(/:/g, "")] = toReturn[prefixI.replace(/:/g, "")][id];
-                                }
-                                //Sinon
-                                else {
-                                    toBeReturned[prefixI.replace(/:/g, "")] = undefined;
-                                    console.log(`toBeReturned[${prefixI.replace(/:/g, "")}] = undefined`);
-                                }
-                            });
-                            return toBeReturned;
-                        }
-                        //On a pas donné de préfixInclude
-                        else if (prefixInclude == undefined) {
-                            console.log(`prefixInclude is undefined at Database().get(${dataPrefix},${data1},${prefixInclude})`);
-                            return undefined;
-                        }
-                        //On a donné une var qui n'est pas une liste
-                        else if (prefixInclude != undefined && !Array.isArray(prefixInclude)) {
-                            console.log(`Not and array at Database().get(${dataPrefix},${data1},${prefixInclude})`);
+        if (toReturn != undefined) {
+            toReturn.get = function (dataPrefix, data1, prefixInclude) {
+                let toBeReturned = {};
+                if (typeof(dataPrefix) == 'string' && typeof(data1) == 'string') {
+                    if (undefined != toReturn[dataPrefix.replace(/:/g, "")] ) {
+                        //On récupère l'id de la data à partir de la primary (dataPrefix)
+                        var id = toReturn[dataPrefix.replace(/:/g, "")].findIndex(data => {
+                            return data1 == data;
+                        });
+                        if (id != -1) {
+                            //On a donné une liste de préfixInclude
+                            if (prefixInclude != undefined && Array.isArray(prefixInclude)) {
+                                //Pour chaque préfix inclue
+                                prefixInclude.forEach(prefixI => {
+                                    //Si toReturn contient le préfix
+                                    if (undefined != toReturn[prefixI.replace(/:/g, "")]) {
+                                        //On récupère la data correspondant à l'id
+                                        toBeReturned[prefixI.replace(/:/g, "")] = toReturn[prefixI.replace(/:/g, "")][id];
+                                    }
+                                    //Sinon
+                                    else {
+                                        toBeReturned[prefixI.replace(/:/g, "")] = undefined;
+                                        console.log(`toBeReturned[${prefixI.replace(/:/g, "")}] = undefined`);
+                                    }
+                                });
+                                return toBeReturned;
+                            }
+                            //On a pas donné de préfixInclude
+                            else if (prefixInclude == undefined) {
+                                console.log(`prefixInclude is undefined at Database().get(${dataPrefix},${data1},${prefixInclude})`);
+                                return undefined;
+                            }
+                            //On a donné une var qui n'est pas une liste
+                            else if (prefixInclude != undefined && !Array.isArray(prefixInclude)) {
+                                console.log(`Not and array at Database().get(${dataPrefix},${data1},${prefixInclude})`);
+                                return undefined;
+                            }
+                        } else {
+                            console.log(`${data1} unfounded at Database().get(${dataPrefix},${data1})`);
                             return undefined;
                         }
                     } else {
-                    console.log(`${data1} unfounded at Database().get(${dataPrefix},${data1})`);
-                    return undefined;
+                        console.log(`Prefix unknown at Database().get(${dataPrefix})`);
+                        return undefined;
                     }
                 } else {
-                    console.log(`Prefix unknown at Database().get(${dataPrefix})`);
+                    if (typeof(dataPrefix) == 'string') console.log(`dataPrefix :Not a string at Database().get(${dataPrefix.toString()},${data1.toString()})`);
+                    if (typeof(data1) == 'string') console.log(`data1 :Not a string at Database().get(${dataPrefix.toString()},${data1.toString()})`);
                     return undefined;
                 }
-            } else {
-                if (typeof(dataPrefix) == 'string') console.log(`dataPrefix :Not a string at Database().get(${dataPrefix.toString()},${data1.toString()})`);
-                if (typeof(data1) == 'string') console.log(`data1 :Not a string at Database().get(${dataPrefix.toString()},${data1.toString()})`);
-                return undefined;
-            }
-        };
+            };
+        }
         return toReturn;
     } else {
         //Si on a pas donner de liste de préfix
