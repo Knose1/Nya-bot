@@ -6,6 +6,7 @@ var logserv = process.env.LOGSERV;
 var botowner = process.env.BOTW;
 var invite = 'https://discordapp.com/oauth2/authorize?client_id='+mention+'&scope=bot&permissions=67628096';
 const Discord = require('discord.js');
+const util = require('util');
 const client = new Discord.Client();
 const token = key;
 var prefix = new Object();
