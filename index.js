@@ -958,7 +958,7 @@ client.on('message', message => {
                 if (args[0].toLowerCase() == 'display') {
                     
                 }
-                else if (args[1] != undefined && args.[2] != undefined && args[0].toLowerCase() == 'execute') {
+                else if (args[1] != undefined && args[2] != undefined && args[0].toLowerCase() == 'execute') {
                     var arg1Defaut = args[1];
                     var arg1 = args[1].replace(/```/g,"\\\`\\\`\\\`");
                     
