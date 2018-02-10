@@ -18,7 +18,7 @@ prefix = nprefix;
 var isaskactivated = 'désactivé';
 var noGame = 'activé'; // #no-Game-No-Life ! xDDD joke
 var betaTest = 'on';
-function Database(allRolePrefix) {
+function Database(allRolePrefix, gt) {
     //Si on a donner une liste de prefix
     if (Array.isArray(allRolePrefix) && allRolePrefix.length > 0) {
         let toReturn = {};
@@ -62,7 +62,7 @@ function Database(allRolePrefix) {
             } else return undefined;
         });
         //On a récupéré les data de toReturn mais on a pas encors crée de méthode pour obtenir ${data0} à partir de ${data1} pour chaque préfix
-        if (toReturn != undefined) {
+        if (toReturn != undefined && undefined == gt) {
             toReturn.get = function (dataPrefix, data1, prefixInclude) {
                 let toBeReturned = {};
                 if (typeof(dataPrefix) == 'string' && typeof(data1) == 'string') {
@@ -123,116 +123,9 @@ function Database(allRolePrefix) {
     }
 };
 
-//Fonction de test
-function DatabaseTest(allRolePrefix, message) {
-    let TestError = "";
-    
-    //Si on a donner une liste de prefix
-    if (Array.isArray(allRolePrefix) && allRolePrefix.length > 0) {
-        let toReturn = {};
-        //Pour chaque préfix
-        //console.log("allRolePrefix = "+allRolePrefix);
-        allRolePrefix.forEach(rolePrefix => {
-            //console.log("rolePrefix = "+rolePrefix);
-            var noError = true;
-            
-            //S'il y a pas d'erreur:
-            if (noError) {
-                
-                //On regarde si le préfix est un txt
-                if (typeof(rolePrefix) == 'string') {
-                    var newRolePrefix = rolePrefix;
-                    toReturn[rolePrefix.replace(/:/g, "")] = new Array();
-                    rolePrefix = newRolePrefix;
-                    //On récupère les data de chaque role
-                    client.guilds.get('407142766674575361').roles.forEach(role => {
-                        //On regarde si le role correspond au préfix
-                        if (role.name.indexOf(rolePrefix) == 0) {
-                            //On récupère les data `${prefix}${data0} ${data1} ${data2}` exemple: user:1 1000
-                            var data = role.name.slice(rolePrefix.length).trim().split(/ +/g);
-                            toReturn[rolePrefix.replace(/:/g, "")][data[0]] = data.slice(1);
-                            //Résultat: toReturn[prefix (sans ":")][data0] = [data1, data2]; exemple: toReturn[user][1] = [1000]
-                        }
-                    });
-                } else {
-                    //Si le préfix est pas un txt on retourne une erreur
-                    var noError = false;
-                    toReturn = "```"+TestError+"```";
-                    TestError = `Not a string at allRolePrefix.forEach(role =>{}) && role = ${rolePrefix}`;
-                    return;
-                }
-            } else return;
-        });
-        //On a récupéré les data de toReturn mais on a pas encors crée de méthode pour obtenir ${data0} à partir de ${data1} pour chaque préfix
-        toReturn.get = function (dataPrefix, data1, prefixInclude) {
-            let toBeReturned = {};
-            if (typeof(dataPrefix) == 'string' && typeof(data1) == 'string') {
-                let TestErrorGet = "";
-                if (undefined != toReturn[dataPrefix.replace(/:/g, "")] ) {
-                    //On récupère l'id de la data à partir de la primary (dataPrefix)
-                    var id = toReturn[dataPrefix.replace(/:/g, "")].findIndex(data => {
-                        return data1 == data;
-                    });
-                    if (id != -1) {
-                        //On a donné une liste de préfixInclude
-                        if (prefixInclude != undefined && Array.isArray(prefixInclude)) {
-                            //Pour chaque préfix inclue
-                            prefixInclude.forEach(prefixI => {
-                                //Si toReturn contient le préfix
-                                if (undefined != toReturn[prefixI.replace(/:/g, "")]) {
-                                    //On récupère la data correspondant à l'id
-                                    toBeReturned[prefixI.replace(/:/g, "")] = toReturn[prefixI.replace(/:/g, "")][id];
-                                }
-                                //Sinon
-                                else {
-                                    toBeReturned[prefixI.replace(/:/g, "")] = undefined;
-                                    TestErrorGet = `toBeReturned[${prefixI.replace(/:/g, "")}] = undefined` +"\n";
-                                    
-                                }
-                            });
-                            if (TestErrorGet != "") {
-                                message.channel.send("```"+TestErrorGet+"\n\n"+toBeReturned.toString()+"```");
-                            } else {
-                                message.channel.send("```"+toBeReturned.toString()+"```");
-                            };
-                        }
-                        //On a pas donné de préfixInclude
-                        else if (prefixInclude == undefined) {
-                            TestErrorGet = `prefixInclude is undefined at Database().get(${dataPrefix},${data1},${prefixInclude})`;
-                            message.channel.send("```"+TestErrorGet+"```");
-                            return undefined;
-                        }
-                        //On a donné une var qui n'est pas une liste
-                        else if (prefixInclude != undefined && !Array.isArray(prefixInclude)) {
-                            TestErrorGet = `Not and array at Database().get(${dataPrefix},${data1},${prefixInclude})`;
-                            message.channel.send("```"+TestError+"```");
-                            return undefined;
-                        }
-                    } else {
-                        TestErrorGet = `${data1} unfounded at Database().get(${dataPrefix},${data1})`;
-                        message.channel.send("```"+TestError+"```");
-                        return undefined;
-                    }
-                } else {
-                    TestErrorGet = `Prefix unknown at Database().get(${dataPrefix})`;
-                    message.channel.send("```"+TestError+"```");
-                    return undefined;
-                }
-            } else {
-                if (typeof(dataPrefix) == 'string') TestErrorGet = `dataPrefix :Not a string at Database().get(${dataPrefix.toString()},${data1.toString()})`;
-                if (typeof(data1) == 'string') TestErrorGet += `data1 :Not a string at Database().get(${dataPrefix.toString()},${data1.toString()})`;
-                return undefined;
-            }
-        };
-        return toReturn;
-    } else {
-        //Si on a pas donner de liste de préfix
-        if(!Array.isArray(allRolePrefix)) TestError = `Not an array at 'db.new(${allRolePrefix.toString()}')`;
-        if(allRolePrefix.length <= 0) TestError += `Can't read length < 0 at 'db.new(${allRolePrefix.toString()}')`;
-        message.channel.send("```"+TestError+"```");
-        return undefined;
-    }
-};
+
+
+
 
 
 
@@ -1075,14 +968,14 @@ client.on('message', message => {
                     message.channel.send(`\
 :tools:  __**Code to be executed :**__\n\
 \`\`\`javascript\n\
-console.log(Database(${arg1}));\n\
+console.log(Database(${arg1},'noGet'));\n\
 console.log(Database(${arg1}).get(${arg1}[0],${arg2},${arg1}));\`\`\`\n\
 :speech_left:  __**Result 1 :**__`);
                     
                     arg1Defaut = arg1Defaut.replace(/\[/g,"").replace(/\]/g,"").replace(/\"/g,"").replace(/\'/g,"").split(',');
                     arg2Defaut = arg2Defaut.replace(/\"/g,"").replace(/\'/g,"");
-                    console.log(Database(arg1Defaut));
-                    var result1 = Database(arg1Defaut);
+                    console.log(Database(arg1Defaut,'noGet'));
+                    var result1 = Database(arg1Defaut,'noGet');
                     if (result1 != undefined) {
                         message.channel.send("```"+result1.toString()+"```\n\
 :speech_left:  __**Result 2 :**__");
