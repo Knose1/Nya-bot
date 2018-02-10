@@ -994,7 +994,7 @@ console.log(Database(${arg1}).get(${arg1}[0],'${arg2}',${arg3}));\`\`\`\n\
                     }
                 }
                 else {
-                message.user.send('use of `cat-db` : \n\
+                message.author.send('use of `cat-db` : \n\
     `cat-db <array1> <string> [array2]`');
                 }
             }
