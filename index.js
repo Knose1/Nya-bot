@@ -1307,7 +1307,7 @@ console.log(Database(${arg1}).get(${arg1}[0],${arg2},${arg1}));\`\`\`\n\
         }
         //commande help
         
-        else if ((command == 'help' || command == 'aide') && args[0].toLowerCase() == 'new(vs)') {
+        else if ((command == 'help' || command == 'aide') && args[0] == 'new(vs)') {
             message.channel.send("-----\n\
 __**Virtual Server:**__ \n\n\
     Pour obtenir le virtual server il vous suffie simplement de créer un channel appelé `nya-bot-vs`\n\
@@ -1315,7 +1315,7 @@ https://media.discordapp.net/attachments/407271018516971532/409747122749964288/u
 ");
         }
         
-        else if (command == 'help' && ((args[0].toLowerCase() == 'vs' && args[1].toLowerCase() == 'here') || (args[0].toLowerCase() == 'here' && args[1].toLowerCase() == 'vs'))) {
+        else if (command == 'help' && ((args[0]== 'vs' && args[1] == 'here') || (args[0] == 'here' && args[1] == 'vs'))) {
             message.channel.send('-----\n\
 __Commandes utilisable **UNIQUEMENT** dans le nya!bot vs :__ \n\
 \n\
@@ -1343,7 +1343,7 @@ __Uniquement pour les **MODÉRATEURS DU BOT** :__ \n\
 Les id sont marqués en bas des messages du VirtualServeur (VS)');
         }
         
-        else if (command == 'help' && args[0].toLowerCase() == 'vs') {
+        else if (command == 'help' && args[0] == 'vs') {
             message.author.send('-----\n\
 __Commandes utilisable **UNIQUEMENT** dans le nya!bot vs :__ \n\
 \n\
