@@ -945,17 +945,17 @@ client.on('message', message => {
     
     /* RPG */
     else if (message.content.indexOf('cat-') == 0) {
-        
+        let isWhitelisted = Database(['user:','whitelist:']).get('user:', String(message.author.id), ['whitelist:']);
         if  ( 
                 (betaTest == 'off') ||
-                (betaTest == 'on' && isBTest) //Si le RPG est en vertion Test il faut être Béta testeur
+                (betaTest == 'on' && (isBTest || (undefined != isWhitelisted && 'true' == isWhitelisted['whitelist']))) //Si le RPG est en vertion Test il faut être Béta testeur
             ) {
 
             //on récupère les arguments
             var args = message.content.slice('cat-'.length).trim().split(/ +/g);
             var command = args.shift().toLowerCase();
             
-            if (command = 'db' && message.author == botowner && args[0] != undefined) {
+            if (command = 'db' && (message.author == botowner || ) && args[0] != undefined) {
                 if (args[0].toLowerCase() == 'display') {
                     
                 }
