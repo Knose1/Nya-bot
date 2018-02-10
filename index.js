@@ -994,12 +994,12 @@ console.log(Database(${arg1}).get(${arg1}[0],'${arg2}',${arg3}));\`\`\`\n\
                     }
                 }
                 else {
-                message.author.send('__**use of cat-db :**__ \n\
+                message.author.send('__**use of cat-db :**__ \n\n\
     `cat-db <array1> <string> [array2]`');
                 }
             }
             else if (command = 'db' && (message.author == botowner || 'true' == isWhitelisted['whitelist']) && args[0] == undefined) {
-                message.author.send('__**use of cat-db :**__ \n\
+                message.author.send('__**use of cat-db :**__ \n\n\
     `cat-db <array1> <string> [array2]`');}
             else {
             /*J'ai pas de compte 0.0 INSCRIT TOI ESCLAVE ! xD*/
