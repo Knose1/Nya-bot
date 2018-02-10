@@ -964,13 +964,21 @@ client.on('message', message => {
                     var arg1 = args[1].replace(/```/g,"\\\`\\\`\\\`");
                     
                     var arg2Defaut = args[2];
-                    var arg2 = args[2].replace(/```/g,"\\\`\\\`\\\`");
+                    var arg2 = args[2].replace(/```/g,"\\\`\\\`\\\`").replace(/\"/g,"\\\"").replace(/\'/g,'\\\'');
+                    
+                    if (args[3] != undefined) {
+                    var arg3Defaut = args[3];
+                    var arg3 = args[3].replace(/```/g,"\\\`\\\`\\\`");
+                    } else {
+                    var arg3Defaut = args[1];
+                    var arg3 = args[1].replace(/```/g,"\\\`\\\`\\\`");
+                    }
                     
                     message.channel.send(`\
 :tools:  __**Code to be executed :**__\n\
 \`\`\`javascript\n\
 console.log(Database(${arg1},'noGet'));\n\
-console.log(Database(${arg1}).get(${arg1}[0],${arg2},${arg1}));\`\`\`\n\
+console.log(Database(${arg1}).get(${arg1}[0],'${arg2}',${arg3}));\`\`\`\n\
 :speech_left:  __**Result 1 :**__`);
                     
                     arg1Defaut = arg1Defaut.replace(/\[/g,"").replace(/\]/g,"").replace(/\"/g,"").replace(/\'/g,"").split(',');
@@ -980,10 +988,14 @@ console.log(Database(${arg1}).get(${arg1}[0],${arg2},${arg1}));\`\`\`\n\
                     if (result1 != undefined) {
                         message.channel.send("```javascript\n"+util.inspect( result1 )+"```\n\
 :speech_left:  __**Result 2 :**__");
-                        message.channel.send("```javascript\n"+util.inspect( Database(arg1Defaut).get(arg1Defaut[0],arg2Defaut,arg1Defaut) )+"```");
+                        message.channel.send("```javascript\n"+util.inspect( Database(arg1Defaut).get(arg1Defaut[0],arg2Defaut,arg3Defaut) )+"```");
                     } else {
                         message.channel.send("```"+"Undefined"+"```");
                     }
+                }
+                else {
+                message.user.send('use of `cat-db` : \n\
+    `cat-db <array1> <string> [array2]`'
                 }
             }
             else {
