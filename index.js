@@ -954,11 +954,11 @@ client.on('message', message => {
             var args = message.content.slice('cat-'.length).trim().split(/ +/g);
             var command = args.shift().toLowerCase();
             
-            if (command = 'db' && message.author == botowner) {
+            if (command = 'db' && message.author == botowner && args[0] != undefined) {
                 if (args[0].toLowerCase() == 'display') {
                     
                 }
-                else if (args[0].toLowerCase() == 'execute') {
+                else if (args[1] != undefined && args.[2] != undefined && args[0].toLowerCase() == 'execute') {
                     var arg1Defaut = args[1];
                     var arg1 = args[1].replace(/```/g,"\\\`\\\`\\\`");
                     
@@ -977,7 +977,7 @@ console.log(Database(${arg1}).get(${arg1}[0],${arg2},${arg1}));\`\`\`\n\
                     console.log(Database(arg1Defaut,'noGet'));
                     var result1 = Database(arg1Defaut,'noGet');
                     if (result1 != undefined) {
-                        message.channel.send("```"+result1.toString()+"```\n\
+                        message.channel.send("```"+result1+"```\n\
 :speech_left:  __**Result 2 :**__");
                         message.channel.send("```"+Database(arg1Defaut).get(arg1Defaut[0],arg2Defaut,arg1Defaut)+"```");
                     } else {
