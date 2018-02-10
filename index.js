@@ -977,9 +977,9 @@ console.log(Database(${arg1}).get(${arg1}[0],${arg2},${arg1}));\`\`\`\n\
                     console.log(Database(arg1Defaut,'noGet'));
                     var result1 = Database(arg1Defaut,'noGet');
                     if (result1 != undefined) {
-                        message.channel.send("```"+result1+"```\n\
+                        message.channel.send("```"+util.inspect( result1 )+"```\n\
 :speech_left:  __**Result 2 :**__");
-                        message.channel.send("```"+Database(arg1Defaut).get(arg1Defaut[0],arg2Defaut,arg1Defaut)+"```");
+                        message.channel.send("```"+util.inspect( Database(arg1Defaut).get(arg1Defaut[0],arg2Defaut,arg1Defaut) )+"```");
                     } else {
                         message.channel.send("```"+"Undefined"+"```");
                     }
