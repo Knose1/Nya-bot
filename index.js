@@ -1096,12 +1096,12 @@ client.on('message', message => {
                     var arg3 = args[1].replace(/```/g,"\\\`\\\`\\\`");
                     }
                     
-                    message.channel.send(`\
+                    var ctbe = `\
 :tools:  __**Code to be executed :**__\n\
 \`\`\`javascript\n\
 console.log(Database(${arg1},'noGet'));\n\
 console.log(Database(${arg1}).get(${arg1}[0],'${arg2}',${arg3}));\`\`\`\n\
-:speech_left:  __**Result 1 :**__`);
+:speech_left:  __**Result 1 :**__`;
                     
                     arg1Defaut = arg1Defaut.replace(/\[/g,"").replace(/\]/g,"").replace(/\"/g,"").replace(/\'/g,"").split(',');
                     arg2Defaut = arg2Defaut.replace(/\"/g,"").replace(/\'/g,"");
@@ -1110,7 +1110,7 @@ console.log(Database(${arg1}).get(${arg1}[0],'${arg2}',${arg3}));\`\`\`\n\
                     var result1 = TestDatabase(arg1Defaut,'noGet');
                     if (result1[0] != undefined) {
                         
-                        message.channel.send(`\`\`\`javascript\n\
+                        message.channel.send(ctbe+'\n'+`\`\`\`javascript\n\
 ${util.inspect( result1[0] )}\`\`\`\n\
 :speech_left:  __**Result 2 :**__\n\
 \`\`\`javascript\n\
