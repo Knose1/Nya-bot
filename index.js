@@ -1255,7 +1255,17 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg3}).set();\`\`\`\n\
             }
             else if (command = 'db' && (message.author == botowner || 'true' == isWhitelisted['whitelist']) && args[0] == undefined) {
                 message.author.send('__**use of cat-db :**__ \n\n\
-    `cat-db execute <array1> <string> [array2]`');}
+    `cat-db execute <array1> <string> [array2]` \n\
+        ```javascript \n\
+        //If array2 isn\'t set, array1 will set array2 \n\
+        console.log(TestDatabase(<array1>,\'noGet\')); \n\
+        console.log(TestDatabase(<array1>,\'noSet\').get(<array1>[0], <string>, [array2]));```\n\
+\n\
+    `cat-db set <array1> <string1> <string2> <array2> [array3]` \n\
+        ```javascript \n\
+        //If array3 isn\'t set, array1 will set array3 \n\
+        TestDatabase(<array1>).get(<array1>[0], <string1>, [array3])[<string2>].set(<array2>);```');
+	    }
             else {
             /*J'ai pas de compte 0.0 INSCRIT TOI ESCLAVE ! xD*/
             
