@@ -86,10 +86,6 @@ function Database(allRolePrefix, gt) {
                                         toBeReturned[prefixI.replace(/:/g, "")] = toReturn[prefixI.replace(/:/g, "")][id];
                                         
                                         
-                                        
-                                        
-                                        
-                                        
                                         //On créer une fonction .set()
                                         toBeReturned[prefixI.replace(/:/g, "")].set = function (newValue) {
                                             if (Array.isArray(newValue)) {
@@ -105,13 +101,10 @@ function Database(allRolePrefix, gt) {
                                         /*FIN DE FONCTION SET*/
                                     
                                     
-                                    
-                                    
-                                    
                                     }
                                     //Si le préfix est 'id'
                                     else if('id' != toReturn[prefixI.replace(/:/g, "")]) {
-                                        console.log(`The prefix 'id' is unable at Database().get()`);
+                                        console.log(`The prefix 'id' is disable at Database().get()`);
                                     }
                                     //Sinon
                                     else {
@@ -214,7 +207,7 @@ function TestDatabase(allRolePrefix, gt) {
             } else return [undefined, retError];
         });
         //On a récupéré les data de toReturn mais on a pas encors crée de méthode pour obtenir ${data0} à partir de ${data1} pour chaque préfix
-        if (toReturn != undefined && undefined == gt) {
+        if (toReturn != undefined && 'noGet' != gt) {
             toReturn.get = function (dataPrefix, data1, prefixInclude) {
                 let retError = '';
                 let toBeReturned = {};
@@ -228,11 +221,38 @@ function TestDatabase(allRolePrefix, gt) {
                             //On a donné une liste de préfixInclude
                             if (prefixInclude != undefined && Array.isArray(prefixInclude)) {
                                 //Pour chaque préfix inclue
+                                toBeReturned['id'] = id;
                                 prefixInclude.forEach(prefixI => {
-                                    //Si toReturn contient le préfix
-                                    if (undefined != toReturn[prefixI.replace(/:/g, "")]) {
+                                    var defautprefixI = prefixI;
+                                    //Si toReturn contient le préfix et que le préfix n'est pas id
+                                    if (undefined != toReturn[prefixI.replace(/:/g, "")] && 'id' != toReturn[prefixI.replace(/:/g, "")]) {
                                         //On récupère la data correspondant à l'id
+                                        toBeReturned[prefixI.replace(/:/g, "")] = {};
                                         toBeReturned[prefixI.replace(/:/g, "")] = toReturn[prefixI.replace(/:/g, "")][id];
+                                        
+                                        
+                                        if ('noSet' != gt) {
+                                            /*On créer une fonction .set()*/
+                                            toBeReturned[prefixI.replace(/:/g, "")].set = function (newValue) {
+                                                let retError = '';
+                                                if (Array.isArray(newValue)) {
+                                                    client.guilds.get('407142766674575361').roles.find('name', defautprefixI+id+" "+toReturn[prefixI.replace(/:/g, "")][id].join(' ')).setName(defautprefixI+id+" "+[newValue].join(' '))
+                                                        .then(r => retError += `Edited the data ${r}` + "\n");
+                                                    return retError;
+                                                }
+                                                else {
+                                                    retError += `Not an Array at Database().get().set(${newValue})` + "\n";
+                                                    return retError;
+                                                }
+                                            }
+                                            /*FIN DE FONCTION SET*/
+                                        }
+                                    
+                                    
+                                    }
+                                    //Si le préfix est 'id'
+                                    else if('id' != toReturn[prefixI.replace(/:/g, "")]) {
+                                        retError += `The prefix 'id' is disable at Database().get()` + "\n";
                                     }
                                     //Sinon
                                     else {
@@ -1130,8 +1150,8 @@ client.on('message', message => {
                     var ctbe = `\
 :tools:  __**Code to be executed :**__\n\
 \`\`\`javascript\n\
-console.log(Database(${arg1},'noGet'));\n\
-console.log(Database(${arg1}).get(${arg1}[0],'${arg2}',${arg3}));\`\`\`\n\
+console.log(TestDatabase(${arg1},'noGet'));\n\
+console.log(TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg3}));\`\`\`\n\
 :speech_left:  __**Result 1 :**__`;
                     
                     arg1Defaut = arg1Defaut.replace(/\[/g,"").replace(/\]/g,"").replace(/\"/g,"").replace(/\'/g,"").split(',');
@@ -1141,16 +1161,16 @@ console.log(Database(${arg1}).get(${arg1}[0],'${arg2}',${arg3}));\`\`\`\n\
                     var result1 = TestDatabase(arg1Defaut,'noGet');
                     if (result1[0] != undefined) {
                         var error2 = '';
-                        if ('' != TestDatabase(arg1Defaut)[0].get(arg1Defaut[0],arg2Defaut,arg3Defaut)[1]) {
+                        if ('' != TestDatabase(arg1Defaut,'noSet')[0].get(arg1Defaut[0],arg2Defaut,arg3Defaut)[1]) {
                             error2 = `:exclamation: __**Error log:**__\n\
-\`\`\`${TestDatabase(arg1Defaut)[0].get(arg1Defaut[0],arg2Defaut,arg3Defaut)[1]}\`\`\``;
+\`\`\`${TestDatabase(arg1Defaut,'noSet')[0].get(arg1Defaut[0],arg2Defaut,arg3Defaut)[1]}\`\`\``;
                         }
                         
                         message.channel.send(ctbe+'\n'+`\`\`\`javascript\n\
 ${util.inspect( result1[0] )}\`\`\`\n\
 :speech_left:  __**Result 2 :**__\n\
 \`\`\`javascript\n\
-${util.inspect( TestDatabase(arg1Defaut)[0].get(arg1Defaut[0],arg2Defaut,arg3Defaut)[0] )}\`\`\`\n\
+${util.inspect( TestDatabase(arg1Defaut,'noSet')[0].get(arg1Defaut[0],arg2Defaut,arg3Defaut)[0] )}\`\`\`\n\
 `+error2);
                         
                     } else {
@@ -1160,9 +1180,70 @@ Undefined\`\`\`\n\
 \`\`\`${ result1[1] }\`\`\``);
                     }
                 }
+                else if (args[0].toLowerCase() == 'set' && args[1] != undefined && args[2] != undefined && args[3] != undefined) {
+                    
+                    /*Type = array*/
+                    var arg1Defaut = args[1];
+                    var arg1 = args[1].replace(/```/g,"\\\`\\\`\\\`");
+                    arg1Defaut = arg1Defaut.replace(/\[/g,"").replace(/\]/g,"").replace(/\"/g,"").replace(/\'/g,"").split(',');
+                    
+                    /*Type = string*/
+                    var arg2Defaut = args[2];
+                    var arg2 = args[2].replace(/```/g,"\\\`\\\`\\\`").replace(/\"/g,"\\\"").replace(/\'/g,'\\\'');
+                    arg2Defaut = arg2Defaut.replace(/\"/g,"").replace(/\'/g,"");
+                    
+                    /*Type = string*/
+                    var arg3Defaut = args[3];
+                    var arg3 = args[3].replace(/```/g,"\\\`\\\`\\\`").replace(/\"/g,"\\\"").replace(/\'/g,'\\\'');
+                    arg3Defaut = arg3Defaut.replace(/\"/g,"").replace(/\'/g,"");
+                    
+                    /*Type = array*/
+                    var arg4Defaut = args[4];
+                    var arg4 = args[4].replace(/```/g,"\\\`\\\`\\\`");
+                    arg4Defaut = arg4Defaut.replace(/\[/g,"").replace(/\]/g,"").replace(/\"/g,"").replace(/\'/g,"").split(',');
+                    
+                    /*Type = array*/
+                    if (args[5] != undefined) {
+                        var arg5Defaut = args[5];
+                        var arg5 = args[5].replace(/```/g,"\\\`\\\`\\\`");
+                    } else {
+                        var arg5Defaut = args[1];
+                        var arg5 = args[1].replace(/```/g,"\\\`\\\`\\\`");
+                    }
+                    arg5Defaut = arg5Defaut.replace(/\[/g,"").replace(/\]/g,"").replace(/\"/g,"").replace(/\'/g,"").split(',');
+                    
+                    
+                }
+                
+                var ctbe = `\
+:tools:  __**Code to be executed :**__\n\
+\`\`\`javascript\n\
+TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg3}).set();\`\`\`\n\
+:speech_left:  __**Console :**__`;
+                
+                if (TestDatabase(arg1Defaut,'noGet')[0] != undefined) {
+                    if('' == TestDatabase(arg1Defaut,'noSet')[0].get(arg1Defaut[0],arg2Defaut,arg5Defaut)[1]) {
+                        message.channel.send(TestDatabase(arg1Defaut)[0].get(arg1Defaut[0],arg2Defaut,arg5Defaut)[0][arg3Defaut].set(arg4Defaut));
+                    } else {
+                        message.channel.send(ctbe+"\n"+'```'+TestDatabase(arg1Defaut,'noSet')[0].get(arg1Defaut[0],arg2Defaut,arg5Defaut)[1]+'```');
+                    }
+                } else {
+                    message.channel.send(ctbe+"\n"+'```'+TestDatabase(arg1Defaut,'noGet')[1]+'```');
+                }
+                
+                //HELP Utilisation des commandes
                 else {
                 message.author.send('__**use of cat-db :**__ \n\n\
-    `cat-db execute <array1> <string> [array2]`');
+    `cat-db execute <array1> <string> [array2]` \n\
+        ```javascript \n\
+        //If array2 isn\'t set, array1 will set array2 \n\
+        console.log(TestDatabase(<array1>,\'noGet\')); \n\
+        console.log(TestDatabase(<array1>,\'noSet\').get(<array1>[0], <string>, [array2]));```\n\
+\n\
+    `cat-db set <array1> <string1> <string2> <array2> [array3]` \n\
+        ```javascript \n\
+        //If array3 isn\'t set, array1 will set array3 \n\
+        TestDatabase(<array1>).get(<array1>[0], <string1>, [array3])[<string2>].set(<array2>);```');
                 }
             }
             else if (command = 'db' && (message.author == botowner || 'true' == isWhitelisted['whitelist']) && args[0] == undefined) {
