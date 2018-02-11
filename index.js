@@ -1121,7 +1121,7 @@ client.on('message', message => {
         let isWhitelisted = Database(['user:','whitelist:']).get('user:', String(message.author.id), ['whitelist:']);
         if  ( 
                 (betaTest == 'off') ||
-                (betaTest == 'on' && (isBTest || (undefined != isWhitelisted && 'true' == isWhitelisted['whitelist']))) //Si le RPG est en vertion Test il faut être Béta testeur
+                (betaTest == 'on' && (isBTest || (undefined != isWhitelisted && 'true' == isWhitelisted['whitelist'].value))) //Si le RPG est en vertion Test il faut être Béta testeur
             ) {
 
             //on récupère les arguments
