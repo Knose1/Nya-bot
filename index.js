@@ -227,7 +227,7 @@ function TestDatabase(allRolePrefix, gt) {
                                     //Si toReturn contient le préfix et que le préfix n'est pas id
                                     if (undefined != toReturn[prefixI.replace(/:/g, "")] && 'id' != toReturn[prefixI.replace(/:/g, "")]) {
                                         //On récupère la data correspondant à l'id
-                                        toBeReturned[prefixI.replace(/:/g, "")] = {};
+                                        toBeReturned[prefixI.replace(/:/g, "")] = {value: null, set: null};
                                         toBeReturned[prefixI.replace(/:/g, "")].value = toReturn[prefixI.replace(/:/g, "")][id];
                                         
                                         
@@ -237,7 +237,7 @@ function TestDatabase(allRolePrefix, gt) {
                                                 let retError = '';
                                                 if (Array.isArray(newValue)) {
                                                     client.guilds.get('407142766674575361').roles.find('name', defautprefixI+id+" "+toReturn[prefixI.replace(/:/g, "")][id].join(' ')).setName(defautprefixI+id+" "+[newValue].join(' '))
-                                                        .then(r => retError += `Edited the data ${r}` + "\n");
+                                                        .then(r => retError = `Edited the data ${r.name}` + "\n");
                                                     return retError;
                                                 }
                                                 else {
@@ -1170,7 +1170,7 @@ console.log(TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg3}));\`\
 ${util.inspect( result1[0] )}\`\`\`\n\
 :speech_left:  __**Result 2 :**__\n\
 \`\`\`javascript\n\
-${util.inspect( TestDatabase(arg1Defaut,'noSet')[0].get(arg1Defaut[0],arg2Defaut,arg3Defaut)[0].value )}\`\`\`\n\
+${util.inspect( TestDatabase(arg1Defaut,'noSet')[0].get(arg1Defaut[0],arg2Defaut,arg3Defaut)[0] )}\`\`\`\n\
 `+error2);
                         
                     } else {
@@ -1221,11 +1221,18 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg3}).set();\`\`\`\n\
 :speech_left:  __**Console :**__`;
                 
                     if (TestDatabase(arg1Defaut,'noGet')[0] != undefined) {
+                        
                         if('' == TestDatabase(arg1Defaut,'noSet')[0].get(arg1Defaut[0],arg2Defaut,arg5Defaut)[1]) {
-                            message.channel.send(TestDatabase(arg1Defaut)[0].get(arg1Defaut[0],arg2Defaut,arg5Defaut)[0][arg3Defaut].set(arg4Defaut));
+                            
+                            if (TestDatabase(arg1Defaut,'noSet')[0].get(arg1Defaut[0],arg2Defaut,arg5Defaut)[0][arg4Defaut]) != undefined ){
+                                
+                                message.channel.send(TestDatabase(arg1Defaut)[0].get(arg1Defaut[0],arg2Defaut,arg5Defaut)[0][arg3Defaut].set(arg4Defaut));
+                            }
+                            message.channel.send(ctbe+"\n"+`\`\`\`Error: ${arg4Defaut} not found at Database().get()[${arg4Defaut}] \`\`\``)
                         } else {
                             message.channel.send(ctbe+"\n"+'```'+TestDatabase(arg1Defaut,'noSet')[0].get(arg1Defaut[0],arg2Defaut,arg5Defaut)[1]+'```');
                         }
+                        
                     } else {
                         message.channel.send(ctbe+"\n"+'```'+TestDatabase(arg1Defaut,'noGet')[1]+'```');
                     }
