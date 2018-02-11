@@ -1116,7 +1116,7 @@ ${util.inspect( result1[0] )}\`\`\`\n\
 \`\`\`javascript\n\
 ${util.inspect( TestDatabase(arg1Defaut)[0].get(arg1Defaut[0],arg2Defaut,arg3Defaut)[0] )}\`\`\`\n\
 :exclamation: __**Error log:**__\n\
-\`\`\`${TestDatabase(arg1Defaut).get(arg1Defaut[0],arg2Defaut,arg3Defaut)[1]}\`\`\``);
+\`\`\`${TestDatabase(arg1Defaut)[0].get(arg1Defaut[0],arg2Defaut,arg3Defaut)[1]}\`\`\``);
                         
                     } else {
                         message.channel.send(`\`\`\`javascript\n\
