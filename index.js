@@ -227,7 +227,7 @@ function TestDatabase(allRolePrefix, gt) {
                                     //Si toReturn contient le préfix et que le préfix n'est pas id
                                     if (undefined != toReturn[prefixI.replace(/:/g, "")] && 'id' != toReturn[prefixI.replace(/:/g, "")]) {
                                         //On récupère la data correspondant à l'id
-                                        toBeReturned[prefixI.replace(/:/g, "")] = {value: null, set: null};
+                                        toBeReturned[prefixI.replace(/:/g, "")] = {};
                                         toBeReturned[prefixI.replace(/:/g, "")].value = toReturn[prefixI.replace(/:/g, "")][id];
                                         
                                         
@@ -1228,7 +1228,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg3}).set();\`\`\`\n\
                                 
                                 message.channel.send(TestDatabase(arg1Defaut)[0].get(arg1Defaut[0],arg2Defaut,arg5Defaut)[0][arg3Defaut].set(arg4Defaut));
                             }
-                            message.channel.send(ctbe+"\n"+`\`\`\`Error: ${arg4Defaut} not found at Database().get()[${arg4Defaut}] \`\`\``)
+                            message.channel.send(ctbe+"\n"+`\`\`\`Error: ${arg3Defaut} not found at Database().get()[${arg3Defaut}] \`\`\``)
                         } else {
                             message.channel.send(ctbe+"\n"+'```'+TestDatabase(arg1Defaut,'noSet')[0].get(arg1Defaut[0],arg2Defaut,arg5Defaut)[1]+'```');
                         }
