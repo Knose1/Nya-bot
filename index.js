@@ -169,9 +169,10 @@ function TestDatabase(allRolePrefix, gt) {
         let toReturn = {};
         //Pour chaque préfix
         //console.log("allRolePrefix = "+allRolePrefix);
+        var noError = true;
         allRolePrefix.forEach(rolePrefix => {
             //console.log("rolePrefix = "+rolePrefix);
-            var noError = true;
+            
             
             //S'il y a pas d'erreur:
             if (noError) {
@@ -195,7 +196,6 @@ function TestDatabase(allRolePrefix, gt) {
                         var noError = false;
                         toReturn = undefined;
                         retError += `Error: ${rolePrefix} not found in the db` + "\n";
-                        return;
                     }
                 } else {
                     //Si le préfix est pas un txt on retourne une erreur
