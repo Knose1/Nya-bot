@@ -83,7 +83,7 @@ function Database(allRolePrefix, gt) {
                                     if (undefined != toReturn[prefixI.replace(/:/g, "")] && 'id' != toReturn[prefixI.replace(/:/g, "")]) {
                                         //On récupère la data correspondant à l'id
                                         toBeReturned[prefixI.replace(/:/g, "")] = {};
-                                        toBeReturned[prefixI.replace(/:/g, "")] = toReturn[prefixI.replace(/:/g, "")][id];
+                                        toBeReturned[prefixI.replace(/:/g, "")].value = toReturn[prefixI.replace(/:/g, "")][id];
                                         
                                         
                                         //On créer une fonction .set()
@@ -228,7 +228,7 @@ function TestDatabase(allRolePrefix, gt) {
                                     if (undefined != toReturn[prefixI.replace(/:/g, "")] && 'id' != toReturn[prefixI.replace(/:/g, "")]) {
                                         //On récupère la data correspondant à l'id
                                         toBeReturned[prefixI.replace(/:/g, "")] = {};
-                                        toBeReturned[prefixI.replace(/:/g, "")] = toReturn[prefixI.replace(/:/g, "")][id];
+                                        toBeReturned[prefixI.replace(/:/g, "")].value = toReturn[prefixI.replace(/:/g, "")][id];
                                         
                                         
                                         if ('noSet' != gt) {
@@ -1170,7 +1170,7 @@ console.log(TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg3}));\`\
 ${util.inspect( result1[0] )}\`\`\`\n\
 :speech_left:  __**Result 2 :**__\n\
 \`\`\`javascript\n\
-${util.inspect( TestDatabase(arg1Defaut,'noSet')[0].get(arg1Defaut[0],arg2Defaut,arg3Defaut)[0] )}\`\`\`\n\
+${util.inspect( TestDatabase(arg1Defaut,'noSet')[0].get(arg1Defaut[0],arg2Defaut,arg3Defaut)[0].value )}\`\`\`\n\
 `+error2);
                         
                     } else {
