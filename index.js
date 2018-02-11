@@ -232,7 +232,7 @@ function TestDatabase(allRolePrefix, gt) {
                 } else {
                     if (typeof(dataPrefix) == 'string') retError += `dataPrefix :Not a string at Database().get(${dataPrefix.toString()},${data1.toString()})`+"\n";
                     if (typeof(data1) == 'string') retError += `data1 :Not a string at Database().get(${dataPrefix.toString()},${data1.toString()})`+"\n";
-                    return [undefined retError];
+                    return [undefined, retError];
                 }
             };
         }
