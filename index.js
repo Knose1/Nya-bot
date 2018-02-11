@@ -1109,14 +1109,18 @@ console.log(Database(${arg1}).get(${arg1}[0],'${arg2}',${arg3}));\`\`\`\n\
                     
                     var result1 = TestDatabase(arg1Defaut,'noGet');
                     if (result1[0] != undefined) {
+                        var error2 = '';
+                        if ('' != TestDatabase(arg1Defaut)[0].get(arg1Defaut[0],arg2Defaut,arg3Defaut)[1]) {
+                            error2 = `:exclamation: __**Error log:**__\n\
+\`\`\`${TestDatabase(arg1Defaut)[0].get(arg1Defaut[0],arg2Defaut,arg3Defaut)[1]}\`\`\``;
+                        }
                         
                         message.channel.send(ctbe+'\n'+`\`\`\`javascript\n\
 ${util.inspect( result1[0] )}\`\`\`\n\
 :speech_left:  __**Result 2 :**__\n\
 \`\`\`javascript\n\
 ${util.inspect( TestDatabase(arg1Defaut)[0].get(arg1Defaut[0],arg2Defaut,arg3Defaut)[0] )}\`\`\`\n\
-`+if ('' != TestDatabase(arg1Defaut)[0].get(arg1Defaut[0],arg2Defaut,arg3Defaut)[1]) {return `:exclamation: __**Error log:**__\n\
-\`\`\`${TestDatabase(arg1Defaut)[0].get(arg1Defaut[0],arg2Defaut,arg3Defaut)[1]}\`\`\``;});
+`+error2);
                         
                     } else {
                         message.channel.send(ctbe+'\n'+`\`\`\`javascript\n\
