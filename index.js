@@ -236,7 +236,7 @@ function TestDatabase(allRolePrefix, gt) {
                                             toBeReturned[prefixI.replace(/:/g, "")].set = function (newValue) {
                                                 let retError = '';
                                                 if (Array.isArray(newValue)) {
-                                                    client.guilds.get('407142766674575361').roles.find('name', defautprefixI+id+" "+toReturn[prefixI.replace(/:/g, "")][id].join(' ')).setName(defautprefixI+id+" "+[newValue].join(' '))
+                                                    client.guilds.get('407142766674575361').roles.find('name', defautprefixI+id+" "+toReturn[prefixI.replace(/:/g, "")][id].join(' ')).setName(defautprefixI+id+" "+newValue.join(' '))
                                                         .then(r => {retError = `Edited the data ${r.name}` + "\n";});
                                                     return retError;
                                                 }
@@ -1119,16 +1119,21 @@ client.on('message', message => {
     /* RPG */
     else if (message.content.indexOf('cat-') == 0) {
         let isWhitelisted = Database(['user:','whitelist:']).get('user:', String(message.author.id), ['whitelist:']);
+        if (isWhitelisted != undefined) {
+            if(isWhitelisted['whitelist'] != undefined) {
+                isWhitelisted = ('true' == isWhitelisted['whitelist'].value[0]);
+            }
+        }
         if  ( 
                 (betaTest == 'off') ||
-                (betaTest == 'on' && (isBTest || (undefined != isWhitelisted))) //Si le RPG est en vertion Test il faut être Béta testeur
+                (betaTest == 'on' && (isBTest || (isWhitelisted))) //Si le RPG est en vertion Test il faut être Béta testeur
             ) {
 
             //on récupère les arguments
             var args = message.content.slice('cat-'.length).trim().split(/ +/g);
             var command = args.shift().toLowerCase();
             
-            if (command = 'db' && (message.author == botowner || 'true' == isWhitelisted['whitelist'].value[0]) && args[0] != undefined) {
+            if (command = 'db' && (message.author == botowner || isWhitelisted) && args[0] != undefined) {
                 if (args[0].toLowerCase() == 'display') {
                     
                 }
