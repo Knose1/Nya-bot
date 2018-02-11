@@ -983,7 +983,7 @@ console.log(Database(${arg1}).get(${arg1}[0],'${arg2}',${arg3}));\`\`\`\n\
                     
                     arg1Defaut = arg1Defaut.replace(/\[/g,"").replace(/\]/g,"").replace(/\"/g,"").replace(/\'/g,"").split(',');
                     arg2Defaut = arg2Defaut.replace(/\"/g,"").replace(/\'/g,"");
-                    arg3Defaut = arg1Defaut.replace(/\[/g,"").replace(/\]/g,"").replace(/\"/g,"").replace(/\'/g,"").split(',');
+                    arg3Defaut = arg3Defaut.replace(/\[/g,"").replace(/\]/g,"").replace(/\"/g,"").replace(/\'/g,"").split(',');
                     
                     var result1 = Database(arg1Defaut,'noGet');
                     if (result1 != undefined) {
