@@ -50,7 +50,7 @@ function Database(allRolePrefix, gt) {
                     if (toReturn[rolePrefix.replace(/:/g, "")].length == 0) {
                         var noError = false;
                         toReturn = undefined;
-                        console.log(`Error: ${rolePrefix} unfounded in the db`);
+                        console.log(`Error: ${rolePrefix} not found in the db`);
                         return;
                     }
                 } else {
@@ -101,7 +101,7 @@ function Database(allRolePrefix, gt) {
                                 return undefined;
                             }
                         } else {
-                            console.log(`${data1} unfounded at Database().get(${dataPrefix},${data1})`);
+                            console.log(`${data1} not found at Database().get(${dataPrefix},${data1})`);
                             return undefined;
                         }
                     } else {
@@ -170,7 +170,7 @@ function TestDatabase(allRolePrefix, gt) {
                     if (toReturn[rolePrefix.replace(/:/g, "")].length == 0) {
                         var noError = false;
                         toReturn = undefined;
-                        retError += `Error: ${rolePrefix} unfounded in the db` + "\n";
+                        retError += `Error: ${rolePrefix} not found in the db` + "\n";
                         return;
                     }
                 } else {
@@ -222,7 +222,7 @@ function TestDatabase(allRolePrefix, gt) {
                                 return [undefined, retError];
                             }
                         } else {
-                            retError += `${data1} unfounded at Database().get(${dataPrefix},${data1})`+"\n";
+                            retError += `${data1} not found at Database().get(${dataPrefix},${data1})`+"\n";
                             return [undefined, retError];
                         }
                     } else {
@@ -1119,7 +1119,7 @@ ${util.inspect( TestDatabase(arg1Defaut)[0].get(arg1Defaut[0],arg2Defaut,arg3Def
 \`\`\`${TestDatabase(arg1Defaut)[0].get(arg1Defaut[0],arg2Defaut,arg3Defaut)[1]}\`\`\``);
                         
                     } else {
-                        message.channel.send(`\`\`\`javascript\n\
+                        message.channel.send(ctbe+'\n'+`\`\`\`javascript\n\
 Undefined\`\`\`\n\
 :exclamation: __**Error log:**__\n\
 \`\`\`${ result1[1] }\`\`\``);
