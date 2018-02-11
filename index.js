@@ -1213,22 +1213,22 @@ Undefined\`\`\`\n\
                     arg5Defaut = arg5Defaut.replace(/\[/g,"").replace(/\]/g,"").replace(/\"/g,"").replace(/\'/g,"").split(',');
                     
                     
-                }
-                
-                var ctbe = `\
+                    
+                    var ctbe = `\
 :tools:  __**Code to be executed :**__\n\
 \`\`\`javascript\n\
 TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg3}).set();\`\`\`\n\
 :speech_left:  __**Console :**__`;
                 
-                if (TestDatabase(arg1Defaut,'noGet')[0] != undefined) {
-                    if('' == TestDatabase(arg1Defaut,'noSet')[0].get(arg1Defaut[0],arg2Defaut,arg5Defaut)[1]) {
-                        message.channel.send(TestDatabase(arg1Defaut)[0].get(arg1Defaut[0],arg2Defaut,arg5Defaut)[0][arg3Defaut].set(arg4Defaut));
+                    if (TestDatabase(arg1Defaut,'noGet')[0] != undefined) {
+                        if('' == TestDatabase(arg1Defaut,'noSet')[0].get(arg1Defaut[0],arg2Defaut,arg5Defaut)[1]) {
+                            message.channel.send(TestDatabase(arg1Defaut)[0].get(arg1Defaut[0],arg2Defaut,arg5Defaut)[0][arg3Defaut].set(arg4Defaut));
+                        } else {
+                            message.channel.send(ctbe+"\n"+'```'+TestDatabase(arg1Defaut,'noSet')[0].get(arg1Defaut[0],arg2Defaut,arg5Defaut)[1]+'```');
+                        }
                     } else {
-                        message.channel.send(ctbe+"\n"+'```'+TestDatabase(arg1Defaut,'noSet')[0].get(arg1Defaut[0],arg2Defaut,arg5Defaut)[1]+'```');
+                        message.channel.send(ctbe+"\n"+'```'+TestDatabase(arg1Defaut,'noGet')[1]+'```');
                     }
-                } else {
-                    message.channel.send(ctbe+"\n"+'```'+TestDatabase(arg1Defaut,'noGet')[1]+'```');
                 }
                 
                 //HELP Utilisation des commandes
