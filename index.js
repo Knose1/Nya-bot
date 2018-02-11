@@ -1108,7 +1108,7 @@ console.log(Database(${arg1}).get(${arg1}[0],'${arg2}',${arg3}));\`\`\`\n\
                     arg3Defaut = arg3Defaut.replace(/\[/g,"").replace(/\]/g,"").replace(/\"/g,"").replace(/\'/g,"").split(',');
                     
                     var result1 = TestDatabase(arg1Defaut,'noGet');
-                    if (result1 != undefined) {
+                    if (result1[0] != undefined) {
                         
                         message.channel.send(`\`\`\`javascript\n\
 ${util.inspect( result1[0] )}\`\`\`\n\
