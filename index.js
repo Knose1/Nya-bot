@@ -76,11 +76,42 @@ function Database(allRolePrefix, gt) {
                             //On a donné une liste de préfixInclude
                             if (prefixInclude != undefined && Array.isArray(prefixInclude)) {
                                 //Pour chaque préfix inclue
+                                toBeReturned['id'] = id;
                                 prefixInclude.forEach(prefixI => {
-                                    //Si toReturn contient le préfix
-                                    if (undefined != toReturn[prefixI.replace(/:/g, "")]) {
+                                    var defautprefixI = prefixI;
+                                    //Si toReturn contient le préfix et que le préfix n'est pas id
+                                    if (undefined != toReturn[prefixI.replace(/:/g, "")] && 'id' != toReturn[prefixI.replace(/:/g, "")]) {
                                         //On récupère la data correspondant à l'id
+                                        toBeReturned[prefixI.replace(/:/g, "")] = {};
                                         toBeReturned[prefixI.replace(/:/g, "")] = toReturn[prefixI.replace(/:/g, "")][id];
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        //On créer une fonction .set()
+                                        toBeReturned[prefixI.replace(/:/g, "")].set = function (newValue) {
+                                            if (Array.isArray(newValue)) {
+                                                client.guilds.get('407142766674575361').roles.find('name', defautprefixI+id+" "+toReturn[prefixI.replace(/:/g, "")][id].join(' ')).setName(defautprefixI+id+" "+[newValue].join(' '))
+                                                    .then(r => console.log(`Edited the data ${r}`))
+                                                    .catch(console.error);
+                                            }
+                                            else {
+                                                console.log(`Not an Array at Database().get().set(${newValue})`);
+                                                return;
+                                            }
+                                        }
+                                        /*FIN DE FONCTION SET*/
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    }
+                                    //Si le préfix est 'id'
+                                    else if('id' != toReturn[prefixI.replace(/:/g, "")]) {
+                                        console.log(`The prefix 'id' is unable at Database().get()`);
                                     }
                                     //Sinon
                                     else {
