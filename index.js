@@ -185,7 +185,7 @@ function TestDatabase(allRolePrefix, gt) {
         //On a récupéré les data de toReturn mais on a pas encors crée de méthode pour obtenir ${data0} à partir de ${data1} pour chaque préfix
         if (toReturn != undefined && undefined == gt) {
             toReturn.get = function (dataPrefix, data1, prefixInclude) {
-                let retError = toReturn[1];
+                let retError = '';
                 let toBeReturned = {};
                 if (typeof(dataPrefix) == 'string' && typeof(data1) == 'string') {
                     if (undefined != toReturn[dataPrefix.replace(/:/g, "")] ) {
@@ -1115,8 +1115,8 @@ ${util.inspect( result1[0] )}\`\`\`\n\
 :speech_left:  __**Result 2 :**__\n\
 \`\`\`javascript\n\
 ${util.inspect( TestDatabase(arg1Defaut)[0].get(arg1Defaut[0],arg2Defaut,arg3Defaut)[0] )}\`\`\`\n\
-:exclamation: __**Error log:**__\n\
-\`\`\`${TestDatabase(arg1Defaut)[0].get(arg1Defaut[0],arg2Defaut,arg3Defaut)[1]}\`\`\``);
+`+if ('' != TestDatabase(arg1Defaut)[0].get(arg1Defaut[0],arg2Defaut,arg3Defaut)[1]) {return `:exclamation: __**Error log:**__\n\
+\`\`\`${TestDatabase(arg1Defaut)[0].get(arg1Defaut[0],arg2Defaut,arg3Defaut)[1]}\`\`\``;});
                         
                     } else {
                         message.channel.send(ctbe+'\n'+`\`\`\`javascript\n\
