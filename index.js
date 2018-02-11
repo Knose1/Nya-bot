@@ -1121,14 +1121,14 @@ client.on('message', message => {
         let isWhitelisted = Database(['user:','whitelist:']).get('user:', String(message.author.id), ['whitelist:']);
         if  ( 
                 (betaTest == 'off') ||
-                (betaTest == 'on' && (isBTest || (undefined != isWhitelisted && 'true' == isWhitelisted['whitelist'].value[0]))) //Si le RPG est en vertion Test il faut être Béta testeur
+                (betaTest == 'on' && (isBTest || (undefined != isWhitelisted))) //Si le RPG est en vertion Test il faut être Béta testeur
             ) {
 
             //on récupère les arguments
             var args = message.content.slice('cat-'.length).trim().split(/ +/g);
             var command = args.shift().toLowerCase();
             
-            if (command = 'db' && (message.author == botowner || 'true' == isWhitelisted['whitelist']) && args[0] != undefined) {
+            if (command = 'db' && (message.author == botowner || 'true' == isWhitelisted['whitelist'].value[0]) && args[0] != undefined) {
                 if (args[0].toLowerCase() == 'display') {
                     
                 }
