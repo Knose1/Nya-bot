@@ -237,7 +237,7 @@ function TestDatabase(allRolePrefix, gt) {
                                                 let retError = '';
                                                 if (Array.isArray(newValue)) {
                                                     client.guilds.get('407142766674575361').roles.find('name', defautprefixI+id+" "+toReturn[prefixI.replace(/:/g, "")][id].join(' ')).setName(defautprefixI+id+" "+[newValue].join(' '))
-                                                        .then(r => retError = `Edited the data ${r.name}` + "\n");
+                                                        .then(r => {retError = `Edited the data ${r.name}` + "\n";});
                                                     return retError;
                                                 }
                                                 else {
@@ -1180,7 +1180,7 @@ Undefined\`\`\`\n\
 \`\`\`${ result1[1] }\`\`\``);
                     }
                 }
-                else if (args[0].toLowerCase() == 'set' && args[1] != undefined && args[2] != undefined && args[3] != undefined) {
+                else if (args[0].toLowerCase() == 'set' && args[1] != undefined && args[2] != undefined && args[3] != undefined && args[4] != undefined) {
                     
                     /*Type = array*/
                     var arg1Defaut = args[1];
@@ -1217,7 +1217,7 @@ Undefined\`\`\`\n\
                     var ctbe = `\
 :tools:  __**Code to be executed :**__\n\
 \`\`\`javascript\n\
-TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg3}).set();\`\`\`\n\
+TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set(${arg4});\`\`\`\n\
 :speech_left:  __**Console :**__`;
                 
                     if (TestDatabase(arg1Defaut,'noGet')[0] != undefined) {
@@ -1226,9 +1226,11 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg3}).set();\`\`\`\n\
                             
                             if (TestDatabase(arg1Defaut,'noSet')[0].get(arg1Defaut[0],arg2Defaut,arg5Defaut)[0][arg3Defaut] != undefined ){
                                 
-                                message.channel.send(TestDatabase(arg1Defaut)[0].get(arg1Defaut[0],arg2Defaut,arg5Defaut)[0][arg3Defaut].set(arg4Defaut));
+                                message.channel.send(ctbe+"\n```"+TestDatabase(arg1Defaut)[0].get(arg1Defaut[0],arg2Defaut,arg5Defaut)[0][arg3Defaut].set(arg4Defaut)+"```");
                             }
-                            message.channel.send(ctbe+"\n"+`\`\`\`Error: ${arg3Defaut} not found at Database().get()[${arg3Defaut}] \`\`\``)
+                            else {
+                                message.channel.send(ctbe+"\n"+`\`\`\`Error: ${arg3Defaut} not found at Database().get()[${arg3Defaut}] \`\`\``);
+                            }
                         } else {
                             message.channel.send(ctbe+"\n"+'```'+TestDatabase(arg1Defaut,'noSet')[0].get(arg1Defaut[0],arg2Defaut,arg5Defaut)[1]+'```');
                         }
