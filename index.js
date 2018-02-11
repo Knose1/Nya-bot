@@ -131,6 +131,128 @@ function Database(allRolePrefix, gt) {
 
 
 
+
+
+
+
+
+/*Test the db*/
+
+function TestDatabase(allRolePrefix, gt) {
+    //Si on a donner une liste de prefix
+    if (Array.isArray(allRolePrefix) && allRolePrefix.length > 0) {
+        let retError = '';
+        let toReturn = {};
+        //Pour chaque préfix
+        //console.log("allRolePrefix = "+allRolePrefix);
+        allRolePrefix.forEach(rolePrefix => {
+            //console.log("rolePrefix = "+rolePrefix);
+            var noError = true;
+            
+            //S'il y a pas d'erreur:
+            if (noError) {
+                
+                //On regarde si le préfix est un txt
+                if (typeof(rolePrefix) == 'string') {
+                    var newRolePrefix = rolePrefix;
+                    toReturn[rolePrefix.replace(/:/g, "")] = new Array();
+                    rolePrefix = newRolePrefix;
+                    //On récupère les data de chaque role
+                    client.guilds.get('407142766674575361').roles.forEach(role => {
+                        //On regarde si le role correspond au préfix
+                        if (role.name.indexOf(rolePrefix) == 0) {
+                            //On récupère les data `${prefix}${data0} ${data1} ${data2}` exemple: user:1 1000
+                            var data = role.name.slice(rolePrefix.length).trim().split(/ +/g);
+                            toReturn[rolePrefix.replace(/:/g, "")][data[0]] = data.slice(1);
+                            //Résultat: toReturn[prefix (sans ":")][data0] = [data1, data2]; exemple: toReturn[user][1] = [1000]
+                        }
+                    });
+                    if (toReturn[rolePrefix.replace(/:/g, "")].length == 0) {
+                        var noError = false;
+                        toReturn = undefined;
+                        retError += `Error: ${rolePrefix} unfounded in the db` + "\n";
+                        return;
+                    }
+                } else {
+                    //Si le préfix est pas un txt on retourne une erreur
+                    var noError = false;
+                    toReturn = undefined;
+                    retError += `Not a string at allRolePrefix.forEach(role =>{}) && role = ${rolePrefix}`+ "\n";
+                    return undefined;
+                }
+            } else return undefined;
+        });
+        //On a récupéré les data de toReturn mais on a pas encors crée de méthode pour obtenir ${data0} à partir de ${data1} pour chaque préfix
+        if (toReturn != undefined && undefined == gt) {
+            toReturn.get = function (dataPrefix, data1, prefixInclude) {
+                let retError = toReturn[1];
+                let toBeReturned = {};
+                if (typeof(dataPrefix) == 'string' && typeof(data1) == 'string') {
+                    if (undefined != toReturn[dataPrefix.replace(/:/g, "")] ) {
+                        //On récupère l'id de la data à partir de la primary (dataPrefix)
+                        var id = toReturn[dataPrefix.replace(/:/g, "")].findIndex(data => {
+                            return data1 == data;
+                        });
+                        if (id != -1) {
+                            //On a donné une liste de préfixInclude
+                            if (prefixInclude != undefined && Array.isArray(prefixInclude)) {
+                                //Pour chaque préfix inclue
+                                prefixInclude.forEach(prefixI => {
+                                    //Si toReturn contient le préfix
+                                    if (undefined != toReturn[prefixI.replace(/:/g, "")]) {
+                                        //On récupère la data correspondant à l'id
+                                        toBeReturned[prefixI.replace(/:/g, "")] = toReturn[prefixI.replace(/:/g, "")][id];
+                                    }
+                                    //Sinon
+                                    else {
+                                        toBeReturned[prefixI.replace(/:/g, "")] = undefined;
+                                        `toBeReturned[${prefixI.replace(/:/g, "")}] = undefined`);
+                                    }
+                                });
+                                return toBeReturned;
+                            }
+                            //On a pas donné de préfixInclude
+                            else if (prefixInclude == undefined) {
+                                retError += `prefixInclude is undefined at Database().get(${dataPrefix},${data1},${prefixInclude})`+"\n";
+                                return undefined;
+                            }
+                            //On a donné une var qui n'est pas une liste
+                            else if (prefixInclude != undefined && !Array.isArray(prefixInclude)) {
+                                retError += `Not and array at Database().get(${dataPrefix},${data1},${prefixInclude})`+"\n";
+                                return undefined;
+                            }
+                        } else {
+                            retError += `${data1} unfounded at Database().get(${dataPrefix},${data1})`+"\n";
+                            return undefined;
+                        }
+                    } else {
+                        retError += `Prefix unknown at Database().get(${dataPrefix})`+"\n";
+                        return [undefined, retError];
+                    }
+                } else {
+                    if (typeof(dataPrefix) == 'string') retError += `dataPrefix :Not a string at Database().get(${dataPrefix.toString()},${data1.toString()})`+"\n";
+                    if (typeof(data1) == 'string') retError += `data1 :Not a string at Database().get(${dataPrefix.toString()},${data1.toString()})`+"\n";
+                    return [undefined retError];
+                }
+            };
+        }
+        return toReturn;
+    } else {
+        //Si on a pas donner de liste de préfix
+        if(!Array.isArray(allRolePrefix)) console.log(`Not an array at 'db.new(${allRolePrefix.toString()})'`);
+        if(allRolePrefix.length <= 0) console.log(`Can't read length < 0 at 'db.new(${allRolePrefix.toString()})'`);
+        return [undefined, retError];
+    }
+};
+
+/*End Test the db*/
+
+
+
+
+
+
+
 var catimg = new Array() ;
 catimg = [
     "https://yt3.ggpht.com/-xMN6CtD0oAM/AAAAAAAAAAI/AAAAAAAAAAA/3rguRakaom8/s900-c-k-no-mo-rj-c0xffffff/photo.jpg",
@@ -985,11 +1107,15 @@ console.log(Database(${arg1}).get(${arg1}[0],'${arg2}',${arg3}));\`\`\`\n\
                     arg2Defaut = arg2Defaut.replace(/\"/g,"").replace(/\'/g,"");
                     arg3Defaut = arg3Defaut.replace(/\[/g,"").replace(/\]/g,"").replace(/\"/g,"").replace(/\'/g,"").split(',');
                     
-                    var result1 = Database(arg1Defaut,'noGet');
+                    var result1 = TestDatabase(arg1Defaut,'noGet');
                     if (result1 != undefined) {
-                        message.channel.send("```javascript\n"+util.inspect( result1 )+"```\n\
-:speech_left:  __**Result 2 :**__");
-                        message.channel.send("```javascript\n"+util.inspect( Database(arg1Defaut).get(arg1Defaut[0],arg2Defaut,arg3Defaut) )+"```");
+                        message.channel.send(`\`\`\`javascript\n\
+${util.inspect( result1 )}\`\`\`\n\
+:speech_left:  __**Result 2 :**__\n\
+\`\`\`javascript\n\
+${util.inspect( TestDatabase(arg1Defaut).get(arg1Defaut[0],arg2Defaut,arg3Defaut)[0] )}\`\`\`\n\
+:exclamation: __**Error log:**__\n\
+\`\`\`${TestDatabase(arg1Defaut).get(arg1Defaut[0],arg2Defaut,arg3Defaut)[1]}\`\`\``);
                     } else {
                         message.channel.send("```"+"Undefined"+"```");
                     }
