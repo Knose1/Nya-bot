@@ -1224,7 +1224,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg3}).set();\`\`\`\n\
                         
                         if('' == TestDatabase(arg1Defaut,'noSet')[0].get(arg1Defaut[0],arg2Defaut,arg5Defaut)[1]) {
                             
-                            if (TestDatabase(arg1Defaut,'noSet')[0].get(arg1Defaut[0],arg2Defaut,arg5Defaut)[0][arg4Defaut] != undefined ){
+                            if (TestDatabase(arg1Defaut,'noSet')[0].get(arg1Defaut[0],arg2Defaut,arg5Defaut)[0][arg3Defaut] != undefined ){
                                 
                                 message.channel.send(TestDatabase(arg1Defaut)[0].get(arg1Defaut[0],arg2Defaut,arg5Defaut)[0][arg3Defaut].set(arg4Defaut));
                             }
