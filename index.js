@@ -178,9 +178,9 @@ function TestDatabase(allRolePrefix, gt) {
                     var noError = false;
                     toReturn = undefined;
                     retError += `Not a string at allRolePrefix.forEach(role =>{}) && role = ${rolePrefix}`+ "\n";
-                    return undefined;
+                    return [undefined, retError];
                 }
-            } else return undefined;
+            } else return [undefined, retError];
         });
         //On a récupéré les data de toReturn mais on a pas encors crée de méthode pour obtenir ${data0} à partir de ${data1} pour chaque préfix
         if (toReturn != undefined && undefined == gt) {
@@ -206,24 +206,24 @@ function TestDatabase(allRolePrefix, gt) {
                                     //Sinon
                                     else {
                                         toBeReturned[prefixI.replace(/:/g, "")] = undefined;
-                                        `toBeReturned[${prefixI.replace(/:/g, "")}] = undefined`);
+                                        retError += `toBeReturned[${prefixI.replace(/:/g, "")}] = undefined` + "\n";
                                     }
                                 });
-                                return toBeReturned;
+                                return [toBeReturned, retError];
                             }
                             //On a pas donné de préfixInclude
                             else if (prefixInclude == undefined) {
                                 retError += `prefixInclude is undefined at Database().get(${dataPrefix},${data1},${prefixInclude})`+"\n";
-                                return undefined;
+                                return [undefined, retError];
                             }
                             //On a donné une var qui n'est pas une liste
                             else if (prefixInclude != undefined && !Array.isArray(prefixInclude)) {
                                 retError += `Not and array at Database().get(${dataPrefix},${data1},${prefixInclude})`+"\n";
-                                return undefined;
+                                return [undefined, retError];
                             }
                         } else {
                             retError += `${data1} unfounded at Database().get(${dataPrefix},${data1})`+"\n";
-                            return undefined;
+                            return [undefined, retError];
                         }
                     } else {
                         retError += `Prefix unknown at Database().get(${dataPrefix})`+"\n";
@@ -236,7 +236,7 @@ function TestDatabase(allRolePrefix, gt) {
                 }
             };
         }
-        return toReturn;
+        return [toReturn, retError];
     } else {
         //Si on a pas donner de liste de préfix
         if(!Array.isArray(allRolePrefix)) console.log(`Not an array at 'db.new(${allRolePrefix.toString()})'`);
@@ -1109,15 +1109,20 @@ console.log(Database(${arg1}).get(${arg1}[0],'${arg2}',${arg3}));\`\`\`\n\
                     
                     var result1 = TestDatabase(arg1Defaut,'noGet');
                     if (result1 != undefined) {
+                        
                         message.channel.send(`\`\`\`javascript\n\
-${util.inspect( result1 )}\`\`\`\n\
+${util.inspect( result1[0] )}\`\`\`\n\
 :speech_left:  __**Result 2 :**__\n\
 \`\`\`javascript\n\
-${util.inspect( TestDatabase(arg1Defaut).get(arg1Defaut[0],arg2Defaut,arg3Defaut)[0] )}\`\`\`\n\
+${util.inspect( TestDatabase(arg1Defaut)[0].get(arg1Defaut[0],arg2Defaut,arg3Defaut)[0] )}\`\`\`\n\
 :exclamation: __**Error log:**__\n\
 \`\`\`${TestDatabase(arg1Defaut).get(arg1Defaut[0],arg2Defaut,arg3Defaut)[1]}\`\`\``);
+                        
                     } else {
-                        message.channel.send("```"+"Undefined"+"```");
+                        message.channel.send(`\`\`\`javascript\n\
+Undefined\`\`\`\n\
+:exclamation: __**Error log:**__\n\
+\`\`\`${ result1[1] }\`\`\``);
                     }
                 }
                 else {
