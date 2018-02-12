@@ -169,7 +169,7 @@ function TestDatabase(allRolePrefix, gt) {
         let toReturn = {};
         //Pour chaque préfix
         //console.log("allRolePrefix = "+allRolePrefix);
-        var noError = true;
+        let noError = true;
         allRolePrefix.forEach(rolePrefix => {
             //console.log("rolePrefix = "+rolePrefix);
             
@@ -207,7 +207,7 @@ function TestDatabase(allRolePrefix, gt) {
             } else return [undefined, retError];
         });
         //On a récupéré les data de toReturn mais on a pas encors crée de méthode pour obtenir ${data0} à partir de ${data1} pour chaque préfix
-        if (toReturn != undefined && 'noGet' != gt) {
+        if (toReturn != '' && 'noGet' != gt) {
             toReturn.get = function (dataPrefix, data1, prefixInclude) {
                 let retError = '';
                 let toBeReturned = {};
