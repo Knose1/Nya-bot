@@ -1164,7 +1164,7 @@ console.log(TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg3}));\`\
                     arg3Defaut = arg3Defaut.replace(/\[/g,"").replace(/\]/g,"").replace(/\"/g,"").replace(/\'/g,"").split(',');
                     
                     var result1 = TestDatabase(arg1Defaut,'noGet');
-                    if (result1[0] != undefined) {
+                    if (result1[1] == '') {
                         var error2 = '';
                         if ('' != TestDatabase(arg1Defaut,'noSet')[0].get(arg1Defaut[0],arg2Defaut,arg3Defaut)[1]) {
                             error2 = `:exclamation: __**Error log:**__\n\
