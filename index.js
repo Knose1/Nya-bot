@@ -193,13 +193,13 @@ function TestDatabase(allRolePrefix, gt) {
                         }
                     });
                     if (toReturn[rolePrefix.replace(/:/g, "")].length == 0) {
-                        var noError = false;
+                        noError = false;
                         toReturn = undefined;
                         retError += `Error: ${rolePrefix} not found in the db` + "\n";
                     }
                 } else {
                     //Si le préfix est pas un txt on retourne une erreur
-                    var noError = false;
+                    noError = false;
                     toReturn = undefined;
                     retError += `Not a string at allRolePrefix.forEach(role =>{}) && role = ${rolePrefix}`+ "\n";
                     return [undefined, retError];
@@ -287,6 +287,7 @@ function TestDatabase(allRolePrefix, gt) {
                 }
             };
         }
+        console.log(toReturn);
         return [toReturn, retError];
     } else {
         //Si on a pas donner de liste de préfix
