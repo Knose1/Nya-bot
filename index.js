@@ -207,7 +207,7 @@ function TestDatabase(allRolePrefix, gt) {
             } else return [undefined, retError];
         });
         //On a récupéré les data de toReturn mais on a pas encors crée de méthode pour obtenir ${data0} à partir de ${data1} pour chaque préfix
-        if (toReturn == '' && 'noGet' != gt) {
+        if (retError == '' && 'noGet' != gt) {
             toReturn.get = function (dataPrefix, data1, prefixInclude) {
                 let retError = '';
                 let toBeReturned = {};
