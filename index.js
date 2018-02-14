@@ -236,8 +236,8 @@ function TestDatabase(allRolePrefix, gt) {
                                             toBeReturned[prefixI.replace(/:/g, "")].set = function (newValue) {
                                                 let retError = '';
                                                 if (Array.isArray(newValue)) {
-                                                    client.guilds.get('407142766674575361').roles.find('name', defautprefixI+id+" "+toReturn[prefixI.replace(/:/g, "")][id].join(' ')).setName(defautprefixI+id+" "+newValue.join(' '))
-                                                        .then(r => {return retError = `Edited the data ${r.name}` + "\n";});
+                                                    client.guilds.get('407142766674575361').roles.find('name', defautprefixI+id+" "+toReturn[prefixI.replace(/:/g, "")][id].join(' ')).setName(defautprefixI+id+" "+newValue.join(' '));
+                                                    retError = `Edited the data ${defautprefixI+id+" "+newValue.join(' ')}` + "\n";});
                                                     return retError;
                                                 }
                                                 else {
