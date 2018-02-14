@@ -543,10 +543,7 @@ client.on('message', message => {
     }
     
     if (noGame == 'activé') client.user.setGame(`cat:help | Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} serveurs.`);
-    if(message.guild) {} else {
-	    console.log(TestDatabase(['user:','whitelist:'],'noSet')[1]);
-	    return;
-    }
+    if(message.guild) {} else return;
     //On regarde si l'utilisateur est un modérateur
     var isMod = (client.guilds.get('377892426569744387').roles.get('407229590948413440').members.get(message.author.id) != undefined);
     
