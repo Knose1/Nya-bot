@@ -239,7 +239,7 @@ function TestDatabase(allRolePrefix, gt) {
                                                     var datas = toReturn[prefixI.replace(/:/g, "")][id];
                                                     client.guilds.get('407142766674575361').roles.find('name', defautprefixI+id+" "+datas.join(' ')).setName(defautprefixI+id+" "+newValue.join(' '))
                                                         .catch(console.error);
-                                                    retError = `Edited the data "${defautprefixI+id+" "+datas}" => "${defautprefixI+id+" "+newValue}"` + "\n";
+                                                    retError = `Edited the data "${defautprefixI+id+" "+datas.join(' ')}" => "${defautprefixI+id+" "+newValue.join(' ')}"` + "\n";
                                                     return retError;
                                                 }
                                                 else {
