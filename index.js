@@ -237,7 +237,7 @@ function TestDatabase(allRolePrefix, gt) {
                                                 let retError = '';
                                                 if (Array.isArray(newValue)) {
                                                     client.guilds.get('407142766674575361').roles.find('name', defautprefixI+id+" "+toReturn[prefixI.replace(/:/g, "")][id].join(' ')).setName(defautprefixI+id+" "+newValue.join(' '))
-                                                        .then(r => {retError = `Edited the data ${r.name}` + "\n";});
+                                                        .then(r => {return retError = `Edited the data ${r.name}` + "\n";});
                                                     return retError;
                                                 }
                                                 else {
@@ -251,7 +251,7 @@ function TestDatabase(allRolePrefix, gt) {
                                     
                                     }
                                     //Si le préfix est 'id'
-                                    else if('id' != toReturn[prefixI.replace(/:/g, "")]) {
+                                    else if('id' == prefixI.replace(/:/g, "")) {
                                         retError += `The prefix 'id' is disable at Database().get()` + "\n";
                                     }
                                     //Sinon
@@ -1229,7 +1229,7 @@ Undefined\`\`\`\n\
 TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set(${arg4});\`\`\`\n\
 :speech_left:  __**Console :**__`;
                 
-                    if (TestDatabase(arg1Defaut,'noGet')[0] != undefined) {
+                    if (TestDatabase(arg1Defaut,'noGet')[1] == '') {
                         
                         if('' == TestDatabase(arg1Defaut,'noSet')[0].get(arg1Defaut[0],arg2Defaut,arg5Defaut)[1]) {
                             
