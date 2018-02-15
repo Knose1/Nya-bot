@@ -1277,10 +1277,15 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
 	    }
             else {
             /*J'ai pas de compte 0.0 INSCRIT TOI ESCLAVE ! xD*/
-            
-                message.delete(500)
-                    .then(msg => console.log(`Message supprimé, raison: rpg; Auteur: ${msg.author}`))
-                    .catch(console.error);
+                
+                var Udb TestDatabase(['user:'],'')[0].get('user:', message.author.id, ['']);
+                if (Udb[1] != '') {
+                    
+                    /*ICI À FINIR*/
+                    message.delete(500)
+                        .then(msg => console.log(`Message supprimé, raison: rpg; Auteur: ${msg.author}`))
+                        .catch(console.error);
+                }
                 /*Fin de "J'ai pas de compte"*/
             }
         } else {
