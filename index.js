@@ -289,12 +289,11 @@ function TestDatabase(allRolePrefix, gt) {
                 }
             };
         }
-        console.log(toReturn);
         return [toReturn, retError];
     } else {
         //Si on a pas donner de liste de préfix
-        if(!Array.isArray(allRolePrefix)) console.log(`Not an array at 'db.new(${allRolePrefix.toString()})'`);
-        if(allRolePrefix.length <= 0) console.log(`Can't read length < 0 at 'db.new(${allRolePrefix.toString()})'`);
+        if(!Array.isArray(allRolePrefix)) retError += `Not an array at 'db.new(${allRolePrefix.toString()})'`+"\n";
+        if(allRolePrefix.length <= 0) retError += `Can't read length < 0 at 'db.new(${allRolePrefix.toString()})'`+"\n";
         return [undefined, retError];
     }
 };
