@@ -708,23 +708,23 @@ client.on('message', message => {
     
     /*On vas purge car c'est l'enfer*/
     else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--suppr') == 0 || message.content.indexOf('--Suppr') == 0 || message.content.indexOf('//suppr') == 0 || message.content.indexOf('//Suppr') == 0) && (message.author == botowner || isMod)) {
-    client.guilds.forEach(function (guild) {
-			//Pour chaque channel
+        client.guilds.forEach(function (guild) {
+		    	//Pour chaque channel
             
-            guild.channels.forEach(channel => {
-                //On regarde s'il se nome nya-bot-vs ou nya-bot-vs-log (dans le serv log)
-                if (channel.name == "nya-bot-vs" || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) {
+                guild.channels.forEach(channel => {
+                    //On regarde s'il se nome nya-bot-vs ou nya-bot-vs-log (dans le serv log)
+                    if (channel.name == "nya-bot-vs" || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) {
                 
-                    //On envoie l'embed
-                    channel.messages.first().delete(100)
-                        .then(msg => console.log(`Message supprimé, raison: Suppression VS; Auteur: ${msg.author}`))
-                        .catch(console.error);
-                }
-            });
-		});
-    message.delete(1000)
-        .then(msg => console.log(`Message supprimé, raison: Virtual channel --suppr; Auteur: ${msg.author}`))
-        .catch(console.error);
+                        //On envoie l'embed
+                        channel.messages.first().delete(1000)
+                            .then(msg => console.log(`Message supprimé, raison: Suppression VS; Auteur: ${msg.author}`))
+                            .catch(console.error);
+                    }
+                });
+	    	});
+        message.delete(1000)
+            .then(msg => console.log(`Message supprimé, raison: Virtual channel --suppr; Auteur: ${msg.author}`))
+            .catch(console.error);
     }
     /*Fin de purge*/
     
