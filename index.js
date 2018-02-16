@@ -707,21 +707,31 @@ client.on('message', message => {
     /*FIN DE --NYA*/
     
     /*On vas purge car c'est l'enfer*/
-    else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--suppr') == 0 || message.content.indexOf('--Suppr') == 0 || message.content.indexOf('//suppr') == 0 || message.content.indexOf('//Suppr') == 0) && (message.author == botowner || isMod)) {
-        client.guilds.forEach(function (guild) {
-		    	//Pour chaque channel
+    else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--suppr') == 0 || message.content.indexOf('--Suppr') == 0 || message.content.indexOf('//suppr') == 0 || message.content.indexOf('//Suppr') == 0 || /**/ message.content.indexOf('--purge') == 0 || message.content.indexOf('--Purge') == 0 || message.content.indexOf('//purge') == 0 || message.content.indexOf('//Purge') == 0) && (message.author == botowner || isMod)) {
+        var args = message.content.slice('--suppr'.length).trim().split(/ +/g);
+        if (args.length == 1) {
+            if (Number(args[0]) != NaN) {
+                client.guilds.forEach(function (guild) {
+		            	//Pour chaque channel
             
-                guild.channels.forEach(channel => {
-                    //On regarde s'il se nome nya-bot-vs ou nya-bot-vs-log (dans le serv log)
-                    if (channel.name == "nya-bot-vs" || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) {
+                        guild.channels.forEach(channel => {
+                            //On regarde s'il se nome nya-bot-vs ou nya-bot-vs-log (dans le serv log)
+                            if (channel.name == "nya-bot-vs" || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) {
                 
-                        //On envoie l'embed
-                        channel.messages.first().delete(1000)
-                            .then(msg => console.log(`Message supprimé, raison: Suppression VS; Auteur: ${msg.author}`))
-                            .catch(console.error);
-                    }
-                });
-	    	});
+                                //On envoie l'embed
+                                channel.messages.first().delete(1000)
+                                    .then(msg => console.log(`Message supprimé, raison: Suppression VS; Auteur: ${msg.author}`))
+                                    .catch(console.error);
+                            }
+                        });
+	    	        });
+                client.channels.get('414179723720130560').send();
+            } else {
+                message.author.send(`__Error, vous n'avez pas entré de nombre; **Utilisation --suppr** :__\n\n \`//suppr <nombre>\` \n\n alias: \`//purge <nombre>\``);
+            }
+        } else {
+            message.author.send(`__Utilisation **--suppr** :__\n\n \`//suppr <nombre>\` \n\n alias: \`//purge <nombre>``);
+        }
         message.delete(1000)
             .then(msg => console.log(`Message supprimé, raison: Virtual channel --suppr; Auteur: ${msg.author}`))
             .catch(console.error);
