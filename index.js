@@ -718,7 +718,7 @@ client.on('message', message => {
         if (args.length == 1) {
             if (Number(args[0]) != NaN) {
                 let i = 0;
-                while (i =< args[0]) {
+                while (i <= args[0]) {
                     i += 1;
                     client.guilds.forEach(guild => {
                 	//Pour chaque channel
