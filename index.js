@@ -1295,9 +1295,9 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
             else {
                 /*J'ai pas de compte 0.0 INSCRIT TOI ESCLAVE ! xD*/
                 
-                var Userdb TestDatabase(['user:'],'')[0].get('user:', message.author.id, ['']);
+                var Userdb = TestDatabase(['user:'],'')[0].get('user:', message.author.id, ['']);
                 if (Userdb[1] != '') {
-                    TestDatabase(['user:'],'').create('user',prefix, [datas]);/*ICI ICI ICI ICI ICI*//*Aussi: créer la fonction*/
+                    TestDatabase(['user:'],'').createForEach('user',[], [datas]);/*ICI ICI ICI ICI ICI*//*Aussi: créer la fonction*/
                     message.delete(500)
                         .then(msg => console.log(`Message supprimé, raison: rpg; Auteur: ${msg.author}`))
                         .catch(console.error);
