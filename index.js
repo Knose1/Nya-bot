@@ -711,13 +711,13 @@ client.on('message', message => {
     client.guilds.forEach(function (guild) {
 			//Pour chaque channel
             
-            guild.channels.forEach(function (channel) {
+            guild.channels.forEach(channel => {
                 //On regarde s'il se nome nya-bot-vs ou nya-bot-vs-log (dans le serv log)
                 if (channel.name == "nya-bot-vs" || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) {
                 
                     //On envoie l'embed
-                    channel.messages.last().delete(100)
-                        .then(msg => console.log(`Message supprimé, raison: Suppression; Auteur: ${msg.author}`))
+                    channel.messages.first().delete(100)
+                        .then(msg => console.log(`Message supprimé, raison: Suppression VS; Auteur: ${msg.author}`))
                         .catch(console.error);
                 }
             });
