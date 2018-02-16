@@ -207,7 +207,7 @@ function TestDatabase(allRolePrefix, gt) {
             } else return [undefined, retError];
         });
         //On a récupéré les data de toReturn mais on a pas encors crée de méthode pour obtenir ${data0} à partir de ${data1} pour chaque préfix
-        if (retError == '' && 'noGet' != gt) {
+        if (retError == '' && 'noGet' != gt && 'noFunction' != gt) {
             toReturn.get = function (dataPrefix, data1, prefixInclude) {
                 let retError = '';
                 let toBeReturned = {};
@@ -231,7 +231,7 @@ function TestDatabase(allRolePrefix, gt) {
                                         toBeReturned[prefixI.replace(/:/g, "")].value = toReturn[prefixI.replace(/:/g, "")][id];
                                         
                                         
-                                        if ('noSet' != gt) {
+                                        if ('noSet' != gt && gt != 'noFunction') {
                                             /*On créer une fonction .set()*/
                                             toBeReturned[prefixI.replace(/:/g, "")].set = function (newValue) {
                                                 let retError = '';
@@ -288,6 +288,10 @@ function TestDatabase(allRolePrefix, gt) {
                     return [undefined, retError];
                 }
             };
+        }
+        if (retError == '' && gt != 'noFunction' && gt != 'noCreate') {
+            toReturn.create = function (type,data) {
+            }
         }
         return [toReturn, retError];
     } else {
@@ -1157,7 +1161,7 @@ client.on('message', message => {
                     var ctbe = `\
 :tools:  __**Code to be executed :**__\n\
 \`\`\`javascript\n\
-console.log(TestDatabase(${arg1},'noGet'));\n\
+console.log(TestDatabase(${arg1},'noFunction'));\n\
 console.log(TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg3}));\`\`\`\n\
 :speech_left:  __**Result 1 :**__`;
                     
@@ -1165,7 +1169,7 @@ console.log(TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg3}));\`\
                     arg2Defaut = arg2Defaut.replace(/\"/g,"").replace(/\'/g,"");
                     arg3Defaut = arg3Defaut.replace(/\[/g,"").replace(/\]/g,"").replace(/\"/g,"").replace(/\'/g,"").split(',');
                     
-                    var result1 = TestDatabase(arg1Defaut,'noGet');
+                    var result1 = TestDatabase(arg1Defaut,'noFunction');
                     if (result1[1] == '') {
                         var error2 = '';
                         if ('' != TestDatabase(arg1Defaut,'noSet')[0].get(arg1Defaut[0],arg2Defaut,arg3Defaut)[1]) {
@@ -1227,7 +1231,7 @@ Undefined\`\`\`\n\
 TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set(${arg4});\`\`\`\n\
 :speech_left:  __**Console :**__`;
                 
-                    if (TestDatabase(arg1Defaut,'noGet')[1] == '') {
+                    if (TestDatabase(arg1Defaut,'noFunction')[1] == '') {
                         
                         if('' == TestDatabase(arg1Defaut,'noSet')[0].get(arg1Defaut[0],arg2Defaut,arg5Defaut)[1]) {
                             
@@ -1243,7 +1247,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                         }
                         
                     } else {
-                        message.channel.send(ctbe+"\n"+'```'+TestDatabase(arg1Defaut,'noGet')[1]+'```');
+                        message.channel.send(ctbe+"\n"+'```'+TestDatabase(arg1Defaut,'noFunction')[1]+'```');
                     }
                 }
                 
@@ -1251,13 +1255,13 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                 else {
                 message.author.send('__**use of cat-db :**__ \n\n\
     `cat-db execute <array1> <string> [array2]` \n\
-        ```javascript \n\
+        ```javascript\n\
         //If array2 isn\'t set, array1 will set array2 \n\
-        console.log(TestDatabase(<array1>,\'noGet\')); \n\
+        console.log(TestDatabase(<array1>,\'noFunction\')); \n\
         console.log(TestDatabase(<array1>,\'noSet\').get(<array1>[0], <string>, [array2]));```\n\
 \n\
     `cat-db set <array1> <string1> <string2> <array2> [array3]` \n\
-        ```javascript \n\
+        ```javascript\n\
         //If array3 isn\'t set, array1 will set array3 \n\
         TestDatabase(<array1>).get(<array1>[0], <string1>, [array3])[<string2>].set(<array2>);```');
                 }
@@ -1265,28 +1269,28 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
             else if (command = 'db' && (message.author == botowner || 'true' == isWhitelisted['whitelist']) && args[0] == undefined) {
                 message.author.send('__**use of cat-db :**__ \n\n\
     `cat-db execute <array1> <string> [array2]` \n\
-        ```javascript \n\
+        ```javascript\n\
         //If array2 isn\'t set, array1 will set array2 \n\
-        console.log(TestDatabase(<array1>,\'noGet\')); \n\
+        console.log(TestDatabase(<array1>,\'noFunction\')); \n\
         console.log(TestDatabase(<array1>,\'noSet\').get(<array1>[0], <string>, [array2]));```\n\
 \n\
     `cat-db set <array1> <string1> <string2> <array2> [array3]` \n\
-        ```javascript \n\
+        ```javascript\n\
         //If array3 isn\'t set, array1 will set array3 \n\
         TestDatabase(<array1>).get(<array1>[0], <string1>, [array3])[<string2>].set(<array2>);```');
-	    }
+            }
             else {
-            /*J'ai pas de compte 0.0 INSCRIT TOI ESCLAVE ! xD*/
+                /*J'ai pas de compte 0.0 INSCRIT TOI ESCLAVE ! xD*/
                 
-                var Udb TestDatabase(['user:'],'')[0].get('user:', message.author.id, ['']);
-                if (Udb[1] != '') {
-                    
-                    /*ICI À FINIR*/
+                var Userdb TestDatabase(['user:'],'')[0].get('user:', message.author.id, ['']);
+                if (Userdb[1] != '') {
+                    TestDatabase(['user:'],'').create('user',[prefix, datas]);/*ICI ICI ICI ICI ICI*//*Aussi: créer la fonction*/
                     message.delete(500)
                         .then(msg => console.log(`Message supprimé, raison: rpg; Auteur: ${msg.author}`))
                         .catch(console.error);
                 }
                 /*Fin de "J'ai pas de compte"*/
+                
             }
         } else {
             message.author.send('Désolé le RPG nya!bot est en vertion béta test');
