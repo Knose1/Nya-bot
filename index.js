@@ -710,7 +710,6 @@ client.on('message', message => {
     else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--suppr') == 0 || message.content.indexOf('--Suppr') == 0 || message.content.indexOf('//suppr') == 0 || message.content.indexOf('//Suppr') == 0 || /**/ message.content.indexOf('--purge') == 0 || message.content.indexOf('--Purge') == 0 || message.content.indexOf('//purge') == 0 || message.content.indexOf('//Purge') == 0) && (message.author == botowner || isMod)) {
         let Nmessage = message;
         let args = message.content.slice('--suppr'.length).trim().split(/ +/g);
-        let content = client.channels.get('406806944255442955').messages.last().content
         
         message.delete(1000)
             .then(msg => console.log(`Message supprimé, raison: Virtual channel --suppr; Auteur: ${msg.author}`))
@@ -720,9 +719,10 @@ client.on('message', message => {
                 let i = 0;
                 while (i <= args[0]) {
                     i += 1;
+                    let content = client.channels.get('406806944255442955').messages.last().content;
                     client.guilds.forEach(guild => {
                 	//Pour chaque channel
-            	
+            	    
                         guild.channels.forEach(channel => {
                                 //On regarde s'il se nome nya-bot-vs ou nya-bot-vs-log (dans le serv log) et que le contenu que l'on veux suppr est le même que celui sur le VS
                                 if ((channel.name == "nya-bot-vs" || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) && channel.messages.last().content == content) {
@@ -734,8 +734,8 @@ client.on('message', message => {
                                 }
                             });
                     });
-                    client.channels.get('414179723720130560').send(`${Nmessage.author.username}#${Nmessage.author.discriminator} à utilisé **--purge** : '${Nmessage.author.content}'`);
                 }
+                client.channels.get('414179723720130560').send(`${Nmessage.author.username}#${Nmessage.author.discriminator} à utilisé **--purge** : '${Nmessage.content}'`);
             } else {
                 message.author.send(`__Error, vous n'avez pas entré de nombre; **Utilisation --suppr** :__\n\n \`//suppr <nombre>\` \n\n alias: \`//purge <nombre>\``);
             }
