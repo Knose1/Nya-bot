@@ -283,16 +283,29 @@ function TestDatabase(allRolePrefix, gt) {
                         return [undefined, retError];
                     }
                 } else {
-                    if (typeof(dataPrefix) == 'string') retError += `dataPrefix :Not a string at Database().get(${dataPrefix.toString()},${data1.toString()})`+"\n";
-                    if (typeof(data1) == 'string') retError += `data1 :Not a string at Database().get(${dataPrefix.toString()},${data1.toString()})`+"\n";
+                    if (typeof(dataPrefix) != 'string') retError += `dataPrefix :Not a string at Database().get(${dataPrefix.toString()},${data1.toString()})`+"\n";
+                    if (typeof(data1) != 'string') retError += `data1 :Not a string at Database().get(${dataPrefix.toString()},${data1.toString()})`+"\n";
                     return [undefined, retError];
                 }
             };
         }
+        /*Fonction Create*/
         if (retError == '' && gt != 'noFunction' && gt != 'noCreate') {
-            toReturn.create = function (type,data) {
+            toReturn.create = function (type,Wprefix,data) {
+                retError = '';
+                if (typeof(type) != 'string') {
+                    if(Wprefix != 'string') {
+                        client.guilds.get('407142766674575361');
+                    } else {
+                    retError += `Not a string at Database().create(${type}, ${Wprefix})`;
+                    }
+                } else {
+                    retError += `Not a string at Database().create(${type})`;
+                }
+                return retError;
             }
         }
+        /*Fin de fonction create*/
         return [toReturn, retError];
     } else {
         //Si on a pas donner de liste de préfix
@@ -1284,7 +1297,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                 
                 var Userdb TestDatabase(['user:'],'')[0].get('user:', message.author.id, ['']);
                 if (Userdb[1] != '') {
-                    TestDatabase(['user:'],'').create('user',[prefix, datas]);/*ICI ICI ICI ICI ICI*//*Aussi: créer la fonction*/
+                    TestDatabase(['user:'],'').create('user',prefix, [datas]);/*ICI ICI ICI ICI ICI*//*Aussi: créer la fonction*/
                     message.delete(500)
                         .then(msg => console.log(`Message supprimé, raison: rpg; Auteur: ${msg.author}`))
                         .catch(console.error);
