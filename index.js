@@ -711,9 +711,6 @@ client.on('message', message => {
         let Nmessage = message;
         let args = message.content.slice('--suppr'.length).trim().split(/ +/g);
         
-        message.delete(1000)
-            .then(msg => console.log(`Message supprimé, raison: Virtual channel --suppr; Auteur: ${msg.author}`))
-            .catch(console.error);
         if (args.length == 1) {
             if (Number(args[0]) != NaN) {
                 let i = 0;
@@ -742,7 +739,9 @@ client.on('message', message => {
         } else {
             message.author.send(`__Utilisation **--suppr** :__\n\n \`//suppr <nombre>\` \n\n alias: \`//purge <nombre>\``);
         }
-        
+        message.delete(1000)
+            .then(msg => console.log(`Message supprimé, raison: Virtual channel --suppr; Auteur: ${msg.author}`))
+            .catch(console.error);
     }
     /*Fin de purge*/
     
