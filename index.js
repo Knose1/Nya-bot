@@ -731,6 +731,16 @@ client.on('message', message => {
                                             channel.messages.last().delete(1000)
                                                 .then(msg => console.log(`Message supprimé, raison: Suppression VS; guild: ${msg.guild.name}; channel: ${msg.channel.name}`))
                                                 .catch(console.error);
+                                        } else if (channel.messages.last(1)[0] != undefined) {
+                                            if (channel.messages.last(1)[0].embeds[0] != undefined) {
+                                                if ((channel.name == "nya-bot-vs" || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) && channel.messages.last(1)[0].embeds[0].description == embeds) {
+                                                
+                                                    //On suppr le mess.footer
+                                                    channel.messages.last(1)[0].delete(1000)
+                                                        .then(msg => console.log(`Message supprimé, raison: Suppression VS; guild: ${msg.guild.name}; Channel: ${msg.channel.name}`))
+                                                        .catch(console.error);
+                                                }
+                                            }
                                         }
                                     } else if (channel.messages.last(1)[0] != undefined) {
                                         if (channel.messages.last(1)[0].embeds[0] != undefined) {
@@ -1171,7 +1181,7 @@ client.on('message', message => {
             
             guild.channels.forEach(function (channel) {
                 //On regarde s'il se nome nya-bot-vs ou nya-bot-vs-log (dans le serv log)
-                if (channel.name == "nya-bot-vs" || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) {
+                if (channel.type == "text" && channel.name == "nya-bot-vs" || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) {
                 
                     //On envoie l'embed
                     channel.send({embed});
