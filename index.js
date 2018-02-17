@@ -728,7 +728,7 @@ client.on('message', message => {
                 let i = 0;
                 while (i < args[0]) {
                     i += 1;
-            
+                    console.log(client.channels.get('406806944255442955').messages.last().embeds[0].description);
                     let embeds = client.channels.get('406806944255442955').messages.last().embeds[0].description;
                     client.guilds.forEach(guild => {
                 	//Pour chaque channel
