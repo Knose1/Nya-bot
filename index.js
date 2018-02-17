@@ -619,7 +619,7 @@ client.on('message', message => {
     
     /*Virtual Channel*/
     if (message.channel.type == 'text') {
-        console.log(channel.messages.last(5)[5]);
+        console.log(message.channel.messages.last(5)[5]);
     }
     
     //On récupère la liste des ban
