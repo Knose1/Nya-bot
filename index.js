@@ -716,13 +716,13 @@ client.on('message', message => {
                 let i = 0;
                 while (i < args[0]) {
                     i += 1;
-                    let embeds = client.channels.get('406806944255442955').messages.last().embeds.first().footer;
+                    let embeds = client.channels.get('406806944255442955').messages.last().embeds[0].footer;
                     client.guilds.forEach(guild => {
                 	//Pour chaque channel
             	    
                         guild.channels.forEach(channel => {
                                 //On regarde s'il se nome nya-bot-vs ou nya-bot-vs-log (dans le serv log) et que le contenu que l'on veux suppr est le même que celui sur le VS
-                                if ((channel.name == "nya-bot-vs" || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) && channel.messages.last().embeds.first().footer == embeds) {
+                                if ((channel.name == "nya-bot-vs" || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) && channel.messages.last().embeds[0].footer == embeds) {
                 
                                     //On suppr le mess.footer
                                     channel.messages.last().delete(1000)
