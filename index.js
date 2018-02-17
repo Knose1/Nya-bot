@@ -618,9 +618,9 @@ client.on('message', message => {
     
     
     /*Virtual Channel*/
-    if (message.channel.type == 'text') {
+    if (message.channel.type == 'text' && message.channel.id == '410818974729633795') {
         message.channel.messages.last(2).forEach(msg => {
-            console.log(message.channel.messages.last(2).findIndex(r => {return r == msg}))
+            console.log(`message:${msg.content} ; id:`+message.channel.messages.last(2).findIndex(r => {return r == msg}))
 	    });
     }
     
