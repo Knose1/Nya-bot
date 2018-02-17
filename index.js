@@ -366,10 +366,11 @@ catimg = [
 
 
 
-
+let CanReloading = false;
 
 //lorsque Nya!bot est pret
 client.on('ready', () => {
+    CanReloading = true;
     console.log(`Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} servers.`);
     //envoyer un message au server log
     var channel = client.channels.get(logserv);
@@ -513,13 +514,14 @@ client.on('reconnecting', reconnecting=> {
             
             guild.channels.forEach(function (channel) {
                 //On regarde s'il se nome nya-bot-vs ou nya-bot-vs-log (dans le serv log)
-                if (channel.type == "text" && channel.name == "nya-bot-vs" || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) {
+                if (CanReloading && channel.type == "text" && channel.name == "nya-bot-vs" || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) {
                 
                     //On envoie l'embed
                     channel.send({embed});
                 }
             });
 		});
+        CanReloading = false;
     
 });
 
@@ -554,6 +556,7 @@ client.on('resume', resume => {
                 }
             });
 		});
+        CanReloading = true;
 });
 
 
