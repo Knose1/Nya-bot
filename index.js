@@ -423,6 +423,7 @@ client.on('ready', () => {
     
     //Fin de serveur banni
     
+    client.channels.get('406802264540315648').send(`--Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} servers.`);
     
 });
 
@@ -492,12 +493,67 @@ client.on('reconnecting', reconnecting=> {
     console.log('Reconnection');
     var channel = client.channels.get(logserv);
     channel.send('Reconnection');
+    
+    const embed = new Discord.RichEmbed()
+            //.setTitle("Virtual Channel")
+            .setAuthor("BOT: "+client.user.username+"#"+client.user.discriminator, "https://media.discordapp.net/attachments/407271018516971532/407272279416766475/BOT.png")
+            .setColor("#DD00FF")
+            .setDescription('Le nya!bot revien, veuillez patienter ...')
+            .setFooter("Le "+new Date().getDate()+"/"+(new Date().getMonth() + 1)+"/"+new Date().getFullYear()+" à "+new Date().toLocaleTimeString()+" | "+client.guilds.get('377892426569744387').name.replace(/`/g,"").replace(/_/g,"").replace(/\*/g,"")+" | "+client.user.id , client.guilds.get('377892426569744387').iconURL)
+            .setThumbnail(client.user.avatarURL);
+       
+        
+		
+        /*Fin embed*/
+        
+        //Pour chaque serv:
+     
+		client.guilds.forEach(function (guild) {
+			//Pour chaque channel
+            
+            guild.channels.forEach(function (channel) {
+                //On regarde s'il se nome nya-bot-vs ou nya-bot-vs-log (dans le serv log)
+                if (channel.type == "text" && channel.name == "nya-bot-vs" || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) {
+                
+                    //On envoie l'embed
+                    channel.send({embed});
+                }
+            });
+		});
+    
 });
 
 client.on('resume', resume => {
     console.log('Reprise du nya!bot');
     var channel = client.channels.get(logserv);
     channel.send('Reprise du nya!bot');
+    
+    const embed = new Discord.RichEmbed()
+            //.setTitle("Virtual Channel")
+            .setAuthor("BOT: "+client.user.username+"#"+client.user.discriminator, "https://media.discordapp.net/attachments/407271018516971532/407272279416766475/BOT.png")
+            .setColor("#DD00FF")
+            .setDescription('Le nya!bot est de retour !')
+            .setFooter("Le "+new Date().getDate()+"/"+(new Date().getMonth() + 1)+"/"+new Date().getFullYear()+" à "+new Date().toLocaleTimeString()+" | "+client.guilds.get('377892426569744387').name.replace(/`/g,"").replace(/_/g,"").replace(/\*/g,"")+" | "+client.user.id , client.guilds.get('377892426569744387').iconURL)
+            .setThumbnail(client.user.avatarURL);
+       
+        
+		
+        /*Fin embed*/
+        
+        //Pour chaque serv:
+     
+		client.guilds.forEach(function (guild) {
+			//Pour chaque channel
+            
+            guild.channels.forEach(function (channel) {
+                //On regarde s'il se nome nya-bot-vs ou nya-bot-vs-log (dans le serv log)
+                if (channel.type == "text" && channel.name == "nya-bot-vs" || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) {
+                
+                    //On envoie l'embed
+                    channel.send({embed});
+                }
+            });
+		});
 });
 
 
