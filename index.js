@@ -728,34 +728,34 @@ client.on('message', message => {
                                             channel.messages.last().delete(1000)
                                                 .then(msg => console.log(`Message supprimé, raison: Suppression VS; guild: ${msg.guild.name}; channel: ${msg.channel.name}`))
                                                 .catch(console.error);
-                                        } else if (channel.messages.last(1)[0] != undefined) {
-                                            if (channel.messages.last(1)[0].embeds[0] != undefined) {
-                                                if ((channel.name == "nya-bot-vs" || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) && channel.messages.last(1)[0].embeds[0].description == embeds) {
+                                        } else if (channel.messages.last(1)[1] != undefined) {
+                                            if (channel.messages.last(1)[1].embeds[0] != undefined) {
+                                                if ((channel.name == "nya-bot-vs" || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) && channel.messages.last(1)[1].embeds[0].description == embeds) {
                                                 
                                                     //On suppr le mess.footer
-                                                    channel.messages.last(1)[0].delete(1000)
+                                                    channel.messages.last(1)[1].delete(1000)
                                                         .then(msg => console.log(`Message supprimé, raison: Suppression VS; guild: ${msg.guild.name}; Channel: ${msg.channel.name}`))
                                                         .catch(console.error);
                                                 }
                                             }
                                         }
-                                    } else if (channel.messages.last(1)[0] != undefined) {
-                                        if (channel.messages.last(1)[0].embeds[0] != undefined) {
-                                            if ((channel.name == "nya-bot-vs" || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) && channel.messages.last(1)[0].embeds[0].description == embeds) {
+                                    } else if (channel.messages.last(1)[1] != undefined) {
+                                        if (channel.messages.last(1)[1].embeds[0] != undefined) {
+                                            if ((channel.name == "nya-bot-vs" || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) && channel.messages.last(1)[1].embeds[0].description == embeds) {
                                         
                                                 //On suppr le mess.footer
-                                                channel.messages.last(1)[0].delete(1000)
+                                                channel.messages.last(1)[1].delete(1000)
                                                     .then(msg => console.log(`Message supprimé, raison: Suppression VS; guild: ${msg.guild.name}; Channel: ${msg.channel.name}`))
                                                     .catch(console.error);
                                             }
                                         }
                                     }
-                                } else if (channel.messages.last(1)[0] != undefined) {
-                                    if (channel.messages.last(1)[0].embeds[0] != undefined) {
-                                        if ((channel.name == "nya-bot-vs" || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) && channel.messages.last(1)[0].embeds[0].description == embeds) {
+                                } else if (channel.messages.last(1)[1] != undefined) {
+                                    if (channel.messages.last(1)[1].embeds[0] != undefined) {
+                                        if ((channel.name == "nya-bot-vs" || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) && channel.messages.last(1)[1].embeds[0].description == embeds) {
                                         
                                             //On suppr le mess.footer
-                                            channel.messages.last(1)[0].delete(1000)
+                                            channel.messages.last(1)[1].delete(1000)
                                                 .then(msg => console.log(`Message supprimé, raison: Suppression VS; guild: ${msg.guild.name}; Channel: ${msg.channel.name}`))
                                                 .catch(console.error);
                                         }
