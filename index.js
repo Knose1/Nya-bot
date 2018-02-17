@@ -729,7 +729,7 @@ client.on('message', message => {
                 while (i < args[0]) {
                     i += 1;
             
-                    let embeds = client.channels.get('406806944255442955').messages.last(i)[i-1].embeds[0].description;
+                    let embeds = client.channels.get('406806944255442955').messages.last().embeds[0].description;
                     client.guilds.forEach(guild => {
                 	//Pour chaque channel
             	    
