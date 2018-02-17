@@ -619,6 +619,7 @@ client.on('message', message => {
     
     /*Virtual Channel*/
     if (message.channel.type == 'text') {
+        console.log(message.channel.messages.last(2)[1].Message.content);
         console.log(message.channel.messages.last(2)[2].Message.content);
     }
     
