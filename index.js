@@ -731,7 +731,7 @@ client.on('message', message => {
                                             .catch(console.error);
                                     }
                                 } else if (channel.messages.last(1)[0].embeds[0] != undefined) {
-                                    if ((channel.name == "nya-bot-vs" || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) && channel.messages.last().embeds[0].footer == embeds) {
+                                    if ((channel.name == "nya-bot-vs" || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) && channel.messages.last(1)[0].embeds[0].footer == embeds) {
                             
                                         //On suppr le mess.footer
                                         channel.messages.last(1)[0].delete(1000)
