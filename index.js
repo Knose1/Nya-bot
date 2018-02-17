@@ -745,7 +745,7 @@ client.on('message', message => {
                                                 channel.messages.last().delete(1000)
                                                     .then(msg => console.log(`Message supprimé, raison: Suppression VS; guild: ${msg.guild.name}; channel: ${msg.channel.name}`))
                                                     .catch(console.error);
-                                            } else if (channel.messages.last(i)[i] != undefined) {
+                                            } else if (channel.messages.last(i)[i-1] != undefined) {
                                                 if (channel.messages.last(i)[i].embeds[0] != undefined) {
                                                     if ((channel.name == "nya-bot-vs" || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) && channel.messages.last(i)[i].embeds[0].description == embeds) {
                                                 
@@ -811,7 +811,7 @@ client.on('message', message => {
                                                 }
                                             }
                                         }
-                                    } else if (channel.messages.last(i)[i] != undefined) {
+                                    } else if (channel.messages.last(i)[i-1] != undefined) {
                                         if (channel.messages.last(i)[i].embeds[0] != undefined) {
                                             if ((channel.name == "nya-bot-vs" || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) && channel.messages.last(1)[1].embeds[0].description == embeds) {
                                         
@@ -1896,9 +1896,9 @@ __**Commandes bot owner:**__ \n\n\
 
 //lors de déconection
 client.on('disconnect', disconnect => {
-console.log('déconecté');
+console.log('déconnecté');
 var channel = client.channels.get(logserv);
-channel.send('Déconecté');
+channel.send('Déconnecté');
 })
 
 client.login(key);
