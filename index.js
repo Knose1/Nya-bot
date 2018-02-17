@@ -619,8 +619,9 @@ client.on('message', message => {
     
     /*Virtual Channel*/
     if (message.channel.type == 'text') {
-        console.log(message.channel.messages.last(2)[1].Message.content);
-        console.log(message.channel.messages.last(2)[2].Message.content);
+        message.channel.messages.last(2).forEach(msg => {
+            console.log(message.channel.messages.last(2).findIndex(r => {return r == msg}))
+	    });
     }
     
     //On récupère la liste des ban
