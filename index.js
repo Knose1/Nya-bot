@@ -721,6 +721,7 @@ client.on('message', message => {
                 	//Pour chaque channel
             	    
                         guild.channels.forEach(channel => {
+                            if (channel.type == 'text') {
                                 if (channel.messages.last() != undefined) {
                                     if (channel.messages.last().embeds[0] != undefined) {
                                         //On regarde s'il se nome nya-bot-vs ou nya-bot-vs-log (dans le serv log) et que le contenu que l'on veux suppr est le même que celui sur le VS
@@ -735,7 +736,7 @@ client.on('message', message => {
                                 } else if (channel.messages.last(1)[0] != undefined) {
                                     if (channel.messages.last(1)[0].embeds[0] != undefined) {
                                         if ((channel.name == "nya-bot-vs" || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) && channel.messages.last(1)[0].embeds[0].footer == embeds) {
-                                
+                                        
                                             //On suppr le mess.footer
                                             channel.messages.last(1)[0].delete(1000)
                                                 .then(msg => console.log(`Message supprimé, raison: Suppression VS; Channel: ${msg.channel}`))
@@ -743,7 +744,8 @@ client.on('message', message => {
                                         }
                                     }
                                 }
-                            });
+                            }
+                        });
                     });
                 }
                 client.channels.get('414179723720130560').send(`${Nmessage.author.username}#${Nmessage.author.discriminator} à utilisé **--purge** : '${Nmessage.content}'`);
