@@ -707,15 +707,12 @@ client.on('message', message => {
     /*FIN DE --NYA*/
     
     /*On vas purge car c'est l'enfer*/
-    else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--suppr') == 0 || message.content.indexOf('--Suppr') == 0 || message.content.indexOf('//suppr') == 0 || message.content.indexOf('//Suppr') == 0 || /**/ message.content.indexOf('--purge') == 0 || message.content.indexOf('--Purge') == 0 || message.content.indexOf('//purge') == 0 || message.content.indexOf('//Purge') == 0) && (message.author == botowner || isMod)) {
+    else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--suppr') == 0 || message.content.indexOf('--Suppr') == 0 || message.content.indexOf('//suppr') == 0 || message.content.indexOf('//Suppr') == 0) && (message.author == botowner || isMod)) {
         let Nmessage = message;
         let args = message.content.slice('--suppr'.length).trim().split(/ +/g);
         
-        if (args.length == 1) {
-            if (Number(args[0]) != NaN) {
-                let i = 0;
-                while (i < args[0]) {
-                    i += 1;
+        if (args.length == 0) {
+            
                     let embeds = client.channels.get('406806944255442955').messages.last().embeds[0].description;
                     client.guilds.forEach(guild => {
                 	//Pour chaque channel
