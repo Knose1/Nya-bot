@@ -726,7 +726,7 @@ client.on('message', message => {
                 
                                     //On suppr le mess
                                     channel.messages.last().delete(1000)
-                                        .then(msg => console.log(`Message supprimé, raison: Suppression VS; Channel: #{msg.channel}`))
+                                        .then(msg => console.log(`Message supprimé, raison: Suppression VS; Channel: ${msg.channel}`))
                                         .catch(console.error);
                                 }
                             });
