@@ -1428,7 +1428,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                 
                 //HELP Utilisation des commandes
                 else {
-                message.author.send('__**use of cat-db :**__ \n\n\
+                    message.channel.send('__**use of cat-db :**__ \n\n\
     `cat-db execute <array1> <string> [array2]` \n\
         ```javascript\n\
         //If array2 isn\'t set, array1 will set array2 \n\
@@ -1438,11 +1438,12 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
     `cat-db set <array1> <string1> <string2> <array2> [array3]` \n\
         ```javascript\n\
         //If array3 isn\'t set, array1 will set array3 \n\
-        TestDatabase(<array1>).get(<array1>[0], <string1>, [array3])[<string2>].set(<array2>);```');
+        TestDatabase(<array1>).get(<array1>[0], <string1>, [array3])[<string2>].set(<array2>);```')
+                    .then(msg => msg.delete(15000));
                 }
             }
             else if (command = 'db' && (message.author == botowner || isWhitelisted) && args[0] == undefined) {
-                message.author.send('__**use of cat-db :**__ \n\n\
+                message.channel.send('__**use of cat-db :**__ \n\n\
     `cat-db execute <array1> <string> [array2]` \n\
         ```javascript\n\
         //If array2 isn\'t set, array1 will set array2 \n\
@@ -1452,7 +1453,8 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
     `cat-db set <array1> <string1> <string2> <array2> [array3]` \n\
         ```javascript\n\
         //If array3 isn\'t set, array1 will set array3 \n\
-        TestDatabase(<array1>).get(<array1>[0], <string1>, [array3])[<string2>].set(<array2>);```');
+        TestDatabase(<array1>).get(<array1>[0], <string1>, [array3])[<string2>].set(<array2>);```')
+                .then(msg => msg.delete(15000));;
             }
             else {
                 /*J'ai pas de compte 0.0 INSCRIT TOI ESCLAVE ! xD*/
@@ -1489,7 +1491,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
     /*Commandes*/
     
     else if (iscommand == true) {
-        //Changer le jeu
+        //Commande GAME
         if (command == 'game' && message.author == botowner && args.length == 0) {
             client.user.setGame(`Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} servers.`);
             console.log('Changement du jeu: Par défaut');
@@ -1505,6 +1507,12 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
         else if (command == 'game' && message.author != botowner) {
             message.channel.send(message.author+" vous n'avez pas le droit d'utiliser "+"\""+message.content+"\"")
                 .then(msg => msg.delete(10000));
+        }
+        //Commande NYA
+        else if (command == 'nya' && args.length == 0) {
+            message.channel.send("Utilisation: \n\n\
+        `cat:nya <message>`")
+            .then(msg => msg.delete(20000));
         }
         else if (command == 'nya' && message.author == botowner && (args[0].toLowerCase() == 'owner' || args[0].toLowerCase() == 'strict')) {
             args[0] = '';
@@ -1529,32 +1537,31 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
             var channel = client.channels.get(logserv);
             channel.send(message.author+'. Message envoyé: '+args.join(' '));
         }
-        else if (command == 'nya') {
-            message.channel.send("Utilisation: \n\n\
-        `cat:nya <message>`")
-            .then(msg => msg.delete(20000));
-        }
+        //Commande INVITE
         else if (command == 'invite') {
             message.channel.send(`Toi l'adorateur de chats, voila mon invite: \n ${invite}`);
             console.log('Invitation envoyé');
             var channel = client.channels.get(logserv);
             channel.send('Invitation envoyé');
         }
+        //Commande LOGSERV
         else if (command == 'logserv') {
             message.channel.send(`Voici le server log: \n https://discord.gg/HTZy7tB`);
             console.log('Log Invitation envoyé');
             var channel = client.channels.get(logserv);
             channel.send('Log Invitation envoyé');
         }
+        //Commande GIT
         else if (command == 'git' || command == 'github') {
             message.channel.send(message.author+", voici mon lien github \n https://github.com/Knose1/Nya-bot");
         }
+        //Commande CAT
         else if (command == 'cat' && args.length == 0) {
-        var randcat = Math.floor(Math.random() * catimg.length);
-        message.channel.send(message.author+", "+catimg[randcat]);
+            var randcat = Math.floor(Math.random() * catimg.length);
+            message.channel.send(message.author+", "+catimg[randcat]);
         }
         else if (command == 'cat' && (args[0].toLowerCase() == 'length' || args[0].toLowerCase() == 'size')) {
-        message.channel.send(message.author+", il y a "+catimg.length+" images dans cat:cat");
+            message.channel.send(message.author+", il y a "+catimg.length+" images dans cat:cat");
         }
         else if (command == 'cat' && args.length == 2 && (args[0].toLowerCase() == 'purpose' || args[0].toLowerCase() == 'share')) {
         var channel = client.channels.get('405119142962659350');
@@ -1564,17 +1571,18 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
         else if (command == 'cat' && args.length != 2 && (args[0].toLowerCase() == 'purpose' || args[0].toLowerCase() == 'share')) {
         message.channel.send("Utilisation: \n\n\
         `cat:cat`\n\
-        `cat:cat purpose <url>` \n\
+        `cat:cat size` \n\
         `cat:cat share <url>`")
             .then(msg => msg.delete(20000));
         }
-        else if (command == 'cat') {
+        else if (command == 'cat' && args.length > 0) {
         message.channel.send("Utilisation: \n\n\
         `cat:cat`\n\
-        `cat:cat purpose <url>` \n\
+        `cat:cat size` \n\
         `cat:cat share <url>`")
             .then(msg => msg.delete(20000));
         }
+        //Commande GUILDI
         else if (command == 'guildi' && message.author == botowner) {
             var guild = client.guilds.get(args[0]);
             if (guild.available) {
