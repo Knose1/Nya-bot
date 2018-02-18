@@ -293,11 +293,14 @@ function TestDatabase(allRolePrefix, gt) {
         if (retError == '' && gt != 'noFunction' && gt != 'noCreate') {
             toReturn.create = function (type,Wprefix,data) {
                 retError = '';
-                if (typeof(type) != 'string') {
-                    if(Wprefix != 'string') {
-                        client.guilds.get('407142766674575361');
+                if (typeof(type) == 'string') {
+                    if(Array().isArray(Wprefix)) {
+                        client.guilds.get('407142766674575361').createRole({
+                            name: 'Super Cool People',
+                            color: 'BLUE',
+                        });
                     } else {
-                    retError += `Not a string at Database().create(${type}, ${Wprefix})`;
+                    retError += `Not an array at Database().create(${type}, ${Wprefix})`;
                     }
                 } else {
                     retError += `Not a string at Database().create(${type})`;
