@@ -1459,7 +1459,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                 
                 var Userdb = TestDatabase(['user:'],'')[0].get('user:', message.author.id, ['']);
                 if (Userdb[1] != '') {
-                    TestDatabase(['user:'],'').createForEach('user',[], [datas]);/*ICI ICI ICI ICI ICI*//*Aussi: créer la fonction*/
+                    //TestDatabase(['user:'],'').createForEach('user',[], [datas]);/*ICI ICI ICI ICI ICI*//*Aussi: créer la fonction*/
                     message.delete(500)
                         .then(msg => console.log(`Message supprimé, raison: rpg; Auteur: ${msg.author}`))
                         .catch(console.error);
@@ -1467,7 +1467,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                 /*Fin de "J'ai pas de compte"*/
                 
             }
-        } else {
+        } else if (message.author != botowner && message.guild.id == '110373943822540800') {
             message.author.send('Désolé le RPG nya!bot est en vertion béta test');
             message.delete(500)
                 .then(msg => console.log(`Message supprimé, raison: rpg; Auteur: ${msg.author}`))
@@ -1909,7 +1909,7 @@ __**Commandes bot owner:**__ \n\n\
         //pas de commande -> ne rien faire
         else if (command == '') {
         }
-        else {
+        else if (message.author != botowner && message.guild.id == '110373943822540800') {
             message.author.send('"'+message.content+' "'+" n'est pas une commande");
         }
         iscommand = false;
