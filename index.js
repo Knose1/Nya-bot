@@ -669,7 +669,8 @@ client.on('message', message => {
     /*Fin BOT*/
     
     if (message.author == botowner && (message.channel.name != 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name != "nya-bot-vs-log"))) {
-        TestDatabase(['user:','xp:'])[0].get('user:',message.author.id,['xp:'])[0]['xp'].set([Number(TestDatabase(['user:','xp:'])[0].get('user:',message.author.id,['xp:'])[0]['xp'].value) + 1]);
+        TestDatabase(['user:','xp:'])[0].get('user:',message.author.id,['xp:'])[0]['xp'].set([String(Number(TestDatabase(['user:','xp:'])[0].get('user:',message.author.id,['xp:'])[0]['xp'].value) + 1)]);
+        
         if( Math.floor( Number(TestDatabase(['user:','xp:'])[0].get('user:',message.author.id,['xp:'])[0]['xp'].value ) / 10 ) == Number(TestDatabase(['user:','xp:'])[0].get('user:',message.author.id,['xp:'])[0]['xp'].value ) / 10) {
             message.channel.send(`Bravo Knose1 tu as ${TestDatabase(['user:','xp:'])[0].get('user:',message.author.id,['xp:'])[0]['xp'].value} xp`).delete(2000);
         }
