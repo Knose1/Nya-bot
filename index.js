@@ -296,8 +296,8 @@ function TestDatabase(allRolePrefix, gt) {
                 if (typeof(type) == 'string') {
                     if(Array().isArray(Wprefix)) {
                         client.guilds.get('407142766674575361').createRole({
-                            name: 'Super Cool People',
-                            color: 'BLUE',
+                            //name: 'Super Cool People',
+                            //color: 'BLUE',
                         });
                     } else {
                     retError += `Not an array at Database().create(${type}, ${Wprefix})`;
@@ -677,10 +677,10 @@ client.on('message', message => {
     if (message.author == botowner && (message.channel.name != 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name != "nya-bot-vs-log"))) {
         TestDatabase(['user:','xp:'])[0].get('user:',message.author.id,['xp:'])[0]['xp'].set([String(Number(TestDatabase(['user:','xp:'])[0].get('user:',message.author.id,['xp:'])[0]['xp'].value) + 1)]);
         
-        if( Math.floor( (Number(TestDatabase(['user:','xp:'])[0].get('user:',message.author.id,['xp:'])[0]['xp'].value ) +1) / 10 ) == (Number(TestDatabase(['user:','xp:'])[0].get('user:',message.author.id,['xp:'])[0]['xp'].value ) +1)/ 10) {
+        /*if( Math.floor( (Number(TestDatabase(['user:','xp:'])[0].get('user:',message.author.id,['xp:'])[0]['xp'].value ) +1) / 10 ) == (Number(TestDatabase(['user:','xp:'])[0].get('user:',message.author.id,['xp:'])[0]['xp'].value ) +1)/ 10) {
             message.channel.send(`Bravo Knose1 tu as ${Number(TestDatabase(['user:','xp:'])[0].get('user:',message.author.id,['xp:'])[0]['xp'].value) + 1} xp`)
                 .then(msg => msg.delete(10000));
-        }
+        }*/
     }
     
     
@@ -1441,7 +1441,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
         TestDatabase(<array1>).get(<array1>[0], <string1>, [array3])[<string2>].set(<array2>);```');
                 }
             }
-            else if (command = 'db' && (message.author == botowner || 'true' == isWhitelisted['whitelist']) && args[0] == undefined) {
+            else if (command = 'db' && (message.author == botowner || isWhitelisted) && args[0] == undefined) {
                 message.author.send('__**use of cat-db :**__ \n\n\
     `cat-db execute <array1> <string> [array2]` \n\
         ```javascript\n\
@@ -1457,17 +1457,17 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
             else {
                 /*J'ai pas de compte 0.0 INSCRIT TOI ESCLAVE ! xD*/
                 
-                var Userdb = TestDatabase(['user:'],'')[0].get('user:', message.author.id, ['']);
-                if (Userdb[1] != '') {
+                //var Userdb = TestDatabase(['user:'],'')[0].get('user:', message.author.id, ['']);
+                //if (Userdb[1] != '') {
                     //TestDatabase(['user:'],'').createForEach('user',[], [datas]);/*ICI ICI ICI ICI ICI*//*Aussi: créer la fonction*/
                     message.delete(500)
                         .then(msg => console.log(`Message supprimé, raison: rpg; Auteur: ${msg.author}`))
                         .catch(console.error);
-                }
+                //}
                 /*Fin de "J'ai pas de compte"*/
                 
             }
-        } else if (message.author != botowner && message.guild.id == '110373943822540800') {
+        } else if (message.author == botowner && message.guild.id == '110373943822540800') {
             message.author.send('Désolé le RPG nya!bot est en vertion béta test');
             message.delete(500)
                 .then(msg => console.log(`Message supprimé, raison: rpg; Auteur: ${msg.author}`))
@@ -1486,185 +1486,6 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
     
     
     
-    
-    
-    
-    
-    
-    //Say hello to bot
-    else if (message.content == "Bonjour "+mention2 || message.content == "bonjour "+mention2 || message.content == "bjr "+mention2 || message.content == "Bjr "+mention2) {
-    message.channel.send('Bonjour '+message.author+" !")
-    }
-    else if (message.content == "Coucou "+mention2 || message.content == "coucou "+mention2 || message.content == "cc "+mention2 || message.content == "Cc "+mention2) {
-    message.channel.send('Nyon '+message.author+" !")
-    }
-    else if (message.content == "Salut "+mention2 || message.content == "salut "+mention2 || message.content == "slt "+mention2 || message.content == "Slt "+mention2) {
-    message.channel.send('Salut '+message.author+" !")
-    }
-    else if (message.content == "Yo "+mention2 || message.content == "yo "+mention2){
-    message.channel.send('Yoplait '+message.author+" !")
-    }
-    else if (message.content == "Hi "+mention2 || message.content == "hi "+mention2){
-    message.channel.send('Hi '+message.author+" !")
-    }
-    else if (message.content == "Hello "+mention2 || message.content == "hello "+mention2){
-    message.channel.send('Hello '+message.author+" !")
-    }
-    else if ( message.content == "Ohayô "+mention2 || message.content == "ohayô "+mention2 || message.content == "Ohayo "+mention2 || message.content == "ohayo "+mention2){
-    message.channel.send('Ohayô gozaimasu '+message.author+" !")
-    }
-    //end say hello to bot
-    //Réponses random:
-    else if (message.content == "Nya "+mention2 || message.content == "nya "+mention2 || message.content == "Nya! "+mention2 || message.content == "nya! "+mention2 || message.content == "Nya ! "+mention2 || message.content == "nya! "+mention2 || message.content == "Nya "+mention2+" !" || message.content == "nya "+mention2+" !" || message.content == "Nya "+mention2+"!" || message.content == "nya "+mention2+"!") {
-        message.channel.send(message.author+", ne m'insulte pas !!! Nyon! <:Tsuuuuu:378668647809417226>")
-    }
-    
-    else if (message.content == mention2+" fait son thug" || message.content == mention2+" Fait son thug" || message.content == mention2+" fais son thug" || message.content == mention2+" Fais son thug." || message.content == mention2+" fait son thug." || message.content == mention2+" Fait son thug." || message.content == mention2+" fais son thug." || message.content == mention2+" Fais son thug." || message.content == mention2+" fait son thug ." || message.content == mention2+" Fait son thug ." || message.content == mention2+" fais son thug ." || message.content == mention2+" fait son thug!" || message.content == mention2+" Fait son thug!" || message.content == mention2+" fais son thug!" || message.content == mention2+" fait son thug !" || message.content == mention2+" Fait son thug !" || message.content == mention2+" fais son thug !" || message.content == mention2+" fait son thug ?" || message.content == mention2+" Fait son thug ?" || message.content == mention2+" fais son thug ?" || message.content == mention2+" fait son thug?" || message.content == mention2+" Fait son thug?" || message.content == mention2+" fais son thug?") {
-        message.channel.send(message.author+", Ouais et alors ?! <:sealO:378292331473797120>");
-    }
-    
-    else if (message.content == mention2+" t'es nul" || message.content == mention2+" T'es nul" || message.content == mention2+" t'es nulle" || message.content == mention2+" T'es nulle" || message.content == mention2+" t'es nule" || message.content == mention2+" T'es nule" || message.content == mention2+" t'es nul." || message.content == mention2+" T'es nul." || message.content == mention2+" t'es nulle." || message.content == mention2+" T'es nulle." || message.content == mention2+" t'es nule." || message.content == mention2+" T'es nule." || message.content == mention2+" t'es nul ." || message.content == mention2+" T'es nul ." || message.content == mention2+" t'es nulle ." || message.content == mention2+" T'es nulle ." || message.content == mention2+" t'es nule ." || message.content == mention2+" T'es nule .") {
-        message.channel.send("Chute ! C'est une diversion ! :cat: :Fuse:");
-    }
-    //end réponses random
-    
-    /**/
-     //start isasked
-    else if (isasked == true && isaskactivated != 'désactivé') {
-        if (userasked == message.author && (message.content == 'quelle heur est-il ?' || message.content == 'quelle heur est il ?' || message.content == 'quel heur est-il ?' || message.content == 'quel heur est il ?' || message.content == 'quelle heure est-il ?' || message.content == 'quelle heure est il ?' || message.content == 'quel heure est-il ?' || message.content == 'quel heure est il ?' || message.content == 'Quelle heur est-il ?' || message.content == 'Quelle heur est il ?' || message.content == 'Quel heur est-il ?' || message.content == 'Quel heur est il ?' || message.content == 'Quelle heure est-il ?' || message.content == 'Quelle heure est il ?' || message.content == 'Quel heure est-il ?' || message.content == 'Quel heure est il ?' || message.content == 'Heure ?' || message.content == 'heure ?')) {
-        
-            //Demande l'heure
-        console.log(userasked+" a demandé l'heure");
-        var channel = client.channels.get(logserv);
-        channel.send(userasked+" a demandé l'heure")
-        var day;
-	       switch (new Date().getDay()) {
-	       case 0:
-	           day = "dimanche";
-        	   break;
-	       case 1:
-		      day = "lundi";
-		      break;
-	       case 2:
-		      day = "mardi";
-		      break;
-	       case 3:
-		      day = "mercedi";
-		      break;
-	       case 4:
-		      day = "jeudi";
-		      break;
-	       case 5:
-		      day = "vendredi";
-		      break;
-	       case  6:
-		      day = "samedi";
-            }
-			
-            var month;
-            switch (new Date().getMonth()) {
-	        case 0:
-              month = "décembre";
-		      break;
-	        case 1:
-		      month = "janvier";
-		      break;
-	        case 2:
-		      month = "février";
-		      break;
-	        case 3:
-		      month = "mars";
-		      break;
-	        case 4:
-		      month = "avril";
-		      break;
-	        case 5:
-		      month = "mai";
-		      break;
-	        case 6:
-		      month = "juin";
-	          break;
-	        case 7:
-		      month = "juillet";
-		      break;
-	        case 8:
-		      month = "août";
-		      break;
-	        case 9:
-		      month = "septembre";
-		      break;	
-	        case 10:
-		      month = "octobre";
-		      break;
-	        case 11:
-		      month = "novembre";
-            }
- message.reply("Nya ! Nous sommes le " + day + " " + new Date().getDate()+ " " + month + " " + new Date().getFullYear() + " et il est " + new Date().toLocaleTimeString());
-            userasked = undefined;
-            isasked = false;
-            }
-                //déconection autorisé
-            else if (userasked == botowner && userasked == message.author && (message.content == 'Disconect' || message.content == 'disconect')) {
-            message.channel.send("D'accord, au revoir @here")
-                .then(message => console.log(`Message: ${message.content}`))
-                .catch(console.error);
-            userasked = undefined;
-            isasked = false;
-            client.destroy();
-            }
-                //déconection interdit
-            else if (userasked != botowner && userasked == message.author && (message.content == 'Disconect' || message.content == 'disconect')) {
-            message.channel.send("Désolé je ne peux pas faire ça !")
-                .then(message => console.log(`Message: ${message.content}`))
-                .catch(console.error);
-            userasked = undefined;
-            isasked = false;
-            }
-                //Tait-toi (Maitre)
-            else if (userasked == message.author && (message.content == 'tait-toi' || message.content == 'tait-toi !' || message.content == 'tait-toi!' || message.content == 'Tait-Toi' || message.content == 'Tait-Toi !' || message.content == 'Tait-Toi!' || message.content == 'Tait-toi' || message.content == 'Tait-toi !' || message.content == 'Tait-toi!' || message.content == 'tait-toi' || message.content == 'tait-toi !' || message.content == 'tait-toi!' || message.content == 'Tait Toi' || message.content == 'Tait Toi !' || message.content == 'Tait Toi!' || message.content == 'Tait toi' || message.content == 'Tait toi !' || message.content == 'Tait toi!' ||message.content == 'tait toi' || message.content == 'tait toi !' || message.content == 'tait toi!') && userasked == botowner) {
-            message.channel.send("Oui maitre vénéré ! https://orig00.deviantart.net/979a/f/2012/100/1/4/_acchi_kocchi__twitchy_twitchy_by_tach_ko-d4vo596.gif")
-                .then(message => console.log(`Message: ${message.content}`))
-                .catch(console.error);
-            userasked = undefined;
-            isasked = false;
-            }
-                //Tait-toi (Pas Maitre)
-            else if (userasked == message.author && (message.content == 'tait-toi' || message.content == 'tait-toi !' || message.content == 'tait-toi!' || message.content == 'Tait-Toi' || message.content == 'Tait-Toi !' || message.content == 'Tait-Toi!' || message.content == 'Tait-toi' || message.content == 'Tait-toi !' || message.content == 'Tait-toi!' || message.content == 'tait-toi' || message.content == 'tait-toi !' || message.content == 'tait-toi!' || message.content == 'Tait Toi' || message.content == 'Tait Toi !' || message.content == 'Tait Toi!' || message.content == 'Tait toi' || message.content == 'Tait toi !' || message.content == 'Tait toi!' ||message.content == 'tait toi' || message.content == 'tait toi !' || message.content == 'tait toi!') && userasked != botowner) {
-            message.channel.send("Non j'ai pas envie, t'es pas mon maître ! <:Tsuuuuu:378668647809417226>")
-                .then(message => console.log(`Message: ${message.content}`))
-                .catch(console.error);
-            userasked = undefined;
-            isasked = false;
-            }
-                //Non rien
-            else if (userasked == message.author && (message.content == 'annuler' || message.content == 'non rien' || message.content == 'Non rien' || message.content == 'Annuler')) {
-            message.channel.send("D'accord")
-                .then(message => console.log(`Message: ${message.content}`))
-                .catch(console.error);
-            userasked = undefined;
-            isasked = false;
-            }
-                //Impossible de répondre      
-            else if (userasked == message.author){
-            message.channel.send(userasked+' désolé je ne peux vous répondre')
-                .then(message => console.log(`Message: ${message.content}`))
-                .catch(console.error);
-            userasked = undefined;
-            isasked = false;
-            }
-            
-            
-}
-    //Nya bot mentioné
-    else if (isaskactivated != 'désactivé' && message.isMentioned(mention) == 1 && message.content === mention2 && userasked === undefined) {
-        userasked = message.author;
-        isasked = true;
-        message.reply('que puis-je faire pour vous ?');
-        console.log('Nya!Bot a été mentioné par '+userasked);
-        var channel = client.channels.get(logserv);
-        channel.send('Nya!Bot a été mentioné par '+userasked);
-    }
-    
     /*Commandes*/
     
     else if (iscommand == true) {
@@ -1682,7 +1503,8 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
             channel.send('Changement du jeu: '+args.join(' '));
         }
         else if (command == 'game' && message.author != botowner) {
-            message.author.send("Vous n'avez pas le droit d'utiliser "+"\""+message.content+"\"");
+            message.channel.send(message.author+" vous n'avez pas le droit d'utiliser "+"\""+message.content+"\"")
+                .then(msg => msg.delete(10000));
         }
         else if (command == 'nya' && message.author == botowner && (args[0].toLowerCase() == 'owner' || args[0].toLowerCase() == 'strict')) {
             args[0] = '';
@@ -1701,29 +1523,31 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
             var channel = client.channels.get(logserv);
             channel.send('Message envoyé channel \''+argchan+'\' : '+args.join(' '));
         }
-        else if (command == 'nya') {
+        else if (command == 'nya' && args.length > 0) {
             message.channel.send(message.author+" : "+args.join(' '));
             console.log(message.author+'. Message envoyé: '+args.join(' '));
             var channel = client.channels.get(logserv);
             channel.send(message.author+'. Message envoyé: '+args.join(' '));
         }
+        else if (command == 'nya') {
+            message.channel.send("Utilisation: \n\n\
+        `cat:nya <message>`")
+            .then(msg => msg.delete(20000));
+        }
         else if (command == 'invite') {
-            message.channel.send("Je sers un peu à rien mais bon voila mon invite:");
-            message.channel.send(invite);
+            message.channel.send(`Toi l'adorateur de chats, voila mon invite: \n ${invite}`);
             console.log('Invitation envoyé');
             var channel = client.channels.get(logserv);
             channel.send('Invitation envoyé');
         }
         else if (command == 'logserv') {
-            message.channel.send("Voici le server log:");
-            message.channel.send("https://discord.gg/HTZy7tB");
+            message.channel.send(`Voici le server log: \n https://discord.gg/HTZy7tB`);
             console.log('Log Invitation envoyé');
             var channel = client.channels.get(logserv);
             channel.send('Log Invitation envoyé');
         }
         else if (command == 'git' || command == 'github') {
-            message.channel.send(message.author+", voici mon lien git");
-            message.channel.send("https://github.com/Knose1/Nya-bot");
+            message.channel.send(message.author+", voici mon lien github \n https://github.com/Knose1/Nya-bot");
         }
         else if (command == 'cat' && args.length == 0) {
         var randcat = Math.floor(Math.random() * catimg.length);
@@ -1738,35 +1562,42 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
     '+args[1]);
         }
         else if (command == 'cat' && args.length != 2 && (args[0].toLowerCase() == 'purpose' || args[0].toLowerCase() == 'share')) {
-        message.author.send("Utilisation: \n\n\
+        message.channel.send("Utilisation: \n\n\
         `cat:cat`\n\
         `cat:cat purpose <url>` \n\
-        `cat:cat share <url>`");
+        `cat:cat share <url>`")
+            .then(msg => msg.delete(20000));
         }
         else if (command == 'cat') {
-        message.author.send("Utilisation: \n\n\
+        message.channel.send("Utilisation: \n\n\
         `cat:cat`\n\
         `cat:cat purpose <url>` \n\
-        `cat:cat share <url>`");
+        `cat:cat share <url>`")
+            .then(msg => msg.delete(20000));
         }
         else if (command == 'guildi' && message.author == botowner) {
             var guild = client.guilds.get(args[0]);
             if (guild.available) {
-                guild.fetchInvites().then(returned => message.author.send(returned.first().toString()) );
+                if (guild.fetchInvites().length > 0) {
+                    guild.fetchInvites().then(returned => message.author.send(returned.first().toString()) );
+                } else {
+                    message.author.send('No invite for the server '+ guild.name)
+                }
             }
         }
         
         else if ((command == 'guilds' || command == 'serv') && message.author == botowner) {
         var nyaguilds = '__Serveurs:__ \n\n';
         //console.log(client.guilds);
-             client.guilds.forEach(function (guild) {
+            
+            client.guilds.forEach(function (guild) {
                 nyaguilds = nyaguilds+` \`${guild.name.replace(/`/g,"")}\`      (${guild.id})\n`;
             });
             message.channel.send(nyaguilds);
         }
         else if ((command.toLowerCase() == 'channelget' || command.toLowerCase() == 'cg') && message.author == botowner && args.length == 1) {
             var guild = client.guilds.get(args[0]);
-            if (guild.available) {
+            if (guild != undefined) {
                 var nyachannels = `__Serveur '${guild.name.replace(/`/g,"").replace(/_/g,"-")}' __:\n\
     __Channels__:\n\n`;
                 
@@ -1786,7 +1617,8 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
 __**Virtual Server:**__ \n\n\
     Pour obtenir le virtual server il vous suffie simplement de créer un channel appelé `nya-bot-vs`\n\
 https://media.discordapp.net/attachments/407271018516971532/409747122749964288/unknown.png\
-");
+")
+            .then(msg => msg.delete(25000));
         }
         
         else if (command == 'help' && ((args[0]== 'vs' && args[1] == 'here') || (args[0] == 'here' && args[1] == 'vs'))) {
@@ -1909,8 +1741,12 @@ __**Commandes bot owner:**__ \n\n\
         //pas de commande -> ne rien faire
         else if (command == '') {
         }
-        else if (message.author != botowner && message.guild.id == '110373943822540800') {
+        else if (message.author == botowner || message.guild.id != '110373943822540800') {
             message.author.send('"'+message.content+' "'+" n'est pas une commande");
+        }
+        else {
+            message.channel.send('"'+message.content+' "'+" n'est pas une commande")
+                .then(msg => msg.delete(15000));
         }
         iscommand = false;
     }
