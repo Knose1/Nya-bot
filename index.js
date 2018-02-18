@@ -1469,8 +1469,10 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                 /*Fin de "J'ai pas de compte"*/
                 
             }
-        } else if (message.author == botowner && message.guild.id == '110373943822540800') {
-            message.author.send('Désolé le RPG nya!bot est en vertion béta test');
+        } else {
+            message.channel.send('Désolé le RPG nya!bot est en vertion béta test')
+                .then(msg => msg.delete(4000));
+            
             message.delete(500)
                 .then(msg => console.log(`Message supprimé, raison: rpg; Auteur: ${msg.author}`))
                 .catch(console.error);
