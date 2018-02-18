@@ -672,7 +672,8 @@ client.on('message', message => {
         TestDatabase(['user:','xp:'])[0].get('user:',message.author.id,['xp:'])[0]['xp'].set([String(Number(TestDatabase(['user:','xp:'])[0].get('user:',message.author.id,['xp:'])[0]['xp'].value) + 1)]);
         
         if( Math.floor( Number(TestDatabase(['user:','xp:'])[0].get('user:',message.author.id,['xp:'])[0]['xp'].value ) / 10 ) == Number(TestDatabase(['user:','xp:'])[0].get('user:',message.author.id,['xp:'])[0]['xp'].value ) / 10) {
-            message.channel.send(`Bravo Knose1 tu as ${TestDatabase(['user:','xp:'])[0].get('user:',message.author.id,['xp:'])[0]['xp'].value} xp`).delete(2000);
+            message.channel.send(`Bravo Knose1 tu as ${TestDatabase(['user:','xp:'])[0].get('user:',message.author.id,['xp:'])[0]['xp'].value} xp`)
+                .then(msg => msg.delete(2000));
         }
     }
     
