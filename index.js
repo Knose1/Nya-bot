@@ -1258,7 +1258,7 @@ client.on('message', message => {
         }
 		else if (isADev) {
             embed.setAuthor(message.author.username+"#"+message.author.discriminator);
-            embed.setColor("#00FF00");
+            embed.setColor("#2ecc71");
         }
         /*Fin embed*/
         
