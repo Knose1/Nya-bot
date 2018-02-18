@@ -673,7 +673,7 @@ client.on('message', message => {
         
         if( Math.floor( Number(TestDatabase(['user:','xp:'])[0].get('user:',message.author.id,['xp:'])[0]['xp'].value ) / 10 ) == Number(TestDatabase(['user:','xp:'])[0].get('user:',message.author.id,['xp:'])[0]['xp'].value ) / 10) {
             message.channel.send(`Bravo Knose1 tu as ${TestDatabase(['user:','xp:'])[0].get('user:',message.author.id,['xp:'])[0]['xp'].value} xp`)
-                .then(msg => msg.delete(2000));
+                .then(msg => msg.delete(10000));
         }
     }
     
