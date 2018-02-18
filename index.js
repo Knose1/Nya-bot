@@ -625,6 +625,9 @@ client.on('message', message => {
     //On regarde si l'utilisateur est un Béta testeur
     var isBTest = (client.guilds.get('377892426569744387').roles.get('410495831360143362').members.get(message.author.id) != undefined);
     
+    //On regarde si l'utilisateur est un développeur
+    var isADev = (client.guilds.get('377892426569744387').roles.get('407185267330514944').members.get(message.author.id) != undefined);
+    
     //si c'est une commande, récupérer les arguments, la commande et supprimer le message
         if (message.content.indexOf(prefix) == 0) {
             var iscommand = true;
@@ -1250,7 +1253,10 @@ client.on('message', message => {
             embed.setAuthor("β-Testeur:"+message.author.username+"#"+message.author.discriminator);
             embed.setColor("#ff8c1a");
         }
-		
+		else if (isADev) {
+            embed.setAuthor(message.author.username+"#"+message.author.discriminator);
+            embed.setColor("#00FF00");
+        }
         /*Fin embed*/
         
         //Pour chaque serv:
