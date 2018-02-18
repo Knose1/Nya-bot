@@ -1751,10 +1751,7 @@ __**Commandes bot owner:**__ \n\n\
         //pas de commande -> ne rien faire
         else if (command == '') {
         }
-        else if (message.author == botowner || message.guild.id != '110373943822540800') {
-            message.author.send('"'+message.content+' "'+" n'est pas une commande");
-        }
-        else {
+        else if (message.guild.id != '110373943822540800') {
             message.channel.send('"'+message.content+' "'+" n'est pas une commande")
                 .then(msg => msg.delete(15000));
         }
