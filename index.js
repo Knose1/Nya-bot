@@ -181,7 +181,7 @@ function Database(SGuild, allRolePrefix, gt) {
 };
 /*Test the db*/
 
-function TestDatabase(allRolePrefix, gt) = Database__1('407142766674575361', allRolePrefix, gt);
+function TestDatabase(allRolePrefix, gt) {return Database__1('407142766674575361', allRolePrefix, gt)};
 
 /*End Test the db*/
 
