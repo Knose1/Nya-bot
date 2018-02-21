@@ -1527,10 +1527,12 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                 
                 //On attend une réaction puis on del le message
                 const filter = (user) => {user == message.author}
-                msg.awaitReactions(filter, { max: 1 })
-                    .then( emoji => {
+                msg.awaitReactions(filter)
+                    .then(collected => console.log(`Collected ${collected.size} reactions`))
+                    .catch(console.error);
+                    /*.then( emoji => {
                     msg.edit(`\`${emoji.name}\``).clearReactions().delete(5000);
-                    });
+                    });*/
                 msg.delete(60000);
             });
         }
@@ -1539,7 +1541,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
             message.channel.send('hey')
                 .then(msg => {
                     //On ajoute une réaction
-                    msg.react('white_check_mark');
+                    msg.react('✅');
                 
                     //On attend une réaction puis on del le message
                     const filter = (reaction) => {reaction.emoji == client.emojis.find('name','✅')}
