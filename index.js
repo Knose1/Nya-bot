@@ -200,7 +200,7 @@ function Database(SGuild, allRolePrefix) {
     var x1 = Database__1(SGuild, allRolePrefix);
     if (x1[1] == '') {
         x1[0].get = function (dataPrefix, data1, prefixInclude) {
-            var x2 = Database__1(SGuild, allRolePrefix)[0].get(dataPrefix, data1, prefixInclude)[0]
+            var x2 = Database__1(SGuild, allRolePrefix)[0].get(dataPrefix, data1, prefixInclude)
             
             if (x2[1] == '') {
                 
