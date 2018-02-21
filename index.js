@@ -1521,14 +1521,14 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
             message.channel.send(nyachannels);
             }
         }
-        else if ((command.toLowerCase() == 'emojiget' || command.toLowerCase() == 'ejg') && message.author == botowner && args.lenght == 1) {
+        else if ((command.toLowerCase() == 'emojiget' || command.toLowerCase() == 'ejg') && message.author == botowner) {
             message.channel.send(`\`Add a reaction to get emoji's name\``)
             .then(msg => {
                 //On ajoute une réaction
                 msg.react(':white_check_mark:');
                 
                 //On attend une réaction puis on del le message
-                const filter = (user) => {user == message.user}
+                const filter = (user) => {user == message.author}
                 msg.awaitReactions(filter, { max: 2 })
                     .then( emoji => {
                     msg.edit(`\`${emoji.name}\``).clearReactions().delete(5000);
