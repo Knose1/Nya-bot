@@ -1526,7 +1526,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
             .then(msg => {
                 
                 //On attend une réaction puis on del le message
-                const filter = (user) => {user.id == message.author.id}
+                const filter = (reaction,user) => {user.id == message.author.id}
                 const collector = msg.createReactionCollector(filter, {time: 60000});
                 collector.on('collect', r => {msg.edit(`\`${r.emoji.name}\``).clearReactions().delete(5000)});
                 msg.delete(60000);
