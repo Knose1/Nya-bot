@@ -590,11 +590,11 @@ client.on('message', message => {
     
     
     /*Virtual Channel*/
-    if (message.channel.type == 'text' && message.channel.id == '410818974729633795') {
+    /*if (message.channel.type == 'text' && message.channel.id == '410818974729633795') {
         message.channel.messages.last(2).forEach(msg => {
             console.log(`message:${msg.content} ; id:`+message.channel.messages.last(2).findIndex(r => {return r == msg}))
 	    });
-    }
+    }*/
     
     //On récupère la liste des ban
     var guild = client.guilds.get('406926403628695556');
@@ -1529,11 +1529,12 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                     msg.react(':white_check_mark:');
                 
                     //On attend une réaction puis on del le message
-                    const filter = (reaction) => reaction.emoji.name == ':white_check_mark:'
+                    const filter = (reaction) => reaction.emoji.name == 'white_check_mark'
                     msg.awaitReactions(filter, { max: 2 })
                         .then( emoji => {
                             msg.edit('Ok').clearReactions().delete(5000);
                         });
+                    msg.delete(60000);
                 });
         }
         //commande help
