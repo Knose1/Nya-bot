@@ -208,8 +208,8 @@ function Database(SGuild, allRolePrefix) {
                 console.log('---');
                 console.log(Database__1(SGuild, allRolePrefix)[0].get(dataPrefix, data1, prefixInclude)[0]);
                 
-                Database__1(SGuild, allRolePrefix)[0].get(dataPrefix, data1, prefixInclude)[0].forEach ( d => {
-                    x2[0].forEach( xn => {
+                Database__1(SGuild, allRolePrefix)[0].get(dataPrefix, data1, prefixInclude)[0].map( d => {
+                    x2[0].map( xn => {
                         if (typeof(d) == 'object' && typeof(xn) == 'object' && d == xn) {
                             return x2[0][x2.indexOf(xn)].set = function (newValue) { console.log(d.set(newValue)) };
                         }
