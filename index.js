@@ -50,7 +50,7 @@ function Database__1(SGuild, allRolePrefix, gt) {
                 //On regarde si le préfix est un txt
                 if (typeof(rolePrefix) == 'string') {
                     var newRolePrefix = rolePrefix;
-                    toReturn[rolePrefix.replace(/:/g, "")] = new Array();
+                    toReturn[rolePrefix] = new Array();
                     rolePrefix = newRolePrefix;
                     //On récupère les data de chaque role
                     client.guilds.get(SGuild).roles.forEach(role => {
@@ -58,11 +58,11 @@ function Database__1(SGuild, allRolePrefix, gt) {
                         if (role.name.indexOf(rolePrefix) == 0) {
                             //On récupère les data `${prefix}${data0} ${data1} ${data2}` exemple: user:1 1000
                             var data = role.name.slice(rolePrefix.length).trim().split(/ +/g);
-                            toReturn[rolePrefix.replace(/:/g, "")][data[0]] = data.slice(1);
+                            toReturn[rolePrefix][data[0]] = data.slice(1);
                             //Résultat: toReturn[prefix (sans ":")][data0] = [data1, data2]; exemple: toReturn[user][1] = [1000]
                         }
                     });
-                    if (toReturn[rolePrefix.replace(/:/g, "")].length == 0) {
+                    if (toReturn[rolePrefix].length == 0) {
                         noError = false;
                         toReturn = undefined;
                         retError += `Error: ${rolePrefix} not found in the db` + "\n";
@@ -81,9 +81,9 @@ function Database__1(SGuild, allRolePrefix, gt) {
             toReturn.get = function (dataPrefix, data1, prefixInclude, cl) {
                 let retError = '';
                 if (typeof(dataPrefix) == 'string' && typeof(data1) == 'string') {
-                    if (undefined != toReturn[dataPrefix.replace(/:/g, "")] ) {
+                    if (undefined != toReturn[dataPrefix] ) {
                         //On récupère l'id de la data à partir de la primary (dataPrefix)
-                        var id = toReturn[dataPrefix.replace(/:/g, "")].findIndex(data => {
+                        var id = toReturn[dataPrefix].findIndex(data => {
                             return data1 == data;
                         });
                         if (id != -1) {
@@ -94,18 +94,18 @@ function Database__1(SGuild, allRolePrefix, gt) {
                                 prefixInclude.forEach(prefixI => {
                                     var defautprefixI = prefixI;
                                     //Si toReturn contient le préfix et que le préfix n'est pas id
-                                    if (undefined != toReturn[prefixI.replace(/:/g, "")] && 'id' != toReturn[prefixI.replace(/:/g, "")]) {
+                                    if (undefined != toReturn[prefixI] && 'id' != toReturn[prefixI]) {
                                         //On récupère la data correspondant à l'id
-                                        toBeReturned[prefixI.replace(/:/g, "")] = {};
-                                        toBeReturned[prefixI.replace(/:/g, "")].value = toReturn[prefixI.replace(/:/g, "")][id];
+                                        toBeReturned[prefixI] = {};
+                                        toBeReturned[prefixI].value = toReturn[prefixI][id];
                                         
                                         
                                         if ('noSet' != gt && gt != 'noFunction') {
                                             /*On créer une fonction .set()*/
-                                            toBeReturned[prefixI.replace(/:/g, "")].set = function (newValue) {
+                                            toBeReturned[prefixI].set = function (newValue) {
                                                 let retError = '';
                                                 if (Array.isArray(newValue)) {
-                                                    var datas = toReturn[prefixI.replace(/:/g, "")][id];
+                                                    var datas = toReturn[prefixI][id];
                                                     client.guilds.get(SGuild).roles.find('name', defautprefixI+id+" "+datas.join(' ')).setName(defautprefixI+id+" "+newValue.join(' '))
                                                         .catch(console.error);
                                                     retError = `Edited the data "${defautprefixI+id+" "+datas.join(' ')}" => "${defautprefixI+id+" "+newValue.join(' ')}"` + "\n";
@@ -123,13 +123,13 @@ function Database__1(SGuild, allRolePrefix, gt) {
                                     
                                     }
                                     //Si le préfix est 'id'
-                                    else if('id' == prefixI.replace(/:/g, "")) {
+                                    else if('id' == prefixI) {
                                         retError += `The prefix 'id' is disable at Database().get()` + "\n";
                                     }
                                     //Sinon
                                     else {
-                                        toBeReturned[prefixI.replace(/:/g, "")] = undefined;
-                                        retError += `toBeReturned[${prefixI.replace(/:/g, "")}] = undefined` + "\n";
+                                        toBeReturned[prefixI] = undefined;
+                                        retError += `toBeReturned[${prefixI}] = undefined` + "\n";
                                     }
                                 });
                                 return [toBeReturned, retError];
