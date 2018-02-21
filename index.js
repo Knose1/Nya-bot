@@ -27,7 +27,13 @@ var betaTest = 'on';
 function Database__1(SGuild, allRolePrefix, gt) {
 //Si on a donner une liste de prefix
     let retError = '';
-    if (Array.isArray(allRolePrefix) && allRolePrefix.length > 0) {
+    if (typeof(SGuild) != 'string') {
+        retError += `Not a string at 'database(${SGuild})'`+"\n";
+    }
+    else if (client.guilds.get(SGuild) == undefined) {
+        retError += `Guild not found at 'database(${SGuild})'`+"\n";
+    }
+    else if (Array.isArray(allRolePrefix) && allRolePrefix.length > 0) {
         let toReturn = {};
         //Pour chaque préfix
         //console.log("allRolePrefix = "+allRolePrefix);
@@ -175,9 +181,9 @@ function Database__1(SGuild, allRolePrefix, gt) {
     } else {
         if(allRolePrefix != undefined) {
             //Si on a pas donner de liste de préfix
-            if(!Array.isArray(allRolePrefix)) retError += `Not an array at 'db.new(${allRolePrefix})'`+"\n";
-            if(allRolePrefix.length <= 0) retError += `Can't read length < 0 at 'db.new(${allRolePrefix})'`+"\n";
-        } else retError += `allRolePrefix is undefined at 'db.new(${allRolePrefix})'`+"\n";
+            if(!Array.isArray(allRolePrefix)) retError += `Not an array at 'database(${SGuild} ${allRolePrefix})'`+"\n";
+            if(allRolePrefix.length <= 0) retError += `Can't read length < 0 at 'database(${SGuild} ${allRolePrefix})'`+"\n";
+        } else retError += `allRolePrefix is undefined at 'database(${SGuild} ${allRolePrefix})'`+"\n";
         return [undefined, retError];
     }
 };
@@ -1194,7 +1200,7 @@ client.on('message', message => {
     
     /* RPG */
     else if (message.content.indexOf('cat-') == 0) {
-        let isWhitelisted = Database(['user:','whitelist:']).get('user:', String(message.author.id), ['whitelist:']);
+        let isWhitelisted = Database('407142766674575361',['user:','whitelist:']).get('user:', String(message.author.id), ['whitelist:']);
         if (isWhitelisted != undefined) {
             if(isWhitelisted['whitelist'] != undefined) {
                 isWhitelisted = ('true' == isWhitelisted['whitelist'].value[0]);
