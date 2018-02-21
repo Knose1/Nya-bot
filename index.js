@@ -1521,8 +1521,20 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
             message.channel.send(nyachannels);
             }
         }
-        else if ((command.toLowerCase() == 'emojiget' || command.toLowerCase() == 'ejg') && message.author == botowner) {
-            message.channel.send(`\`${message.content}\``);
+        else if ((command.toLowerCase() == 'emojiget' || command.toLowerCase() == 'ejg') && message.author == botowner && args.lenght == 1) {
+            message.channel.send(`\`Add a reaction to get emoji's name\``)
+            .then(msg => {
+                //On ajoute une réaction
+                msg.react(':white_check_mark:');
+                
+                //On attend une réaction puis on del le message
+                const filter = (user) => {user == message.user}
+                msg.awaitReactions(filter, { max: 2 })
+                    .then( emoji => {
+                    msg.edit(`\`${emoji.name}\``).clearReactions().delete(5000);
+                    });
+                msg.delete(60000);
+            });
         }
         else if ((command.toLowerCase() == 'test1' || command.toLowerCase() == 't1') && message.author == botowner) {
             rand(1,500);
@@ -1532,7 +1544,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                     msg.react(':white_check_mark:');
                 
                     //On attend une réaction puis on del le message
-                    const filter = (reaction) => {reaction.emoji.name == client.emojis.find('name','✅')}
+                    const filter = (reaction) => {reaction.emoji == client.emojis.find('name','✅')}
                     msg.awaitReactions(filter, { max: 2 })
                         .then( emoji => {
                             msg.edit('Ok').clearReactions().delete(5000);
