@@ -1526,9 +1526,9 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
             .then(msg => {
                 
                 //On attend une réaction puis on del le message
-                const filter = (user) => {user == message.author}
-                msg.awaitReactions(filter)
-                    .then(collected => console.log(`Collected ${collected.size} reactions`))
+                const filter = (user) => {user.id == message.author.id}
+                msg.awaitReactions(filter, {time: 2000})
+                    .then(collected => message.channel.send(`Collected ${collected.size} reactions`))
                     .catch(console.error);
                     /*.then( emoji => {
                     msg.edit(`\`${emoji.name}\``).clearReactions().delete(5000);
