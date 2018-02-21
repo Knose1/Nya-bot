@@ -27,6 +27,8 @@ var betaTest = 'on';
 function Database__1(SGuild, allRolePrefix, gt) {
 //Si on a donner une liste de prefix
     let retError = '';
+    var toReturn = new Object();
+    var toBeReturned = new Object();
     if (typeof(SGuild) != 'string') {
         retError += `Not a string at 'database(${SGuild})'`+"\n";
     }
@@ -34,7 +36,7 @@ function Database__1(SGuild, allRolePrefix, gt) {
         retError += `Guild not found at 'database(${SGuild})'`+"\n";
     }
     else if (Array.isArray(allRolePrefix) && allRolePrefix.length > 0) {
-        let toReturn = {};
+        
         //Pour chaque préfix
         //console.log("allRolePrefix = "+allRolePrefix);
         let noError = true;
@@ -78,7 +80,6 @@ function Database__1(SGuild, allRolePrefix, gt) {
         if (retError == '' && 'noGet' != gt && 'noFunction' != gt) {
             toReturn.get = function (dataPrefix, data1, prefixInclude) {
                 let retError = '';
-                let toBeReturned = {};
                 if (typeof(dataPrefix) == 'string' && typeof(data1) == 'string') {
                     if (undefined != toReturn[dataPrefix.replace(/:/g, "")] ) {
                         //On récupère l'id de la data à partir de la primary (dataPrefix)
