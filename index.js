@@ -1526,7 +1526,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
             .then(msg => {
                 
                 //On attend une réaction puis on del le message
-                const filter = (reaction,user) => {user.id == message.author.id}
+                const filter = (reaction,user) => {return user.id == message.author.id}
                 const collector = msg.createReactionCollector(filter, {time: 60000});
                 collector.on('collect', r => {msg.edit(`\`${r.emoji.name}\``).clearReactions().delete(5000)});
                 msg.delete(60000);
@@ -1540,7 +1540,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                     msg.react('✅');
                 
                     //On attend une réaction puis on del le message
-                    const filter = (reaction) => {reaction.emoji == client.emojis.find('name','✅')}
+                    const filter = (reaction) => {return reaction.emoji == client.emojis.find('name','✅')}
                     msg.awaitReactions(filter, { time: 60000 })
                         .then( emoji => {
                             msg.edit('Ok').clearReactions().delete(5000);
