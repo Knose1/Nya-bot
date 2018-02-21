@@ -218,6 +218,12 @@ function Database(SGuild, allRolePrefix) {
     } else console.log(x1[1]);
 };
 
+
+function rand(min,max) {
+    return Math.floor((Math.random() * max) + min);
+}
+
+
 var catimg = new Array() ;
 catimg = [
     "https://yt3.ggpht.com/-xMN6CtD0oAM/AAAAAAAAAAI/AAAAAAAAAAA/3rguRakaom8/s900-c-k-no-mo-rj-c0xffffff/photo.jpg",
@@ -1490,6 +1496,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
             }
         }
         
+        //Commande Serv
         else if ((command == 'guilds' || command == 'serv') && message.author == botowner) {
         var nyaguilds = '__Serveurs:__ \n\n';
         //console.log(client.guilds);
@@ -1513,6 +1520,21 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                 });
             message.channel.send(nyachannels);
             }
+        }
+        else if ((command.toLowerCase() == 'channelget' || command.toLowerCase() == 'cg') && message.author == botowner) {
+            rand(1,500);
+            message.channel.send('hey')
+                .then(msg => {
+                    //On ajoute une réaction
+                    msg.react(':white_check_mark:');
+                
+                    //On attend une réaction puis on del le message
+                    const filter = (reaction) => reaction.emoji.name == ':white_check_mark:'
+                    msg.awaitReactions(filter, { max: 2 })
+                        .then( emoji => {
+                            msg.edit('Ok').clearReactions().delete(5000);
+                        });
+                });
         }
         //commande help
         
