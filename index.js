@@ -203,11 +203,14 @@ function Database(SGuild, allRolePrefix) {
             var x2 = Database__1(SGuild, allRolePrefix)[0].get(dataPrefix, data1, prefixInclude)
             
             if (x2[1] == '') {
+                console.log(Database__1(SGuild, allRolePrefix)[0].get(dataPrefix, data1, prefixInclude));
+                console.log('---');
+                console.log(Database__1(SGuild, allRolePrefix)[0].get(dataPrefix, data1, prefixInclude));
                 
                 Database__1(SGuild, allRolePrefix)[0].get(dataPrefix, data1, prefixInclude)[0].forEach ( d => {
                     x2[0].forEach( xn => {
                         if (typeof(d) == 'object' && typeof(xn) == 'object' && d == xn) {
-                            return x2.set = function (newValue) { console.log(d.set(newValue)) };
+                            return x2[0][x2.indexOf(xn)].set = function (newValue) { console.log(d.set(newValue)) };
                         }
                     });
                 });
