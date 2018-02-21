@@ -173,9 +173,11 @@ function Database__1(SGuild, allRolePrefix, gt) {
         /*Fin de fonction create*/
         return [toReturn, retError];
     } else {
-        //Si on a pas donner de liste de préfix
-        if(!Array.isArray(allRolePrefix)) retError += `Not an array at 'db.new(${allRolePrefix})'`+"\n";
-        if(allRolePrefix.length <= 0) retError += `Can't read length < 0 at 'db.new(${allRolePrefix})'`+"\n";
+        if(allRolePrefix != undefined) {
+            //Si on a pas donner de liste de préfix
+            if(!Array.isArray(allRolePrefix)) retError += `Not an array at 'db.new(${allRolePrefix})'`+"\n";
+            if(allRolePrefix.length <= 0) retError += `Can't read length < 0 at 'db.new(${allRolePrefix})'`+"\n";
+        } else retError += `allRolePrefix is undefined at 'db.new(${allRolePrefix})'`+"\n";
         return [undefined, retError];
     }
 };
