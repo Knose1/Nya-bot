@@ -78,7 +78,7 @@ function Database__1(SGuild, allRolePrefix, gt) {
         });
         //On a récupéré les data de toReturn mais on a pas encors crée de méthode pour obtenir ${data0} à partir de ${data1} pour chaque préfix
         if (retError == '' && 'noGet' != gt && 'noFunction' != gt) {
-            toReturn.get = function (dataPrefix, data1, prefixInclude) {
+            toReturn.get = function (dataPrefix, data1, prefixInclude, cl) {
                 let retError = '';
                 if (typeof(dataPrefix) == 'string' && typeof(data1) == 'string') {
                     if (undefined != toReturn[dataPrefix.replace(/:/g, "")] ) {
@@ -109,6 +109,7 @@ function Database__1(SGuild, allRolePrefix, gt) {
                                                     client.guilds.get(SGuild).roles.find('name', defautprefixI+id+" "+datas.join(' ')).setName(defautprefixI+id+" "+newValue.join(' '))
                                                         .catch(console.error);
                                                     retError = `Edited the data "${defautprefixI+id+" "+datas.join(' ')}" => "${defautprefixI+id+" "+newValue.join(' ')}"` + "\n";
+                                                    if (cl == 'log') console.log(retError);
                                                     return retError;
                                                 }
                                                 else {
@@ -201,22 +202,10 @@ function Database(SGuild, allRolePrefix) {
     var x1 = Database__1(SGuild, allRolePrefix);
     if (x1[1] == '') {
         x1[0].get = function (dataPrefix, data1, prefixInclude) {
-            var x2 = Database__1(SGuild, allRolePrefix)[0].get(dataPrefix, data1, prefixInclude)
+            var x2 = Database__1(SGuild, allRolePrefix)[0].get(dataPrefix, data1, prefixInclude, 'log')
             
-            if (x2[1] == '') {
-                console.log(x2);
-                console.log('---');
-                console.log(x2[0]);
-                var x3 = x2[0];
-                x3.map( xn => {
-                    x2[0].forEach( d => {
-                        if (typeof(d) == 'object' && typeof(xn) == 'object' && d == xn) {
-                            return xn.set = function (newValue) { console.log(d.set(newValue)) };
-                        }
-                    });
-                });
-                return x2[0];
-            } else console.log(x2[0]);
+            if (x2[1] == '') return x2[0];
+            else console.log(x2[0]);
         
         };
             
@@ -578,11 +567,11 @@ client.on('message', message => {
     /*Fin BOT*/
     
     if (message.author == botowner && (message.channel.name != 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name != "nya-bot-vs-log"))) {
-        if (TestDatabase(['user:','xp:'])[0].get('user:',message.author.id,['xp:'])[0]['xp'].value[0] != 'NaN') {
-            TestDatabase(['user:','xp:'])[0].get('user:',message.author.id,['xp:'])[0]['xp'].set([String(Number(TestDatabase(['user:','xp:'])[0].get('user:',message.author.id,['xp:'])[0]['xp'].value) + 1)]);
+        if (Database('407142766674575361',['user:','xp:']).get('user:',message.author.id,['xp:'])['xp:'].value[0] != 'NaN') {
+            Database('407142766674575361',['user:','xp:']).get('user:',message.author.id,['xp:'])['xp:'].set([String(Number(Database('407142766674575361',['user:','xp:']).get('user:',message.author.id,['xp:'])['xp:'].value[0] + 1)]);
         
-       	    if( Math.floor( (Number(TestDatabase(['user:','xp:'])[0].get('user:',message.author.id,['xp:'])[0]['xp'].value[0] ) +1) / 10 ) == (Number(TestDatabase(['user:','xp:'])[0].get('user:',message.author.id,['xp:'])[0]['xp'].value[0] ) +1)/ 10) {
-                message.channel.send(`Bravo Knose1 tu as ${Number(TestDatabase(['user:','xp:'])[0].get('user:',message.author.id,['xp:'])[0]['xp'].value[0]) + 1} xp`)
+       	    if( Math.floor( (Number(Database('407142766674575361',['user:','xp:']).get('user:',message.author.id,['xp:'])['xp:'].value[0] ) +1) / 10 ) == (Number(Database('407142766674575361',['user:','xp:']).get('user:',message.author.id,['xp:'])['xp:'].value[0] ) +1)/ 10) {
+                message.channel.send(`Bravo Knose1 tu as ${Number(Database('407142766674575361',['user:','xp:']).get('user:',message.author.id,['xp:'])['xp:'].value[0]) + 1} xp`)
                     .then(msg => msg.delete(10000));
             }
         }
@@ -1241,8 +1230,8 @@ client.on('message', message => {
                     var ctbe = `\
 :tools:  __**Code to be executed :**__\n\
 \`\`\`javascript\n\
-console.log(TestDatabase(${arg1},'noFunction'));\n\
-console.log(TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg3}));\`\`\`\n\
+Database('407142766674575361',${arg1});\n\
+Database('407142766674575361',${arg1}).get(${arg1}[0],'${arg2}',${arg3});\`\`\`\n\
 :speech_left:  __**Result 1 :**__`;
                     
                     arg1Defaut = arg1Defaut.replace(/\[/g,"").replace(/\]/g,"").replace(/\"/g,"").replace(/\'/g,"").split(',');
