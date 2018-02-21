@@ -205,7 +205,7 @@ function Database(SGuild, allRolePrefix) {
             if (x2[1] == '') {
                 console.log(Database__1(SGuild, allRolePrefix)[0].get(dataPrefix, data1, prefixInclude));
                 console.log('---');
-                console.log(Database__1(SGuild, allRolePrefix)[0].get(dataPrefix, data1, prefixInclude));
+                console.log(Database__1(SGuild, allRolePrefix)[0].get(dataPrefix, data1, prefixInclude)[0]);
                 
                 Database__1(SGuild, allRolePrefix)[0].get(dataPrefix, data1, prefixInclude)[0].forEach ( d => {
                     x2[0].forEach( xn => {
