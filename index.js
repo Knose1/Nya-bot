@@ -1521,7 +1521,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
             message.channel.send(nyachannels);
             }
         }
-        else if () {}
+        //else if () {}
         else if ((command.toLowerCase() == 'test1' || command.toLowerCase() == 't1') && message.author == botowner) {
             rand(1,500);
             message.channel.send('hey')
