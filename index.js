@@ -26,8 +26,8 @@ var betaTest = 'on';
 /*The DB PART 1*/
 function Database__1(SGuild, allRolePrefix, gt) {
 //Si on a donner une liste de prefix
+    let retError = '';
     if (Array.isArray(allRolePrefix) && allRolePrefix.length > 0) {
-        let retError = '';
         let toReturn = {};
         //Pour chaque préfix
         //console.log("allRolePrefix = "+allRolePrefix);
