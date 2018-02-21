@@ -1529,7 +1529,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                     msg.react(':white_check_mark:');
                 
                     //On attend une réaction puis on del le message
-                    const filter = (reaction) => reaction.emoji.name == 'white_check_mark'
+                    const filter = (reaction) => reaction.emoji.name == client.emojis.find('name','white_check_mark')
                     msg.awaitReactions(filter, { max: 2 })
                         .then( emoji => {
                             msg.edit('Ok').clearReactions().delete(5000);
