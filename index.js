@@ -1527,12 +1527,8 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                 
                 //On attend une réaction puis on del le message
                 const filter = (user) => {user.id == message.author.id}
-                msg.awaitReactions(filter, {min: 1})
-                    .then(collected => message.channel.send(`Collected ${collected.size} reactions`))
-                    .catch(console.error);
-                    /*.then( emoji => {
-                    msg.edit(`\`${emoji.name}\``).clearReactions().delete(5000);
-                    });*/
+                const collector = msg.createReactionCollector(filter, {max: 1})
+                collector.on('collect', r => {msg.edit(`\`${r.emoji.name}\``).clearReactions().delete(5000)})
                 msg.delete(60000);
             });
         }
