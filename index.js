@@ -1549,15 +1549,15 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
             
             while (i < ArrNumbers.length) {
                 i += 1;
-                var randOperat = Operate[rand(0,Operate.length)]; 
+                let randOperat = Operate[rand(0,Operate.length)]; 
                 let randnumb = ArrNumbers.splice(x = rand(0,Operate.length), x + 1);
-                let solution += `${randnumb} ${randnumb} ${solunum}`;
-                if (randOperat == '+') let solunum += randnumb;
-                if (randOperat == '-') let solunum -= randnumb;
-                if (randOperat == '*') let solunum *= randnumb;
-                if (randOperat == '/') let solunum /= randnumb;
+                solution += `${randnumb} ${randnumb} ${solunum}`;
+                if (randOperat == '+') solunum += randnumb;
+                if (randOperat == '-') solunum -= randnumb;
+                if (randOperat == '*') solunum *= randnumb;
+                if (randOperat == '/') solunum /= randnumb;
                 
-                let solution += ` = ${solunum}\n`;
+                solution += ` = ${solunum}\n`;
             }
                     
             
