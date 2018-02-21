@@ -207,11 +207,11 @@ function Database(SGuild, allRolePrefix) {
                 console.log(x2);
                 console.log('---');
                 console.log(x2[0]);
-                
-                x2[0].forEach( d => {
-                    x2[0].forEach( xn => {
+                var x3 = x2[0];
+                x3.map( xn => {
+                    x2[0].forEach( d => {
                         if (typeof(d) == 'object' && typeof(xn) == 'object' && d == xn) {
-                            return x2[0][x2.indexOf(xn)].set = function (newValue) { console.log(d.set(newValue)) };
+                            return xn.set = function (newValue) { console.log(d.set(newValue)) };
                         }
                     });
                 });
