@@ -1548,15 +1548,16 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
             console.log(ArrNumbers);
             let question = ArrNumbers.join(' | ');
             let solution = '';
-            let x = rand(0,Operate.length);
-            let solunum = ArrNumbers.splice(x, () => {if (x == 0) return x + 1; else return x})[0];
+            let x = rand(0,ArrNumbers.length);
+            let solunum = ArrNumbers.splice(x, () => {if (x == 0) return x + 1; else return x});
+            let maxI = ArrNumbers.length;
             let i = 1;
             
-            while (i < ArrNumbers.length) {
+            while (i < maxI + 1) {
                 i += 1;
-                let x = rand(0,Operate.length);
+                let x = rand(0,ArrNumbers.length);
                 let randOperat = Operate[rand(0,Operate.length)]; 
-                let randnumb = ArrNumbers.splice(x, () => {if (x == 0) return x; else return x + 1 })[0];
+                let randnumb = ArrNumbers.splice(x, () => {if (x == 0) return x; else return x + 1 });
                 solution += `${randnumb} ${randOperat} ${solunum}`;
                 if (randOperat == '+') solunum += randnumb;
                 if (randOperat == '-') solunum -= randnumb;
