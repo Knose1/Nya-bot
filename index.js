@@ -1558,7 +1558,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
             let i = 1;
             console.log(solunum);
             
-            while (i < maxI + 1) {
+            while (i < maxI) {
                 i += 1;
                 let x = rand(0,maxI + 1);
                 console.log(ArrNumbers);
