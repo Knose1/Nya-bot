@@ -1522,6 +1522,8 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
             }
         }
         else if ((command.toLowerCase() == 'emojiget' || command.toLowerCase() == 'emg') && (isMod || message.author == botowner)) {
+            
+            let collect = false;
             message.channel.send(`\`Add a reaction to get emoji's name\``)
             .then(msg => {
                 
@@ -1529,28 +1531,32 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                 const filter = (reaction,user) => {return user.id == message.author.id}
                 const collector = msg.createReactionCollector(filter, {time: 60000, max:1});
                 collector.on('collect', r => {
+                    collect = true;
                     msg.edit(`\`${r.emoji.name}\``);
                     msg.clearReactions();;
                     msg.delete(8000);
                 });
-                collector.on('end', e => {msg.clearReactions(); msg.delete(500);});
+                collector.on('end', e => {if (!collect) {msg.clearReactions(); msg.delete(500);}});
                 
             });
         }
         else if ((command.toLowerCase() == 'mathstest' || command.toLowerCase() == 'mt') && message.author == botowner) {
+            let collect = false;
             let Operate = ['+','-','*','/'];
             let ArrNumbers = [0,0,0,0,0];
             ArrNumbers = ArrNumbers.map( () => {rand(1,500)} );
-            
+            console.log(ArrNumbers);
             let question = ArrNumbers.join(' | ');
             let solution = '';
-            let solunum = ArrNumbers.splice(x = rand(0,Operate.length), x + 1);
+            let x = rand(0,Operate.length);
+            let solunum = ArrNumbers.splice(x, x + 1);
             let i = 1;
             
             while (i < ArrNumbers.length) {
                 i += 1;
+                let x = rand(0,Operate.length);
                 let randOperat = Operate[rand(0,Operate.length)]; 
-                let randnumb = ArrNumbers.splice(x = rand(0,Operate.length), x + 1);
+                let randnumb = ArrNumbers.splice(x, x + 1);
                 solution += `${randnumb} ${randnumb} ${solunum}`;
                 if (randOperat == '+') solunum += randnumb;
                 if (randOperat == '-') solunum -= randnumb;
@@ -1567,16 +1573,18 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                     msg.react('✅');
                 
                     //On attend une réaction puis on del le message
-                    const filter = (reaction,user) => {return reaction.emoji == client.emojis.find('name','✅')}
-                    const collector = msg.createReactionCollector(filter, {time: 60000, max:1});
+                    const filter = (reaction,user) => {return reaction.emoji.name == '✅'}
+                    const collector = msg.createReactionCollector(filter, {time: 60000, max:2});
                         collector.on('collect', r => {
+                            collect = true;
                             msg.edit(`\`\`\`javascript\n\
 ${solution}\`\`\``);
                             msg.clearReactions();;
                             msg.delete(8000);
                         });
-                        msg.delete(60000);
+                        collector.on('end', e => {if (!collect) {msg.clearReactions(); msg.delete(500);}});
                     });
+                        
         }
         //commande help
         
