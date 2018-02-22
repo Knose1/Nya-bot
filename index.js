@@ -1540,11 +1540,19 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                 
             });
         }
-        else if ((command.toLowerCase() == 'mathstest' || command.toLowerCase() == 'mt') && message.author == botowner && args.lenght == 1) {
+        else if ((command.toLowerCase() == 'mathstest' || command.toLowerCase() == 'mt') && message.author == botowner && undefined != args[0]) {
+            
+            if (undefined != args[1]) {
+                let ArrMin = args[0];
+                let ArrMax = args[1];
+            } else {
+                let ArrMin = 1;
+                let ArrMax = args[0];
+            }
             let collect = false;
             let Operate = ['+','-','*','/'];
             let ArrNumbers = [0,0,0,0,0];
-            ArrNumbers = ArrNumbers.map( () => {return rand(1,args[0])} );
+            ArrNumbers = ArrNumbers.map( () => {return rand(ArrMin,ArrMax])} );
             console.log(ArrNumbers);
             
             let question = ArrNumbers.join(' | ');
