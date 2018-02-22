@@ -1540,11 +1540,11 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                 
             });
         }
-        else if ((command.toLowerCase() == 'mathstest' || command.toLowerCase() == 'mt') && message.author == botowner) {
+        else if ((command.toLowerCase() == 'mathstest' || command.toLowerCase() == 'mt') && message.author == botowner && args.lenght == 1) {
             let collect = false;
             let Operate = ['+','-','*','/'];
             let ArrNumbers = [0,0,0,0,0];
-            ArrNumbers = ArrNumbers.map( () => {return rand(1,500)} );
+            ArrNumbers = ArrNumbers.map( () => {return rand(1,args[0])} );
             console.log(ArrNumbers);
             
             let question = ArrNumbers.join(' | ');
@@ -1577,22 +1577,23 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                 
                 solution += ` = ${solunum}\n`;
             }
-                    
+            question += "\n"+"Résulat: "+solunum;
             
-            message.channel.send(question)
+            message.channel.send(`\`\`\`javascript \n
+question\`\`\``)
                 .then(msg => {
                     //On ajoute une réaction
                     msg.react('✅');
                 
                     //On attend une réaction puis on del le message
                     const filter = (reaction,user) => {return reaction.emoji.name == '✅' && user.id != mention}
-                    const collector = msg.createReactionCollector(filter, {time: 60000, max:1});
+                    const collector = msg.createReactionCollector(filter, {time: 240000, max:1});
                         collector.on('collect', r => {
                             collect = true;
                             msg.edit(`\`\`\`javascript\n\
 ${solution}\`\`\``);
                             msg.clearReactions();;
-                            msg.delete(20000);
+                            msg.delete(60000);
                         });
                         collector.on('end', e => {if (!collect) {msg.clearReactions(); msg.delete(500);}});
                     });
