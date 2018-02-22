@@ -1339,7 +1339,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
         ```javascript\n\
         //If array3 isn\'t set, array1 will set array3 \n\
         TestDatabase(<array1>).get(<array1>[0], <string1>, [array3])[<string2>].set(<array2>);```')
-                    .then(msg => msg.delete(15000));
+                    .then(msg => msg.delete(60000));
                 }
             }
             else if (command = 'db' && (message.author == botowner || isWhitelisted) && args[0] == undefined) {
@@ -1354,7 +1354,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
         ```javascript\n\
         //If array3 isn\'t set, array1 will set array3 \n\
         TestDatabase(<array1>).get(<array1>[0], <string1>, [array3])[<string2>].set(<array2>);```')
-                .then(msg => msg.delete(15000));;
+                .then(msg => msg.delete(60000));;
             }
             else {
                 /*J'ai pas de compte 0.0 INSCRIT TOI ESCLAVE ! xD*/
@@ -1371,7 +1371,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
             }
         } else {
             message.channel.send('Désolé le RPG nya!bot est en vertion béta test')
-                .then(msg => msg.delete(4000));
+                .then(msg => msg.delete(5000));
             
             message.delete(500)
                 .then(msg => console.log(`Message supprimé, raison: rpg; Auteur: ${msg.author}`))
