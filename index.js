@@ -1545,6 +1545,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
             let Operate = ['+','-','*','/'];
             let ArrNumbers = [0,0,0,0,0];
             ArrNumbers = ArrNumbers.map( () => {return rand(1,500)} );
+            console.log(ArrNumbers);
             
             let question = ArrNumbers.join(' | ');
             let solution = '';
@@ -1556,11 +1557,13 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
             let maxI = ArrNumbers.length;
             let i = 1;
             console.log(solunum);
-            while (i < maxI) {
+            
+            while (i < maxI + 1) {
                 i += 1;
                 let x = rand(0,ArrNumbers.length - 1);
                 while (ArrNumbers[x] == undefined) {
-                    let x = rand(0,ArrNumbers.length - 1);
+                    x = rand(0,ArrNumbers.length - 1);
+                    console.log(x+" ; "+ArrNumbers[x]);
                 }
                 let randOperat = Operate[rand(0,Operate.length - 1)];
                 let randnumb = ArrNumbers[x];
