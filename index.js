@@ -1540,7 +1540,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                 
             });
         }
-        else if ((command.toLowerCase() == 'mathstest' || command.toLowerCase() == 'mt') && message.author == botowner && undefined != args[0]) {
+        else if ((command.toLowerCase() == 'mathstest' || command.toLowerCase() == 'mt') && undefined != args[0]) {
             
             let ArrMin = 1;
             let ArrMax = 2;
@@ -1587,7 +1587,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                 
                 solution += ` = ${solunum}\n`;
             }
-            question += "\n"+"Résulat: "+solunum;
+            question += "\n"+"Result: "+solunum+"\n\n"+"Try to find how to get the result";
             
             message.channel.send(`\`\`\`js\n
 ${question}\`\`\``)
@@ -1608,6 +1608,10 @@ ${solution}\`\`\``);
                         collector.on('end', e => {if (!collect) {msg.clearReactions(); msg.delete(500);}});
                     });
                         
+        }
+        else if ((command.toLowerCase() == 'mathstest' || command.toLowerCase() == 'mt')) {
+            message.channel.send("use: 'sorry not done yet'")
+                .then(msg => msg.delete(15000));
         }
         //commande help
         
