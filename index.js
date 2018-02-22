@@ -1544,7 +1544,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
             let collect = false;
             let Operate = ['+','-','*','/'];
             let ArrNumbers = [0,0,0,0,0];
-            ArrNumbers = ArrNumbers.map( () => {rand(1,500)} );
+            ArrNumbers = ArrNumbers.map( () => {return rand(1,500)} );
             console.log(ArrNumbers);
             let question = ArrNumbers.join(' | ');
             let solution = '';
@@ -1573,8 +1573,8 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                     msg.react('✅');
                 
                     //On attend une réaction puis on del le message
-                    const filter = (reaction,user) => {return reaction.emoji.name == '✅'}
-                    const collector = msg.createReactionCollector(filter, {time: 60000, max:2});
+                    const filter = (reaction,user) => {return reaction.emoji.name == '✅' && user.id != mention}
+                    const collector = msg.createReactionCollector(filter, {time: 60000, max:1});
                         collector.on('collect', r => {
                             collect = true;
                             msg.edit(`\`\`\`javascript\n\
