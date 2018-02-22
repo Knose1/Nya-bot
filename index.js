@@ -1552,7 +1552,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
             let collect = false;
             let Operate = ['+','-','*','/'];
             let ArrNumbers = [0,0,0,0,0];
-            ArrNumbers = ArrNumbers.map( () => {return rand(ArrMin,ArrMax])} );
+            ArrNumbers = ArrNumbers.map( () => {return rand(ArrMin,ArrMax)} );
             console.log(ArrNumbers);
             
             let question = ArrNumbers.join(' | ');
