@@ -1549,15 +1549,15 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
             let question = ArrNumbers.join(' | ');
             let solution = '';
             let x = rand(0,Operate.length);
-            let solunum = ArrNumbers.splice(x, x + 1);
+            let solunum = ArrNumbers.splice(x, () => {if (x == 0) return x + 1; else return x})[0];
             let i = 1;
             
             while (i < ArrNumbers.length) {
                 i += 1;
                 let x = rand(0,Operate.length);
                 let randOperat = Operate[rand(0,Operate.length)]; 
-                let randnumb = ArrNumbers.splice(x, x + 1);
-                solution += `${randnumb} ${randnumb} ${solunum}`;
+                let randnumb = ArrNumbers.splice(x, () => {if (x == 0) return x; else return x + 1 })[0];
+                solution += `${randnumb} ${randOperat} ${solunum}`;
                 if (randOperat == '+') solunum += randnumb;
                 if (randOperat == '-') solunum -= randnumb;
                 if (randOperat == '*') solunum *= randnumb;
@@ -1580,7 +1580,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                             msg.edit(`\`\`\`javascript\n\
 ${solution}\`\`\``);
                             msg.clearReactions();;
-                            msg.delete(8000);
+                            msg.delete(20000);
                         });
                         collector.on('end', e => {if (!collect) {msg.clearReactions(); msg.delete(500);}});
                     });
