@@ -1550,6 +1550,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
             let solution = '';
             let x = rand(0,ArrNumbers.length);
             let solunum = ArrNumbers.splice(x, () => {if (x == 0) return x + 1; else return x});
+            console.log(solunum);
             let maxI = ArrNumbers.length;
             let i = 1;
             
