@@ -1549,23 +1549,23 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
             let question = ArrNumbers.join(' | ');
             let solution = '';
             
-            let x = rand(0,ArrNumbers.length);
+            let x = rand(0,ArrNumbers.length - 1);
             let solunum = ArrNumbers[x];
                 delete ArrNumbers[x];
             
             let maxI = ArrNumbers.length;
             let i = 1;
-            
-            while (i < maxI + 1) {
+            console.log(solunum);
+            while (i < maxI) {
                 i += 1;
-                let x = rand(0,ArrNumbers.length);
+                let x = rand(0,ArrNumbers.length - 1);
                 while (ArrNumbers[x] == undefined) {
-                    let x = rand(0,ArrNumbers.length);
+                    let x = rand(0,ArrNumbers.length - 1);
                 }
-                let randOperat = Operate[rand(0,Operate.length)];
+                let randOperat = Operate[rand(0,Operate.length - 1)];
                 let randnumb = ArrNumbers[x];
                     delete ArrNumbers[x];
-                
+                console.log(randnumb);
                 solution += `${solunum} ${randOperat} ${randnumb}`;
                 if (randOperat == '+') solunum += randnumb;
                 if (randOperat == '-') solunum -= randnumb;
