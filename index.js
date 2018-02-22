@@ -1545,21 +1545,28 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
             let Operate = ['+','-','*','/'];
             let ArrNumbers = [0,0,0,0,0];
             ArrNumbers = ArrNumbers.map( () => {return rand(1,500)} );
-            console.log(ArrNumbers);
+            
             let question = ArrNumbers.join(' | ');
             let solution = '';
+            
             let x = rand(0,ArrNumbers.length);
-            let solunum = ArrNumbers.splice(x, () => {if (x == 0) return x + 1; else return x});
-            console.log(solunum);
+            let solunum = ArrNumbers[x];
+                delete ArrNumbers[x];
+            
             let maxI = ArrNumbers.length;
             let i = 1;
             
             while (i < maxI + 1) {
                 i += 1;
                 let x = rand(0,ArrNumbers.length);
-                let randOperat = Operate[rand(0,Operate.length)]; 
-                let randnumb = ArrNumbers.splice(x, () => {if (x == 0) return x; else return x + 1 });
-                solution += `${randnumb} ${randOperat} ${solunum}`;
+                while (ArrNumbers[x] == undefined) {
+                    let x = rand(0,ArrNumbers.length);
+                }
+                let randOperat = Operate[rand(0,Operate.length)];
+                let randnumb = ArrNumbers[x];
+                    delete ArrNumbers[x];
+                
+                solution += `${solunum} ${randOperat} ${randnumb}`;
                 if (randOperat == '+') solunum += randnumb;
                 if (randOperat == '-') solunum -= randnumb;
                 if (randOperat == '*') solunum *= randnumb;
