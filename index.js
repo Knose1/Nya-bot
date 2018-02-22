@@ -1589,8 +1589,8 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
             }
             question += "\n"+"Résulat: "+solunum;
             
-            message.channel.send(`\`\`\`javascript \n
-question\`\`\``)
+            message.channel.send(`\`\`\`js\n
+${question}\`\`\``)
                 .then(msg => {
                     //On ajoute une réaction
                     msg.react('✅');
