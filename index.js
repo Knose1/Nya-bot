@@ -1561,9 +1561,9 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
             while (i < maxI + 1) {
                 i += 1;
                 let x = rand(0,ArrNumbers.length - 1);
+                console.log(ArrNumbers);
                 while (ArrNumbers[x] == undefined) {
                     x = rand(0,ArrNumbers.length - 1);
-                    console.log(x+" ; "+ArrNumbers[x]);
                 }
                 let randOperat = Operate[rand(0,Operate.length - 1)];
                 let randnumb = ArrNumbers[x];
