@@ -224,6 +224,8 @@ function rand(min,max) {
 }
 
 
+let VsPrefixs = ['','english','nfsw','french'];
+
 var catimg = new Array() ;
 catimg = [
     "https://yt3.ggpht.com/-xMN6CtD0oAM/AAAAAAAAAAI/AAAAAAAAAAA/3rguRakaom8/s900-c-k-no-mo-rj-c0xffffff/photo.jpg",
@@ -595,6 +597,16 @@ client.on('message', message => {
             console.log(`message:${msg.content} ; id:`+message.channel.messages.last(2).findIndex(r => {return r == msg}))
 	    });
     }*/
+    //On récupère le suffix du vs
+    if (message.channel.name.indexOf('nya-bot-vs') == 0) {
+        let Pfx == message.channel.name.slice('nya-bot-vs'.length);
+        let isPfx = false
+        VsPrefixs.forEach( p => {
+            if (Pfx == p || Pfx == `-${p}`) isPfx = true;
+        });
+        var isVs = true;
+    }
+    
     
     //On récupère la liste des ban
     var guild = client.guilds.get('406926403628695556');
@@ -616,7 +628,7 @@ client.on('message', message => {
     });
     
     //Si (Personne Ban)
-    if (message.channel.name == 'nya-bot-vs' && isbanned == true  && message.author.id != mention  && message.author != botowner) {
+    if (isVs && isbanned == true  && message.author.id != mention  && message.author != botowner) {
         message.author.sendMessage(message.author+' vous êtes ban du Virtual server et ne pouvez donc pas parler dans le VS');
         message.delete(500)
                 .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
@@ -624,7 +636,7 @@ client.on('message', message => {
     }
     
     //Si (Commande Nya!bot)
-    else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && iscommand == true) {
+    else if ((isVs || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && iscommand == true) {
         message.author.send(message.author+' les commandes sont interdits dans se channel');
         message.delete(500)
                 .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
@@ -667,7 +679,7 @@ client.on('message', message => {
     }
     /*On envoie des messages en tant que nya!bot*/
     
-    else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--nya') == 0 || message.content.indexOf('--Nya') == 0 || message.content.indexOf('//nya') == 0 || message.content.indexOf('//Nya') == 0) && (message.author == botowner || isMod)) {
+    else if ((isVs || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--nya') == 0 || message.content.indexOf('--Nya') == 0 || message.content.indexOf('//nya') == 0 || message.content.indexOf('//Nya') == 0) && (message.author == botowner || isMod)) {
         if (message.content.indexOf('//') == 0){
             var args = message.content.slice('//'.length).trim().split(/ +/g);
         }
@@ -684,7 +696,7 @@ client.on('message', message => {
     /*FIN DE --NYA*/
     
     /*On vas purge car c'est l'enfer*/
-    else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--suppr') == 0 || message.content.indexOf('--Suppr') == 0 || message.content.indexOf('//suppr') == 0 || message.content.indexOf('//Suppr') == 0 || /**/ message.content.indexOf('--purge') == 0 || message.content.indexOf('--Purge') == 0 || message.content.indexOf('//purge') == 0 || message.content.indexOf('//Purge') == 0) && (message.author == botowner || isMod)) {
+    else if ((isVs || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--suppr') == 0 || message.content.indexOf('--Suppr') == 0 || message.content.indexOf('//suppr') == 0 || message.content.indexOf('//Suppr') == 0 || /**/ message.content.indexOf('--purge') == 0 || message.content.indexOf('--Purge') == 0 || message.content.indexOf('//purge') == 0 || message.content.indexOf('//Purge') == 0) && (message.author == botowner || isMod)) {
         let Nmessage = message;
         let args = message.content.slice('--suppr'.length).trim().split(/ +/g);
         
@@ -768,7 +780,7 @@ client.on('message', message => {
     
     /*ON VAS BAN DES GENS !!! */
     
-    else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--ban') == 0 || message.content.indexOf('--Ban') == 0 || message.content.indexOf('//ban') == 0 || message.content.indexOf('//Ban') == 0) && (message.author == botowner || isMod)) {
+    else if ((isVs || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--ban') == 0 || message.content.indexOf('--Ban') == 0 || message.content.indexOf('//ban') == 0 || message.content.indexOf('//Ban') == 0) && (message.author == botowner || isMod)) {
         if (message.content.indexOf('//') == 0){
             var args = message.content.slice('//'.length).trim().split(/ +/g);
         }
@@ -869,7 +881,7 @@ client.on('message', message => {
     
     /*DEBUT DU UNBAN*/
     
-    else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--unban') == 0 || message.content.indexOf('--Unban') == 0 || message.content.indexOf('//unban') == 0 || message.content.indexOf('//Unban') == 0) && (message.author == botowner || isMod)) {
+    else if ((isVs || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--unban') == 0 || message.content.indexOf('--Unban') == 0 || message.content.indexOf('//unban') == 0 || message.content.indexOf('//Unban') == 0) && (message.author == botowner || isMod)) {
         if (message.content.indexOf('//') == 0){
             var args = message.content.slice('//'.length).trim().split(/ +/g);
         }
@@ -975,7 +987,7 @@ client.on('message', message => {
     //Commande-VS = Ok
     else if     (
                     (
-                        message.channel.name == 'nya-bot-vs' || 
+                        isVs || 
                         (
                             message.guild.id == "377892426569744387" && 
                             message.channel.name == "nya-bot-vs-log"
@@ -1169,8 +1181,15 @@ client.on('message', message => {
             
             guild.channels.forEach(function (channel) {
                 //On regarde s'il se nome nya-bot-vs ou nya-bot-vs-log (dans le serv log)
-                if (channel.type == "text" && channel.name == "nya-bot-vs" || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) {
+                if (channel.name == "nya-bot-vs"+Pfx || (channel.name == "nya-bot-vs-"+Pfx && !(Pfx.indexOf('-') == 0) )  ) {
                 
+                    //On envoie l'embed
+                    channel.send({embed});
+                }
+                else if (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log" && Pfx != 'nsfw') {
+                    
+                    embed.setTitle(`__Virtual Channel: ${Pfx}__`);
+                    
                     //On envoie l'embed
                     channel.send({embed});
                 }
@@ -1544,12 +1563,12 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
             
             let ArrMin = 1;
             let ArrMax = 2;
-            if (undefined != args[1]) {
-                ArrMin = args[0];
-                ArrMax = args[1];
-            } else {
+            if (undefined == args[1]) {
                 ArrMin = 1;
                 ArrMax = args[0];
+            } else {
+                ArrMin = args[0];
+                ArrMax = args[1];
             }
             let collect = false;
             let Operate = ['+','-','*','/'];
