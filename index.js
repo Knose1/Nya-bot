@@ -650,7 +650,7 @@ client.on('message', message => {
     //Si (pas de -- et pas de //)
     else if (
                 ( //Un channel nya!bot VS
-                message.channel.name == 'nya-bot-vs'
+                isVs
                     || 
                     ( //ou le serveur log de nya!bot
                     message.guild.id == "377892426569744387" && 
@@ -701,7 +701,7 @@ client.on('message', message => {
     /*FIN DE --NYA*/
     
     /*On vas purge car c'est l'enfer*/
-    else if ((isVs || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--suppr') == 0 || message.content.indexOf('--Suppr') == 0 || message.content.indexOf('//suppr') == 0 || message.content.indexOf('//Suppr') == 0 || /**/ message.content.indexOf('--purge') == 0 || message.content.indexOf('--Purge') == 0 || message.content.indexOf('//purge') == 0 || message.content.indexOf('//Purge') == 0) && (message.author == botowner || isMod)) {
+    else if ((isVs || (message.guild.id == "377892426569744387" && message.channel.name != "nya-bot-vs-log")) && (message.content.indexOf('--suppr') == 0 || message.content.indexOf('--Suppr') == 0 || message.content.indexOf('//suppr') == 0 || message.content.indexOf('//Suppr') == 0 || /**/ message.content.indexOf('--purge') == 0 || message.content.indexOf('--Purge') == 0 || message.content.indexOf('//purge') == 0 || message.content.indexOf('//Purge') == 0) && (message.author == botowner || isMod)) {
         let Nmessage = message;
         let args = message.content.slice('--suppr'.length).trim().split(/ +/g);
         
@@ -1187,13 +1187,15 @@ client.on('message', message => {
             guild.channels.forEach(function (channel) {
                 //On regarde s'il se nome nya-bot-vs ou nya-bot-vs-log (dans le serv log)
                 if (channel.name == "nya-bot-vs"+Pfx || (channel.name == "nya-bot-vs-"+Pfx)  ) {
-                
+                    
+                    embed.setTitle(undefined);
+                    
                     //On envoie l'embed
                     channel.send({embed});
                 }
                 else if (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log" && Pfx != 'nsfw') {
                     
-                    embed.setTitle(`__Virtual Channel: ${Pfx}__`);
+                    embed.setTitle(`__Virtual Channel: ${Pfx.slice('-'.length)}__`);
                     
                     //On envoie l'embed
                     channel.send({embed});
