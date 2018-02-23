@@ -1188,7 +1188,7 @@ client.on('message', message => {
                 //On regarde s'il se nome nya-bot-vs ou nya-bot-vs-log (dans le serv log)
                 if (channel.name == "nya-bot-vs"+Pfx || (channel.name == "nya-bot-vs-"+Pfx)  ) {
                     
-                    embed.setTitle(undefined);
+                    embed.setTitle();
                     
                     //On envoie l'embed
                     channel.send({embed});
