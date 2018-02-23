@@ -471,6 +471,24 @@ client.on('resume', resume => {
 
 client.on('message', message => {
     
+    //On récupère le suffix du vs
+    var isVs = false;
+    if (message.channel.name.indexOf('nya-bot-vs') == 0) {
+        var Pfx = message.channel.name.slice('nya-bot-vs'.length);
+        if (Pfx == undefined) Pfx = '';
+        if (Pfx.indexOf('-') == 0) Pfx = Pfx.slice('-'.length);
+        if (Pfx == undefined) Pfx = '';
+        
+        var isPfx = false
+        VsPrefixs.forEach( p => {
+            if (Pfx == p) isPfx = true;
+        });
+        
+        if (isPfx) isVs = true;
+        console.log(isVs+" ; "+Pfx)
+    }
+    
+    
     if (!message.author.bot){
     //Faux serveurs dans la DB
     client.guilds.get('410520625728323595').roles.forEach( gBan => {
@@ -522,6 +540,7 @@ client.on('message', message => {
     
     if (noGame == 'activé') client.user.setGame(`cat:help | Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} serveurs.`);
     if(message.guild) {} else return;
+    
     //On regarde si l'utilisateur est un modérateur
     var isMod = (client.guilds.get('377892426569744387').roles.get('407229590948413440').members.get(message.author.id) != undefined);
     
@@ -546,27 +565,27 @@ client.on('message', message => {
     //ignorer si c'est un bot (sauf s'il parle dans le vs sous certaines conditions
     if(message.author.bot == true) {
         //Bot ban et bot différent de nya!bot
-        if (message.channel.name == 'nya-bot-vs' && isbanned == true && message.author.id != mention) {
+        if (isVs && isbanned == true && message.author.id != mention) {
             message.delete(500)
                 .then(msg => console.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
                 .catch(console.error);
             return;
         }
         //Nya!bot commande
-        else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && iscommand == true) {
+        else if ((isVs || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && iscommand == true) {
             message.delete(500)
                 .then(msg => console.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
                 .catch(console.error);
             return;
         }
         //Si pas de -- et pas de // et différent de nya!bot
-        else if ((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--') != 0 && message.content.indexOf('//') != 0) && message.author.id != mention) {
+        else if ((isVs || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--') != 0 && message.content.indexOf('//') != 0) && message.author.id != mention) {
             message.delete(500)
                 .then(msg => console.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
                 .catch(console.error);
             return;
         }
-        else if((message.channel.name == 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--') == 0 || message.content.indexOf('//') == 0)) {
+        else if((isVs || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--') == 0 || message.content.indexOf('//') == 0)) {
         }
         else {
             return;
@@ -574,7 +593,7 @@ client.on('message', message => {
     }
     /*Fin BOT*/
     
-    if (message.author == botowner && (message.channel.name != 'nya-bot-vs' || (message.guild.id == "377892426569744387" && message.channel.name != "nya-bot-vs-log"))) {
+    if (message.author == botowner && (!isVs || (message.guild.id == "377892426569744387" && message.channel.name != "nya-bot-vs-log"))) {
         if (Database('407142766674575361',['user:','xp:']).get('user:',message.author.id,['xp:'])['xp:'].value[0] != 'NaN') {
             Database('407142766674575361',['user:','xp:']).get('user:',message.author.id,['xp:'])['xp:'].set([String(Number(Database('407142766674575361',['user:','xp:']).get('user:',message.author.id,['xp:'])['xp:'].value[0] + 1))]);
         
@@ -597,22 +616,7 @@ client.on('message', message => {
             console.log(`message:${msg.content} ; id:`+message.channel.messages.last(2).findIndex(r => {return r == msg}))
 	    });
     }*/
-    //On récupère le suffix du vs
-    var isVs = false;
-    if (message.channel.name.indexOf('nya-bot-vs') == 0) {
-        var Pfx = message.channel.name.slice('nya-bot-vs'.length);
-        if (Pfx == undefined) Pfx = '';
-        if (Pfx.indexOf('-') == 0) Pfx = Pfx.slice('-');
-        if (Pfx == undefined) Pfx = '';
-        
-        var isPfx = false
-        VsPrefixs.forEach( p => {
-            if (Pfx == p) isPfx = true;
-        });
-        
-        if (isPfx) isVs = true;
-        console.log(isVs+" ; "+Pfx)
-    }
+    
     
     
     //On récupère la liste des ban
