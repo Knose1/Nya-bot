@@ -1663,7 +1663,7 @@ ${question}\`\`\``)
                 
                     //On attend une réaction puis on del le message
                     const filter = (reaction,user) => {return reaction.emoji.name == '✅' && user.id != mention}
-                    const collector = msg.createReactionCollector(filter, {time: 240000, max:1});
+                    const collector = msg.createReactionCollector(filter, {time: 3600000, max:1});
                         collector.on('collect', r => {
                             collect = true;
                             msg.edit(`\`\`\`javascript\n\
