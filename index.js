@@ -1570,14 +1570,13 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
         }
         else if ((command.toLowerCase() == 'mathstest' || command.toLowerCase() == 'mt') && undefined != args[0]) {
             
-            let ArrMin = 1;
-            let ArrMax = 2;
+            
             if (undefined == args[1]) {
-                ArrMin = 1;
-                ArrMax = args[0];
+                var ArrMin = 1;
+                var ArrMax = args[0];
             } else {
-                ArrMin = args[0];
-                ArrMax = args[1];
+                var ArrMin = args[0];
+                var ArrMax = args[1];
             }
             let collect = false;
             let Operate = ['+','-','*','/'];
