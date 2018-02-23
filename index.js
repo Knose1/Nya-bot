@@ -598,16 +598,18 @@ client.on('message', message => {
 	    });
     }*/
     //On récupère le suffix du vs
+    var isVs = false;
     if (message.channel.name.indexOf('nya-bot-vs') == 0) {
-        let Pfx = message.channel.name.slice('nya-bot-vs'.length);
+        var Pfx = message.channel.name.slice('nya-bot-vs'.length);
         if (Pfx == undefined) Pfx = '';
         
-        let isPfx = false
+        var isPfx = false
         VsPrefixs.forEach( p => {
             if (Pfx == p || Pfx == `-${p}`) isPfx = true;
             if (Pfx == `-${p}`) Pfx.slice('-'.length);;
         });
-        var isVs = true;
+        
+        if (isPfx) isVs = true;
     }
     
     
