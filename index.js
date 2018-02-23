@@ -1183,6 +1183,8 @@ client.on('message', message => {
             embed.setAuthor(message.author.username+"#"+message.author.discriminator);
             embed.setColor("#2ecc71");
         }
+        let emb = embed;
+        
         /*Fin embed*/
         
         //Pour chaque serv:
@@ -1198,11 +1200,10 @@ client.on('message', message => {
                     channel.send({embed});
                 }
                 else if (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log" && Pfx != 'nsfw') {
-                    var embed2 = embed
-                    embed2.setTitle(`__Virtual Channel: ${Pfx.slice('-'.length)}__`);
+                    emb.setTitle(`__Virtual Channel: ${Pfx.slice('-'.length)}__`);
                     
                     //On envoie l'embed
-                    channel.send({embed2});
+                    channel.send({emb});
                 }
             });
 		});
