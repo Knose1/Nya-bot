@@ -600,6 +600,8 @@ client.on('message', message => {
     //On récupère le suffix du vs
     if (message.channel.name.indexOf('nya-bot-vs') == 0) {
         let Pfx = message.channel.name.slice('nya-bot-vs'.length);
+        if (Pfx == undefined) Pfx = '';
+        
         let isPfx = false
         VsPrefixs.forEach( p => {
             if (Pfx == p || Pfx == `-${p}`) isPfx = true;
