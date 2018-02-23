@@ -1183,8 +1183,6 @@ client.on('message', message => {
             embed.setColor("#2ecc71");
         }
         
-        const embed2 = embed;
-        embed2.setTitle(`__Virtual Channel: ${Pfx}__`);
         /*Fin embed*/
         
         //Pour chaque serv:
@@ -1202,7 +1200,7 @@ client.on('message', message => {
                 else if (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log" && Pfx != 'nsfw') {
                     
                     //On envoie l'embed
-                    channel.send({embed2});
+                    channel.send(`__Virtual Channel: ${Pfx}__`,{embed});
                 }
             });
 		});
