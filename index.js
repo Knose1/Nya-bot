@@ -599,10 +599,11 @@ client.on('message', message => {
     }*/
     //On récupère le suffix du vs
     if (message.channel.name.indexOf('nya-bot-vs') == 0) {
-        let Pfx == message.channel.name.slice('nya-bot-vs'.length);
+        let Pfx = message.channel.name.slice('nya-bot-vs'.length);
         let isPfx = false
         VsPrefixs.forEach( p => {
             if (Pfx == p || Pfx == `-${p}`) isPfx = true;
+            if (Pfx == `-${p}`) Pfx.slice('-'.length);;
         });
         var isVs = true;
     }
@@ -1181,7 +1182,7 @@ client.on('message', message => {
             
             guild.channels.forEach(function (channel) {
                 //On regarde s'il se nome nya-bot-vs ou nya-bot-vs-log (dans le serv log)
-                if (channel.name == "nya-bot-vs"+Pfx || (channel.name == "nya-bot-vs-"+Pfx && !(Pfx.indexOf('-') == 0) )  ) {
+                if (channel.name == "nya-bot-vs"+Pfx || (channel.name == "nya-bot-vs-"+Pfx)  ) {
                 
                     //On envoie l'embed
                     channel.send({embed});
