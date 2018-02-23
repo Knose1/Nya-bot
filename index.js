@@ -602,14 +602,16 @@ client.on('message', message => {
     if (message.channel.name.indexOf('nya-bot-vs') == 0) {
         var Pfx = message.channel.name.slice('nya-bot-vs'.length);
         if (Pfx == undefined) Pfx = '';
+        if (Pfx.indexOf('-') == 0) Pfx = Pfx.slice('-');
+        if (Pfx == undefined) Pfx = '';
         
         var isPfx = false
         VsPrefixs.forEach( p => {
-            if (Pfx == p || Pfx == `-${p}`) isPfx = true;
-            if (Pfx == `-${p}`) Pfx.slice('-'.length);;
+            if (Pfx == p) isPfx = true;
         });
         
         if (isPfx) isVs = true;
+        console.log(isVs+" ; "+Pfx)
     }
     
     
@@ -1186,19 +1188,17 @@ client.on('message', message => {
             
             guild.channels.forEach(function (channel) {
                 //On regarde s'il se nome nya-bot-vs ou nya-bot-vs-log (dans le serv log)
-                if (channel.name == "nya-bot-vs"+Pfx || (channel.name == "nya-bot-vs-"+Pfx)  ) {
-                    
-                    embed.setTitle();
+                if (channel.name == "nya-bot-vs"+Pfx || channel.name == "nya-bot-vs-"+Pfx ) {
                     
                     //On envoie l'embed
                     channel.send({embed});
                 }
                 else if (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log" && Pfx != 'nsfw') {
-                    
-                    embed.setTitle(`__Virtual Channel: ${Pfx.slice('-'.length)}__`);
+                    var embed2 = embed
+                    embed2.setTitle(`__Virtual Channel: ${Pfx.slice('-'.length)}__`);
                     
                     //On envoie l'embed
-                    channel.send({embed});
+                    channel.send({embed2});
                 }
             });
 		});
