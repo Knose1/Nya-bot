@@ -161,19 +161,58 @@ function Database__1(SGuild, allRolePrefix, gt) {
         }
         /*Fonction Create*/
         if (retError == '' && gt != 'noFunction' && gt != 'noCreate') {
-            toReturn.create = function (type,Wprefix,data) {
+            toReturn.create = function (Wprefix,data) {
                 retError = '';
-                if (typeof(type) == 'string') {
-                    if(Array().isArray(Wprefix)) {
-                        client.guilds.get(SGuild).createRole({
-                            //name: 'Super Cool People',
-                            //color: 'BLUE',
+                
+                //Si Wprefix est une array
+                if(Array().isArray(Wprefix)) {
+                    if (Array().isArray(data)) {
+                        var colOfArr = true;
+                        data.forEach( d => {
+                            
+                            if (Array().isArray(d)) {
+                                
+                                d.forEach(s => {
+                                    
+                                    if (typeof (s) == 'string' || typeof (s) == 'number') {
+                                        
+                                    } else {
+                                        colOfArr = false;
+                                        retError += `\n Not a string inside of the array of array at 'Database().create(${Wprefix}, ${data})' \n`
+                                            +`Error made inside the element ${d}; By ${s} \n\n`;
+                                    }
+                                    
+                                });
+                                
+                            } else {
+                                colOfArr = false;
+                                retError += `\n Not an array of array at 'Database().create(${Wprefix}, ${data})' \n`
+                                            +`Error made by the element ${d} \n\n`;
+                            }
+                            
+                            
                         });
-                    } else {
-                    retError += `Not an array at Database().create(${type}, ${Wprefix})`;
+                        if (data.lenght == Wprefix.lenght) {
+                            if (colOfArr) {
+                                let i = -1;
+                                Wprefix.forEach( pf => {
+                                    if (typeof (pf) == 'string') {
+                                        i += 1;
+                                        client.guilds.get(SGuild).createRole({
+                                            name: pf + data[i].join(' ')
+                                        });
+                                    } else {
+                                        retError += `\n Not a string at 'Database().create(${Wprefix}, ${data})' \n`
+                                            +`Error made inside the element ${Wprefix}; By ${pf}\n\n`;
+                                    }
+                                });
+                            }
+                        } else {
+                            retError += `Error data.lenght != Wprefix.lenght at 'Database().create(Wprefix, data)'`
+                        }
                     }
                 } else {
-                    retError += `Not a string at Database().create(${type})`;
+                    retError += `Not a(n) string/array at 'Database().create(${Wprefix})' \n`;
                 }
                 return retError;
             }
@@ -183,9 +222,9 @@ function Database__1(SGuild, allRolePrefix, gt) {
     } else {
         if(allRolePrefix != undefined) {
             //Si on a pas donner de liste de préfix
-            if(!Array.isArray(allRolePrefix)) retError += `Not an array at 'database(${SGuild} ${allRolePrefix})'`+"\n";
-            if(allRolePrefix.length <= 0) retError += `Can't read length < 0 at 'database(${SGuild} ${allRolePrefix})'`+"\n";
-        } else retError += `allRolePrefix is undefined at 'database(${SGuild} ${allRolePrefix})'`+"\n";
+            if(!Array.isArray(allRolePrefix)) retError += `Not an array at 'Database(${SGuild} ${allRolePrefix})'`+"\n";
+            if(allRolePrefix.length <= 0) retError += `Can't read length < 0 at 'Database(${SGuild} ${allRolePrefix})'`+"\n";
+        } else retError += `allRolePrefix is undefined at 'Database(${SGuild} ${allRolePrefix})'`+"\n";
         return [undefined, retError];
     }
 };
