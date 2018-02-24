@@ -1197,7 +1197,7 @@ client.on('message', message => {
                     });
                     countMess += 1;
                     countR.then(role => {role.edit({
-                        name: `count:${cid} ${Database('415208185616531456', [`mess ${cid}:`])[`mess ${cid}:`].length}`,
+                        name: `count:${cid} ${countMess}`,
                         color: 'GOLD',
                         })
                     });
@@ -1216,7 +1216,7 @@ client.on('message', message => {
                     });
                     countMess += 1;
                     countR.then(role => {role.edit({
-                        name: `count:${cid} ${Database('415208185616531456', [`mess ${cid}:`])[`mess ${cid}:`].length}`,
+                        name: `count:${cid} ${countMess}`,
                         color: 'GOLD',
                         })
                     });
