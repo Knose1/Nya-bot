@@ -1601,7 +1601,30 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                 if (typeof evaled !== "string")
                     evaled = require("util").inspect(evaled);
 
-                message.channel.send(clean(evaled), {code:"xl"});
+                message.channel.send(clean(code), {code:"xl"})
+                .then(m => {
+                    const filter = (reaction, user) => user.id != mention
+                    const collector = message.createReactionCollector(filter);
+                    collector.on('collect', reaction => {
+                        switch (reaction.emoji.name) {
+                        
+                            case '➡' :
+                                if (m.content == clean(code)) {
+                                    m.edit(clean(evaled), {code:"xl"})
+                                } else {
+                                    m.edit(clean(code), {code:"xl"})
+                                }
+                                break;
+                                
+                            case '⏹':
+                                m.delete(500);
+                                break;
+                                
+                            default :
+                                reaction.remove();
+                        }
+                    });
+                });
             } catch (err) {
                 message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
             }
