@@ -1165,7 +1165,7 @@ client.on('message', message => {
             var tr;
             try {
                 tr = Database('415208185616531456', ['count:'])['count:'].lenght;
-            } catch () {
+            } catch (err) {
                 tr = 0;
             }
             return tr;
