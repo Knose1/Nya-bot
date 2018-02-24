@@ -1605,7 +1605,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                 .then(m => {
                     m.react('➡');
                     m.react('⏹');
-                    const filter = (reaction, user) => user.id == botowner
+                    const filter = (reaction, user) => user == botowner
                     const collector = m.createReactionCollector(filter);
                     collector.on('collect', reaction => {
                         switch (reaction.emoji.name) {
