@@ -1185,7 +1185,6 @@ client.on('message', message => {
                 //On regarde s'il se nome nya-bot-vs ou nya-bot-vs-log (dans le serv log)
                 if (channel.name == "nya-bot-vs"+Pfx || channel.name == "nya-bot-vs-"+Pfx ) {
                     
-                    countMess += 1;
                     
                     //On envoie l'embed
                     channel.send({embed})
@@ -1195,16 +1194,15 @@ client.on('message', message => {
                             color: 'BLUE',
                             });
                     });
+                    countMess += 1;
                     countR.then(role => {role.edit({
-                        name: `count:${cid} ${countMess}`,
+                        name: `count:${cid} ${Database('415208185616531456', [`mess ${cid}:`])[`mess ${cid}:`].length}`,
                         color: 'GOLD',
                         })
                     });
                 }
                 else if (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log" && Pfx != 'nsfw') {
                     
-                    
-                    countMess += 1;
                     
                     //On envoie l'embed
                     channel.send(`__Virtual Channel: ${Pfx}__`,{embed})
@@ -1214,8 +1212,9 @@ client.on('message', message => {
                             color: 'BLUE',
                             });
                     });
+                    countMess += 1;
                     countR.then(role => {role.edit({
-                        name: `count:${cid} ${countMess}`,
+                        name: `count:${cid} ${Database('415208185616531456', [`mess ${cid}:`])[`mess ${cid}:`].length}`,
                         color: 'GOLD',
                         })
                     });
