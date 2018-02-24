@@ -159,65 +159,6 @@ function Database__1(SGuild, allRolePrefix, gt) {
                 }
             };
         }
-        /*Fonction Create*/
-        if (retError == '' && gt != 'noFunction' && gt != 'noCreate') {
-            toReturn.create = function (Wprefix,data) {
-                retError = '';
-                
-                //Si Wprefix est une array
-                if(Array().isArray(Wprefix)) {
-                    if (Array().isArray(data)) {
-                        var colOfArr = true;
-                        data.forEach( d => {
-                            
-                            if (Array().isArray(d)) {
-                                
-                                d.forEach(s => {
-                                    
-                                    if (typeof (s) == 'string' || typeof (s) == 'number') {
-                                        
-                                    } else {
-                                        colOfArr = false;
-                                        retError += `\n Not a string inside of the array of array at 'Database().create(${Wprefix}, ${data})' \n`
-                                            +`Error made inside the element ${d}; By ${s} \n\n`;
-                                    }
-                                    
-                                });
-                                
-                            } else {
-                                colOfArr = false;
-                                retError += `\n Not an array of array at 'Database().create(${Wprefix}, ${data})' \n`
-                                            +`Error made by the element ${d} \n\n`;
-                            }
-                            
-                            
-                        });
-                        if (data.lenght == Wprefix.lenght) {
-                            if (colOfArr) {
-                                let i = -1;
-                                Wprefix.forEach( pf => {
-                                    if (typeof (pf) == 'string') {
-                                        i += 1;
-                                        client.guilds.get(SGuild).createRole({
-                                            name: pf + data[i].join(' ')
-                                        });
-                                    } else {
-                                        retError += `\n Not a string at 'Database().create(${Wprefix}, ${data})' \n`
-                                            +`Error made inside the element ${Wprefix}; By ${pf}\n\n`;
-                                    }
-                                });
-                            }
-                        } else {
-                            retError += `Error data.lenght != Wprefix.lenght at 'Database().create(Wprefix, data)'`
-                        }
-                    }
-                } else {
-                    retError += `Not a(n) string/array at 'Database().create(${Wprefix})' \n`;
-                }
-                return retError;
-            }
-        }
-        /*Fin de fonction create*/
         return [toReturn, retError];
     } else {
         if(allRolePrefix != undefined) {
@@ -246,11 +187,6 @@ function Database(SGuild, allRolePrefix) {
             if (x2[1] == '') return x2[0];
             else console.log(x2[0]);
         
-        };
-            
-        x1[0].create = function (type,Wprefix,data) {
-            var x2 = Database__1(SGuild, allRolePrefix)[0].create(type,Wprefix,data);
-            console.log(x2);
         };
         
         return x1[0];
@@ -1225,7 +1161,17 @@ client.on('message', message => {
         /*Fin embed*/
         
         //Pour chaque serv:
-     
+        const ci = () => {
+            var tr;
+            try
+                tr = Database('415208185616531456', ['count:'])['count:'].lenght;
+            catch ()
+                tr = 0;
+            
+            return tr;
+        };
+        var cid = ci();
+        var countMess = 0;
 		client.guilds.forEach(function (guild) {
 			//Pour chaque channel
             
@@ -1233,16 +1179,39 @@ client.on('message', message => {
                 //On regarde s'il se nome nya-bot-vs ou nya-bot-vs-log (dans le serv log)
                 if (channel.name == "nya-bot-vs"+Pfx || channel.name == "nya-bot-vs-"+Pfx ) {
                     
+                    
+                    
                     //On envoie l'embed
-                    channel.send({embed});
+                    channel.send({embed})
+                    .then(msg => {
+                        client.guilds.get('415208185616531456').createRole({
+                            name: `mess ${cid}:${countMess} ${msg.id}`,
+                            color: 'BLUE',
+                            });
+                        countMess += 1;
+                    });
                 }
                 else if (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log" && Pfx != 'nsfw') {
                     
+                    
+                    countMess += 1;
+                    
                     //On envoie l'embed
-                    channel.send(`__Virtual Channel: ${Pfx}__`,{embed});
+                    channel.send(`__Virtual Channel: ${Pfx}__`,{embed})
+                    .then(msg => {
+                        client.guilds.get('415208185616531456').createRole({
+                            name: `mess ${cid}:${countMess} ${msg.id}`,
+                            color: 'BLUE',
+                            });
+                        countMess += 1;
+                    });
                 }
             });
 		});
+        client.guilds.get('415208185616531456').createRole({
+            name: `count:${cid} ${countMess}`,
+            color: 'YELLOW',
+        });
     message.delete(1000)
         .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
         .catch(console.error);
@@ -1588,6 +1557,46 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
             message.channel.send(nyachannels);
             }
         }
+        //Commande eval
+        else if (command.toLowerCase() == 'eval' && message.author != botowner) {
+            message.channel.reply('You can\'t use eval command ! :pouting_cat:')
+            .then(m => m.delete(6000));
+        }
+        else if (command.toLowerCase() == 'eval' && message.author == botowner) {
+            /*Source of clean: 'https://anidiotsguide_old.gitbooks.io/discord-js-bot-guide/content/examples/making-an-eval-command.html' */
+            const clean = text => {
+                if (typeof(text) === "string")
+                    return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
+                else
+                    return text;
+            }
+            /**/
+            
+            
+            const fulllog = code => {
+                let i = 0;
+                let popout = '';
+                while (code.length > 1000) {
+                    popout[i] = code.slice(1000);
+                    i += 1;
+                    
+                }
+                return {i: i, return: popout};
+            }
+            try {
+                const code = args.join(" ");
+                let evaled = eval(code);
+
+                if (typeof evaled !== "string")
+                    evaled = require("util").inspect(evaled);
+
+                message.channel.send(clean(evaled), {code:"xl"});
+            } catch (err) {
+                message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+            }
+        }
+        
+        //Commande emojiget
         else if ((command.toLowerCase() == 'emojiget' || command.toLowerCase() == 'emg') && (isMod || message.author == botowner)) {
             
             let collect = false;
