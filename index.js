@@ -513,7 +513,7 @@ client.on('message', message => {
         });
         
         if (isPfx) isVs = true;
-        console.log(isVs+" ; "+Pfx)
+        //console.log(isVs+" ; "+Pfx)
     }
     
     //On regarde si l'utilisateur est un modérateur
@@ -1164,7 +1164,7 @@ client.on('message', message => {
         const ci = () => {
             var tr;
             try {
-                tr = Database('415208185616531456', ['count:'])['count:'].lenght;
+                tr = Database('415208185616531456', ['count:'])['count:'].length;
             } catch (err) {
                 tr = 0;
             }
@@ -1172,6 +1172,12 @@ client.on('message', message => {
         };
         var cid = ci();
         var countMess = 0;
+        var countR = client.guilds.get('415208185616531456').createRole({
+            name: `count:${cid} ${countMess}`,
+            color: 'GOLD',
+        })
+        
+        
 		client.guilds.forEach(function (guild) {
 			//Pour chaque channel
             
@@ -1190,6 +1196,11 @@ client.on('message', message => {
                             });
                         countMess += 1;
                     });
+                    countR.then(role => {role.edit({
+                        name: `count:${cid} ${countMess}`,
+                        color: 'GOLD',
+                        })
+                    });
                 }
                 else if (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log" && Pfx != 'nsfw') {
                     
@@ -1205,13 +1216,14 @@ client.on('message', message => {
                             });
                         countMess += 1;
                     });
+                    countR.then(role => {role.edit({
+                        name: `count:${cid} ${countMess}`,
+                        color: 'GOLD',
+                        })
+                    });
                 }
             });
 		});
-        client.guilds.get('415208185616531456').createRole({
-            name: `count:${cid} ${countMess}`,
-            color: 'YELLOW',
-        });
     message.delete(1000)
         .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
         .catch(console.error);
