@@ -1176,7 +1176,7 @@ client.on('message', message => {
             name: `count:${cid} ${countMess}`,
             color: 'GOLD',
         })
-        
+        countMess += 1;
         
 		client.guilds.forEach(function (guild) {
 			//Pour chaque channel
@@ -1185,7 +1185,7 @@ client.on('message', message => {
                 //On regarde s'il se nome nya-bot-vs ou nya-bot-vs-log (dans le serv log)
                 if (channel.name == "nya-bot-vs"+Pfx || channel.name == "nya-bot-vs-"+Pfx ) {
                     
-                    
+                    countMess += 1;
                     
                     //On envoie l'embed
                     channel.send({embed})
@@ -1194,7 +1194,6 @@ client.on('message', message => {
                             name: `mess ${cid}:${countMess} ${msg.id}`,
                             color: 'BLUE',
                             });
-                        countMess += 1;
                     });
                     countR.then(role => {role.edit({
                         name: `count:${cid} ${countMess}`,
@@ -1214,7 +1213,6 @@ client.on('message', message => {
                             name: `mess ${cid}:${countMess} ${msg.id}`,
                             color: 'BLUE',
                             });
-                        countMess += 1;
                     });
                     countR.then(role => {role.edit({
                         name: `count:${cid} ${countMess}`,
