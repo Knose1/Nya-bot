@@ -1190,7 +1190,7 @@ client.on('message', message => {
                     channel.send({embed})
                     .then(msg => {
                         client.guilds.get('415208185616531456').createRole({
-                            name: `mess ${cid}:${countMess} ${msg.id}`,
+                            name: `mess ${cid}:${IdMess} ${msg.id}`,
                             color: 'BLUE',
                             });
                         IdMess += 1;
@@ -1209,7 +1209,7 @@ client.on('message', message => {
                     channel.send(`__Virtual Channel: ${Pfx}__`,{embed})
                     .then(msg => {
                         client.guilds.get('415208185616531456').createRole({
-                            name: `mess ${cid}:${countMess} ${msg.id}`,
+                            name: `mess ${cid}:${IdMess} ${msg.id}`,
                             color: 'BLUE',
                             });
                         IdMess += 1;
