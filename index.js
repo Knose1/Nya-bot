@@ -1603,6 +1603,8 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
 
                 message.channel.send(clean(code), {code:"xl"})
                 .then(m => {
+                    m.react('➡');
+                    m.react('⏹');
                     const filter = (reaction, user) => user.id != mention
                     const collector = message.createReactionCollector(filter);
                     collector.on('collect', reaction => {
