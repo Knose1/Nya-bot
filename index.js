@@ -1605,26 +1605,24 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                 .then(m => {
                     m.react('➡');
                     m.react('⏹');
-                    const filter = (reaction, user) => user.id != mention
-                    const collector = message.createReactionCollector(filter);
+                    const filter = (reaction, user) => user.id == botowner
+                    const collector = m.createReactionCollector(filter);
                     collector.on('collect', reaction => {
                         switch (reaction.emoji.name) {
                         
                             case '➡' :
                                 if (m.content == clean(code)) {
-                                    m.edit(clean(evaled), {code:"xl"})
+                                    m.edit(clean(evaled), {code:"xl"});
                                 } else {
-                                    m.edit(clean(code), {code:"xl"})
+                                    m.edit(clean(code), {code:"xl"});
                                 }
                                 break;
                                 
                             case '⏹':
                                 m.delete(500);
-                                break;
                                 
-                            default :
-                                reaction.remove();
                         }
+                        reaction.remove();
                     });
                 });
             } catch (err) {
