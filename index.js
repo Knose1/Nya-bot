@@ -1172,11 +1172,11 @@ client.on('message', message => {
         };
         var cid = ci();
         var countMess = 0;
+        var IdMess = 0;
         var countR = client.guilds.get('415208185616531456').createRole({
             name: `count:${cid} ${countMess}`,
             color: 'GOLD',
         })
-        countMess += 1;
         
 		client.guilds.forEach(function (guild) {
 			//Pour chaque channel
@@ -1193,6 +1193,7 @@ client.on('message', message => {
                             name: `mess ${cid}:${countMess} ${msg.id}`,
                             color: 'BLUE',
                             });
+                        IdMess += 1;
                     });
                     countMess += 1;
                     countR.then(role => {role.edit({
@@ -1211,6 +1212,7 @@ client.on('message', message => {
                             name: `mess ${cid}:${countMess} ${msg.id}`,
                             color: 'BLUE',
                             });
+                        IdMess += 1;
                     });
                     countMess += 1;
                     countR.then(role => {role.edit({
