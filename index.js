@@ -1163,11 +1163,11 @@ client.on('message', message => {
         //Pour chaque serv:
         const ci = () => {
             var tr;
-            try
+            try {
                 tr = Database('415208185616531456', ['count:'])['count:'].lenght;
-            catch ()
+            } catch () {
                 tr = 0;
-            
+            }
             return tr;
         };
         var cid = ci();
