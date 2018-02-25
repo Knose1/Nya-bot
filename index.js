@@ -1747,7 +1747,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                                 break;
                             case '➡':
                                 if (page < cleanERR.length) {
-                                    if (cleanERR[page] == clean(code))
+                                    if (cleanERR[page] == clean(code)) {
                                        var codeA = 'js';
                                         var Title = '\'UNE ERREUR EST SURVENUE !\' \n\n CODE:\n';
                                     } else { 
