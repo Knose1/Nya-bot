@@ -1610,7 +1610,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                 var cleanEVAL = fulllog(clean(evaled));
                 cleanEVAL.unshift(clean(code));
                 
-                message.channel.send(`\'EXECUTION:\' \n\n CODE:\n ${cleanEVAL[0]}`, {code:"js"})
+                message.channel.send(`\'EXECUTION:\' \n\n CODE:\n ${cleanEVAL[0]} \n\n Page 1/${cleanEVAL.length}`, {code:"js"})
                 .then(m => {
                     var page = 1;
                     if (cleanEVAL.length == 1) {
@@ -1631,7 +1631,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                                         var Title = '\'EXECUTION\' \n\n CODE:\n';
                                     } else { 
                                         var codeA = 'xl';
-                                        var Title = '\'EXECUTION\' \n\n ERROR:\n';
+                                        var Title = '\'EXECUTION\' \n\n OUTPUT:\n';
                                     }
                                     m.edit(`${Title} ${cleanEVAL[page - 2]} \n\n Page ${page - 1}/${cleanEVAL.length}`, {code:codeA});
                                     m.clearReactions().then( m2 => {
@@ -1652,7 +1652,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                                         var Title = '\'EXECUTION\' \n\n CODE:\n';
                                     } else { 
                                         var codeA = 'xl';
-                                        var Title = '\'EXECUTION\' \n\n ERROR:\n';
+                                        var Title = '\'EXECUTION\' \n\n OUTPUT:\n';
                                     }
                                     m.edit(`${Title} ${cleanEVAL[page]} \n\n Page ${page + 1}/${cleanEVAL.length}`, {code:codeA});
                                     m.clearReactions().then( m2 => {
