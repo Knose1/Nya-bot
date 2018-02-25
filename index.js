@@ -1588,16 +1588,15 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
             /**/
             
             
-            const fulllog = code => {
+            function fulllog(FuncArgument1) {
                 let i = 0;
                 var popout = new Array();
-                if (code.length < 1000) {
-                    popout[0] = code;
+                if (FuncArgument1.length <= 1000) {
+                    popout[0] = FuncArgument1;
                 }
-                while (code.length > 1000) {
-                    popout[i] = code.slice(1000);
+                while (FuncArgument1.length > 1000) {
+                    popout[i] = FuncArgument1.slice(1000);
                     i += 1;
-                    
                 }
                 return popout;
             }
@@ -1641,10 +1640,9 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                     });
                 });
             } catch (err) {
-                var cleanERR = fulllog(clean(err));
-                cleanERR.unshift(clean(code));
+                var cleanERR = fulllog(clean(err)).unshift(clean(code));
                 
-                message.channel.send(`ERROR:\n ${cleanERR[0]} \n\n Page 1/${cleanERR.length}`, {code:"xl"})
+                message.channel.send(`ERROR:\n ${cleanERR[0]} \n\n Page 1/${cleanERR.length}`, {code:"js"})
                 .then(m => {
                     if (cleanERR.length == 1) {
                         m.react('⏹');
