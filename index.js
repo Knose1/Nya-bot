@@ -17,7 +17,7 @@ isasked = false;
 nprefix ='cat:';
 prefix = nprefix;
 var isaskactivated = 'désactivé';
-var noGame = 'activé'; // #no-Game-No-Life ! xDDD joke
+// #no-Game-No-Life ! xDDD joke
 var betaTest = 'on';
 
 
@@ -248,6 +248,7 @@ let CanReloading = false;
 
 //lorsque Nya!bot est pret
 client.on('ready', () => {
+    var noGame = 'activé';
     CanReloading = true;
     console.log(`Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} servers.`);
     //envoyer un message au server log
