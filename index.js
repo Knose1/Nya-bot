@@ -1588,6 +1588,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
             /**/
             
             
+            /**/
             function fulllog(FuncArgument1) {
                 let i = 0;
                 var popout = new Array();
@@ -1600,6 +1601,9 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                 }
                 return popout;
             }
+            /**/
+            
+            
             const code = args.join(" ");
             try {
                 let evaled = eval(code);
@@ -1610,7 +1614,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                 var cleanEVAL = fulllog(clean(evaled));
                 cleanEVAL.unshift(clean(code));
                 
-                message.channel.send(`\'EXECUTION:\' \n\n CODE:\n ${cleanEVAL[0]} \n\n Page 1/${cleanEVAL.length}`, {code:"js"})
+                message.channel.send(`\'EXECUTION\'\n\n\n CODE:\n\n  ${cleanEVAL[0]} \n\n\nPage 1/${cleanEVAL.length}`, {code:"js"})
                 .then(m => {
                     var page = 1;
                     if (cleanEVAL.length == 1) {
@@ -1628,18 +1632,24 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                                 if (page != 1) {
                                     if (cleanEVAL[page - 2] == clean(code)) {
                                         var codeA = 'js';
-                                        var Title = '\'EXECUTION\' \n\n CODE:\n';
+                                        var Title = '\'EXECUTION\'\n\n\n CODE:\n\n';
                                     } else { 
                                         var codeA = 'xl';
-                                        var Title = '\'EXECUTION\' \n\n OUTPUT:\n';
+                                        var Title = '\'EXECUTION\'\n\n\n OUTPUT:\n\n';
                                     }
-                                    m.edit(`${Title} ${cleanEVAL[page - 2]} \n\n Page ${page - 1}/${cleanEVAL.length}`, {code:codeA});
+                                    m.edit(`${Title}  ${cleanEVAL[page - 2]} \n\n\nPage ${page - 1}/${cleanEVAL.length}`, {code:codeA});
                                     m.clearReactions().then( m2 => {
                                         if (page - 1 > 1) {
                                             m.react('⬅').then(m3 => m.react('➡').then(m4 => m.react('⏹') )  );
                                         } else {
                                             m.react('➡').then(m3 => m.react('⏹'));
                                         }
+                                    })
+                                    .catch(m2 => {
+                                        if (page - 1 > 1) {
+                                            m.react('⬅').then(m3 => m.react('➡').then(m4 => m.react('⏹') )  );
+                                        } else {
+                                            m.react('➡').then(m3 => m.react('⏹'));
                                     });
                                     page -= 1;
                                 }
@@ -1649,13 +1659,20 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                                 if (page < cleanEVAL.length) {
                                     if (cleanEVAL[page] == clean(code)) {
                                        var codeA = 'js';
-                                        var Title = '\'EXECUTION\' \n\n CODE:\n';
+                                        var Title = '\'EXECUTION\'\n\n\n CODE:\n\n';
                                     } else { 
                                         var codeA = 'xl';
-                                        var Title = '\'EXECUTION\' \n\n OUTPUT:\n';
+                                        var Title = '\'EXECUTION\'\n\n\n OUTPUT:\n\n';
                                     }
-                                    m.edit(`${Title} ${cleanEVAL[page]} \n\n Page ${page + 1}/${cleanEVAL.length}`, {code:codeA});
+                                    m.edit(`${Title}  ${cleanEVAL[page]} \n\n\nPage ${page + 1}/${cleanEVAL.length}`, {code:codeA});
                                     m.clearReactions().then( m2 => {
+                                        if (page + 1 < cleanEVAL.length) {
+                                            m.react('⬅').then(m3 => m.react('➡').then(m4 => m.react('⏹') )  );
+                                        } else {
+                                            m.react('⬅').then(m3 => m.react('⏹'));
+                                        }
+                                    })
+                                    .catch(m2 => {
                                         if (page + 1 < cleanEVAL.length) {
                                             m.react('⬅').then(m3 => m.react('➡').then(m4 => m.react('⏹') )  );
                                         } else {
@@ -1709,7 +1726,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                 
                 var cleanERR = fulllog( util.inspect( clean(err) ) );
                 cleanERR.unshift(clean(code));
-                message.channel.send(`UNE ERREUR EST SURVENUE ! \n\n CODE:\n ${cleanERR[0]} \n\n Page 1/${cleanERR.length}`, {code:"js"})
+                message.channel.send(`\'UNE ERREUR EST SURVENUE !\'\n\n\n CODE:\n\n  ${cleanERR[0]} \n\n\nPage 1/${cleanERR.length}`, {code:"js"})
                 .then(m => {
                     var page = 1;
                     if (cleanERR.length == 1) {
@@ -1728,13 +1745,20 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                                 if (page != 1) {
                                     if (cleanERR[page - 2] == clean(code)) {
                                         var codeA = 'js';
-                                        var Title = '\'UNE ERREUR EST SURVENUE !\' \n\n CODE:\n';
+                                        var Title = '\'UNE ERREUR EST SURVENUE !\'\n\n\n CODE:\n\n';
                                     } else { 
                                         var codeA = 'xl';
-                                        var Title = '\'UNE ERREUR EST SURVENUE !\' \n\n ERROR:\n';
+                                        var Title = '\'UNE ERREUR EST SURVENUE !\'\n\n\n ERROR:\n\n';
                                     }
-                                    m.edit(`${Title} ${cleanERR[page - 2]} \n\n Page ${page - 1}/${cleanERR.length}`, {code:codeA});
+                                    m.edit(`${Title}  ${cleanERR[page - 2]} \n\n\nPage ${page - 1}/${cleanERR.length}`, {code:codeA});
                                     m.clearReactions().then( m2 => {
+                                        if (page - 1 > 1) {
+                                            m.react('⬅').then(m3 => m.react('➡').then(m4 => m.react('⏹') )  );
+                                        } else {
+                                            m.react('➡').then(m3 => m.react('⏹'));
+                                        }
+                                    })
+                                    .catch( m2 => {
                                         if (page - 1 > 1) {
                                             m.react('⬅').then(m3 => m.react('➡').then(m4 => m.react('⏹') )  );
                                         } else {
@@ -1749,13 +1773,20 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                                 if (page < cleanERR.length) {
                                     if (cleanERR[page] == clean(code)) {
                                        var codeA = 'js';
-                                        var Title = '\'UNE ERREUR EST SURVENUE !\' \n\n CODE:\n';
+                                        var Title = '\'UNE ERREUR EST SURVENUE !\'\n\n\n CODE:\n\n';
                                     } else { 
                                         var codeA = 'xl';
-                                        var Title = '\'UNE ERREUR EST SURVENUE !\' \n\n ERROR:\n';
+                                        var Title = '\'UNE ERREUR EST SURVENUE !\'\n\n\n ERROR:\n\n';
                                     }
-                                    m.edit(`${Title} ${cleanERR[page]} \n\n Page ${page + 1}/${cleanERR.length}`, {code:codeA});
+                                    m.edit(`${Title}  ${cleanERR[page]} \n\n\nPage ${page + 1}/${cleanERR.length}`, {code:codeA});
                                     m.clearReactions().then( m2 => {
+                                        if (page + 1 < cleanERR.length) {
+                                            m.react('⬅').then(m3 => m.react('➡').then(m4 => m.react('⏹') )  );
+                                        } else {
+                                            m.react('⬅').then(m3 => m.react('⏹'));
+                                        }
+                                    })
+                                    .catch( m2 => {
                                         if (page + 1 < cleanERR.length) {
                                             m.react('⬅').then(m3 => m.react('➡').then(m4 => m.react('⏹') )  );
                                         } else {
