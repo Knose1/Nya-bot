@@ -17,7 +17,7 @@ isasked = false;
 nprefix ='cat:';
 prefix = nprefix;
 var isaskactivated = 'désactivé';
-// #no-Game-No-Life ! xDDD joke
+var noGame = 'activé'; // #no-Game-No-Life ! xDDD joke
 var betaTest = 'on';
 
 
@@ -248,7 +248,6 @@ let CanReloading = false;
 
 //lorsque Nya!bot est pret
 client.on('ready', () => {
-    var noGame = 'activé';
     CanReloading = true;
     console.log(`Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} servers.`);
     //envoyer un message au server log
@@ -497,7 +496,7 @@ client.on('message', message => {
     //Fin de serveur banni
     }
     
-    if (noGame == 'activé') client.user.setGame(`cat:help | Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} serveurs.`);
+    if (noGame == 'activé' && !iscommand) client.user.setGame(`cat:help | Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} serveurs.`);
     if(message.guild) {} else return;
     
     //On récupère le suffix du vs
