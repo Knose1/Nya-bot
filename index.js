@@ -1603,8 +1603,8 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
 
                 message.channel.send(clean(code), {code:"js"})
                 .then(m => {
-                    m.react('➡');
-                    m.react('⏹');
+                    m.react('➡').then(m2 => m2.react('⏹'));
+                    
                     const filter = (reaction, user) => user == botowner
                     const collector = m.createReactionCollector(filter);
                     collector.on('collect', reaction => {
@@ -1613,8 +1613,10 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                             case '➡' :
                                 if (m.content.indexOf(clean(code)) != -1) {
                                     m.edit(clean(evaled), {code:"xl"});
+                                    reaction.remove(botowner);
                                 } else {
                                     m.edit(clean(code), {code:"js"});
+                                    reaction.remove(botowner);
                                 }
                                 break;
                                 
@@ -1622,7 +1624,6 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                                 m.delete(500);
                                 
                         }
-                        reaction.remove();
                     });
                 });
             } catch (err) {
