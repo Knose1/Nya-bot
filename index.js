@@ -1646,12 +1646,13 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                 console.log(cleanERR);
                 message.channel.send(`ERROR:\n ${cleanERR[0]} \n\n Page 1/${cleanERR.length}`, {code:"js"})
                 .then(m => {
+                    var page = 1;
                     if (cleanERR.length == 1) {
                         m.react('⏹');
                     } else {
                         //⬅ ➡
                         m.react('➡').then(m2 => m.react('⏹'));
-                        var page = 1;
+                        
                     }
                     
                     const filter = (reaction, user) => user == botowner
@@ -1677,7 +1678,6 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                                 break;
                             case '➡':
                                 if (page < cleanERR.length) {
-                                    page += 1;
                                     if (cleanERR[page] == clean(code))
                                        var codeA = 'js';
                                     else var codeA = 'xl';
@@ -1689,6 +1689,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                                             m.react('⬅').then(m3 => m.react('⏹'));
                                         }
                                     });
+                                    page += 1;
                                 }
                                 break;
                             case '⏹':
