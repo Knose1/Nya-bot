@@ -1601,7 +1601,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                 if (typeof evaled !== "string")
                     evaled = require("util").inspect(evaled);
 
-                message.channel.send(clean(code), {code:"xl"})
+                message.channel.send(clean(code), {code:"js"})
                 .then(m => {
                     m.react('➡');
                     m.react('⏹');
@@ -1614,7 +1614,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                                 if (m.content.indexOf(clean(code)) != -1) {
                                     m.edit(clean(evaled), {code:"xl"});
                                 } else {
-                                    m.edit(clean(code), {code:"xl"});
+                                    m.edit(clean(code), {code:"js"});
                                 }
                                 break;
                                 
