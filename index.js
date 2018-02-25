@@ -1446,12 +1446,14 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
             console.log('Changement du jeu: Par défaut');
             var channel = client.channels.get(logserv);
             channel.send('Changement du jeu: Par défaut');
+            noGame = 'activé';
         }
         else if (command == 'game' && message.author == botowner) {
             client.user.setGame(args.join(' '));
             console.log('Changement du jeu: '+args.join(' '));
             var channel = client.channels.get(logserv);
             channel.send('Changement du jeu: '+args.join(' '));
+            noGame = 'désactivé';
         }
         else if (command == 'game' && message.author != botowner) {
             message.channel.send(message.author+" vous n'avez pas le droit d'utiliser "+"\""+message.content+"\"")
@@ -1570,7 +1572,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
         }
         //Commande eval
         else if (command.toLowerCase() == 'eval' && message.author != botowner) {
-            message.channel.reply('You can\'t use eval command ! :pouting_cat:')
+            message.reply('You can\'t use eval command ! :pouting_cat:')
             .then(m => m.delete(6000));
         }
         else if (command.toLowerCase() == 'eval' && message.author == botowner) {
@@ -1586,13 +1588,16 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
             
             const fulllog = code => {
                 let i = 0;
-                let popout = '';
+                var popout = new Array();
+                if (code.length < 1000) {
+                    popout[0] = code;
+                }
                 while (code.length > 1000) {
                     popout[i] = code.slice(1000);
                     i += 1;
                     
                 }
-                return {i: i, return: popout};
+                return popout;
             }
             try {
                 const code = args.join(" ");
@@ -1634,7 +1639,62 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                     });
                 });
             } catch (err) {
-                message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+                var cleanERR = fulllog(clean(err))
+                cleanERR[-1] = clean(code);
+                
+                message.channel.send(`ERROR:\n ${cleanERR[-1]} \n\n Page 1/${cleanERR.length}}`, {code:"xl"})
+                .then(m => {
+                    if (cleanERR.length == 1) {
+                        m.react('⏹');
+                    } else {
+                        //⬅ ➡
+                        m.react('➡').then(m2 => m.react('⏹'));
+                        var page = 1;
+                    }
+                    
+                    const filter = (reaction, user) => user == botowner
+                    const collector = m.createReactionCollector(filter);
+                    collector.on('collect', reaction => {
+                        switch (reaction.emoji.name) {
+                            case '⬅':
+                                if (page != 1) {
+                                    if (cleanERR[page - 3] == clean(code))
+                                       var codeA = 'js';
+                                    else var codeA = 'xl';
+                                    m.edit(`ERROR:\n ${cleanERR[page - 3]} \n\n Page ${page}/${cleanERR.length}}`, {code:codeA});
+                                    m.clearReactions().then( m2 => {
+                                        if (page - 3 != 1) {
+                                            m.react('⬅').then(m2 => m.react('➡').then(m3 => m.react('⏹') )  );
+                                        } else {
+                                            m.react('➡').then(m2 => m.react('⏹'));
+                                        }
+                                    });
+                                    page -= 1;
+                                }
+                                
+                                break;
+                            case '➡':
+                                if (page < cleanERR.length) {
+                                    page += 1;
+                                    if (cleanERR[page - 1] == clean(code))
+                                       var codeA = 'js';
+                                    else var codeA = 'xl';
+                                    m.edit(`ERROR:\n ${cleanERR[page - 1]} \n\n Page ${page}/${cleanERR.length}}`, {code:codeA});
+                                    m.clearReactions().then( m2 => {
+                                        if (page - 1 != cleanERR.length) {
+                                            m.react('⬅').then(m2 => m.react('➡').then(m3 => m.react('⏹') )  );
+                                        } else {
+                                            m.react('⬅').then(m2 => m.react('⏹'));
+                                        }
+                                    });
+                                }
+                                break;
+                            case '⏹':
+                                m.delete(500);
+                                
+                        }
+                    });
+                });
             }
         }
         
