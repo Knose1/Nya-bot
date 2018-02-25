@@ -1650,6 +1650,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                                             m.react('⬅').then(m3 => m.react('➡').then(m4 => m.react('⏹') )  );
                                         } else {
                                             m.react('➡').then(m3 => m.react('⏹'));
+					}
                                     });
                                     page -= 1;
                                 }
