@@ -1609,14 +1609,21 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                     const collector = m.createReactionCollector(filter);
                     collector.on('collect', reaction => {
                         switch (reaction.emoji.name) {
-                        
-                            case '➡' :
+                            
+                            case '🅰' :
                                 if (m.content.indexOf(clean(code)) != -1) {
                                     m.edit(clean(evaled), {code:"xl"});
-                                    reaction.remove(botowner);
-                                } else {
+                                    m.clearReactions().then( m2 => {
+                                        m.react('🅱').then(m2 => m.react('⏹'));
+                                    });
+                                }
+                                break;
+                            case '🅱':
+                                if (m.content.indexOf(clean(evaled)) != -1) {
                                     m.edit(clean(code), {code:"js"});
-                                    reaction.remove(botowner);
+                                    m.clearReactions().then( m2 => {
+                                        m.react('🅰').then(m2 => m.react('⏹'));
+                                    });
                                 }
                                 break;
                                 
