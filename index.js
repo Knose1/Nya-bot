@@ -1641,10 +1641,10 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                     });
                 });
             } catch (err) {
-                var cleanERR = fulllog(clean(err))
-                cleanERR[-1] = clean(code);
+                var cleanERR = fulllog(clean(err));
+                cleanERR.unshift(clean(code));
                 
-                message.channel.send(`ERROR:\n ${cleanERR[-1]} \n\n Page 1/${cleanERR.length}`, {code:"xl"})
+                message.channel.send(`ERROR:\n ${cleanERR[0]} \n\n Page 1/${cleanERR.length}`, {code:"xl"})
                 .then(m => {
                     if (cleanERR.length == 1) {
                         m.react('⏹');
@@ -1660,12 +1660,12 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                         switch (reaction.emoji.name) {
                             case '⬅':
                                 if (page != 1) {
-                                    if (cleanERR[page - 3] == clean(code))
+                                    if (cleanERR[page - 2] == clean(code))
                                        var codeA = 'js';
                                     else var codeA = 'xl';
-                                    m.edit(`ERROR:\n ${cleanERR[page - 3]} \n\n Page ${page}/${cleanERR.length}}`, {code:codeA});
+                                    m.edit(`ERROR:\n ${cleanERR[page - 2]} \n\n Page ${page}/${cleanERR.length}}`, {code:codeA});
                                     m.clearReactions().then( m2 => {
-                                        if (page - 3 != 1) {
+                                        if (page - 2 != 1) {
                                             m.react('⬅').then(m3 => m.react('➡').then(m4 => m.react('⏹') )  );
                                         } else {
                                             m.react('➡').then(m3 => m.react('⏹'));
@@ -1678,12 +1678,12 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                             case '➡':
                                 if (page < cleanERR.length) {
                                     page += 1;
-                                    if (cleanERR[page - 1] == clean(code))
+                                    if (cleanERR[page] == clean(code))
                                        var codeA = 'js';
                                     else var codeA = 'xl';
-                                    m.edit(`ERROR:\n ${cleanERR[page - 1]} \n\n Page ${page}/${cleanERR.length}`, {code:codeA});
+                                    m.edit(`ERROR:\n ${cleanERR[page]} \n\n Page ${page}/${cleanERR.length}`, {code:codeA});
                                     m.clearReactions().then( m2 => {
-                                        if (page - 1 != cleanERR.length) {
+                                        if (page != cleanERR.length) {
                                             m.react('⬅').then(m3 => m.react('➡').then(m4 => m.react('⏹') )  );
                                         } else {
                                             m.react('⬅').then(m3 => m.react('⏹'));
