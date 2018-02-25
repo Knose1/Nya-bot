@@ -1611,7 +1611,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                         switch (reaction.emoji.name) {
                         
                             case '➡' :
-                                if (m.content == clean(code)) {
+                                if (m.content.indexOf(clean(code)) != -1) {
                                     m.edit(clean(evaled), {code:"xl"});
                                 } else {
                                     m.edit(clean(code), {code:"xl"});
