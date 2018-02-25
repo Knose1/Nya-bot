@@ -1603,7 +1603,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
 
                 message.channel.send(clean(code), {code:"js"})
                 .then(m => {
-                    m.react('➡').then(m2 => m.react('⏹'));
+                    m.react('🅰').then(m2 => m.react('⏹'));
                     
                     const filter = (reaction, user) => user == botowner
                     const collector = m.createReactionCollector(filter);
