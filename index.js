@@ -1644,7 +1644,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                 var cleanERR = fulllog(clean(err))
                 cleanERR[-1] = clean(code);
                 
-                message.channel.send(`ERROR:\n ${cleanERR[-1]} \n\n Page 1/${cleanERR.length}}`, {code:"xl"})
+                message.channel.send(`ERROR:\n ${cleanERR[-1]} \n\n Page 1/${cleanERR.length}`, {code:"xl"})
                 .then(m => {
                     if (cleanERR.length == 1) {
                         m.react('⏹');
@@ -1666,9 +1666,9 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                                     m.edit(`ERROR:\n ${cleanERR[page - 3]} \n\n Page ${page}/${cleanERR.length}}`, {code:codeA});
                                     m.clearReactions().then( m2 => {
                                         if (page - 3 != 1) {
-                                            m.react('⬅').then(m2 => m.react('➡').then(m3 => m.react('⏹') )  );
+                                            m.react('⬅').then(m3 => m.react('➡').then(m4 => m.react('⏹') )  );
                                         } else {
-                                            m.react('➡').then(m2 => m.react('⏹'));
+                                            m.react('➡').then(m3 => m.react('⏹'));
                                         }
                                     });
                                     page -= 1;
@@ -1681,12 +1681,12 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                                     if (cleanERR[page - 1] == clean(code))
                                        var codeA = 'js';
                                     else var codeA = 'xl';
-                                    m.edit(`ERROR:\n ${cleanERR[page - 1]} \n\n Page ${page}/${cleanERR.length}}`, {code:codeA});
+                                    m.edit(`ERROR:\n ${cleanERR[page - 1]} \n\n Page ${page}/${cleanERR.length}`, {code:codeA});
                                     m.clearReactions().then( m2 => {
                                         if (page - 1 != cleanERR.length) {
-                                            m.react('⬅').then(m2 => m.react('➡').then(m3 => m.react('⏹') )  );
+                                            m.react('⬅').then(m3 => m.react('➡').then(m4 => m.react('⏹') )  );
                                         } else {
-                                            m.react('⬅').then(m2 => m.react('⏹'));
+                                            m.react('⬅').then(m3 => m.react('⏹'));
                                         }
                                     });
                                 }
