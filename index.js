@@ -1643,7 +1643,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                 
                 var cleanERR = fulllog( util.inspect( clean(err) ) );
                 cleanERR.unshift(clean(code));
-                
+                console.log(cleanERR);
                 message.channel.send(`ERROR:\n ${cleanERR[0]} \n\n Page 1/${cleanERR.length}`, {code:"js"})
                 .then(m => {
                     if (cleanERR.length == 1) {
