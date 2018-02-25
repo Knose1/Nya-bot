@@ -1647,7 +1647,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                                 break;
                             case '➡':
                                 if (page < cleanEVAL.length) {
-                                    if (cleanEVAL[page] == clean(code))
+                                    if (cleanEVAL[page] == clean(code)) {
                                        var codeA = 'js';
                                         var Title = '\'EXECUTION\' \n\n CODE:\n';
                                     } else { 
