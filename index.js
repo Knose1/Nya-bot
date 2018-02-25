@@ -495,9 +495,21 @@ client.on('message', message => {
     
     //Fin de serveur banni
     }
+    if(message.guild) {} else return;
+    
+    //si c'est une commande, récupérer les arguments, la commande et supprimer le message
+        if (message.content.indexOf(prefix) == 0) {
+            var iscommand = true;
+            var args = message.content.slice(prefix.length).trim().split(/ +/g);
+            var command = args.shift().toLowerCase();
+    
+            message.delete(500)
+                .then(msg => console.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
+                .catch(console.error);
+        }
     
     if (noGame == 'activé' && !iscommand) client.user.setGame(`cat:help | Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} serveurs.`);
-    if(message.guild) {} else return;
+    
     
     //On récupère le suffix du vs
     var isVs = false;
@@ -525,16 +537,6 @@ client.on('message', message => {
     //On regarde si l'utilisateur est un développeur
     var isADev = (client.guilds.get('377892426569744387').roles.get('407185267330514944').members.get(message.author.id) != undefined);
     
-    //si c'est une commande, récupérer les arguments, la commande et supprimer le message
-        if (message.content.indexOf(prefix) == 0) {
-            var iscommand = true;
-            var args = message.content.slice(prefix.length).trim().split(/ +/g);
-            var command = args.shift().toLowerCase();
-    
-            message.delete(500)
-                .then(msg => console.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
-                .catch(console.error);
-        }
 	
     /*DEBUT BOT*/
     //ignorer si c'est un bot (sauf s'il parle dans le vs sous certaines conditions
