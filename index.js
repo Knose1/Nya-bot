@@ -1664,9 +1664,9 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                                     if (cleanERR[page - 2] == clean(code))
                                        var codeA = 'js';
                                     else var codeA = 'xl';
-                                    m.edit(`ERROR:\n ${cleanERR[page - 2]} \n\n Page ${page}/${cleanERR.length}}`, {code:codeA});
+                                    m.edit(`ERROR:\n ${cleanERR[page - 2]} \n\n Page ${page - 1}/${cleanERR.length}`, {code:codeA});
                                     m.clearReactions().then( m2 => {
-                                        if (page - 2 != 1) {
+                                        if (page - 1 > 1) {
                                             m.react('⬅').then(m3 => m.react('➡').then(m4 => m.react('⏹') )  );
                                         } else {
                                             m.react('➡').then(m3 => m.react('⏹'));
@@ -1681,9 +1681,9 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                                     if (cleanERR[page] == clean(code))
                                        var codeA = 'js';
                                     else var codeA = 'xl';
-                                    m.edit(`ERROR:\n ${cleanERR[page]} \n\n Page ${page}/${cleanERR.length}`, {code:codeA});
+                                    m.edit(`ERROR:\n ${cleanERR[page]} \n\n Page ${page + 1}/${cleanERR.length}`, {code:codeA});
                                     m.clearReactions().then( m2 => {
-                                        if (page != cleanERR.length) {
+                                        if (page + 1 < cleanERR.length) {
                                             m.react('⬅').then(m3 => m.react('➡').then(m4 => m.react('⏹') )  );
                                         } else {
                                             m.react('⬅').then(m3 => m.react('⏹'));
