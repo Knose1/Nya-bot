@@ -1599,8 +1599,8 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                 }
                 return popout;
             }
+            const code = args.join(" ");
             try {
-                const code = args.join(" ");
                 let evaled = eval(code);
 
                 if (typeof evaled !== "string")
