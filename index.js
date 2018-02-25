@@ -1595,7 +1595,8 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                 if (FuncArgument1.length <= 1000) {
                     popout[0] = FuncArgument1;
                 }
-                while (FuncArgument1.length > 1000) {
+                while (FuncArgument1.length > 1000 && i < 3
+                      ) {
                     popout[i] = FuncArgument1.slice(1000);
                     i += 1;
                 }
