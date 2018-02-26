@@ -1684,7 +1684,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                 
                 var cleanEVAL = fulllog(clean(evaled));
                 cleanEVAL.unshift(clean(code));
-                console.log(cleanEVAL);
+                //console.log(cleanEVAL);
                 
                 message.channel.send(`\'EXECUTION\'\n\n\n CODE:\n\n  ${cleanEVAL[0]} \n\n\nPage 1/${cleanEVAL.length}`, {code:"js"})
                 .then(m => {
