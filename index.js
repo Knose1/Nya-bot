@@ -199,7 +199,7 @@ function rand(min,max) {
 }
 
 
-let VsPrefixs = ['','english','nsfw','french'];
+let VsPrefixs = ['','english','nsfw','french','test'];
 
 var catimg = new Array() ;
 catimg = [
@@ -745,7 +745,7 @@ client.on('message', message => {
                 message.author.send(`__Error, vous n'avez pas entré de nombre; **Utilisation --suppr** :__\n\n \`//suppr <nombre>\` \n\n alias: \`//purge <nombre>\``);
             }
         } else {
-            message.author.send(`__Utilisation **--suppr** :__\n\n \`//suppr <nombre>\` \n\n alias: \`//purge <nombre>\``);
+            message.author.send(`__Utilisation **--suppr** dans le channel ${message.channel.name}:__\n\n \`//suppr <nombre>\` \n\n alias: \`//purge <nombre>\``);
         }
         message.delete(1000)
             .then(msg => console.log(`Message supprimé, raison: Virtual channel --suppr; Auteur: ${msg.author}`))
