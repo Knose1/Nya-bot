@@ -731,7 +731,7 @@ client.on('message', message => {
                     if (ch.type == 'texte')
                         ch.fetchMessages().then(m => {
                             m.first(i).forEach(p => {
-                                try {p.delete(500)}
+                                try {p.delete(500)} catch (err) {}
                             });
                         });
                 });
