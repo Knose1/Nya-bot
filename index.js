@@ -1636,7 +1636,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                 var i2 = 0;
                 while (i2 < 20) {
                     popout.forEach( m => {
-                        if (m.length == 0)
+                        if (m.length == 0 || m.replace(/ +/g,"").length == 0)
     		                popout.splice(popout.indexOf(m), 1);
                     });
                     i2 += 1;
