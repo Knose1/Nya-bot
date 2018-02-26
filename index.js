@@ -1589,20 +1589,51 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
             
             
             /**/
-            function fulllog(FuncArgument1) {
+             function fulllog(FuncArgument1, max) {
+    			if (max == undefined) {max = 1000}
                 let i = 0;
                 var popout = new Array();
                 
-                if (FuncArgument1.length <= 1000) {
+                if (FuncArgument1.length <= max) {
                     popout[0] = FuncArgument1;
                 }
-                while (FuncArgument1.length > 1000) {
-                    popout[i] = FuncArgument1.slice(0,999);
-                    FuncArgument1 = FuncArgument1.slice(999);
+                else
+                while (FuncArgument1.length > max && i < 20) {
+                    popout[i] = FuncArgument1.slice(0,4);
                     
-                    popout[i + 1] = FuncArgument1;
+					
+					if (popout[i].lastIndexOf(" ") != -1) 
+                    	popout[i] = popout[i].slice(0,popout[i].lastIndexOf(" ") + 1);
+                        
+                    else if (popout[i].lastIndexOf(";") != -1) 
+                    	popout[i] = popout[i].slice(0,popout[i].lastIndexOf(";") + 1);
+                        
+					else if (popout[i].lastIndexOf(",") != -1) 
+                    	popout[i] = popout[i].slice(0,popout[i].lastIndexOf(",") + 1);
+                    else {
+                    
+                    	popout[i] = FuncArgument1.slice(0,10 + max);
+                    
+					
+						if (popout[i].lastIndexOf(" ") != -1) 
+                    		popout[i] = popout[i].slice(0,popout[i].lastIndexOf(" ") + 1);
+                        
+                    	else if (popout[i].lastIndexOf(";") != -1) 
+                    		popout[i] = popout[i].slice(0,popout[i].lastIndexOf(";") + 1);
+                        
+						else if (popout[i].lastIndexOf(",") != -1) 
+                    		popout[i] = popout[i].slice(0,popout[i].lastIndexOf(",") + 1);
+                    
+                    }
+                    
+                    
+                    FuncArgument1 = FuncArgument1.slice(popout[i].length);
+                    
+                    if (FuncArgument1.length != 0) 
+	                    popout[i + 1] = FuncArgument1;
+                    
                     i += 1;
-                }
+                };
                 return popout;
             }
             /**/
