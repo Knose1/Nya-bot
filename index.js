@@ -1609,6 +1609,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                                 
                                     }
                                 collector2.on('end', e => {if (e.size == 0) {botDM.delete(500);}});
+                                });
                             });
                             m.delete(500);
                             collector.stop();
