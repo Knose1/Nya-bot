@@ -740,12 +740,12 @@ client.on('message', message => {
                         });
                 });
                 
-                client.channels.get('414179723720130560').send(`${Nmessage.author.username}#${Nmessage.author.discriminator} à utilisé **--purge** : '${Nmessage.content}'`);
+                client.channels.get('414179723720130560').send(`${Nmessage.author.username}#${Nmessage.author.discriminator} à utilisé **--purge** dans le channel ${message.channel.name}: '${Nmessage.content}'`);
             } else {
                 message.author.send(`__Error, vous n'avez pas entré de nombre; **Utilisation --suppr** :__\n\n \`//suppr <nombre>\` \n\n alias: \`//purge <nombre>\``);
             }
         } else {
-            message.author.send(`__Utilisation **--suppr** dans le channel ${message.channel.name}:__\n\n \`//suppr <nombre>\` \n\n alias: \`//purge <nombre>\``);
+            message.author.send(`__Utilisation **--suppr**:__\n\n \`//suppr <nombre>\` \n\n alias: \`//purge <nombre>\``);
         }
         message.delete(1000)
             .then(msg => console.log(`Message supprimé, raison: Virtual channel --suppr; Auteur: ${msg.author}`))
