@@ -248,6 +248,8 @@ let CanReloading = false;
 
 //lorsque Nya!bot est pret
 client.on('ready', () => {
+    client.user.setStatus('online');
+    
     CanReloading = true;
     console.log(`Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} servers.`);
     //envoyer un message au server log
@@ -369,6 +371,7 @@ client.on("guildDelete", guild => {
 
 //lors de reconnection
 client.on('reconnecting', reconnecting=> {
+    client.user.setStatus('idle');
     console.log('Reconnection');
     var channel = client.channels.get(logserv);
     channel.send('Reconnection');
@@ -404,6 +407,7 @@ client.on('reconnecting', reconnecting=> {
 });
 
 client.on('resume', resume => {
+    client.user.setStatus('online');
     console.log('Reprise du nya!bot');
     var channel = client.channels.get(logserv);
     channel.send('Reprise du nya!bot');
@@ -2089,6 +2093,7 @@ __**Commandes bot owner:**__ \n\n\
 
 //lors de déconection
 client.on('disconnect', disconnect => {
+    client.user.setStatus('invisible');
 console.log('déconnecté');
 var channel = client.channels.get(logserv);
 channel.send('Déconnecté');
