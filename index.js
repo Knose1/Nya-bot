@@ -730,7 +730,11 @@ client.on('message', message => {
                 all_vs.forEach(ch => {
                     if (ch.type == 'text')
                         ch.fetchMessages().then(m => {
-                            m.first(i).forEach(p => {
+                            let a = 0;
+                            if (ch == message.channel)
+                                a = 1;
+                            
+                            m.first(i - a).forEach(p => {
                                 try {p.delete(500)} catch (err) {}
                             });
                         });
