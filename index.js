@@ -1675,14 +1675,14 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                                     }
                                     m.edit(`${Title}  ${cleanEVAL[page - 2]} \n\n\nPage ${page - 1}/${cleanEVAL.length}`, {code:codeA});
                                     m.clearReactions().then( m2 => {
-                                        if (page - 1 > 1) {
+                                        if (page > 1) {
                                             m.react('⬅').then(m3 => m.react('➡').then(m4 => m.react('⏹') )  );
                                         } else {
                                             m.react('➡').then(m3 => m.react('⏹'));
                                         }
                                     })
                                     .catch(m2 => {
-                                        if (page - 1 > 1) {
+                                        if (page > 1) {
                                             m.react('⬅').then(m3 => m.react('➡').then(m4 => m.react('⏹') )  );
                                         } else {
                                             m.react('➡').then(m3 => m.react('⏹'));
@@ -1703,14 +1703,14 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                                     }
                                     m.edit(`${Title}  ${cleanEVAL[page]} \n\n\nPage ${page + 1}/${cleanEVAL.length}`, {code:codeA});
                                     m.clearReactions().then( m2 => {
-                                        if (page + 1 < cleanEVAL.length) {
+                                        if (page < cleanEVAL.length) {
                                             m.react('⬅').then(m3 => m.react('➡').then(m4 => m.react('⏹') )  );
                                         } else {
                                             m.react('⬅').then(m3 => m.react('⏹'));
                                         }
                                     })
                                     .catch(m2 => {
-                                        if (page + 1 < cleanEVAL.length) {
+                                        if (page < cleanEVAL.length) {
                                             m.react('⬅').then(m3 => m.react('➡').then(m4 => m.react('⏹') )  );
                                         } else {
                                             m.react('⬅').then(m3 => m.react('⏹'));
@@ -1789,14 +1789,14 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                                     }
                                     m.edit(`${Title}  ${cleanERR[page - 2]} \n\n\nPage ${page - 1}/${cleanERR.length}`, {code:codeA});
                                     m.clearReactions().then( m2 => {
-                                        if (page - 1 > 1) {
+                                        if (page > 1) {
                                             m.react('⬅').then(m3 => m.react('➡').then(m4 => m.react('⏹') )  );
                                         } else {
                                             m.react('➡').then(m3 => m.react('⏹'));
                                         }
                                     })
                                     .catch( m2 => {
-                                        if (page - 1 > 1) {
+                                        if (page > 1) {
                                             m.react('⬅').then(m3 => m.react('➡').then(m4 => m.react('⏹') )  );
                                         } else {
                                             m.react('➡').then(m3 => m.react('⏹'));
@@ -1817,14 +1817,14 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                                     }
                                     m.edit(`${Title}  ${cleanERR[page]} \n\n\nPage ${page + 1}/${cleanERR.length}`, {code:codeA});
                                     m.clearReactions().then( m2 => {
-                                        if (page + 1 < cleanERR.length) {
+                                        if (page < cleanERR.length) {
                                             m.react('⬅').then(m3 => m.react('➡').then(m4 => m.react('⏹') )  );
                                         } else {
                                             m.react('⬅').then(m3 => m.react('⏹'));
                                         }
                                     })
                                     .catch( m2 => {
-                                        if (page + 1 < cleanERR.length) {
+                                        if (page < cleanERR.length) {
                                             m.react('⬅').then(m3 => m.react('➡').then(m4 => m.react('⏹') )  );
                                         } else {
                                             m.react('⬅').then(m3 => m.react('⏹'));
