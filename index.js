@@ -728,7 +728,7 @@ client.on('message', message => {
                 });
                 
                 all_vs.forEach(ch => {
-                    if (ch.type == 'texte')
+                    if (ch.type == 'text')
                         ch.fetchMessages().then(m => {
                             m.first(i).forEach(p => {
                                 try {p.delete(500)} catch (err) {}
