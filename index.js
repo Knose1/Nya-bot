@@ -1626,8 +1626,13 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                     
                     }
                     
-                    
                     FuncArgument1 = FuncArgument1.slice(popout[i].length);
+                    
+                    if (popout[i].length == 0) {
+                        popout.splice(i, 1);
+                        i += 1;
+                    }
+                    
                     
                     if (FuncArgument1.length != 0) 
 	                    popout[i + 1] = FuncArgument1;
