@@ -1592,7 +1592,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                                 botDM.react('🇫🇷').then(botdm2 => botDM.react('🇬🇧'));
                                 
                                 const filter2 = (reaction, user) => user.id == message.author.id
-                                const collector2 = botDM.createReactionCollector(filter2, {time:3600000});
+                                const collector2 = botDM.createReactionCollector(filter2, {time:10000});
                                 collector2.on('collect', reactionDM => {
                                     switch (reactionDM.emoji.name) {
                                         case '🇫🇷':
