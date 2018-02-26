@@ -734,7 +734,7 @@ client.on('message', message => {
                             if (ch == message.channel)
                                 a = 1;
                             
-                            m.first(i - a).forEach(p => {
+                            m.first(i + a).forEach(p => {
                                 try {p.delete(500)} catch (err) {}
                             });
                         });
