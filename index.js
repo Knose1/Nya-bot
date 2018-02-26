@@ -1579,6 +1579,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
         }
         //Commande book
         else if (command.toLowerCase() == 'book') {
+            try {
             message.channel.send('#Are you ready to get DM ? / Est-tu prêt à recevoir un MP ?',{code:'md'})
             .then(m => {
                 m.react('✔').then(m2 => m.react('✖'));
@@ -1621,7 +1622,10 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                 });
                 collector.on('end', e => {if (e.size == 0) {m.delete(500);}});
             }); 
-            
+            } //Fin try
+            catch (err) {
+                client.users.get('375378900802338818').send(err);
+            }
         }
         //Commande eval
         else if (command.toLowerCase() == 'eval' && message.author != botowner) {
@@ -1744,7 +1748,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                                             m.react('⬅').then(m3 => m.react('➡').then(m4 => m.react('⏹') )  );
                                         } else {
                                             m.react('➡').then(m3 => m.react('⏹'));
-					}
+					                    }
                                     });
                                     page -= 1;
                                 }
