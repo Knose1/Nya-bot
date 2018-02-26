@@ -1,3 +1,4 @@
+
 /*key is the bot's token; mention is the bot @mention*; logserv is the server for bot log*/
 var key = ﻿process.env.TOKEN;
 var mention = ﻿process.env.BOTMENTION;
