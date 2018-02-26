@@ -1639,7 +1639,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                         if (m.length == 0)
     		                popout.splice(popout.indexOf(m), 1);
                     });
-                    i2 += 1,
+                    i2 += 1;
                 }
                 return popout;
             }
