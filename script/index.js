@@ -1,24 +1,7 @@
-/*key is the bot's token; mention is the bot @mention*; logserv is the server for bot log*/
-var key = ﻿process.env.TOKEN;
-var mention = ﻿process.env.BOTMENTION;
-var mention2 = "<@"+mention+">"
-var logserv = process.env.LOGSERV;
-var botowner = process.env.BOTW;
 var invite = 'https://discordapp.com/oauth2/authorize?client_id='+mention+'&scope=bot&permissions=67628096';
 const Discord = require('discord.js');
 const util = require('util');
 const client = new Discord.Client();
-const token = key;
-var prefix = new Object();
-var isasked = new Object();
-var userasked = new Object();
-userasked = undefined;
-isasked = false;
-nprefix ='cat:';
-prefix = nprefix;
-var isaskactivated = 'désactivé';
-var noGame = 'activé'; // #no-Game-No-Life ! xDDD joke
-var betaTest = 'on';
 
 require('./functions.js');
 require('./config.js');
@@ -66,7 +49,6 @@ catimg = [
 
 
 
-let CanReloading = false;
 
 //lorsque Nya!bot est pret
 client.on('ready', () => {
@@ -193,7 +175,7 @@ client.on("guildDelete", guild => {
 
 //lors de reconnection
 client.on('reconnecting', reconnecting=> {
-    client.user.setStatus('idle');
+    client.user.setStatus('invisible');
     console.log('Reconnection');
     var channel = client.channels.get(logserv);
     channel.send('Reconnection');
