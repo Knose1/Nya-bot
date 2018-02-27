@@ -1583,7 +1583,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                                             client.on('message', dm => {
                                                 if(!dm.guild && dm.author == message.author && dm.channel.messages.get(botDM)) {
                                                 dm.channel.send('Hi');
-                                                } else dm.channel.send('Nope');
+                                                } else if (!dm.guild && dm.author == message.author) dm.channel.send('Nope');
                                             });
                                             break;
                                         case '🇬🇧':
