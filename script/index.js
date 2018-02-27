@@ -20,7 +20,7 @@ client.on('ready', () => {
     channel.send(`Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} servers.`);
     client.user.setGame(`cat:help | Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} serveurs.`);
 
-    import '/modules/servban.js';
+    require('/modules/servban.js');
     
     client.channels.get('406802264540315648').send(`--Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} servers.`);
     
@@ -32,7 +32,7 @@ client.on("guildCreate", guild => {
   var channel = client.channels.get(logserv);
   channel.send(`Nouveau serv: ${guild.name} (id: ${guild.id}). Nmb de membres: ${guild.memberCount}`);
   
-  import '/modules/servban.js';
+  require('/modules/servban.js');
 });
 
 //Lorsqu'il a été kick d'un serv
@@ -125,7 +125,7 @@ client.on('message', message => {
     
     
     if (!message.author.bot){
-    import '/modules/servban.js';
+        require('/modules/servban.js');
     }
     if(message.guild) {} else return;
     
@@ -143,7 +143,7 @@ client.on('message', message => {
     if (noGame == 'activé' && !iscommand) 
         client.user.setGame(`cat:help | Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} serveurs.`);
     
-    import '/modules/perm.js';
+    require('/modules/perm.js');
     
     
     
@@ -200,7 +200,7 @@ client.on('message', message => {
     
     /*Virtual Channel*/
     
-    import '/on/messages/vs/suffix.js';
+    require('/on/messages/vs/suffix.js');
     
     
     //On récupère la liste des ban
