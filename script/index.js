@@ -1,13 +1,13 @@
-var invite = 'https://discordapp.com/oauth2/authorize?client_id='+mention+'&scope=bot&permissions=67628096';
 const Discord = require('discord.js');
 const util = require('util');
 const client = new Discord.Client();
 
-import 'functions.js';
-import 'config.js';
+export {client,util,Discord};
+import './functions.js';
+import './config.js';
 const catimg = require('./on/messages/command/cat/images.js').load(3);
 
-
+var invite = 'https://discordapp.com/oauth2/authorize?client_id='+mention+'&scope=bot&permissions=67628096';
 
 
 //lorsque Nya!bot est pret
