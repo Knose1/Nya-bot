@@ -2,8 +2,8 @@ const Discord = require('discord.js');
 const util = require('util');
 const client = new Discord.Client();
 
-require('./functions.js');
-require('./config.js').load;
+require('./functions.js').load();
+require('./config.js').load();
 const catimg = require('./on/messages/command/cat/images.js').load(3);
 
 var invite = 'https://discordapp.com/oauth2/authorize?client_id='+mention+'&scope=bot&permissions=67628096';
