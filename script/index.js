@@ -141,34 +141,13 @@ client.on('message', message => {
                 .catch(console.error);
         }
     
-    if (noGame == 'activé' && !iscommand) client.user.setGame(`cat:help | Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} serveurs.`);
+    if (noGame == 'activé' && !iscommand) 
+        client.user.setGame(`cat:help | Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} serveurs.`);
+    
+    import '/modules/perm.js';
     
     
-    //On récupère le suffix du vs
-    var isVs = false;
-    if (message.channel.name.indexOf('nya-bot-vs') == 0) {
-        var Pfx = message.channel.name.slice('nya-bot-vs'.length);
-        if (Pfx == undefined) Pfx = '';
-        if (Pfx.indexOf('-') == 0) Pfx = Pfx.slice('-'.length);
-        if (Pfx == undefined) Pfx = '';
-        
-        var isPfx = false
-        VsPrefixs.forEach( p => {
-            if (Pfx == p) isPfx = true;
-        });
-        
-        if (isPfx) isVs = true;
-        //console.log(isVs+" ; "+Pfx)
-    }
     
-    //On regarde si l'utilisateur est un modérateur
-    var isMod = (client.guilds.get('377892426569744387').roles.get('407229590948413440').members.get(message.author.id) != undefined);
-    
-    //On regarde si l'utilisateur est un Béta testeur
-    var isBTest = (client.guilds.get('377892426569744387').roles.get('410495831360143362').members.get(message.author.id) != undefined);
-    
-    //On regarde si l'utilisateur est un développeur
-    var isADev = (client.guilds.get('377892426569744387').roles.get('407185267330514944').members.get(message.author.id) != undefined);
     
 	
     /*DEBUT BOT*/
@@ -203,7 +182,7 @@ client.on('message', message => {
     }
     /*Fin BOT*/
     
-    if (message.author == botowner && (!isVs || (message.guild.id == "377892426569744387" && message.channel.name != "nya-bot-vs-log"))) {
+    /*if (message.author == botowner && (!isVs || (message.guild.id == "377892426569744387" && message.channel.name != "nya-bot-vs-log"))) {
         if (Database('407142766674575361',['user:','xp:']).get('user:',message.author.id,['xp:'])['xp:'].value[0] != 'NaN') {
             Database('407142766674575361',['user:','xp:']).get('user:',message.author.id,['xp:'])['xp:'].set([String(Number(Database('407142766674575361',['user:','xp:']).get('user:',message.author.id,['xp:'])['xp:'].value[0] + 1))]);
         
@@ -212,7 +191,7 @@ client.on('message', message => {
                     .then(msg => msg.delete(10000));
             }
         }
-    }
+    }*/
     
     
     
@@ -221,12 +200,8 @@ client.on('message', message => {
     
     
     /*Virtual Channel*/
-    /*if (message.channel.type == 'text' && message.channel.id == '410818974729633795') {
-        message.channel.messages.last(2).forEach(msg => {
-            console.log(`message:${msg.content} ; id:`+message.channel.messages.last(2).findIndex(r => {return r == msg}))
-	    });
-    }*/
     
+    import '/on/messages/vs/suffix.js';
     
     
     //On récupère la liste des ban
