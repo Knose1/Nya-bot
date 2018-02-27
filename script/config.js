@@ -1,12 +1,12 @@
 /*key is the bot's token; mention is the bot's id*; logserv is the server for bot log*/
-var key = ﻿process.env.TOKEN;
-var mention = ﻿process.env.BOTMENTION;
-var logserv = process.env.LOGSERV;
-var botowner = process.env.BOTW;
-var prefix ='cat:';
-var betaTest = 'on';
+exports.key = ﻿process.env.TOKEN;
+exports.mention = ﻿process.env.BOTMENTION;
+exports.logserv = process.env.LOGSERV;
+exports.botowner = process.env.BOTW;
+exports.prefix ='cat:';
+exports.betaTest = 'on';
 
-let CanReloading = false;
-let noGame = 'activé';
+exports.CanReloading = false;
+exports.noGame = 'activé';
 
-var VsPrefixs = ['','english','nsfw','french','test'];
+exports.VsPrefixs = ['','english','nsfw','french','test'];
