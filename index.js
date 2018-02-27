@@ -1570,7 +1570,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                 collector.on('collect', reaction => {
                     switch (reaction.emoji.name) {
                         case '✔':
-                            message.author.send('#Langage ?', {code:'md'}).then(botDM => {
+                            /*message.author.send('#Langage ?', {code:'md'}).then(botDM => {
                                 botDM.react('🇫🇷').then(botdm2 => botDM.react('🇬🇧'));
                                 
                                 const filter2 = (reaction, user) => user.id == message.author.id
@@ -1593,7 +1593,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
                                     }
                                 collector2.on('end', e => {if (e.size == 0) {botDM.delete(500);}});
                                 });
-                            });
+                            });*/
                             m.delete(500);
                             collector.stop();
                             break;
