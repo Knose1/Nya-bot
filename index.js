@@ -1560,7 +1560,7 @@ TestDatabase(${arg1},'noSet').get(${arg1}[0],'${arg2}',${arg5})['${arg3}'].set($
             }
         }
         //Commande book
-        else if (command.toLowerCase() == 'book') {
+        else if (command.toLowerCase() == 'BOOK') {
             message.channel.send('#Are you ready to get DM ? / Est-tu prêt à recevoir un MP ?',{code:'md'})
             .then(m => {
                 m.react('✔').then(m2 => m.react('✖'));
