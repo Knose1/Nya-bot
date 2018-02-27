@@ -45,6 +45,9 @@ var catimg = new Array() ;
         i += 1;
         catimg.push('J\'ai la flemme, si tu veux une image fait le toi même');
     }
+    /*hehe ! Array random */
+    catimg = catimg.map(m => {return String(Math.random()) + " " + m}).sort()
+    catimg = catimg.map(m => m.slice(m.length - 1));
     
     return catimg;
     
