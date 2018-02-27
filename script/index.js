@@ -5,7 +5,7 @@ const client = new Discord.Client();
 
 require('./functions.js');
 require('./config.js');
-const catimg = require('./on/messages/command/cat/images.js').load();
+const catimg = require('./on/messages/command/cat/images.js').load(3);
 
 
 
