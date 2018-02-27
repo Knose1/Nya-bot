@@ -3,8 +3,8 @@ const Discord = require('discord.js');
 const util = require('util');
 const client = new Discord.Client();
 
-require('./functions.js');
-require('./config.js');
+import 'functions.js';
+import 'config.js';
 const catimg = require('./on/messages/command/cat/images.js').load(3);
 
 
