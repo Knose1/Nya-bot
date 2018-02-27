@@ -1,7 +1,7 @@
 exports.load = () => {
     
 /*The DB PART 1*/
-return function Database__1(SGuild, allRolePrefix, gt) {
+function Database__1(SGuild, allRolePrefix, gt) {
 //Si on a donner une liste de prefix
     let retError = '';
     var toReturn = new Object();
@@ -145,10 +145,10 @@ return function Database__1(SGuild, allRolePrefix, gt) {
         } else retError += `allRolePrefix is undefined at 'Database(${SGuild} ${allRolePrefix})'`+"\n";
         return [undefined, retError];
     }
-},
+};
 /*Test the db*/
 
-function TestDatabase(allRolePrefix, gt) {return Database__1('407142766674575361', allRolePrefix, gt)},
+function TestDatabase(allRolePrefix, gt) {return Database__1('407142766674575361', allRolePrefix, gt)};
 
 /*End Test the db*/
 
@@ -168,9 +168,11 @@ function Database(SGuild, allRolePrefix) {
         
         return x1[0];
     } else console.log(x1[1]);
-},
+};
 
 
 function rand(min,max) {
     return Math.floor((Math.random() * max) + min);
 };
+return function Database__1, function TestDatabase, function Database, function rand;
+}
