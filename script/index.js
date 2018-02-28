@@ -134,7 +134,7 @@ client.on('message', message => {
     if (noGame == 'activé' && !iscommand) 
         client.user.setGame(`cat:help | Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} serveurs.`);
     
-    require('./modules/perm.js').load();
+    require('./module/perm.js').load();
     
     
     
