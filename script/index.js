@@ -146,7 +146,7 @@ client.on('message', message => {
     //ignorer si c'est un bot (sauf s'il parle dans le vs sous certaines conditions
     if(message.author.bot == true) {
         //On execute suffix.js pour récupérer le suffix du channel nya-bot-vs
-        require("./on/messages/exportMsg.js").then( message, () => {
+        require("./on/messages/exportMsg.js").then( (message) => {
             require("./on/messages/vs/suffix.js").then( () => {
                 //On execute isbanned.js pour savoir s'il est ban ou non
                 require("./on/messages/vs/isbanned.js").then( () => {
