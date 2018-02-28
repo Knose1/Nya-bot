@@ -1,4 +1,3 @@
-exports.then = (mess, mf) => {
-    var message = mess;
+exports.then = (mf) => {
     mf()
 }
