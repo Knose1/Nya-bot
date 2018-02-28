@@ -1,3 +1,3 @@
-export.load = (message2) => {
+exports.load = (message2) => {
 return message = message2;
 }
