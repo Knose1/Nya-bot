@@ -1,4 +1,4 @@
-require('./modules/load').load();
+require('./config.js').load();
 
 //lorsque Nya!bot est pret
 client.on('ready', () => {
