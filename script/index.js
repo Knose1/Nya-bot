@@ -19,22 +19,31 @@ client.on('ready', () => {
 
 //Lorsque il a rejoins un serv
 client.on("guildCreate", guild => {
-  console.log(`Nouveau serv: ${guild.name} (id: ${guild.id}). Nmb de membres: ${guild.memberCount}`);
-  var channel = client.channels.get(logserv);
-  channel.send(`Nouveau serv: ${guild.name} (id: ${guild.id}). Nmb de membres: ${guild.memberCount}`);
+    
+    require('./on/guildCreate/index.js').load(guild);
+    
+    console.log(`Nouveau serv: ${guild.name} (id: ${guild.id}). Nmb de membres: ${guild.memberCount}`);
+    var channel = client.channels.get(logserv);
+    channel.send(`Nouveau serv: ${guild.name} (id: ${guild.id}). Nmb de membres: ${guild.memberCount}`);
   
-  require('./module/servban.js').load();
+    require('./module/servban.js').load();
 });
 
 //Lorsqu'il a été kick d'un serv
 client.on("guildDelete", guild => {
-  console.log(`Un server a suppr nya!bot: ${guild.name} (id: ${guild.id})`);
-  var channel = client.channels.get(logserv);
-  channel.send(`Un server a suppr nya!bot: ${guild.name} (id: ${guild.id})`)
+    
+    require('./on/guildDelete/index.js').load(guild);
+    
+    console.log(`Un server a suppr nya!bot: ${guild.name} (id: ${guild.id})`);
+    var channel = client.channels.get(logserv);
+    channel.send(`Un server a suppr nya!bot: ${guild.name} (id: ${guild.id})`)
 });
 
 //lors de reconnection
 client.on('reconnecting', reconnecting=> {
+    
+    require('./on/reconnecting/index.js').load(reconnecting);
+    
     client.user.setStatus('invisible');
     console.log('Reconnection');
     var channel = client.channels.get(logserv);
@@ -71,6 +80,10 @@ client.on('reconnecting', reconnecting=> {
 });
 
 client.on('resume', resume => {
+    
+    require('./on/resume/index.js').load(resume);
+    
+    
     client.user.setStatus('online');
     console.log('Reprise du nya!bot');
     var channel = client.channels.get(logserv);
@@ -114,6 +127,7 @@ client.on('resume', resume => {
 
 client.on('message', message => {
     
+    require('./on/messages/index.js').load(message);
     
     if (!message.author.bot){
         require('./module/servban.js').load();
@@ -1716,10 +1730,13 @@ __**Commandes bot owner:**__ \n\n\
 
 //lors de déconection
 client.on('disconnect', disconnect => {
+    
+    require('./on/disconnect/index.js').load(disconnect);
+    
     client.user.setStatus('invisible');
-console.log('déconnecté');
-var channel = client.channels.get(logserv);
-channel.send('Déconnecté');
+    console.log('déconnecté');
+    var channel = client.channels.get(logserv);
+    channel.send('Déconnecté');
 })
 
 client.login(key);
