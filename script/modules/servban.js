@@ -1,3 +1,4 @@
+exports.load = () {
 //Faux serveurs dans la DB
     client.guilds.get('410520625728323595').roles.forEach( gBan => {
         if (
@@ -44,3 +45,4 @@
         });
     
     //Fin de serveur banni
+}
