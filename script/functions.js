@@ -1,5 +1,5 @@
 /*The DB PART 1*/
-function Database__1(SGuild, allRolePrefix, gt) {
+function f1(SGuild, allRolePrefix, gt) {
 //Si on a donner une liste de prefix
     let retError = '';
     var toReturn = new Object();
@@ -146,18 +146,18 @@ function Database__1(SGuild, allRolePrefix, gt) {
 };
 /*Test the db*/
 
-function TestDatabase(allRolePrefix, gt) {return Database__1('407142766674575361', allRolePrefix, gt)};
+function f2(allRolePrefix, gt) {return f1('407142766674575361', allRolePrefix, gt)};
 
 /*End Test the db*/
 
 
 
 /*The DB PART 2*/
-function Database(SGuild, allRolePrefix) {
-    var x1 = Database__1(SGuild, allRolePrefix);
+function f3(SGuild, allRolePrefix) {
+    var x1 = f1(SGuild, allRolePrefix);
     if (x1[1] == '') {
         x1[0].get = function (dataPrefix, data1, prefixInclude) {
-            var x2 = Database__1(SGuild, allRolePrefix)[0].get(dataPrefix, data1, prefixInclude, 'log')
+            var x2 = f1(SGuild, allRolePrefix)[0].get(dataPrefix, data1, prefixInclude, 'log')
             
             if (x2[1] == '') return x2[0];
             else console.log(x2[0]);
@@ -169,9 +169,9 @@ function Database(SGuild, allRolePrefix) {
 };
 
 
-function rand(min,max) {
+function f4(min,max) {
     return Math.floor((Math.random() * max) + min);
 };
 exports.load = () => {
-    return Database__1 = Database__1, TestDatabase = TestDatabase, Database = Database, rand = rand;
+    return Database__1 = f1, TestDatabase = f2, Database = f3, rand = f4;
 }
