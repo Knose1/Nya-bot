@@ -1,5 +1,3 @@
-exports.load = () => {
-    
 /*The DB PART 1*/
 function Database__1(SGuild, allRolePrefix, gt) {
 //Si on a donner une liste de prefix
@@ -174,5 +172,6 @@ function Database(SGuild, allRolePrefix) {
 function rand(min,max) {
     return Math.floor((Math.random() * max) + min);
 };
-return function Database__1, function TestDatabase, function Database, function rand;
+exports.load = () => {
+    return Database__1 = Database__1, TestDatabase = TestDatabase, Database = Database, rand = rand;
 }
