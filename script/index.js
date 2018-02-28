@@ -1,4 +1,5 @@
 require('./config.js').load();
+console.log(rand);
 
 //lorsque Nya!bot est pret
 client.on('ready', () => {
