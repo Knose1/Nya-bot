@@ -7,5 +7,11 @@ return key = ﻿process.env.TOKEN,
     betaTest = 'on',
     CanReloading = false,
     noGame = 'activé',
-    VsPrefixs = ['','english','nsfw','french','test'];
+    VsPrefixs = ['','english','nsfw','french','test'],
+    Discord = require('discord.js'),
+    util = require('util'),
+    client = new Discord.Client(),
+    require('./functions.js').load(),
+    catimg = require('./on/messages/command/cat/images.js').load(3),
+    invite = 'https://discordapp.com/oauth2/authorize?client_id='+mention+'&scope=bot&permissions=67628096';
 }
