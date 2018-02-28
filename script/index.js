@@ -146,9 +146,9 @@ client.on('message', message => {
     //ignorer si c'est un bot (sauf s'il parle dans le vs sous certaines conditions
     if(message.author.bot == true) {
         //On execute suffix.js pour récupérer le suffix du channel nya-bot-vs
-        require("./suffix.js").then( () => {
+        require("./on/messages/vs/suffix.js").then( () => {
             //On execute isbanned.js pour savoir s'il est ban ou non
-            require("./isbanned.js").then( () => {
+            require("./on/messages/vs/isbanned.js").then( () => {
                 
                 //Bot ban et bot différent de nya!bot
                 if (isVs && isbanned == true && message.author.id != mention) {
