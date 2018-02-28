@@ -141,53 +141,40 @@ client.on('message', message => {
     
     require('./module/perm.js').load(message);
     
-    
-    //On récupère le suffix du vs
-    var isVs = false;
-    if (message.channel.name.indexOf('nya-bot-vs') == 0) {
-        var Pfx = message.channel.name.slice('nya-bot-vs'.length);
-        if (Pfx == undefined) Pfx = '';
-        if (Pfx.indexOf('-') == 0) Pfx = Pfx.slice('-'.length);
-        if (Pfx == undefined) Pfx = '';
-    
-        var isPfx = false
-        VsPrefixs.forEach( p => {
-            if (Pfx == p) isPfx = true;
-        });
-    
-        if (isPfx) 
-            isVs = true;
-    
-        //console.log(isVs+" ; "+Pfx);
-    }
-    
 	
     /*DEBUT BOT*/
     //ignorer si c'est un bot (sauf s'il parle dans le vs sous certaines conditions
     if(message.author.bot == true) {
-            //Bot ban et bot différent de nya!bot
-            if (isVs && isbanned == true && message.author.id != mention) {
-                message.delete(500)
-                    .then(msg => console.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
-                    .catch(console.error);
-                return;
-            }
-            //Nya!bot commande
-            else if ((isVs || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && iscommand == true) {
-                message.delete(500)
-                    .then(msg => console.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
-                    .catch(console.error);
-                return;
-            }
-            //Si pas de -- et pas de // et différent de nya!bot
-            else if ((isVs || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--') != 0 && message.content.indexOf('//') != 0) && message.author.id != mention) {
-                message.delete(500)
-                    .then(msg => console.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
-                    .catch(console.error);
-                return;
-            }
-            else if((isVs || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--') == 0 || message.content.indexOf('//') == 0)) {
-            } else return;
+        //On execute suffix.js pour récupérer le suffix du channel nya-bot-vs
+        require("./suffix.js").then( () => {
+            //On execute isbanned.js pour savoir s'il est ban ou non
+            require("./isbanned.js").then( () => {
+                
+                //Bot ban et bot différent de nya!bot
+                if (isVs && isbanned == true && message.author.id != mention) {
+                    message.delete(500)
+                        .then(msg => console.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
+                        .catch(console.error);
+                    return;
+                }
+                //Nya!bot commande
+                else if ((isVs || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && iscommand == true) {
+                    message.delete(500)
+                        .then(msg => console.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
+                        .catch(console.error);
+                    return;
+                }
+                //Si pas de -- et pas de // et différent de nya!bot
+                else if ((isVs || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--') != 0 && message.content.indexOf('//') != 0) && message.author.id != mention) {
+                    message.delete(500)
+                        .then(msg => console.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
+                        .catch(console.error);
+                    return;
+                }
+                else if((isVs || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--') == 0 || message.content.indexOf('//') == 0)) {
+                } else return;
+            });
+        });
     }
     /*Fin BOT*/
     
