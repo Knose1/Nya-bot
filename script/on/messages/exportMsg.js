@@ -1,5 +1,4 @@
-exports.import = (mess, mf) => {
-
+exports.then = (mess, mf) => {
     var message = mess;
     mf()
 }
