@@ -142,13 +142,29 @@ client.on('message', message => {
     require('./module/perm.js').load(message);
     
     
+    //On récupère le suffix du vs
+    var isVs = false;
+    if (message.channel.name.indexOf('nya-bot-vs') == 0) {
+        var Pfx = message.channel.name.slice('nya-bot-vs'.length);
+        if (Pfx == undefined) Pfx = '';
+        if (Pfx.indexOf('-') == 0) Pfx = Pfx.slice('-'.length);
+        if (Pfx == undefined) Pfx = '';
     
+        var isPfx = false
+        VsPrefixs.forEach( p => {
+            if (Pfx == p) isPfx = true;
+        });
+    
+        if (isPfx) 
+            isVs = true;
+    
+        //console.log(isVs+" ; "+Pfx);
+    }
     
 	
     /*DEBUT BOT*/
     //ignorer si c'est un bot (sauf s'il parle dans le vs sous certaines conditions
     if(message.author.bot == true) {
-	    require("./on/messages/vs/suffix.js").then( () => {
             //Bot ban et bot différent de nya!bot
             if (isVs && isbanned == true && message.author.id != mention) {
                 message.delete(500)
@@ -172,7 +188,6 @@ client.on('message', message => {
             }
             else if((isVs || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--') == 0 || message.content.indexOf('//') == 0)) {
             } else return;
-	    });
     }
     /*Fin BOT*/
     
