@@ -1,4 +1,4 @@
-exports.load = (message) => {
+exports.load = () => {
   //On regarde si l'utilisateur est un modérateur
   var isMod1 = (client.guilds.get('377892426569744387').roles.get('407229590948413440').members.get(message.author.id) != undefined);
 
