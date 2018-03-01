@@ -120,6 +120,12 @@ client.on('resume', resume => {
 
 client.on('message', message => {
     
+    if (haderror) {
+        client.user.setStatus('dnd');
+        client.user.setGame(`ERROR`);
+        return;
+    }
+    
     if (!message.author.bot){
         require('./module/servban.js').load();
     }
@@ -137,7 +143,7 @@ client.on('message', message => {
                 .catch(console.error);
         }
     
-    if (noGame == 'activé' && !iscommand && !haderror) 
+    if (noGame == 'activé' && !iscommand) 
         client.user.setGame(`cat:help | Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} serveurs.`);
     
     require('./module/perm.js').load(message);
@@ -223,21 +229,21 @@ client.on('message', message => {
     }*/
     
     //VS
-        if (!haderror require("./on/messages/vs/error_userBan.js").execute(message, isVs, isbanned) );
-        else if (!haderror require("./on/messages/vs/error_command.js").execute(message, isVs, iscommand)  );
-        else if (!haderror require("./on/messages/vs/error_noPfix.js").execute(message, isVs) );
-        else if (!haderror require("./on/messages/vs/command_nya.js").execute(message, isVs)  );
-        else if (!haderror require("./on/messages/vs/command_purge.js").execute(message, isVs, Pfx)    );
-        else if (!haderror require("./on/messages/vs/command_ban.js").execute(message, isVs, isbanned, vsban)  );
-        else if (!haderror require("./on/messages/vs/command_unban.js").execute(message, isVs, isbanned, vsban)  );
-        else if (!haderror require("./on/messages/vs/finaly.js").execute(message, isVs, Pfx)   );
+        if (require("./on/messages/vs/error_userBan.js").execute(message, isVs, isbanned) );
+        else if (require("./on/messages/vs/error_command.js").execute(message, isVs, iscommand)  );
+        else if (require("./on/messages/vs/error_noPfix.js").execute(message, isVs) );
+        else if (require("./on/messages/vs/command_nya.js").execute(message, isVs)  );
+        else if (require("./on/messages/vs/command_purge.js").execute(message, isVs, Pfx)    );
+        else if (require("./on/messages/vs/command_ban.js").execute(message, isVs, isbanned, vsban)  );
+        else if (require("./on/messages/vs/command_unban.js").execute(message, isVs, isbanned, vsban)  );
+        else if (require("./on/messages/vs/finaly.js").execute(message, isVs, Pfx)   );
     
     
     //RPG
     //else if (require("./on/messages/rpg/index.js").execute(message)    );
     
     //COMMAND
-    else if (iscommand == true && !haderror) {
+    else if (iscommand == true) {
         
         
         if (command == "github") {
@@ -281,7 +287,8 @@ client.on('message', message => {
                         client.users.get("375378900802338818").send(cleanERR[1]);
                     
                     haderror = true;
-                    client.user.setStatus('invisible');
+                    client.user.setStatus('dnd');
+                    client.user.setGame(`ERROR`);
                     
                 } else {
                     if (message.guild.id != '110373943822540800') {
