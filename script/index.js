@@ -269,10 +269,18 @@ client.on('message', message => {
         catch (err) {
             
                 if (String(err).toLowerCase().indexOf(`Cannot find module './on/messages/command/${command}/index.js'`.toLowerCase()) == -1) {
-                    message.channel.send("Une ERREUR est survenue");
+                    message.reply("Une ERREUR est survenue");
+                    
+                    var cleanERR = fulllog( util.inspect( clean(err), 1500 ) );
                     client.users.get("375378900802338818").send(`Une ERREUR est survenue \n Auteur: ${message.author}\n Longueur de la commande: ${message.content.length}\n Commande:${message.content.slice(0,1000)}`);
-                    console.log(`Une ERREUR est survenue ! \n Commande:${message.content} \n --------------------`)
-                    console.log(err);
+                    
+                    if (undefined != cleanERR[0])
+                        client.users.get("375378900802338818").send(cleanERR[0]);
+                    if (undefined != cleanERR[0])
+                        client.users.get("375378900802338818").send(cleanERR[1]);
+                    
+                    client.destroy();
+                    
                 } else {
                     if (message.guild.id != '110373943822540800') {
                         message.channel.send('"'+message.content+' "'+" n'est pas une commande")
