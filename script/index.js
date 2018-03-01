@@ -227,8 +227,8 @@ client.on('message', message => {
         else if (require("./on/messages/vs/error_noPfix.js").execute(message, isVs) );
         else if (require("./on/messages/vs/command_nya.js").execute(message, isVs)  );
         else if (require("./on/messages/vs/command_purge.js").execute(message, isVs)    );
-        else if (require("./on/messages/vs/command_ban.js").execute(message, isVs, isbanned)  );
-        else if (require("./on/messages/vs/command_unban.js").execute(message, isVs, isbanned)  );
+        else if (require("./on/messages/vs/command_ban.js").execute(message, isVs, isbanned, vsban)  );
+        else if (require("./on/messages/vs/command_unban.js").execute(message, isVs, isbanned, vsban)  );
         else if (require("./on/messages/vs/finaly.js").execute(message, isVs, Pfx)   );
     
     
