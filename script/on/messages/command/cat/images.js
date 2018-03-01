@@ -1,7 +1,7 @@
 exports.load = max => {
 
-var catimg = new Array() ;
-    catimg = [
+var catI = new Array() ;
+    catI = [
         "https://yt3.ggpht.com/-xMN6CtD0oAM/AAAAAAAAAAI/AAAAAAAAAAA/3rguRakaom8/s900-c-k-no-mo-rj-c0xffffff/photo.jpg",
         "https://wallpaper.wiki/wp-content/uploads/2017/05/wallpaper.wiki-Anime-Cat-Full-HD-Wallpaper-PIC-WPC0012460.jpg",
         "https://i.pinimg.com/736x/a6/8b/fb/a68bfb3aa12707c10335a4b40611719e--black-cat-anime-anime-cat.jpg",
@@ -37,18 +37,18 @@ var catimg = new Array() ;
         "https://media1.tenor.com/images/9c93248d94cfc9fb4a6895f6f08c7b61/tenor.gif?itemid=7556300",
         "https://data.whicdn.com/images/66559264/large.jpg"
     ];
-    if (undefined == max || String(Number(max)) == "NaN");
+    if (undefined == max || String(Number(max)) == "NaN")
         max = 0;
     
     var i = 0;
     while(i < max) {
         i += 1;
-        catimg.push('J\'ai la flemme, si tu veux une image fait le toi même');
+        catI.push('J\'ai la flemme, si tu veux une image fait le toi même');
     }
     /*hehe ! Array random */
-    catimg = catimg.map(m => {return String(Math.random()) + " " + m}).sort()
-    catimg = catimg.map(m => m.slice(m.length - 1));
+    catI = catI.map(m => {return String(Math.floor(Math.random()*9))+ String(Math.floor(Math.random()*9)) + String(Math.floor(Math.random()*9)) + " " + m}).sort()
+    catI = catI.map(m => m.slice(4));
     
-    return catimg;
+    return catimg1 = catI;
     
 } 
