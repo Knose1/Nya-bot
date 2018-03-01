@@ -141,15 +141,48 @@ client.on('message', message => {
     
     require('./module/perm.js').load(message);
     
-	
+    //On récupère le suffix du vs
+    var isVs = false;
+    if (message.channel.name.indexOf('nya-bot-vs') == 0) {
+        var Pfx = message.channel.name.slice('nya-bot-vs'.length);
+        if (Pfx == undefined) Pfx = '';
+        if (Pfx.indexOf('-') == 0) Pfx = Pfx.slice('-'.length);
+        if (Pfx == undefined) Pfx = '';
+    
+        var isPfx = false
+        VsPrefixs.forEach( p => {
+            if (Pfx == p) isPfx = true;
+        });
+    
+        if (isPfx) 
+            isVs = true;
+    
+        //console.log(isVs+" ; "+Pfx);
+    }
+    
+    //On récupère la liste des ban
+    var guild = client.guilds.get('406926403628695556');
+    var vsban = new Array();
+    var vsx = -1;
+    guild.roles.forEach(function (role) {
+        vsx = vsx+1;
+        vsban[vsx] = role.name;
+        //console.log(role.name);
+    });
+    //console.log(message.author.id);
+    
+    //On regarde si la personne est ban
+    var isbanned = false;
+    vsban.forEach(function (banned) {
+        if (message.author.id == banned && message.author != botowner && message.author.id != mention) {
+            isbanned = true;
+        }
+    });
+    
     /*DEBUT BOT*/
     //ignorer si c'est un bot (sauf s'il parle dans le vs sous certaines conditions
     if(message.author.bot == true) {
-        //On execute suffix.js pour récupérer le suffix du channel nya-bot-vs
-        require("./on/messages/exportMsg.js").then( (message) => {
-            require("./on/messages/vs/suffix.js").then( (message) => {
-                //On execute isbanned.js pour savoir s'il est ban ou non
-                require("./on/messages/vs/isbanned.js").then( (message) => {
+
                 
                     //Bot ban et bot différent de nya!bot
                     if (isVs && isbanned == true && message.author.id != mention) {
