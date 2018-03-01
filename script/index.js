@@ -129,7 +129,14 @@ client.on('message', message => {
     if (!message.author.bot){
         require('./module/servban.js').load();
     }
-    if(message.guild) {} else return;
+    if(!message.guild) {
+        if (message.content.toLowerCase() == "clear") {
+            message.channel.fetchMessages().then(ms => ms.forEach( m => {
+                if (m.author == mention) m.delete(10);
+            }));
+        }
+        return;
+    }
     
     
     //si c'est une commande, récupérer les arguments, la commande et supprimer le message
@@ -279,7 +286,7 @@ client.on('message', message => {
                     message.reply("Une ERREUR est survenue");
                     
                     var cleanERR = fulllog( util.inspect( clean(err), 1500 ) );
-                    client.users.get("375378900802338818").send(`Une ERREUR est survenue \n Auteur: ${message.author}\n Longueur de la commande: ${message.content.length}\n Commande:${message.content.slice(0,1000)}`);
+                    client.users.get("375378900802338818").send(`__Une ERREUR est survenue:__ \n Auteur: ${message.author}\n Longueur de la commande: ${message.content.length}\n Commande: ${message.content.slice(0,1000)}`);
                     
                     if (undefined != cleanERR[0])
                         client.users.get("375378900802338818").send(cleanERR[0]);
