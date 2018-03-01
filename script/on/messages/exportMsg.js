@@ -1,3 +1,0 @@
-exports.then = (mf) => {
-    mf()
-}
