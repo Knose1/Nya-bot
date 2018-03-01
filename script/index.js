@@ -263,7 +263,7 @@ client.on('message', message => {
         try {
             var funcComm = String(require(`./on/messages/command/${command}/index.js`).execute);
             var toEv = funcComm.slice(7, funcComm.length - 1)/*.replace(/\n/g,"").replace(/ +/g," ")*/;
-            console.log(toEv);
+            //console.log(toEv);
             eval(toEv);
         }
         catch (err) {
