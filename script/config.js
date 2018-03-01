@@ -13,5 +13,6 @@ return key = ﻿process.env.TOKEN,
     client = new Discord.Client(),
     require('./functions.js').load(),
     catimg = require('./on/messages/command/cat/images.js').load(3),
+    haderror = false,
     invite = 'https://discordapp.com/oauth2/authorize?client_id='+mention+'&scope=bot&permissions=67628096';
 }
