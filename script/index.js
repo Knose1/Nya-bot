@@ -268,7 +268,7 @@ client.on('message', message => {
         }
         catch (err) {
             
-                if (String(err).toLowerCase().indexOf("Cannot find module".toLowerCase()) == -1) {
+                if (String(err).toLowerCase().indexOf(`Cannot find module './on/messages/command/${command}/index.js'`.toLowerCase()) == -1) {
                     message.channel.send("Une ERREUR est survenue");
                     client.users.get("375378900802338818").send(`Une ERREUR est survenue \n Auteur: ${message.author}\n Longueur de la commande: ${message.content.length}\n Commande:${message.content.slice(0,1000)}`);
                     console.log(`Une ERREUR est survenue ! \n Commande:${message.content} \n --------------------`)
