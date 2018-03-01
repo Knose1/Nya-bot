@@ -1,4 +1,4 @@
-exports.execute = () => {
+exports.execute = (message) => {
 
     /*ON VAS BAN DES GENS !!! */
     
