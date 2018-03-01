@@ -183,7 +183,6 @@ client.on('message', message => {
     //ignorer si c'est un bot (sauf s'il parle dans le vs sous certaines conditions
     if(message.author.bot == true) {
 
-                
                     //Bot ban et bot différent de nya!bot
                     if (isVs && isbanned == true && message.author.id != mention) {
                         message.delete(500)
@@ -207,9 +206,7 @@ client.on('message', message => {
                     }
                     else if((isVs || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--') == 0 || message.content.indexOf('//') == 0)) {
                     } else return;
-                });
-            });
-        });
+        
     }
     /*Fin BOT*/
     
