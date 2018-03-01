@@ -233,7 +233,7 @@ client.on('message', message => {
     
     
     //RPG
-    else if (require("./on/messages/rpg/index.js").execute(message)    );
+    //else if (require("./on/messages/rpg/index.js").execute(message)    );
     
     //COMMAND
     else if (iscommand == true) {
@@ -262,7 +262,7 @@ client.on('message', message => {
         }
         try {
             var funcComm = String(require(`./on/messages/command/${command}/index.js`).execute);
-            var toEv = `${funcComm.slice(7, funcComm.length - 1).replace(/\n/g,"")/*.replace(/ +/g," ")*/}`;
+            var toEv = funcComm.slice(7, funcComm.length - 1)/*.replace(/\n/g,"").replace(/ +/g," ")*/;
 			console.log(toEv);
 			eval(toEv);
         }
