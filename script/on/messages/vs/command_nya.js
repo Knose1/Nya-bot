@@ -1,4 +1,4 @@
-exports.execute = () => {
+exports.execute = (message) => {
 
     /*On envoie des messages en tant que nya!bot*/
     if ((isVs || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--nya') == 0 || message.content.indexOf('--Nya') == 0 || message.content.indexOf('//nya') == 0 || message.content.indexOf('//Nya') == 0) && (message.author == botowner || isMod)) {
