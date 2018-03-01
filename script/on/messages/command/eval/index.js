@@ -1,7 +1,7 @@
 exports.execute = () => {
 
     //Commande eval
-        else if (command.toLowerCase() == 'eval' && message.author != botowner) {
+        if (command.toLowerCase() == 'eval' && message.author != botowner) {
             message.reply('You can\'t use eval command ! :pouting_cat:')
             .then(m => m.delete(6000));
         }
