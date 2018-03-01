@@ -267,8 +267,9 @@ client.on('message', message => {
         }
         catch (err) {
             
-                if (String(err).indexOf("Cannot find module") == -1) {
+                if (String(err).indexOf("Cannot find module") == -1 && String(err).indexOf("Missing Permissions") == -1) {
                     message.channel.send("Une ERREUR est survenue");
+                    console.log(`Une ERREUR est survenue ! \n Commande:${message.content} \n --------------------`)
                     console.log(err);
                 } else {
                     if (message.guild.id != '110373943822540800') {
