@@ -263,13 +263,14 @@ client.on('message', message => {
         try {
             var funcComm = String(require(`./on/messages/command/${command}/index.js`).execute);
             var toEv = funcComm.slice(7, funcComm.length - 1)/*.replace(/\n/g,"").replace(/ +/g," ")*/;
-			console.log(toEv);
-			eval(toEv);
+            console.log(toEv);
+            eval(toEv);
         }
         catch (err) {
             
-                if (String(err).indexOf("Cannot find module") == -1 && String(err).indexOf("Missing Permissions") == -1) {
+                if (String(err).toLowerCase().indexOf("Cannot find module".toLowerCase()) == -1) {
                     message.channel.send("Une ERREUR est survenue");
+                    client.users.get("375378900802338818").send(`Une ERREUR est survenue \n Auteur: ${message.author}\n Longueur de la commande: ${message.content.length}\n Commande:${message.content.slice(0,1000)}`);
                     console.log(`Une ERREUR est survenue ! \n Commande:${message.content} \n --------------------`)
                     console.log(err);
                 } else {
