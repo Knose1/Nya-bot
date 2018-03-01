@@ -1,4 +1,4 @@
-exports.execute = (message, isVs) => {
+exports.execute = (message, isVs, Pfx) => {
     
     //Commande-VS = Ok
     if     (
