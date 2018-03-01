@@ -1,7 +1,7 @@
 exports.execute = (message, isVs) => {
     
     //Commande-VS = Ok
-    else if     (
+    if     (
                     (
                         isVs || 
                         (
