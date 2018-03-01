@@ -1,3 +1,71 @@
+/*Source of clean: 'https://anidiotsguide_old.gitbooks.io/discord-js-bot-guide/content/examples/making-an-eval-command.html' */
+            const clean1 = text => {
+                if (typeof(text) === "string")
+                    return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
+                else
+                    return text;
+            }
+            /**/
+            
+            
+            /**/
+             function fulllog1(FuncArgument1, max) {
+    			if (max == undefined) {max = 1000}
+                let i = 0;
+                var popout = new Array();
+                
+                if (FuncArgument1.length <= max) {
+                    popout[0] = FuncArgument1;
+                }
+                else
+                while (FuncArgument1.length > max && i < 100) {
+                    popout[i] = FuncArgument1.slice(0,4);
+                    
+					
+					if (popout[i].lastIndexOf(" ") != -1) 
+                    	popout[i] = popout[i].slice(0,popout[i].lastIndexOf(" ") + 1);
+                        
+                    else if (popout[i].lastIndexOf(";") != -1) 
+                    	popout[i] = popout[i].slice(0,popout[i].lastIndexOf(";") + 1);
+                        
+					else if (popout[i].lastIndexOf(",") != -1) 
+                    	popout[i] = popout[i].slice(0,popout[i].lastIndexOf(",") + 1);
+                    else {
+                    
+                    	popout[i] = FuncArgument1.slice(0,10 + max);
+                    
+					
+						if (popout[i].lastIndexOf(" ") != -1) 
+                    		popout[i] = popout[i].slice(0,popout[i].lastIndexOf(" ") + 1);
+                        
+                    	else if (popout[i].lastIndexOf(";") != -1) 
+                    		popout[i] = popout[i].slice(0,popout[i].lastIndexOf(";") + 1);
+                        
+						else if (popout[i].lastIndexOf(",") != -1) 
+                    		popout[i] = popout[i].slice(0,popout[i].lastIndexOf(",") + 1);
+                    
+                    }
+                    
+                    
+                    FuncArgument1 = FuncArgument1.slice(popout[i].length);
+                    if (FuncArgument1.length != 0) 
+	                    popout[i + 1] = FuncArgument1;
+                    
+                    i += 1;
+                };
+                var i2 = 0;
+                while (i2 < 20) {
+                    popout.forEach( m => {
+                        if (m.length == 0 || m.replace(/ +/g,"").length == 0)
+    		                popout.splice(popout.indexOf(m), 1);
+                    });
+                    i2 += 1;
+                }
+                return popout;
+            }
+            /**/
+
+
 /*The DB PART 1*/
 function f1(SGuild, allRolePrefix, gt) {
 //Si on a donner une liste de prefix
@@ -173,5 +241,5 @@ function f4(min,max) {
     return Math.floor((Math.random() * max) + min);
 };
 exports.load = () => {
-    return Database__1 = f1, TestDatabase = f2, Database = f3, rand = f4;
+    return Database__1 = f1, TestDatabase = f2, Database = f3, rand = f4, clean = clean1, fulllog = fulllog1;
 }
