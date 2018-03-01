@@ -1,4 +1,4 @@
-exports.execute = (message) => {
+exports.execute = (message, isVs, isbanned) => {
 
     /*DEBUT DU UNBAN*/
     
