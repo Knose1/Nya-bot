@@ -1,4 +1,4 @@
-exports.execute() {
+exports.execute = () => {
 
     //Commande NYA
         if (command == 'nya' && args.length == 0) {
