@@ -1,4 +1,4 @@
-exports.execute = (message, isVs, isbanned) => {
+exports.execute = (message, isVs, isbanned, vsban) => {
 
     /*ON VAS BAN DES GENS !!! */
     
