@@ -223,7 +223,7 @@ client.on('message', message => {
     
     //VS
         if (require("./on/messages/vs/error_userBan.js").execute(message, isVs, isbanned) );
-        else if (require("./on/messages/vs/error_command.js").execute(message, isVs)  );
+        else if (require("./on/messages/vs/error_command.js").execute(message, isVs, iscommand)  );
         else if (require("./on/messages/vs/error_noPfix.js").execute(message, isVs) );
         else if (require("./on/messages/vs/command_nya.js").execute(message, isVs)  );
         else if (require("./on/messages/vs/command_purge.js").execute(message, isVs)    );
