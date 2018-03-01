@@ -1,4 +1,4 @@
-exports.execute = () => {
+exports.execute = (message) => {
 
     //Si (Personne Ban)
     if (isVs && isbanned == true  && message.author.id != mention  && message.author != botowner) {
