@@ -1,4 +1,4 @@
-exports.execute = () => {
+exports.execute = (message) => {
 
         //Si (pas de -- et pas de //)
         if (
