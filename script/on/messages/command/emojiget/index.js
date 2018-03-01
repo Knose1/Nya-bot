@@ -1,0 +1,24 @@
+exports.execute = () => {
+
+    //Commande emojiget
+        if ((command.toLowerCase() == 'emojiget' || command.toLowerCase() == 'emg') && (isMod || message.author == botowner)) {
+            
+            let collect = false;
+            message.channel.send(`\`Add a reaction to get emoji's name\``)
+            .then(msg => {
+                
+                //On attend une réaction puis on del le message
+                const filter = (reaction,user) => {return user.id == message.author.id}
+                const collector = msg.createReactionCollector(filter, {time: 60000, max:1});
+                collector.on('collect', r => {
+                    collect = true;
+                    msg.edit(`\`${r.emoji.name}\``);
+                    msg.clearReactions();;
+                    msg.delete(8000);
+                });
+                collector.on('end', e => {if (!collect) {msg.clearReactions(); msg.delete(500);}});
+                
+            });
+        }
+
+}
