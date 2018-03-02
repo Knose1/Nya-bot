@@ -120,7 +120,7 @@ client.on('resume', resume => {
 
 client.on('message', message => {
     
-    if (haderror) {
+    if (haderror && message.author != botowner) {
         client.user.setStatus('dnd');
         client.user.setActivity(`ERROR`,{type: "PLAYING"});
         return;
