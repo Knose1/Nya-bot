@@ -17,6 +17,6 @@ listAnime1[0] = {
 
 };
 
-export.load = () => {
+exports.load = () => {
   return listAnime = listAnime1;
 }
