@@ -123,7 +123,12 @@ client.on('message', message => {
     if (haderror && message.author != botowner) {
         client.user.setStatus('dnd');
         client.user.setActivity(`ERROR`,{type: "PLAYING"});
+        noGame = 'activé'
         return;
+    } else if (!haderror && noGame == 'activé') {
+        client.user.setStatus('online');
+        client.user.setActivity(`cat:help | Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} serveurs.`,{type: "PLAYING"});
+    
     }
     
     if (!message.author.bot){
@@ -149,9 +154,7 @@ client.on('message', message => {
     
     
     
-    if (noGame == 'activé' && !iscommand) 
-        client.user.setActivity(`cat:help | Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} serveurs.`,{type: "PLAYING"});
-    
+        
     require('./module/perm.js').load(message);
     
     //On récupère le suffix du vs
