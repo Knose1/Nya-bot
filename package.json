@@ -6,6 +6,9 @@
   "scripts": {
      "start":"node script/index.js"
   },
+  "dependencies": {
+    "discord.js": ""
+  },
   "author": "knose1",
   "license": "ISC"
 }
