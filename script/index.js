@@ -9,7 +9,7 @@ client.on('ready', () => {
     //envoyer un message au server log
     var channel = client.channels.get(logserv);
     channel.send(`Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} servers.`);
-    client.user.setGame(`cat:help | Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} serveurs.`);
+    client.user.setActivity(`cat:help | Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} serveurs.`, {type: "PLAYING"});
 
     require('./module/servban.js').load();
     
@@ -122,7 +122,7 @@ client.on('message', message => {
     
     if (haderror) {
         client.user.setStatus('dnd');
-        client.user.setGame(`ERROR`);
+        client.user.setActivity(`ERROR`,{type: "PLAYING"});
         return;
     }
     
@@ -150,7 +150,7 @@ client.on('message', message => {
     
     
     if (noGame == 'activé' && !iscommand) 
-        client.user.setGame(`cat:help | Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} serveurs.`);
+        client.user.setActivity(`cat:help | Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} serveurs.`,{type: "PLAYING"});
     
     require('./module/perm.js').load(message);
     
@@ -305,7 +305,7 @@ client.on('message', message => {
                     
                     haderror = true;
                     client.user.setStatus('dnd');
-                    client.user.setGame(`ERROR`);
+                    client.user.setActivity(`ERROR`,{type: "PLAYING"});
                     
                 } else {
                     if (message.guild.id != '110373943822540800') {
