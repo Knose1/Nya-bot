@@ -131,24 +131,23 @@ client.on('message', message => {
     }
     if(!message.guild) {
         if (message.content.toLowerCase() == "clear") {
-            message.channel.fetchMessages().then(ms => ms.forEach( m => {
-                if (m.author == mention) m.delete(10);
-            }));
+            message.channel.fetchMessages({ limit: 100 }).then(f => {
+                
+                
+                
+                message.channel.fetchMessages({ limit: 100, before: f.first().id }).then(ms => ms.forEach( m => {
+                    if (m.author.id == mention) m.delete(10);
+                }));
+                message.channel.fetchMessages({ limit: 100, before: f.last().id }).then(ms => ms.forEach( m => {
+                    if (m.author.id == mention) m.delete(10);
+                }));
+            });
         }
         return;
     }
     
     
-    //si c'est une commande, récupérer les arguments, la commande et supprimer le message
-        if (message.content.indexOf(prefix) == 0) {
-            var iscommand = true;
-            var args = message.content.slice(prefix.length).trim().split(/ +/g);
-            var command = args.shift().toLowerCase();
     
-            message.delete(500)
-                .then(msg => console.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
-                .catch(console.error);
-        }
     
     if (noGame == 'activé' && !iscommand) 
         client.user.setGame(`cat:help | Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} serveurs.`);
@@ -223,6 +222,17 @@ client.on('message', message => {
         
     }
     /*Fin BOT*/
+    
+    //si c'est une commande, récupérer les arguments, la commande et supprimer le message
+        if (message.content.indexOf(prefix) == 0) {
+            var iscommand = true;
+            var args = message.content.slice(prefix.length).trim().split(/ +/g);
+            var command = args.shift().toLowerCase();
+    
+            message.delete(500)
+                .then(msg => console.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
+                .catch(console.error);
+        }
     
     /*if (message.author == botowner && (!isVs || (message.guild.id == "377892426569744387" && message.channel.name != "nya-bot-vs-log"))) {
         if (Database('407142766674575361',['user:','xp:']).get('user:',message.author.id,['xp:'])['xp:'].value[0] != 'NaN') {
