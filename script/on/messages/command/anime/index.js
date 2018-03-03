@@ -58,7 +58,15 @@ exports.execute = () => {
         client.channels.get("419534136672518156").fetchMessages({ limit: 20 }).then( FM => {
             
             
-            var nb_m = FM.findAll('author', message.author).length; //Anti spam (utilisateur spam)
+            var nb_m = 0;
+            //Anti spam (utilisateur spam)
+            FM.forEach( m => {
+                if (m.author.id == mention)
+                    if (m.embeds[0] != undefined)
+                        if (m.embeds[0].footer.text == message.author.tag)
+                            nb_m += 1;
+                
+            }); 
             var time_m = new Date() - FM.last().createdAt; //Anti spam (time)
             
             //12 sec ou plus de 8 purpose en moin d'1h parmi les 20 derniers messages
@@ -68,7 +76,12 @@ exports.execute = () => {
         });
         
         if (TIsOK || message.author == botowner) {
-            client.channels.get("419534136672518156").send(args.join(" "));
+            var embed = new Discord.RichEmbed()
+                .setTitle("Purpose Anime")
+                .setDescription(args.join(" "))
+                .setColor("RANDOM")
+                .setFooter(message.author.tag, message.author.avatarURL);
+            client.channels.get("419534136672518156").send({embed});
         } else {
             message.channel.send("Please wait before purposing new animes !").then(m => m.delete(500));
         }
