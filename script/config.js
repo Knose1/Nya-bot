@@ -15,5 +15,6 @@ return key = ﻿process.env.TOKEN,
     require('./on/messages/command/anime/anime.js').load(),
     catimg = require('./on/messages/command/cat/images.js').load(3),
     haderror = false,
+    maxAnPurpose = 8, //Nombre max de purpose en 1h parmis les 20 derniers messages
     invite = 'https://discordapp.com/oauth2/authorize?client_id='+mention+'&scope=bot&permissions=67628096';
 }
