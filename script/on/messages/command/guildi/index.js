@@ -1,4 +1,4 @@
-exports.execute () {
+exports.execute = () => {
 
     //Commande GUILDI
         if (command == 'guildi' && message.author == botowner) {
