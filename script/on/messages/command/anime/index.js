@@ -72,22 +72,21 @@ exports.execute = () => {
             var time_m = new Date() - FM.first().createdAt; //Anti spam (time)
             
             //12 sec ou plus de 8 purpose en moin d'1h parmi les 20 derniers messages
-            if (Number(time_m) < 12000) {TIsOK = false}
+            if (Number(time_m) < 15000) {TIsOK = false}
             if (Number(time_m) < 360000 && nb_m > maxAnPurpose) {TIsOK = false}
-            console.log(nb_m, time_m, TIsOK)
+            
+            if (TIsOK || message.author == botowner) {
+                var embed = new Discord.RichEmbed()
+                    .setTitle("Purpose Anime")
+                    .setDescription(args.join(" "))
+                    .setColor("RANDOM")
+                    .setFooter(message.author.tag, message.author.avatarURL);
+                client.channels.get("419534136672518156").send(embed);
+                message.channel.send("The anime has been purposed to the owner ! :cat:").then(m => m.delete(30000));
+            } else {
+                message.channel.send("Please wait before purposing new animes !").then(m => m.delete(15000));
+            }
         });
-        console.log(TIsOK);
-        if (TIsOK || message.author == botowner) {
-            var embed = new Discord.RichEmbed()
-                .setTitle("Purpose Anime")
-                .setDescription(args.join(" "))
-                .setColor("RANDOM")
-                .setFooter(message.author.tag, message.author.avatarURL);
-            client.channels.get("419534136672518156").send(embed);
-        } else {
-            message.channel.send("Please wait before purposing new animes !").then(m => m.delete(15000));
-        }
-        
     }
     else if ((args[0] == "query" || args[0] == "find") && args.length > 2) {
         
