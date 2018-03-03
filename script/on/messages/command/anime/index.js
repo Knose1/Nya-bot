@@ -1,6 +1,6 @@
 exports.execute = () => {
     
-    args = args.map(m => {return m.toLowerCase()});
+    args[0] = args[0].toLowerCase()
     if (args.length == 0) {
         var randAnime = Math.floor(Math.random() * listAnime.length);
         var anime = listAnime[randAnime];
