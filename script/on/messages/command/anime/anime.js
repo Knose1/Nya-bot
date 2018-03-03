@@ -2,19 +2,19 @@ var listAnime1 = Array();
 
 /*  {
 
-    name: '',
-    image: '',
+    name: 'undefined',
+    image: 'undefined',
     
-    story_fr: ``, //Synopsis
-    story_en: '',
+    story_fr: `undefined`, //Synopsis
+    story_en: 'undefined',
     
-    anime_fr: '', //Exemple: Anime ultime
-    anime_en: '',
+    anime_fr: 'undefined', //Exemple: Anime ultime
+    anime_en: 'undefined',
     
-    op: '',
-    opFull: '',
-    ed: '',
-    edFull: '',
+    op: 'undefined',
+    opFull: 'undefined',
+    ed: 'undefined',
+    edFull: 'undefined',
   
     working: true, //Manque t'il des informations ?
 
@@ -31,10 +31,10 @@ Mais l'examen final de l'académie se révèle bien au dessus de leurs craintes,
 Mais la rencontre avec le directeur de l'académie, insatisfait du dénouement de l'examen, va complètement chambouler Teito : devant lui se tient l'assassin de son père...\n
 ((Source: Anime ultime)[http://www.anime-ultime.net/file-0-1/1719/07-Ghost-vostfr])`, //Synopsis
     
-    story_en: '',
+    story_en: 'undefined',
   
     anime_fr: 'http://www.anime-ultime.net/file-0-1/1719/07-Ghost-vostfr', //Exemple: Anime ultime
-    anime_en: '',
+    anime_en: 'undefined',
   
     op: 'https://www.youtube.com/watch?v=loeU-MZSX0k',
     opFull: 'https://www.youtube.com/watch?v=OINW8ObizhY',
