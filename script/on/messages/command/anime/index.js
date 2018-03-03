@@ -11,8 +11,8 @@ exports.execute = () => {
             .setDescription(anime.story_fr)
             .setColor("RANDOM")
             .addField("Voir les épisodes:", anime.anime_fr, false)
-            .addField("__",`[Opening](${anime.op}] \n [Opening Full](${anime.opFull})`, false)
-            .addField("__",`[Ending](${anime.ed}] \n [Opening Full](${anime.edFull})`, true)
+            .addField("__",`[Opening](${anime.op}) \n [Opening Full](${anime.opFull})`, true)
+            .addField("__",`[Ending](${anime.ed}) \n [Opening Full](${anime.edFull})`, true)
             .setFooter(message.author.tag, message.author.avatarURL);
         
         var embeden = new Discord.RichEmbed()
@@ -21,8 +21,8 @@ exports.execute = () => {
             .setDescription(anime.story_en)
             .setColor("RANDOM")
             .addField("See the episodes:", anime.anime_en, false)
-            .addField("__",`[Opening](${anime.op}] \n [Opening Full](${anime.opFull})`, false)
-            .addField("__",`[Ending](${anime.ed}] \n [Opening Full](${anime.edFull})`, true)
+            .addField("__",`[Opening](${anime.op}) \n [Opening Full](${anime.opFull})`, true)
+            .addField("__",`[Ending](${anime.ed}) \n [Opening Full](${anime.edFull})`, true)
             .setFooter(message.author.tag, message.author.avatarURL);
         
         message.channel.send(embedfr)
@@ -35,11 +35,11 @@ exports.execute = () => {
                 switch (reaction.emoji.name) {
                     case '🇫🇷':
                         m.edit(embedfr);
-                        m.remove(message.author);
+                        reaction.remove(message.author);
                         break;
                     case '🇬🇧':
                         m.edit(embeden);
-                        m.remove(message.author);
+                        reaction.remove(message.author);
                 }
             });
         });
