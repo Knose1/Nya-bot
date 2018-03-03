@@ -5,8 +5,7 @@ exports.execute = () => {
         var randAnime = Math.floor(Math.random() * listAnime.length);
         var anime = listAnime[randAnime];
         
-        var embed = new Object();
-        embed.fr = new Discord.RichEmbed()
+        var embedfr = new Discord.RichEmbed()
             .setTitle(anime.name)
             .setThumbnail(anime.image)
             .setDescription(anime.story_fr)
@@ -16,7 +15,7 @@ exports.execute = () => {
             .addField("",   `(Ending)[anime.ed] \n (Opening Full)[anime.edFull]`, true)
             .setFooter(message.author.tag, message.author.avatarURL);
         
-        embed.en = new Discord.RichEmbed()
+        var embeden = new Discord.RichEmbed()
             .setTitle(anime.name)
             .setThumbnail(anime.image)
             .setDescription(anime.story_en)
@@ -26,7 +25,7 @@ exports.execute = () => {
             .addField("",   `(Ending)[anime.ed] \n (Opening Full)[anime.edFull]`, true)
             .setFooter(message.author.tag, message.author.avatarURL);
         
-        message.channel.send({embed.fr})
+        message.channel.send({embedfr})
         .then(m => {
             
             m.react('🇫🇷').then(() => m.react('🇬🇧'));
@@ -35,11 +34,11 @@ exports.execute = () => {
             collector.on('collect', reaction => {
                 switch (reaction.emoji.name) {
                     case '🇫🇷':
-                        m.edit({embed.fr})
+                        m.edit({embedfr})
                         m.remove(message.author);
                         break;
                     case '🇬🇧':
-                        m.edit({embed.en})
+                        m.edit({embeden})
                         m.remove(message.author);
                 }
             });
