@@ -76,7 +76,7 @@ exports.execute = () => {
             if (Number(time_m) < 360000 && nb_m > maxAnPurpose) {TIsOK = false}
             console.log(nb_m, time_m, TIsOK)
         });
-        
+        console.log(TIsOK);
         if (TIsOK || message.author == botowner) {
             var embed = new Discord.RichEmbed()
                 .setTitle("Purpose Anime")
