@@ -1,6 +1,8 @@
 exports.execute = () => {
     
-    args[0] = args[0].toLowerCase()
+    if (args.length != 0)
+        args[0] = args[0].toLowerCase();
+    
     if (args.length == 0) {
         var randAnime = Math.floor(Math.random() * listAnime.length);
         var anime = listAnime[randAnime];
@@ -50,7 +52,7 @@ exports.execute = () => {
             });
         });
     }
-    else if (args[0] == "purpose" && args.length > 2) {
+    else if (args[0] == "purpose" && args.length >= 2) {
         
         args.shift();
         
