@@ -11,8 +11,8 @@ exports.execute = () => {
             .setDescription(anime.story_fr)
             .setColor("RANDOM")
             .addBlankField()
-            .addField("\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_",`[Opening](${anime.op})\n[Opening Full](${anime.opFull})`, true)
-            .addField("\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_",`[Ending](${anime.ed})\n[Opening Full](${anime.edFull})`, true)
+            .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬",`[Opening](${anime.op})\n[Opening Full](${anime.opFull})`, true)
+            .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬",`[Ending](${anime.ed})\n[Opening Full](${anime.edFull})`, true)
             .addField("\n\nVoir les épisodes:", anime.anime_fr, false)
             .setFooter(message.author.tag, message.author.avatarURL);
         
@@ -22,8 +22,8 @@ exports.execute = () => {
             .setDescription(anime.story_en)
             .setColor("RANDOM")
             .addBlankField()
-            .addField("\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_",`[Opening](${anime.op})\n[Opening Full](${anime.opFull})`, true)
-            .addField("\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_",`[Ending](${anime.ed})\n[Opening Full](${anime.edFull})`, true)
+            .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬",`[Opening](${anime.op})\n[Opening Full](${anime.opFull})`, true)
+            .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬",`[Ending](${anime.ed})\n[Opening Full](${anime.edFull})`, true)
             .addField("\n\nSee the episodes:", anime.anime_en, false)
             .setFooter(message.author.tag, message.author.avatarURL);
         
