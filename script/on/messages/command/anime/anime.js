@@ -36,10 +36,10 @@ Mais la rencontre avec le directeur de l'académie, insatisfait du dénouement d
     anime_fr: 'http://www.anime-ultime.net/file-0-1/1719/07-Ghost-vostfr', //Exemple: Anime ultime
     anime_en: 'undefined',
   
-    op: 'https://www.youtube.com/watch?v=loeU-MZSX0k',
-    opFull: 'https://www.youtube.com/watch?v=OINW8ObizhY',
-    ed: 'https://www.youtube.com/watch?v=x8fhSxxvFn4',
-    edFull: 'https://www.youtube.com/watch?v=pz4jxQWxC08',
+    op: 'https://youtu.be/loeU-MZSX0k',
+    opFull: 'https://youtu.be/OINW8ObizhY',
+    ed: 'https://youtu.be/x8fhSxxvFn4',
+    edFull: 'https://youtu.be/pz4jxQWxC08',
 
     working: true,
 };
