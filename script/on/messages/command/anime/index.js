@@ -67,7 +67,7 @@ exports.execute = () => {
                             nb_m += 1;
                 
             }); 
-            var time_m = new Date() - FM.last().createdAt; //Anti spam (time)
+            var time_m = new Date() - FM.first().createdAt; //Anti spam (time)
             
             //12 sec ou plus de 8 purpose en moin d'1h parmi les 20 derniers messages
             if (Number(time_m) < 12000) {TIsOK = false}
@@ -83,7 +83,7 @@ exports.execute = () => {
                 .setFooter(message.author.tag, message.author.avatarURL);
             client.channels.get("419534136672518156").send(embed);
         } else {
-            message.channel.send("Please wait before purposing new animes !").then(m => m.delete(500));
+            message.channel.send("Please wait before purposing new animes !").then(m => m.delete(15000));
         }
         
     }
