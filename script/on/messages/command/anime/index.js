@@ -30,7 +30,7 @@ exports.execute = () => {
         message.channel.send(embedfr)
         .then(m => {
             
-            m.react('🇫🇷').then(() => m.react('🇬🇧'));
+            m.react('🇫🇷').then(() => m.react('🇬🇧').then( () => m.react("⏹") ) );
             const filter = (reaction, user) => user == message.author
             const collector = m.createReactionCollector(filter);
             collector.on('collect', reaction => {
@@ -42,8 +42,45 @@ exports.execute = () => {
                     case '🇬🇧':
                         m.edit(embeden);
                         reaction.remove(message.author);
+                        break;
+                    case '⏹':
+                        m.delete(500);
+                        collector.stop();
                 }
             });
         });
+    }
+    else if (args[0] == "purpose" && args.length > 2) {
+        
+        args.shift();
+        
+        var TIsOK = true;
+        client.channels.get("419534136672518156").fetchMessages({ limit: 20 }).then( FM => {
+            
+            
+            var nb_m = FM.findAll('author', message.author).length; //Anti spam (utilisateur spam)
+            var time_m = new Date() - FM.last().createdAt; //Anti spam (time)
+            
+            //12 sec ou plus de 8 purpose en moin d'1h parmi les 20 derniers messages
+            if (Number(time_m) < 12000) {TIsOK = false}
+            if (Number(time_m) < 360000 && nb_m > maxAnPurpose) {TIsOK = false}
+        
+        });
+        
+        if (TIsOK || message.author == botowner) {
+            client.channels.get("419534136672518156").send(args.join(" "));
+        } else {
+            message.channel.send("Please wait before purposing new animes !").then(m => m.delete(500));
+        }
+        
+    }
+    else if ((args[0] == "query" || args[0] == "find") && args.length > 2) {
+        
+        
+        
+    } else {
+        
+        
+        
     }
 }
