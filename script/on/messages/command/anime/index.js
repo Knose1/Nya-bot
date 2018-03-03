@@ -11,8 +11,8 @@ exports.execute = () => {
             .setDescription(anime.story_fr)
             .setColor("RANDOM")
             .addField("Voir les épisodes:", anime.anime_fr, false)
-            .addField("",   `(Opening)[anime.op] \n (Opening Full)[anime.opFull]`, false)
-            .addField("",   `(Ending)[anime.ed] \n (Opening Full)[anime.edFull]`, true)
+            .addField("a",`(Opening)[anime.op] \n (Opening Full)[anime.opFull]`, false)
+            .addField("a",`(Ending)[anime.ed] \n (Opening Full)[anime.edFull]`, true)
             .setFooter(message.author.tag, message.author.avatarURL);
         
         var embeden = new Discord.RichEmbed()
