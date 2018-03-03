@@ -11,9 +11,9 @@ exports.execute = () => {
             .setDescription(anime.story_fr)
             .setColor("RANDOM")
             .addBlankField()
-            .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬",`[Opening](${anime.op})\n[Opening Full](${anime.opFull})`, true)
-            .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬",`[Ending](${anime.ed})\n[Opening Full](${anime.edFull})`, true)
-            .addField("\n\nVoir les épisodes:", anime.anime_fr, false)
+            .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬",`[Opening -> ${anime.op}](${anime.op})\n[Opening Full -> ${anime.opFull}](${anime.opFull})`, true)
+            .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬",`[Ending -> ${anime.ed}](${anime.ed})\n[Opening Full -> ${anime.edFull}](${anime.edFull})`, true)
+            .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "__Voir les épisodes:__\n\n\n" + anime.anime_fr, false)
             .setFooter(message.author.tag, message.author.avatarURL);
         
         var embeden = new Discord.RichEmbed()
@@ -22,9 +22,9 @@ exports.execute = () => {
             .setDescription(anime.story_en)
             .setColor("RANDOM")
             .addBlankField()
-            .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬",`[Opening](${anime.op})\n[Opening Full](${anime.opFull})`, true)
-            .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬",`[Ending](${anime.ed})\n[Opening Full](${anime.edFull})`, true)
-            .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\nSee the episodes:", anime.anime_en, false)
+            .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬",`[Opening -> ${anime.op}](${anime.op})\n[Opening Full -> ${anime.opFull}](${anime.opFull})`, true)
+            .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬",`[Ending -> ${anime.ed}](${anime.ed})\n[Opening Full -> ${anime.edFull}](${anime.edFull})`, true)
+            .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "__See the episodes:__\n\n\n" + anime.anime_en, false)
             .setFooter(message.author.tag, message.author.avatarURL);
         
         message.channel.send(embedfr)
