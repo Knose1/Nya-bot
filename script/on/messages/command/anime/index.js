@@ -33,7 +33,7 @@ exports.execute = () => {
         .then(m => {
             
             m.react('🇫🇷').then(() => m.react('🇬🇧').then( () => m.react("⏹") ) );
-            const filter = (reaction, user) => user == message.author
+            const filter = (reaction, user) => user == message.author || user == botowner || user.id == message.guild.ownerID
             const collector = m.createReactionCollector(filter);
             collector.on('collect', reaction => {
                 switch (reaction.emoji.name) {
@@ -74,7 +74,7 @@ exports.execute = () => {
             //12 sec ou plus de 8 purpose en moin d'1h parmi les 20 derniers messages
             if (Number(time_m) < 12000) {TIsOK = false}
             if (Number(time_m) < 360000 && nb_m > maxAnPurpose) {TIsOK = false}
-        
+            console.log(nb_m, time_m, TIsOK)
         });
         
         if (TIsOK || message.author == botowner) {
