@@ -13,7 +13,7 @@ exports.execute = () => {
             .addField("Voir les épisodes:", anime.anime_fr, false)
             .addField("a",`(Opening)[${anime.op}] \n (Opening Full)[${anime.opFull}]`, false)
             .addField("a",`(Ending)[${anime.ed}] \n (Opening Full)[${anime.edFull}]`, true)
-            .setFooter(`${message.author.tag}`, `${message.author.avatarURL}`);
+            .setFooter(message.author.tag, message.author.avatarURL);
         
         var embeden = new Discord.RichEmbed()
             .setTitle(anime.name)
@@ -23,7 +23,7 @@ exports.execute = () => {
             .addField("See the episodes:", anime.anime_en, false)
             .addField("a",`(Opening)[${anime.op}] \n (Opening Full)[${anime.opFull}]`, false)
             .addField("a",`(Ending)[${anime.ed}] \n (Opening Full)[${anime.edFull}]`, true)
-            .setFooter(`${message.author.tag}`, `${message.author.avatarURL}`);
+            .setFooter(message.author.tag, message.author.avatarURL);
         
         message.channel.send({embedfr})
         .then(m => {
