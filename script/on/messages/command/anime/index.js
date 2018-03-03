@@ -25,7 +25,7 @@ exports.execute = () => {
             .addField("a",`(Ending)[${anime.ed}] \n (Opening Full)[${anime.edFull}]`, true)
             .setFooter(message.author.tag, message.author.avatarURL);
         
-        message.channel.send({embedfr})
+        message.channel.send(embedfr)
         .then(m => {
             
             m.react('🇫🇷').then(() => m.react('🇬🇧'));
@@ -34,11 +34,11 @@ exports.execute = () => {
             collector.on('collect', reaction => {
                 switch (reaction.emoji.name) {
                     case '🇫🇷':
-                        m.edit({embedfr})
+                        m.edit(embedfr);
                         m.remove(message.author);
                         break;
                     case '🇬🇧':
-                        m.edit({embeden})
+                        m.edit(embeden);
                         m.remove(message.author);
                 }
             });
