@@ -8,9 +8,9 @@ exports.execute = () => {
         var embedfr = new Discord.RichEmbed()
             .setTitle(anime.name)
             .setThumbnail(anime.image)
-            .setDescription(`${() => {if (anime.story_fr.length > 0) return anime.story_fr; else return "undefined"}}`)
+            .setDescription(anime.story_fr)
             .setColor("RANDOM")
-            .addField("Voir les épisodes:", `${() => {if (anime.anime_fr.length > 0) return anime.anime_fr; else return "undefined"}}`, false)
+            .addField("Voir les épisodes:", anime.anime_fr, false)
             .addField("a",`(Opening)[${anime.op}] \n (Opening Full)[${anime.opFull}]`, false)
             .addField("a",`(Ending)[${anime.ed}] \n (Opening Full)[${anime.edFull}]`, true)
             .setFooter(`${message.author.tag}`, `${message.author.avatarURL}`);
@@ -18,9 +18,9 @@ exports.execute = () => {
         var embeden = new Discord.RichEmbed()
             .setTitle(anime.name)
             .setThumbnail(anime.image)
-            .setDescription(`${() => {if (anime.story_en.length > 0) return anime.story_en; else return "undefined"}}`)
+            .setDescription(anime.story_en)
             .setColor("RANDOM")
-            .addField("See the episodes:",`${() => {if (anime.anime_en.length > 0) return anime.anime_en; else return "undefined"}}`, false)
+            .addField("See the episodes:", anime.anime_en, false)
             .addField("a",`(Opening)[${anime.op}] \n (Opening Full)[${anime.opFull}]`, false)
             .addField("a",`(Ending)[${anime.ed}] \n (Opening Full)[${anime.edFull}]`, true)
             .setFooter(`${message.author.tag}`, `${message.author.avatarURL}`);
