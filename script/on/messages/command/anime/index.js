@@ -81,7 +81,7 @@ exports.execute = () => {
                 .setDescription(args.join(" "))
                 .setColor("RANDOM")
                 .setFooter(message.author.tag, message.author.avatarURL);
-            client.channels.get("419534136672518156").send({embed});
+            client.channels.get("419534136672518156").send(embed);
         } else {
             message.channel.send("Please wait before purposing new animes !").then(m => m.delete(500));
         }
