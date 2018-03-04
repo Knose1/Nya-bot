@@ -112,9 +112,11 @@ exports.execute = () => {
         allFounded = allFounded.filter(m => m.match == hig && m.match != 0);
         
         var allFoundedAnime = allFounded.map(m => m.anime);
-        console.log(allFoundedAnime);
+        //console.log(allFoundedAnime);
         var allFoundedName = allFounded.slice(0, 9);
-        allFoundedName = allFoundedName.map(m => `${allFoundedName.findIndex(m)}- ${m.name}`);
+        console.log("It work here");
+        
+        allFoundedName = allFoundedName.map(m => `- ${m.name}`);
         
         console.log(allFoundedName);
         
