@@ -215,46 +215,54 @@ exports.execute = () => {
                     }
                         
                     
-                    var OuO = [reaction.emoji.name, Boolean(true)];
-                    switch (OuO) {
-                        case ['0⃣', Boolean(true)]:
+                    
+                    switch (reaction.emoji.name) {
+                        case '0⃣':
                             console.log("J'utilise le 0 je suis un thug");
                             anime = allFoundedAnime[0];
                             ffff();
                             break;
-                        case ['1⃣', Boolean(true)]:
+                        case '1⃣':
                             anime = allFoundedAnime[1];
                             ffff();
                             break;
-                        case ['2⃣', Boolean(x > 2)]:
+                        case '2⃣':
+                            if (x <= 2) return;
                             anime = allFoundedAnime[2];
                             ffff();
                             break;
-                        case ['3⃣', Boolean(x > 3)]:
+                        case '3⃣':
+                            if (x <= 3) return;
                             anime = allFoundedAnime[3];
                             ffff();
                             break;
-                        case ['4⃣', Boolean(x > 4)]:
+                        case '4⃣':
+                            if (x <= 4) return;
                             anime = allFoundedAnime[4];
                             ffff();
                             break;
-                        case ['5⃣', Boolean(x > 5)]:
+                        case '5⃣':
+                            if (x <= 5) return;
                             anime = allFoundedAnime[5];
                             ffff();
                             break;
-                        case ['6⃣', Boolean(x > 6)]:
+                        case '6⃣':
+                            if (x <= 6) return;
                             anime = allFoundedAnime[6];
                             ffff();
                             break;
-                        case ['7⃣', Boolean(x > 7)]:
+                        case '7⃣':
+                            if (x <= 7) return;
                             anime = allFoundedAnime[7];
                             ffff();
                             break;
-                        case ['8⃣', Boolean(x > 8)]:
+                        case '8⃣':
+                            if (x <= 8) return;
                             anime = allFoundedAnime[8];
                             ffff();
                             break;
-                        case ['9⃣', Boolean(x > 9)]:
+                        case '9⃣':
+                            if (x <= 9) return;
                             anime = allFoundedAnime[9];
                             ffff();
                     };
