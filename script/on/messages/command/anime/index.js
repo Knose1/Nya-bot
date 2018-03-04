@@ -110,11 +110,12 @@ exports.execute = () => {
         
         
         allFounded = allFounded.filter(m => m.match == hig && m.match != 0);
-        console.log(allFounded);
+        
         var allFoundedAnime = allFounded.map(m => m.anime);
+        console.log(allFoundedAnime);
         var allFoundedName = allFounded.slice(0, 9).map(m => allFounded.findIndex(m) + "- " + m.name);
         
-        console.log(allFoundedAnime, allFoundedName);
+        console.log(allFoundedName);
         
         if (allFounded.length != 1) {
             if (allFounded.length == 0) 
