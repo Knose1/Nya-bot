@@ -114,7 +114,7 @@ exports.execute = () => {
         var allFoundedAnime = allFounded.map(m => m.anime);
         console.log(allFoundedAnime);
         var allFoundedName = allFounded.slice(0, 9);
-        allFoundedName = allFoundedName.map(m => allFounded.findIndex(m) + "- " + m.name);
+        allFoundedName = allFoundedName.map(m => `${allFoundedName.findIndex(m)}- ${m.name}`);
         
         console.log(allFoundedName);
         
