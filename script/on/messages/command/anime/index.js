@@ -161,7 +161,7 @@ exports.execute = () => {
                 var anime;
                 collector.on('collect', reaction => {
                     
-                    const ffff = () {
+                    const ffff = () => {
                         
                         /*Embed*/
                     
