@@ -218,6 +218,7 @@ exports.execute = () => {
                     
                     switch (reaction.emoji.name, true) {
                         case '0⃣', true:
+                            console.log("J'utilise le 0 je suis un thug");
                             anime = allFoundedAnime[0];
                             ffff();
                             break;
