@@ -116,7 +116,7 @@ exports.execute = () => {
         var allFoundedName = allFounded.slice(0, 9);
         //console.log("It work here");
         
-        allFoundedName = allFoundedName.map(m => `${allFoundedName.findIndex(j => j == m)}- ${m.name}`);
+        allFoundedName = allFoundedName.map(m => `${allFoundedName.findIndex(j => j == m)}) ${m.name}`);
         
         console.log(allFoundedName);
         
