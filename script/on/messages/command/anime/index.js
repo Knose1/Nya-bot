@@ -116,7 +116,7 @@ exports.execute = () => {
         
         
         if (allFounded.length != 1) {
-            else if (allFounded.length == 0) 
+            if (allFounded.length == 0) 
                 var anDesc = "null";
         
             else
