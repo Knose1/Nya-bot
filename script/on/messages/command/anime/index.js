@@ -114,9 +114,9 @@ exports.execute = () => {
         var allFoundedAnime = allFounded.map(m => m.anime);
         //console.log(allFoundedAnime);
         var allFoundedName = allFounded.slice(0, 9);
-        console.log("It work here");
+        //console.log("It work here");
         
-        allFoundedName = allFoundedName.map(m => `allFoundedName.findIndex(j => j == m) - ${m.name}`);
+        allFoundedName = allFoundedName.map(m => `${allFoundedName.findIndex(j => j == m)}- ${m.name}`);
         
         console.log(allFoundedName);
         
@@ -125,7 +125,7 @@ exports.execute = () => {
                 var anDesc = "null";
         
             else
-                var anDesc = allFoundedAnime.join("\n");
+                var anDesc = allFoundedName.join("\n");
             
             const embed = new Discord.RichEmbed()
                 .setTitle(`Founded ${allFounded.length} animes:`)
