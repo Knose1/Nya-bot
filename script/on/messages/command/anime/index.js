@@ -93,27 +93,28 @@ exports.execute = () => {
         args.shift();
         args = args.map(m => m.toLowerCase());
         
-        var allFounded = []; //Liste de match
+        var allFounded = new Array(); //Liste de match
         var hig = 0; //Plus grand nb de match
         listAnime.forEach(an => {
             
-    	    //On sépare les mots pour pouvoir comparer les 2 array
-    	    var arrAn = an.name.toLowerCase().split(/ +/g);
-    	    var pushMe = args.filter(m => {return arrAn.includes(m)});
-    
-    	    pushMe = pushMe.concat( args.filter(m => {return an.name.toLowerCase().indexOf(m) != -1 }) );
+            //On sépare les mots pour pouvoir comparer les 2 array
+            var arrAn = an.name.toLowerCase().split(/ +/g);
+            var pushMe = args.filter(m => {return arrAn.includes(m)});
             
-    	    if ((pushMe.length/2) > hig) hig = (pushMe.length / 2);
+            pushMe = pushMe.concat( args.filter(m => {return an.name.toLowerCase().indexOf(m) != -1 }) );
             
-		    allFounded.push({anime:an , name: an.name, match: (pushMe.length / 2) });
+            if ((pushMe.length/2) > hig) hig = (pushMe.length / 2);
+            
+            allFounded.push({anime:an , name: an.name, match: (pushMe.length / 2) });
         });
         
         
-        
         allFounded = allFounded.filter(m => m.match == hig && m.match != 0);
+        console.log(allFounded);
         var allFoundedAnime = allFounded.map(m => m.anime);
         var allFoundedName = allFounded.slice(0, 9).map(m => allFounded.findIndex(m) + "- " + m.name);
         
+        console.log(allFoundedAnime, allFoundedName);
         
         if (allFounded.length != 1) {
             if (allFounded.length == 0) 
