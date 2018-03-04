@@ -156,7 +156,7 @@ exports.execute = () => {
                     )
                 var emjS = "0⃣ 1⃣ 2⃣ 3⃣ 4⃣ 5⃣ 6⃣ 7⃣ 8⃣ 9⃣";
                 const filter = (reaction, user) => user == message.author && reaction.emoji.name != " " && reaction.emoji.name != "" && emjS.indexOf(reaction.emoji.name) != -1
-                const collector = m.createReactionCollector(filter, {max:1});
+                const collector = m.createReactionCollector(filter);
                 var x = allFoundedAnime.length;
                 var anime;
                 collector.on('collect', reaction => {
@@ -218,7 +218,6 @@ exports.execute = () => {
                     
                     switch (reaction.emoji.name) {
                         case '0⃣':
-                            console.log("J'utilise le 0 je suis un thug");
                             anime = allFoundedAnime[0];
                             ffff();
                             break;
