@@ -113,7 +113,8 @@ exports.execute = () => {
         
         var allFoundedAnime = allFounded.map(m => m.anime);
         console.log(allFoundedAnime);
-        var allFoundedName = allFounded.slice(0, 9).map(m => allFounded.findIndex(m) + "- " + m.name);
+        var allFoundedName = allFounded.slice(0, 9);
+        allFoundedName = allFoundedName.map(m => allFounded.findIndex(m) + "- " + m.name);
         
         console.log(allFoundedName);
         
