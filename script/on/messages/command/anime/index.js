@@ -88,7 +88,7 @@ exports.execute = () => {
             }
         });
     }
-    else if ((args[0] == "query" || args[0] == "find") && args.length > 2) {
+    else if ((args[0] == "query" || args[0] == "find") && args.length >= 2) {
         
         args.shift();
         args = args.map(m => m.toLowerCase());
