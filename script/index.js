@@ -120,12 +120,12 @@ client.on('resume', resume => {
 
 client.on('message', message => {
     
-    if (haderror && message.author != botowner) {
+    if (haderror && message.author != botowner && message.author.id != mention) {
         client.user.setStatus('dnd');
         client.user.setActivity(`ERROR`,{type: "PLAYING"});
         noGame = 'activé'
         return;
-    } else if (BotOnDev) {
+    } else if (BotOnDev && message.author != botowner && message.author.id != mention) {
         client.user.setStatus('idle');
         client.user.setActivity(`Developping . . .`,{type: "PLAYING"});
         noGame = 'activé'
