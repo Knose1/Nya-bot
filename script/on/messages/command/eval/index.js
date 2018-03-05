@@ -8,7 +8,7 @@ exports.execute = () => {
         else if (command.toLowerCase() == 'eval' && message.author == botowner) {
             
             
-            const code = args.join(" ");
+            const code = args.join(" ").replace(/​/g, "");
             try {
                 let evaled = eval(code);
 
