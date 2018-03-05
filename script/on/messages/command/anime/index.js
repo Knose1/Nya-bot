@@ -10,7 +10,7 @@ exports.execute = () => {
         var AnOp = "";
         var AnEd = "";
         var i = -1;
-        while (i < anime.op.length || i < anime.opFull.length || i < anime.edFull.length || i < anime.edFull.length) {
+        while (i < anime.op.length -1 || i < anime.opFull.length -1 || i < anime.edFull.length -1 || i < anime.edFull.length -1) {
             
             i += 1;
             AnOp += `[Opening ${i}](${anime.op[i]})\n`+
@@ -183,7 +183,7 @@ exports.execute = () => {
                         var AnOp = "";
                         var AnEd = "";
                         var i = -1;
-                        while (i < anime.op.length || i < anime.opFull.length || i < anime.edFull.length || i < anime.edFull.length) {
+                        while (i < anime.op.length -1 || i < anime.opFull.length -1 || i < anime.edFull.length -1 || i < anime.edFull.length -1) {
             
                             i += 1;
                             AnOp += `[Opening ${i}](${anime.op[i]})\n`+
