@@ -13,10 +13,10 @@ exports.execute = () => {
         while (i < anime.op.length -1 || i < anime.opFull.length -1 || i < anime.edFull.length -1 || i < anime.edFull.length -1) {
             
             i += 1;
-            AnOp += `[Opening ${i}](${anime.op[i]})\n`+
-                    `[Opening ${i} Full](${anime.opFull[i]})\n\n`;
-            AnEd += `[Ending ${i}](${anime.ed})\n`+
-                    `[Opening ${i} Full](${anime.edFull})\n\n`
+            AnOp += `[Opening ${i + 1}](${anime.op[i]})\n`+
+                    `[Opening ${i + 1} Full](${anime.opFull[i]})\n\n`;
+            AnEd += `[Ending ${i + 1}](${anime.ed})\n`+
+                    `[Opening ${i + 1} Full](${anime.edFull})\n\n`
                     
         
         }
@@ -186,10 +186,10 @@ exports.execute = () => {
                         while (i < anime.op.length -1 || i < anime.opFull.length -1 || i < anime.edFull.length -1 || i < anime.edFull.length -1) {
             
                             i += 1;
-                            AnOp += `[Opening ${i}](${anime.op[i]})\n`+
-                                    `[Opening ${i} Full](${anime.opFull[i]})\n\n`;
-                            AnEd += `[Ending ${i}](${anime.ed})\n`+
-                                    `[Opening ${i} Full](${anime.edFull})\n\n`
+                            AnOp += `[Opening ${i + 1}](${anime.op[i]})\n`+
+                                    `[Opening ${i + 1} Full](${anime.opFull[i]})\n\n`;
+                            AnEd += `[Ending ${i + 1}](${anime.ed})\n`+
+                                    `[Opening ${i + 1} Full](${anime.edFull})\n\n`
                     
         
                         }
@@ -302,25 +302,39 @@ exports.execute = () => {
             
             anime = allFoundedAnime[0];
             
+            var AnOp = "";
+            var AnEd = "";
+            var i = -1;
+            while (i < anime.op.length -1 || i < anime.opFull.length -1 || i < anime.edFull.length -1 || i < anime.edFull.length -1) {
+            
+                i += 1;
+                AnOp += `[Opening ${i + 1}](${anime.op[i]})\n`+
+                        `[Opening ${i + 1} Full](${anime.opFull[i]})\n\n`;
+                AnEd += `[Ending ${i + 1}](${anime.ed})\n`+
+                        `[Opening ${i + 1} Full](${anime.edFull})\n\n`
+                
+                
+            }
+        
             var embedfr = new Discord.RichEmbed()
                 .setTitle(anime.name)
                 .setThumbnail(anime.image)
                 .setDescription("__Synopsis:__ \n" + anime.story_fr)
                 .setColor("RANDOM")
                 .addBlankField()
-                .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬",`[Opening](${anime.op})\n[Opening Full](${anime.opFull})`, true)
-                .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬",`[Ending](${anime.ed})\n[Opening Full](${anime.edFull})`, true)
+                .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬",AnOp, true)
+                .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬",AnEd, true)
                 .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "__Voir les épisodes:__\n\n" + anime.anime_fr, false)
                 .setFooter(message.author.tag, message.author.avatarURL);
-        
+            
             var embeden = new Discord.RichEmbed()
                 .setTitle(anime.name)
                 .setThumbnail(anime.image)
                 .setDescription("__Synopsis:__ \n" + anime.story_en)
                 .setColor("RANDOM")
                 .addBlankField()
-                .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬",`[Opening](${anime.op})\n[Opening Full](${anime.opFull})`, true)
-                .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬",`[Ending](${anime.ed})\n[Opening Full](${anime.edFull})`, true)
+                .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬",AnOp, true)
+                .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬",AnEd, true)
                 .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "__See the episodes:__\n\n" + anime.anime_en, false)
                 .setFooter(message.author.tag, message.author.avatarURL);
             
