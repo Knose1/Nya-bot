@@ -98,6 +98,26 @@ Ne sachant quoi répondre, notre héros choisit d'apporter avec lui cette déess
 
     };
 
+    listAnime1[3] = {
+
+        name: 'Violet Evergarden',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpflsIx4rPO2texPvrm3-4VfsczPGoqyS8FJkJy9kA9brzEgTV',
+    
+        story_fr: `undefined`, //Synopsis
+        story_en: `undefined`,
+    
+        anime_fr: 'undefined', //Exemple: Anime ultime
+        anime_en: 'undefined',
+    
+        op: ['undefined'],
+        opFull: ['https://www.youtube.com/watch?v=GmlcxUZY6VU'],
+        ed: ['undefined'],
+        edFull: ['https://www.youtube.com/watch?v=6R2fmqB31LE'],
+  
+        working: true, //Manque t'il des informations ?
+
+        };
+
 exports.load = () => {
   return listAnime = listAnime1;
 }
