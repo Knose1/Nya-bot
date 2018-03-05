@@ -142,7 +142,7 @@ exports.execute = () => {
                 var anDesc = allFoundedName.join("\n");
             
             const embed = new Discord.RichEmbed()
-                .setTitle(`Founded ${allFounded.length} animes:`)
+                .setTitle(`Found ${allFounded.length} animes:`)
                 .setDescription(anDesc)
                 .setFooter(message.author.tag, message.author.avatarURL);
             message.channel.send(embed)
