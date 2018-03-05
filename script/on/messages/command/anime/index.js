@@ -53,11 +53,15 @@ exports.execute = () => {
                 switch (reaction.emoji.name) {
                     case '🇫🇷':
                         m.edit(embedfr);
-                        reaction.remove(message.author);
+                        try{reaction.remove(message.author)} catch (err) {}
+                        try{reaction.remove(botowner)} catch (err) {}
+                        try{reaction.remove(message.guild.owner)} catch (err) {}
                         break;
                     case '🇬🇧':
                         m.edit(embeden);
-                        reaction.remove(message.author);
+                        try{reaction.remove(message.author)} catch (err) {}
+                        try{reaction.remove(botowner)} catch (err) {}
+                        try{reaction.remove(message.guild.owner)} catch (err) {}
                         break;
                     case '⏹':
                         m.delete(500);
@@ -227,11 +231,15 @@ exports.execute = () => {
                                 switch (reaction2.emoji.name) {
                                     case '🇫🇷':
                                         m2.edit(embedfr);
-                                        reaction2.remove(message.author);
+                                        try{reaction.remove(message.author)} catch (err) {}
+                                        try{reaction.remove(botowner)} catch (err) {}
+                                        try{reaction.remove(message.guild.owner)} catch (err) {}
                                         break;
                                     case '🇬🇧':
                                         m2.edit(embeden);
-                                        reaction2.remove(message.author);
+                                        try{reaction.remove(message.author)} catch (err) {}
+                                        try{reaction.remove(botowner)} catch (err) {}
+                                        try{reaction.remove(message.guild.owner)} catch (err) {}
                                         break;
                                     case '⏹':
                                         m2.delete(500);
@@ -348,11 +356,15 @@ exports.execute = () => {
                     switch (reaction.emoji.name) {
                         case '🇫🇷':
                             m.edit(embedfr);
-                            reaction.remove(message.author);
+                            try{reaction.remove(message.author)} catch (err) {}
+                            try{reaction.remove(botowner)} catch (err) {}
+                            try{reaction.remove(message.guild.owner)} catch (err) {}
                             break;
                         case '🇬🇧':
                             m.edit(embeden);
-                            reaction.remove(message.author);
+                            try{reaction.remove(message.author)} catch (err) {}
+                            try{reaction.remove(botowner)} catch (err) {}
+                            try{reaction.remove(message.guild.owner)} catch (err) {}
                             break;
                         case '⏹':
                             m.delete(500);
