@@ -6,7 +6,7 @@ var listAnime1 = Array();
     image: 'undefined',
     
     story_fr: `undefined`, //Synopsis
-    story_en: 'undefined',
+    story_en: `undefined`,
     
     anime_fr: 'undefined', //Exemple: Anime ultime
     anime_en: 'undefined',
@@ -65,10 +65,30 @@ One day, a mysterious girl called Zero Two appears in front of Hiro. From her fa
     anime_fr: 'http://www.crunchyroll.com/darling-in-the-franxx/videos',
     anime_en: 'http://www.crunchyroll.com/darling-in-the-franxx/videos',
     
-    op: 'https://youtu.be/3x0NEd9t1yQ',
-    opFull: 'https://youtu.be/iTgPpXDm8v0',
-    ed: 'https://youtu.be/h8RzhkWr0WY',
-    edFull: 'https://youtu.be/rV8MLwYtX9M',
+    op: ['https://youtu.be/3x0NEd9t1yQ'],
+    opFull: ['https://youtu.be/iTgPpXDm8v0'],
+    ed: ['https://youtu.be/h8RzhkWr0WY'],
+    edFull: ['https://youtu.be/rV8MLwYtX9M'],
+  
+    working: true, //Manque t'il des informations ?
+
+    };
+
+    listAnime1[2] = {
+
+    name: 'Konosuba',
+    image: 'https://www.animenewsnetwork.com/images/encyc/A17123-2490740399.1452099379.jpg',
+    
+    story_fr: `undefined`, //Synopsis
+    story_en: `undefined`,
+    
+    anime_fr: 'undefined', //Exemple: Anime ultime
+    anime_en: 'undefined',
+    
+    op: ['undefined','https://www.youtube.com/watch?v=VtfUrDwpo2E'],
+    opFull: ['https://www.youtube.com/watch?v=XGavCHXs-H4'],
+    ed: 'undefined',
+    edFull: 'undefined',
   
     working: true, //Manque t'il des informations ?
 
