@@ -70,7 +70,7 @@ One day, a mysterious girl called Zero Two appears in front of Hiro. From her fa
     ed: ['https://youtu.be/h8RzhkWr0WY'],
     edFull: ['https://youtu.be/rV8MLwYtX9M'],
   
-    working: true, //Manque t'il des informations ?
+    working: false, //Manque t'il des informations ?
 
     };
 
