@@ -125,7 +125,13 @@ client.on('message', message => {
         client.user.setActivity(`ERROR`,{type: "PLAYING"});
         noGame = 'activé'
         return;
-    } else if (!haderror && noGame == 'activé') {
+    } else if (BotOnDev) {
+        client.user.setStatus('idle');
+        client.user.setActivity(`Developping . . .`,{type: "PLAYING"});
+        noGame = 'activé'
+        return;
+    }
+    } else if (!haderror && !BotOnDev && noGame == 'activé') {
         client.user.setStatus('online');
         client.user.setActivity(`cat:help | Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} serveurs.`,{type: "PLAYING"});
     
