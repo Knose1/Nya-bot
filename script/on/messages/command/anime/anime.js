@@ -76,19 +76,23 @@ One day, a mysterious girl called Zero Two appears in front of Hiro. From her fa
 
     listAnime1[2] = {
 
-    name: 'Konosuba',
+    name: 'Konosuba (Kono Subarashii Sekai ni Shukufuku wo!)',
     image: 'https://www.animenewsnetwork.com/images/encyc/A17123-2490740399.1452099379.jpg',
     
-    story_fr: `undefined`, //Synopsis
-    story_en: `undefined`,
+    story_fr: `Kazuma Satō est un hikikomori qui ne vit que pour les mangas, les animes et les jeux vidéo. Il trouve la mort dans un accident de la circulation. Toutefois, son heure n'est pas encore arrivée puisqu'il se réveille face à une belle déesse qui lui propose de rejoindre un autre monde tout en apportant avec lui quelque chose ou quelqu'un qui lui tient à coeur.
+
+Ne sachant quoi répondre, notre héros choisit d'apporter avec lui cette déesse. Une fois sur place, il se retrouve chargé d'une mission qui consiste à vaincre le roi des démons. Ne se sentant pas concerné par cette demande, Kazuma décide de vivre une vie paisible en trouvant un travail pour se loger, se nourrir et vivre confortablement. Toutefois, cela ne durera pas longtemps car la déesse est là pour lui rappeler son rôle et l'armée du roi des démons compte passer à l'action...
+([Source: Anime Ultime](http://www.anime-ultime.net/file-0-1/5035-Kono-Subarashii-Sekai-ni-Shukufuku-wo))`, //Synopsis
+    story_en: `After a traffic accident, Kazuma Sato’s disappointingly brief life was supposed to be over, but he wakes up to see a beautiful girl before him. She claims to be a goddess, Aqua, and asks if he would like to go to another world and bring only one thing with him. Kazuma decides to bring the goddess herself, and they are transported to a fantasy world filled with adventure, ruled by a demon king. Now Kazuma only wants to live in peace, but Aqua wants to solve many of this world’s problems, and the demon king will only turn a blind eye for so long…
+([Source: Crunchyroll](http://www.crunchyroll.com/konosuba-gods-blessing-on-this-wonderful-world/more))`,
     
-    anime_fr: 'undefined', //Exemple: Anime ultime
-    anime_en: 'undefined',
+    anime_fr: 'Saison 1: [Anime Ultime](http://www.anime-ultime.net/file-0-1/5035-Kono-Subarashii-Sekai-ni-Shukufuku-wo)\nSaison 2: [Anime Ultime](http://www.anime-ultime.net/file-0-1/5234/Kono-Subarashii-Sekai-ni-Shukufuku-wo-2-Saison-2-vostfr)', //Exemple: Anime ultime
+    anime_en: 'Season 1 and 2: http://www.crunchyroll.com/konosuba-gods-blessing-on-this-wonderful-world/more',
     
     op: ['undefined','https://www.youtube.com/watch?v=VtfUrDwpo2E'],
-    opFull: ['https://www.youtube.com/watch?v=XGavCHXs-H4'],
-    ed: ['undefined'],
-    edFull: ['undefined'],
+    opFull: ['https://www.youtube.com/watch?v=XGavCHXs-H4','https://www.youtube.com/watch?v=LI10Gh4jx_0'],
+    ed: ['undefined','undefined'],
+    edFull: ['https://www.youtube.com/watch?v=JLpJPzKy6fY','https://www.youtube.com/watch?v=p6iQozWtWxE'],
   
     working: true, //Manque t'il des informations ?
 
