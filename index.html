@@ -2,9 +2,10 @@
 <html>
 
     <script type="text/javascript">
-    var userLang = navigator.language || navigator.userLanguage; 
+        //Source: https://stackoverflow.com/questions/8199760/how-to-get-the-browser-language-using-javascript
+        var userLang = navigator.language || navigator.userLanguage; 
     
-    window.location.replace(`./${userLang}/`); 
+        window.location.replace(`./${userLang}/`); 
     </script>
 
 </html>
