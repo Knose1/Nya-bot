@@ -56,10 +56,21 @@
                 while (i < anime.op.length -1 || i < anime.opFull.length -1 || i < anime.edFull.length -1 || i < anime.edFull.length -1) {
                 
                     i += 1;
-                    AnOp += `<a href="${anime.op[i]}" target="_blank">Opening ${i + 1}</a><br>`+
-                            `<a href="${anime.opFull[i]}" target="_blank">Opening ${i + 1} Full</a><br><br>`;
-                    AnEd += `<a href="${anime.ed[i]}" target="_blank">Ending ${i + 1}</a><br>`+
-                            `<a href="${anime.edFull[i]}" target="_blank">Ending ${i + 1} Full</a><br><br>`
+                    if (anime.op[i] != "undefined")
+                        AnOp += `<a href="${anime.op[i]}" target="_blank">Opening ${i + 1}</a><br>`;
+                    else AnEd += `<span title="undefined">Opening ${i + 1}</span><br>`;
+                    
+                    if (anime.opFull[i] != "undefined")  
+                        AnOp += `<a href="${anime.opFull[i]}" target="_blank">Opening ${i + 1} Full</a><br><br>`;
+                    else AnEd += `<span title="undefined">Opening ${i + 1} Full</span><br><br>`;
+                    
+                    if (anime.ed[i] != "undefined")
+                        AnEd += `<a href="${anime.ed[i]}" target="_blank">Ending ${i + 1}</a><br>`;
+                    else AnEd += `<span title="undefined">Ending ${i + 1}</span><br>`;
+                    
+                    if (anime.edFull[i] != "undefined")
+                        AnEd += `<a href="${anime.edFull[i]}" target="_blank">Ending ${i + 1} Full</a><br><br>`;
+                    else AnEd += `<span title="undefined">Ending ${i + 1} Full</span><br><br>`;
                     
                 
                 }
