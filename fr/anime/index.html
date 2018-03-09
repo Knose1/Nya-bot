@@ -58,11 +58,11 @@
                     i += 1;
                     if (anime.op[i] != "undefined")
                         AnOp += `<a href="${anime.op[i]}" target="_blank">Opening ${i + 1}</a><br>`;
-                    else AnEd += `<span title="undefined">Opening ${i + 1}</span><br>`;
+                    else AnOp += `<span title="undefined">Opening ${i + 1}</span><br>`;
                     
                     if (anime.opFull[i] != "undefined")  
                         AnOp += `<a href="${anime.opFull[i]}" target="_blank">Opening ${i + 1} Full</a><br><br>`;
-                    else AnEd += `<span title="undefined">Opening ${i + 1} Full</span><br><br>`;
+                    else AnOp += `<span title="undefined">Opening ${i + 1} Full</span><br><br>`;
                     
                     if (anime.ed[i] != "undefined")
                         AnEd += `<a href="${anime.ed[i]}" target="_blank">Ending ${i + 1}</a><br>`;
