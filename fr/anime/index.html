@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
     <head>
         <title>Nya!bot / Anime</title>
         
@@ -34,8 +34,47 @@
         <script type="text/javascript">
             
             exports.load();
-            listAnime.forEach()
+            var AnTable = document.createElement("TABLE");
+            AnTable.class = "anime";
+            var rawLine = 2;
             
+            var inTable = "";
+            
+            listAnime.forEach(anime => {
+                //TR
+                if ( Math.floor(listAnime.indexOf(anime) / rawLine) == listAnime.indexOf(anime) / rawLine)
+                    inTable += "<tr>\n";
+                
+                //Op | Ed handeler
+                var AnOp = "";
+                var AnEd = "";
+                var i = -1;
+                while (i < anime.op.length -1 || i < anime.opFull.length -1 || i < anime.edFull.length -1 || i < anime.edFull.length -1) {
+            
+                    i += 1;
+                    AnOp += `<a href="${anime.op[i]}" target="_blank">Opening ${i + 1}</a><br>`+
+                            `<a href="${anime.opFull[i]}" target="_blank">Opening ${i + 1} Full</a><br><br>`;
+                    AnEd += `<a href="${anime.ed}" target="_blank">Ending ${i + 1}</a><br><br>`+
+                            `<a href="${anime.edFull}" target="_blank">Opening ${i + 1} Full</a><br><br>`
+                    
+        
+                }
+                
+                //TD
+                inTable +=  `<td style="width:${100/rawLine}" class="anime" onclick="uncolapse( listAnime.indexOf(anime) )">\n` +
+                            `   <h1>${anime.name}</h1><img src="${anime.image}" style="width: 53px; height: 80px;">\n` +
+                            `   <div class="colapsable" visibility="visible">\n`+
+                            `       <pre>Synopsis:\n${anime.story_fr}</pre>\n` +
+                            `       `
+                            `   </div>\n` +
+                            `</td>\n`;
+                
+                //Fin Tr
+                if ( Math.floor(listAnime.indexOf(anime) / rawLine) == listAnime.indexOf(anime) / rawLine)
+                    inTable += "</tr>\n";
+            });
+            AnTable.innerHTML = inTable;
+            document.getElementsByClassName().appendChild(AnTable);
         </script>
         
         <div class="body"></div>
