@@ -51,23 +51,23 @@
                 var AnEd = "";
                 var i = -1;
                 while (i < anime.op.length -1 || i < anime.opFull.length -1 || i < anime.edFull.length -1 || i < anime.edFull.length -1) {
-            
+                
                     i += 1;
                     AnOp += `<a href="${anime.op[i]}" target="_blank">Opening ${i + 1}</a><br>`+
                             `<a href="${anime.opFull[i]}" target="_blank">Opening ${i + 1} Full</a><br><br>`;
                     AnEd += `<a href="${anime.ed}" target="_blank">Ending ${i + 1}</a><br><br>`+
                             `<a href="${anime.edFull}" target="_blank">Opening ${i + 1} Full</a><br><br>`
                     
-        
+                
                 }
                 
                 //TD
-                inTable +=  `<td style="width:${100/rawLine}%" class="anime" onclick="uncolapse( listAnime.indexOf(anime) )">` + "\n"
-                            `   <h1>${anime.name}</h1><img src="${anime.image}" style="width: 53px; height: 80px;">` + "\n"
-                            `   <div class="colapsable" visibility="visible">` + "\n"
-                            `       <p>Synopsis:\n${anime.story_fr}</p>`.replace(/\n/g,"<br>") + "\n"
-                            `       ` + "\n"
-                            `   </div>` + "\n"
+                inTable +=  `<td style="width:${100/rawLine}%" class="anime">` + "\n" +
+                            `   <button onclick="uncolapse( ${listAnime.indexOf(anime)} )"><h1>${anime.name}</h1><img src="${anime.image}" style="width: 53px; height: 80px;"></button>` + "\n" +
+                            `   <div class="collapsable" visibility="hidden">` + "\n" +
+                            `       <p>Synopsis:\n${anime.story_fr}</p>`.replace(/\n/g,"<br>") + "\n" +
+                            `       <br>AnOp<br>AnEd` + "\n" +
+                            `   </div>` + "\n" +
                             `</td>\n`;
                 
                 //Fin Tr
@@ -76,6 +76,13 @@
             });
             AnTable.innerHTML = inTable;
             document.body.appendChild(AnTable);
+            const uncolapse = (id) => {
+                let doc = document.getElementsByClassName("collapsable")[id]
+                if (doc.visibility == "hidden")
+                    doc.visibility = "visible";
+                else
+                    doc.visibility = "hidden";
+            }
         </script>
     </body>
 </html>
