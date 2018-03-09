@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" style="overflow-y: auto;overflow-x: hidden;">
+    <head>
+        <title>Nya!bot / Anime</title>
+        
+        <meta name="author" content="Knose1">
+        <meta charset="UTF-8">
+        <meta name="keywords" content="Nya-bot,Knose1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="stylesheet" type="text/css" href="https://knose1.github.io/style.css">
+        <link rel="icon" alt="https://goo.gl/wpTuf1" href="https://goo.gl/wpTuf1" type="image/x-icon">
+        
+        
+    </head>
+    
+    <body>
+        
+        <div class="top">
+            <img class="transImg" src="https://goo.gl/wpTuf1" title="Invite Nya!bot" onclick="window.open('https://discordapp.com/oauth2/authorize?client_id=377888169355640832&scope=bot&permissions=67628096')">
+            <span id="nya">Nya!bot</span>
+            <div class="menuBar" align="center">
+            
+                <span class = "mb"><a href="../home"> Menu</a></span> | 
+                <span class = "mb"><a href="../screenshot">Captures d'écran</a></span> | 
+                <span class = "mb"><a href="../image">Images</a></span> | 
+                <span class = "mb"><a href="../anime">Animes</a></span>
+            
+            </div>
+        </div>
+        
+        <script type="text/javascript">var exports = new Object()</script>
+        <script type="text/javascript" src="https://knose1.github.io/Nya-bot/script/on/messages/command/anime/anime.js"></script>
+        <script type="text/javascript">
+            
+            exports.load();
+            var AnTable = document.createElement("TABLE");
+            AnTable.class = "anime";
+            AnTable.align = "center";
+            AnTable.style.width = "95%";
+            AnTable.style.marginLeft = "auto";
+            AnTable.style.marginRight = "auto";
+            var rawLine = 2;
+            
+            var inTable = "";
+            
+            listAnime.forEach(anime => {
+                //TR
+                if ( Math.floor(listAnime.indexOf(anime) / rawLine) == listAnime.indexOf(anime) / rawLine)
+                    inTable += "<tr>\n";
+                
+                //Op | Ed handeler
+                var AnOp = "";
+                var AnEd = "";
+                var i = -1;
+                while (i < anime.op.length -1 || i < anime.opFull.length -1 || i < anime.edFull.length -1 || i < anime.edFull.length -1) {
+                
+                    i += 1;
+                    AnOp += `<a href="${anime.op[i]}" target="_blank">Opening ${i + 1}</a><br>`+
+                            `<a href="${anime.opFull[i]}" target="_blank">Opening ${i + 1} Full</a><br><br>`;
+                    AnEd += `<a href="${anime.ed[i]}" target="_blank">Ending ${i + 1}</a><br>`+
+                            `<a href="${anime.edFull[i]}" target="_blank">Ending ${i + 1} Full</a><br><br>`
+                    
+                
+                }
+                
+                //TD
+                inTable +=  `<td style="width:${100/rawLine}%" class="anime">` + "\n" +
+                            `   <button class="accordion"><img src="${anime.image}" style="width: 50px;"><h2 style="margin-left:10px">${anime.name}</h2></button>` + "\n" +
+                            `   <div class="panel">` + "\n" +
+                            `       <p><u>Synopsis:</u> ${anime.story_en}</p>`.replace(/\n/g,"<br>") + "\n" +
+                            `       <table style="width:100%"><tr><td>${AnOp}</td><td>${AnEd}</td></table>` + "\n" +
+                            `   </div>` + "\n" +
+                            `</td>\n`;
+                
+                //Fin Tr
+                if ( Math.floor((listAnime.indexOf(anime) + 1) / rawLine) == (listAnime.indexOf(anime) + 1) / rawLine)
+                    inTable += "</tr>\n";
+            });
+            AnTable.innerHTML = inTable;
+            document.body.appendChild(AnTable);
+            
+            var acc = document.getElementsByClassName("accordion");
+            var i;
+            for (i = 0; i < acc.length; i++) {
+                acc[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var panel = this.nextElementSibling;
+                    if (panel.style.maxHeight){
+                        panel.style.maxHeight = null;
+                    } else {
+                        panel.style.maxHeight = panel.scrollHeight + "px";
+                    } 
+                });
+            }
+        </script>
+    </body>
+</html>
