@@ -36,6 +36,7 @@
             exports.load();
             var AnTable = document.createElement("TABLE");
             AnTable.class = "anime";
+            AnTable.style.width = "95%";
             var rawLine = 2;
             
             var inTable = "";
@@ -61,7 +62,7 @@
                 }
                 
                 //TD
-                inTable +=  `<td style="width:${100/rawLine}" class="anime" onclick="uncolapse( listAnime.indexOf(anime) )">\n` +
+                inTable +=  `<td style="width:${100/rawLine}%" class="anime" onclick="uncolapse( listAnime.indexOf(anime) )">\n` +
                             `   <h1>${anime.name}</h1><img src="${anime.image}" style="width: 53px; height: 80px;">\n` +
                             `   <div class="colapsable" visibility="visible">\n`+
                             `       <pre>Synopsis:\n${anime.story_fr}</pre>\n` +
