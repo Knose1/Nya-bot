@@ -64,7 +64,7 @@
                 //TD
                 inTable +=  `<td style="width:${100/rawLine}%" class="anime">` + "\n" +
                             `   <button onclick="uncolapse( ${listAnime.indexOf(anime)} )"><h1>${anime.name}</h1><img src="${anime.image}" style="width: 53px; height: 80px;"></button>` + "\n" +
-                            `   <div class="collapsable" visibility="hidden">` + "\n" +
+                            `   <div class="collapsable" style="visibility:hidden">` + "\n" +
                             `       <p>Synopsis:\n${anime.story_fr}</p>`.replace(/\n/g,"<br>") + "\n" +
                             `       <br>AnOp<br>AnEd` + "\n" +
                             `   </div>` + "\n" +
@@ -77,11 +77,11 @@
             AnTable.innerHTML = inTable;
             document.body.appendChild(AnTable);
             const uncolapse = (id) => {
-                let doc = document.getElementsByClassName("collapsable")[id]
-                if (doc.visibility == "hidden")
-                    doc.visibility = "visible";
+                let doc = document.getElementsByClassName("collapsable")[id];
+                if (doc.style.visibility == "hidden")
+                    doc.style.visibility = "visible";
                 else
-                    doc.visibility = "hidden";
+                    doc.style.visibility = "hidden";
             }
         </script>
     </body>
