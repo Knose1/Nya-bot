@@ -70,13 +70,11 @@
                             `</td>\n`;
                 
                 //Fin Tr
-                if ( Math.floor(listAnime.indexOf(anime) / rawLine) == listAnime.indexOf(anime) / rawLine)
+                if ( Math.floor((listAnime.indexOf(anime) + 1) / rawLine) == (listAnime.indexOf(anime) + 1) / rawLine)
                     inTable += "</tr>\n";
             });
             AnTable.innerHTML = inTable;
-            document.getElementsByClassName("body")[0].appendChild(AnTable);
+            document.body.appendChild(AnTable);
         </script>
-        
-        <div class="body"></div>
     </body>
 </html>
