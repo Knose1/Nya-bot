@@ -65,7 +65,7 @@
                 inTable +=  `<td style="width:${100/rawLine}%" class="anime" onclick="uncolapse( listAnime.indexOf(anime) )">\n` +
                             `   <h1>${anime.name}</h1><img src="${anime.image}" style="width: 53px; height: 80px;">\n` +
                             `   <div class="colapsable" visibility="visible">\n`+
-                            `       <pre>Synopsis:\n${anime.story_fr}</pre>\n` +
+                            `       <p>Synopsis:\n${anime.story_fr}</p>\n` +
                             `       ` +
                             `   </div>\n` +
                             `</td>\n`;
@@ -74,7 +74,7 @@
                 if ( Math.floor((listAnime.indexOf(anime) + 1) / rawLine) == (listAnime.indexOf(anime) + 1) / rawLine)
                     inTable += "</tr>\n";
             });
-            AnTable.innerHTML = inTable;
+            AnTable.innerHTML = inTable.replace(/\n/g,"<br>");
             document.body.appendChild(AnTable);
         </script>
     </body>
