@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" style="overflow-y: auto;overflow-x: hidden;">
     <head>
         <title>Nya!bot / Anime</title>
         
@@ -62,19 +62,19 @@
                 }
                 
                 //TD
-                inTable +=  `<td style="width:${100/rawLine}%" class="anime" onclick="uncolapse( listAnime.indexOf(anime) )">\n` +
-                            `   <h1>${anime.name}</h1><img src="${anime.image}" style="width: 53px; height: 80px;">\n` +
-                            `   <div class="colapsable" visibility="visible">\n`+
-                            `       <p>Synopsis:\n${anime.story_fr}</p>\n` +
-                            `       ` +
-                            `   </div>\n` +
+                inTable +=  `<td style="width:${100/rawLine}%" class="anime" onclick="uncolapse( listAnime.indexOf(anime) )">` + "\n"
+                            `   <h1>${anime.name}</h1><img src="${anime.image}" style="width: 53px; height: 80px;">` + "\n"
+                            `   <div class="colapsable" visibility="visible">` + "\n"
+                            `       <p>Synopsis:\n${anime.story_fr}</p>`.replace(/\n/g,"<br>") + "\n"
+                            `       ` + "\n"
+                            `   </div>` + "\n"
                             `</td>\n`;
                 
                 //Fin Tr
                 if ( Math.floor((listAnime.indexOf(anime) + 1) / rawLine) == (listAnime.indexOf(anime) + 1) / rawLine)
                     inTable += "</tr>\n";
             });
-            AnTable.innerHTML = inTable.replace(/\n/g,"<br>");
+            AnTable.innerHTML = inTable;
             document.body.appendChild(AnTable);
         </script>
     </body>
