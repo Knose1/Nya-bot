@@ -68,7 +68,7 @@
                 inTable +=  `<td style="width:${100/rawLine}%" class="anime">` + "\n" +
                             `   <button class="accordion"><img src="${anime.image}" style="width: 50px;"><h2 style="margin-left:10px">${anime.name}</h2></button>` + "\n" +
                             `   <div class="panel">` + "\n" +
-                            `       <p>Synopsis:\n${anime.story_fr}</p>`.replace(/\n/g,"<br>") + "\n" +
+                            `       <p><u>Synopsis:</u> ${anime.story_fr}</p>`.replace(/\n/g,"<br>") + "\n" +
                             `       <table style="width:100%"><tr><td>${AnOp}</td><td>${AnEd}</td></table>` + "\n" +
                             `   </div>` + "\n" +
                             `</td>\n`;
