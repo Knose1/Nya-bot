@@ -55,8 +55,8 @@
                     i += 1;
                     AnOp += `<a href="${anime.op[i]}" target="_blank">Opening ${i + 1}</a><br>`+
                             `<a href="${anime.opFull[i]}" target="_blank">Opening ${i + 1} Full</a><br><br>`;
-                    AnEd += `<a href="${anime.ed}" target="_blank">Ending ${i + 1}</a><br><br>`+
-                            `<a href="${anime.edFull}" target="_blank">Opening ${i + 1} Full</a><br><br>`
+                    AnEd += `<a href="${anime.ed[i]}" target="_blank">Ending ${i + 1}</a><br>`+
+                            `<a href="${anime.edFull[i]}" target="_blank">Ending ${i + 1} Full</a><br><br>`
                     
                 
                 }
@@ -66,7 +66,7 @@
                             `   <button class="accordion">${anime.name}<img src="${anime.image}" style="width: 30px;"></button>` + "\n" +
                             `   <div class="panel">` + "\n" +
                             `       <p>Synopsis:\n${anime.story_fr}</p>`.replace(/\n/g,"<br>") + "\n" +
-                            `       <table style="width:25%"><tr><td>${AnOp}</td><td>${AnEd}</td></table>` + "\n" +
+                            `       <table style="width:100%"><tr><td>${AnOp}</td><td>${AnEd}</td></table>` + "\n" +
                             `   </div>` + "\n" +
                             `</td>\n`;
                 
@@ -82,18 +82,14 @@
 
             for (i = 0; i < acc.length; i++) {
                 acc[i].addEventListener("click", function() {
-                    /* Toggle between adding and removing the "active" class,
-                    to highlight the button that controls the panel */
                     this.classList.toggle("active");
-            
-                    /* Toggle between hiding and showing the active panel */
                     var panel = this.nextElementSibling;
-                    if (panel.style.display === "block") {
-                            panel.style.display = "none";
-                        } else {
-                            panel.style.display = "block";
-                        }
-                    });
+                    if (panel.style.maxHeight){
+                        panel.style.maxHeight = null;
+                    } else {
+                        panel.style.maxHeight = panel.scrollHeight + "px";
+                    } 
+                });
             }
         </script>
     </body>
