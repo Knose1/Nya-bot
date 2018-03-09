@@ -63,10 +63,10 @@
                 
                 //TD
                 inTable +=  `<td style="width:${100/rawLine}%" class="anime">` + "\n" +
-                            `   <button onclick="uncolapse( ${listAnime.indexOf(anime)} )"><h1>${anime.name}</h1><img src="${anime.image}" style="width: 53px; height: 80px;"></button>` + "\n" +
-                            `   <div class="collapsable" style="visibility:hidden">` + "\n" +
+                            `   <button class="accordion">${anime.name}<img src="${anime.image}" style="width: 30px;"></button>` + "\n" +
+                            `   <div class="panel">` + "\n" +
                             `       <p>Synopsis:\n${anime.story_fr}</p>`.replace(/\n/g,"<br>") + "\n" +
-                            `       <br>AnOp<br>AnEd` + "\n" +
+                            `       <table style="width:25%"><tr><td>${AnOp}</td><td>${AnEd}</td></table>` + "\n" +
                             `   </div>` + "\n" +
                             `</td>\n`;
                 
@@ -76,12 +76,24 @@
             });
             AnTable.innerHTML = inTable;
             document.body.appendChild(AnTable);
-            const uncolapse = (id) => {
-                let doc = document.getElementsByClassName("collapsable")[id];
-                if (doc.style.visibility == "hidden")
-                    doc.style.visibility = "visible";
-                else
-                    doc.style.visibility = "hidden";
+            
+            var acc = document.getElementsByClassName("accordion");
+            var i;
+
+            for (i = 0; i < acc.length; i++) {
+                acc[i].addEventListener("click", function() {
+                    /* Toggle between adding and removing the "active" class,
+                    to highlight the button that controls the panel */
+                    this.classList.toggle("active");
+            
+                    /* Toggle between hiding and showing the active panel */
+                    var panel = this.nextElementSibling;
+                    if (panel.style.display === "block") {
+                            panel.style.display = "none";
+                        } else {
+                            panel.style.display = "block";
+                        }
+                    });
             }
         </script>
     </body>
