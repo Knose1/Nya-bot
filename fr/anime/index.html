@@ -50,6 +50,12 @@
                     inTable += "<tr>\n";
                 
                 //Op | Ed handeler
+                if (anime.story_fr_source != `undefined`)
+                    var story_fr = `${anime.story_fr}\n\n<a href="${anime.story_fr_source[1]}">Source: ${anime.story_fr_source[0]}</a>`;
+                        
+                if (anime.story_en_source != `undefined`)
+                    var story_en = `${anime.story_en}\n\n<a href="${anime.story_en_source[1]}">Source: ${anime.story_en_source[0]}</a>`;
+                
                 var AnOp = "";
                 var AnEd = "";
                 var i = -1;
@@ -79,7 +85,7 @@
                 inTable +=  `<td style="width:${100/rawLine}%" class="anime">` + "\n" +
                             `   <button class="accordion"><img src="${anime.image}" style="width: 50px;"><h2 style="margin-left:10px">${anime.name}</h2></button>` + "\n" +
                             `   <div class="panel">` + "\n" +
-                            `       <p><u>Synopsis:</u> ${anime.story_fr}</p>`.replace(/\n/g,"<br>") + "\n" +
+                            `       <p><u>Synopsis:</u> ${story_fr}</p>`.replace(/\n/g,"<br>") + "\n" +
                             `       <table style="width:100%"><tr><td>${AnOp}</td><td>${AnEd}</td></table>` + "\n" +
                             `   </div>` + "\n" +
                             `</td>\n`;
