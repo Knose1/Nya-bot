@@ -99,7 +99,7 @@ exports.execute = () => {
     if (args.length == 0) {
         
         message.channel.send(`__Utilisation:__\n\n` +
-                `\`cat:atom.error icon\`\n\n`
+                `\`cat:atom.error icon\`\n\n` +
                 `\`cat:atom.error\n` +
                 `:: <Background>\n` +
                 `:: <Icon>\n` +
@@ -143,7 +143,7 @@ exports.execute = () => {
         
         if (args.length == 0) {
             message.channel.send(`__Utilisation:__\n\n` +
-                `\`cat:atom.error icon\`\n\n`
+                `\`cat:atom.error icon\`\n\n` +
                 `\`cat:atom.error\n` +
                 `:: <Background>\n` +
                 `:: <Icon>\n` +
