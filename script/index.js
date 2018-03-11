@@ -234,7 +234,7 @@ client.on('message', message => {
     //si c'est une commande, récupérer les arguments, la commande et supprimer le message
         if (message.content.indexOf(prefix) == 0) {
             var iscommand = true;
-            var args = message.content.slice(prefix.length).trim().split(/ +/g);
+            var args = message.content.slice(prefix.length).trim().replace(/\n/g," \n").split(/ +/g);
             var command = args.shift().toLowerCase();
     
             message.delete(500)
