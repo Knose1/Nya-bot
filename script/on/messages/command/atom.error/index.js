@@ -174,6 +174,11 @@ exports.execute = () => {
         if (args[7].toLowerCase() != "true") var b2g=""; else var b2g="x";
         if (args[9].toLowerCase() != "true") var b3g=""; else var b3g="x";
         
+        args[0] = args[0].toLowerCase();
+        if (atom.bg.find(args[0]) == undefined) {
+            message.channel.send(`This background ${args[0]} don't exist`);
+        }
+        
         var att = `http://atom.smasher.org/error/${args[0]}.png.php?\
 icon=${args[1]}&\
 title=${args[2]}&\
@@ -184,8 +189,8 @@ b2=${args[6]}&\
 b2g=${b2g}&\
 b3=${args[8]}&\
 b3g=${b3g}`;
-            message.channel.send("Your picture generated with <http://atom.smasher.org/error>:",{files: [{attachment: att, name: 'file.png'}] })
-            .catch(err => message.channel.send("An error occured with your Background argument", {code:"md"} )); 
+            message.channel.send("Image generated with <http://atom.smasher.org/error>:",{files: [{attachment: att, name: 'file.png'}] })
+            .catch(err => message.channel.send("#Sorry your image is too big", {code:"md"} )); 
             
     }
 }
