@@ -121,12 +121,14 @@ exports.execute = () => {
         var img_emb = "";
         var img_bg = "";
         
-        atom.icons.forEach(i => {
+        img_emb = atom.icons.join(", ");
+        img_bg = atom.bg.join(", ");;
+        /*atom.icons.forEach(i => {
             img_emb += `[${i}](${atom.iconlink}${i}), `;
         });
         atom.bg.forEach(b => {
-            img_bg += `[${b}](${atom.bglink}${b})`
-        });
+            img_bg += `[${b}](${atom.bglink}${b}),`
+        });*/
         
         var embed = new Discord.RichEmbed()
             .setThumbnail("http://atom.smasher.org/atom_smasher.gif")
