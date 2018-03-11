@@ -97,7 +97,24 @@ exports.execute = () => {
     atom.bg = ["98","xp"];
     
     if (args.length == 0) {
-    
+        
+        message.channel.send(
+                `__Utilisation:__\n\n` +
+                `\`cat:atom.error icon\`\n\n`
+                `\`cat:atom.error\n` +
+                `:: <Background>\n` +
+                `:: <Icon>\n` +
+                `:: <Title>\n` +
+                `:: <Text>\n` +
+                `:: [Text button 1]\n` +
+                `:: [True / False]\n` +
+                `:: [Text button 2]\n` +
+                `:: [True / False]\n` +
+                `:: [Text button 3]\n` +
+                `:: [True / False]\`\n` +
+                `<> est un argument **OBLIGATOIRE** [] est un argument __facultatif__`
+            );
+        
     }
     else if (args[0].toLowerCase() == "icons" || args[0].toLowerCase() == "icon") {
         
@@ -152,15 +169,15 @@ exports.execute = () => {
             if (args[i] == undefined)
                 args[i] = "";
         }
-        if (args[5].toLowerCase() != "false" && args[5].toLowerCase() != "true") args.splice(5,0,"")
-        if (args[7].toLowerCase() != "false" && args[7].toLowerCase() != "true") args.splice(7,0,"")
+        if (args[5].toLowerCase() != "false" && args[5].toLowerCase() != "true") args.splice(5,0,"");
+        if (args[7].toLowerCase() != "false" && args[7].toLowerCase() != "true") args.splice(7,0,"");
         
         
         if (args[5].toLowerCase() != "true") var b1g=""; else var b1g="x";
         if (args[7].toLowerCase() != "true") var b2g=""; else var b2g="x";
         if (args[9].toLowerCase() != "true") var b3g=""; else var b3g="x";
         
-var att = `http://atom.smasher.org/error/${args[0]}.png.php?\
+        var att = `http://atom.smasher.org/error/${args[0]}.png.php?\
 icon=${args[1]}&\
 title=${args[2]}&\
 text=${args[3]}&\
@@ -170,10 +187,8 @@ b2=${args[6]}&\
 b2g=${b2g}&\
 b3=${args[8]}&\
 b3g=${b3g}`;
-            message.channel.send("This is your picture",{files: [{attachment: att, name: 'file.png'}]})
+            message.channel.send("This is your picture",{files: [{attachment: att, name: 'file.png'}] })
             .catch(err => message.channel.send("An error occured with your Background argument", {code:"md"} )); 
-        
-        }
+            
     }
-    
 }
