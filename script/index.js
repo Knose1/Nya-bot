@@ -232,7 +232,11 @@ client.on('message', message => {
     /*Fin BOT*/
     
     //si c'est une commande, récupérer les arguments, la commande et supprimer le message
-        if (message.content.indexOf(prefix) == 0) {
+        if (message.content.toLowerCase().indexOf("cat:atom.error") == 0) {
+            var iscommand = true;
+            var command = "cat:atom.error";
+        }
+        else if (message.content.indexOf(prefix) == 0) {
             var iscommand = true;
             var args = message.content.slice(prefix.length).trim().split(/ +/g);
             var command = args.shift().toLowerCase();
