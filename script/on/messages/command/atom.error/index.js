@@ -1,5 +1,20 @@
 exports.execute = () => {
-
+    
+    /* 
+        icon=Attention
+        title=null
+        text=test
+        
+        b1=test2
+        b1g=x
+        
+        b2=test3
+        b2g=x 
+        
+        b3=test4
+        b3g=x
+    */
+    
     /*  This command use http://atom.smasher.org/error  */
     
     var atom = {};
@@ -78,13 +93,13 @@ exports.execute = () => {
         "zipdisk",
         "zipdisks"
     ];
-    atome.bglink = "http://atom.smasher.org/error/";
-    atome.bg = ["98","xp"];
+    atom.bglink = "http://atom.smasher.org/error/";
+    atom.bg = ["98","xp"];
     
     if (args.length == 0) {
     
     }
-    else if (args[0].toLowerCase() == icons || args[0].toLowerCase() == icon) {
+    else if (args[0].toLowerCase() == "icons" || args[0].toLowerCase() == "icon") {
         
         var img_emb = "";
         var img_bg = "";
@@ -93,7 +108,7 @@ exports.execute = () => {
             img_emb += `[${i}](${atom.iconlink}${i}), `;
         });
         atom.bg.forEach(b => {
-            img_bg += `[${b}](${atome.bglink}${b})`
+            img_bg += `[${b}](${atom.bglink}${b})`
         });
         
         var embed = new Discord.RichEmbed()
@@ -108,7 +123,57 @@ exports.execute = () => {
     } else {
         var eee = "cat:atom.error";
         delete(args);
-        var args = message.content.slice(eee.length).trim().split("::");
+        var args = message.content.slice(eee.length).split("\n::").map(m => encodeURIComponent( m.trim() ));
+        
+        if (args.length == 0) {
+            message.channel.send(
+                `__Utilisation:__\n\n` +
+                `\`cat:atom.error icon\`\n\n`
+                `\`cat:atom.error\n` +
+                `:: <Background>\n` +
+                `:: <Icon>\n` +
+                `:: <Title>\n` +
+                `:: <Text>\n` +
+                `:: [Text button 1]\n` +
+                `:: [True / False]\n` +
+                `:: [Text button 2]\n` +
+                `:: [True / False]\n` +
+                `:: [Text button 3]\n` +
+                `:: [True / False]\`\n` +
+                `<> est un argument **OBLIGATOIRE** [] est un argument __facultatif__`
+            );
+        }
+        
+        if (args[0] == "") args.shift();
+        
+        var i = -1;
+        while (i < 11) {
+            i += 1
+            if (args[i] == undefined)
+                args[i] = "";
+        }
+        if (args[5].toLowerCase() != "false" && args[5].toLowerCase() != "true") args.splice(5,0,"")
+        if (args[7].toLowerCase() != "false" && args[7].toLowerCase() != "true") args.splice(7,0,"")
+        
+        
+        if (args[5].toLowerCase() != "true") var b1g=""; else var b1g="x";
+        if (args[7].toLowerCase() != "true") var b2g=""; else var b2g="x";
+        if (args[9].toLowerCase() != "true") var b3g=""; else var b3g="x";
+        
+var att = `http://atom.smasher.org/error/${args[0]}.png.php?\
+icon=${args[1]}&\
+title=${args[2]}&\
+text=${args[3]}&\
+b1=${args[4]}&\
+b1g=${b1g}&\
+b2=${args[6]}&\
+b2g=${b2g}&\
+b3=${args[8]}&\
+b3g=${b3g}`;
+            message.channel.send("This is your picture",{files: [{attachment: att, name: 'file.png'}]})
+            .catch(err => message.channel.send("An error occured with your Background argument", {code:"md"} )); 
+        
+        }
     }
     
 }
