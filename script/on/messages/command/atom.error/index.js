@@ -141,7 +141,7 @@ exports.execute = () => {
         var eee = "cat:atom.error";
         var args = message.content.slice(eee.length).split("\n::").map(m => encodeURIComponent( m.trim() ));
         
-        if (args.length == 0) {
+        if (args.length < 4) {
             message.channel.send(`__Utilisation:__\n\n` +
                 `\`cat:atom.error icon\`\n\n` +
                 `\`cat:atom.error\n` +
