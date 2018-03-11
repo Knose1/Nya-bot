@@ -98,8 +98,7 @@ exports.execute = () => {
     
     if (args.length == 0) {
         
-        message.channel.send(
-                `__Utilisation:__\n\n` +
+        message.channel.send(`__Utilisation:__\n\n` +
                 `\`cat:atom.error icon\`\n\n`
                 `\`cat:atom.error\n` +
                 `:: <Background>\n` +
@@ -112,8 +111,7 @@ exports.execute = () => {
                 `:: [True / False]\n` +
                 `:: [Text button 3]\n` +
                 `:: [True / False]\`\n` +
-                `<> est un argument **OBLIGATOIRE** [] est un argument __facultatif__`
-            );
+                `<> est un argument **OBLIGATOIRE** [] est un argument __facultatif__`);
         
     }
     else if (args[0].toLowerCase() == "icons" || args[0].toLowerCase() == "icon") {
@@ -122,7 +120,7 @@ exports.execute = () => {
         var img_bg = "";
         
         img_emb = atom.icons.join(", ");
-        img_bg = atom.bg.join(", ");;
+        img_bg = atom.bg.join(", ");
         /*atom.icons.forEach(i => {
             img_emb += `[${i}](${atom.iconlink}${i}), `;
         });
@@ -141,12 +139,10 @@ exports.execute = () => {
         
     } else {
         var eee = "cat:atom.error";
-        delete(args);
         var args = message.content.slice(eee.length).split("\n::").map(m => encodeURIComponent( m.trim() ));
         
         if (args.length == 0) {
-            message.channel.send(
-                `__Utilisation:__\n\n` +
+            message.channel.send(`__Utilisation:__\n\n` +
                 `\`cat:atom.error icon\`\n\n`
                 `\`cat:atom.error\n` +
                 `:: <Background>\n` +
@@ -159,8 +155,7 @@ exports.execute = () => {
                 `:: [True / False]\n` +
                 `:: [Text button 3]\n` +
                 `:: [True / False]\`\n` +
-                `<> est un argument **OBLIGATOIRE** [] est un argument __facultatif__`
-            );
+                `<> est un argument **OBLIGATOIRE** [] est un argument __facultatif__`);
         }
         
         if (args[0] == "") args.shift();
