@@ -133,7 +133,7 @@ exports.execute = () => {
             .addField("ICONES",img_emb, false)
             .addBlankField()
             .addField("BACKGROUNDS",img_bg, false)
-            .setFooter(message.author.tag, message.author.avatarURL);
+            .setFooter(`${message.author.tag} || http://atom.smasher.org/error`, message.author.avatarURL);
         
         message.channel.send({embed})
         
@@ -184,7 +184,7 @@ b2=${args[6]}&\
 b2g=${b2g}&\
 b3=${args[8]}&\
 b3g=${b3g}`;
-            message.channel.send("This is your picture",{files: [{attachment: att, name: 'file.png'}] })
+            message.channel.send("Your picture generated with <http://atom.smasher.org/error>:",{files: [{attachment: att, name: 'file.png'}] })
             .catch(err => message.channel.send("An error occured with your Background argument", {code:"md"} )); 
             
     }
