@@ -99,7 +99,7 @@ exports.execute = () => {
     if (args.length == 0) {
         
         message.channel.send(`__Utilisation:__\n\n` +
-                `\`cat:atom.error icon\`\n\n` +
+                `\`cat:atom.error icon\`\n\n\n` +
                 `\`cat:atom.error\n` +
                 `:: <Background>\n` +
                 `:: <Icon>\n` +
@@ -110,7 +110,7 @@ exports.execute = () => {
                 `:: [Text button 2]\n` +
                 `:: [True / False]\n` +
                 `:: [Text button 3]\n` +
-                `:: [True / False]\`\n` +
+                `:: [True / False]\`\n\n\n\n` +
                 `<> est un argument **OBLIGATOIRE** [] est un argument __facultatif__`);
         
     }
@@ -143,7 +143,7 @@ exports.execute = () => {
         
         if (args.length < 4) {
             message.channel.send(`__Utilisation:__\n\n` +
-                `\`cat:atom.error icon\`\n\n` +
+                `\`cat:atom.error icon\`\n\n\n` +
                 `\`cat:atom.error\n` +
                 `:: <Background>\n` +
                 `:: <Icon>\n` +
@@ -154,7 +154,7 @@ exports.execute = () => {
                 `:: [Text button 2]\n` +
                 `:: [True / False]\n` +
                 `:: [Text button 3]\n` +
-                `:: [True / False]\`\n` +
+                `:: [True / False]\`\n\n\n\n` +
                 `<> est un argument **OBLIGATOIRE** [] est un argument __facultatif__`);
         }
         
