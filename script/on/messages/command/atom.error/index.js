@@ -175,7 +175,7 @@ exports.execute = () => {
         if (args[9].toLowerCase() != "true") var b3g=""; else var b3g="x";
         
         args[0] = args[0].toLowerCase();
-        if (atom.bg.find(args[0]) == undefined) {
+        if (atom.bg.find(f => f == args[0]) == undefined) {
             message.channel.send(`This background ${args[0]} don't exist`);
         }
         
