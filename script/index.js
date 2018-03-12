@@ -161,6 +161,15 @@ client.on('message', message => {
     
         
     require('./module/perm.js').load(message);
+   
+    async () => {
+        let fw = await message.channel.fetchWebhooks();
+        if (fw.find('name', 'NoNya!Bot') != undefined)
+            return NoNyaWebhooks = true;
+        else return NoNyaWebhooks = false;
+    };
+    if (NoNyaWebhooks && !isMod && message.author != botowner)
+        return;
     
     //On récupère le suffix du vs
     var isVs = false;
@@ -246,7 +255,7 @@ client.on('message', message => {
         if (Database('407142766674575361',['user:','xp:']).get('user:',message.author.id,['xp:'])['xp:'].value[0] != 'NaN') {
             Database('407142766674575361',['user:','xp:']).get('user:',message.author.id,['xp:'])['xp:'].set([String(Number(Database('407142766674575361',['user:','xp:']).get('user:',message.author.id,['xp:'])['xp:'].value[0] + 1))]);
         
-       	    if( Math.floor( (Number(Database('407142766674575361',['user:','xp:']).get('user:',message.author.id,['xp:'])['xp:'].value[0] ) +1) / 10 ) == (Number(Database('407142766674575361',['user:','xp:']).get('user:',message.author.id,['xp:'])['xp:'].value[0] ) +1)/ 10) {
+            if( Math.floor( (Number(Database('407142766674575361',['user:','xp:']).get('user:',message.author.id,['xp:'])['xp:'].value[0] ) +1) / 10 ) == (Number(Database('407142766674575361',['user:','xp:']).get('user:',message.author.id,['xp:'])['xp:'].value[0] ) +1)/ 10) {
                 message.channel.send(`Bravo Knose1 tu as ${Number(Database('407142766674575361',['user:','xp:']).get('user:',message.author.id,['xp:'])['xp:'].value[0]) + 1} xp`)
                     .then(msg => msg.delete(10000));
             }
