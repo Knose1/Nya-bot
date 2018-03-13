@@ -1,4 +1,5 @@
 require('./config.js').load();
+var events = require('events');
 
 //lorsque Nya!bot est pret
 client.on('ready', () => {
@@ -162,12 +163,14 @@ client.on('message', message => {
         
     require('./module/perm.js').load(message);
     
-    var NoNyaWebhooks
+    var NoNyaWebhooks = false;
+    var eventNya = new events.EventEmitter();
+    
     const fuNoNyaWebhooks = async () => {
         let fw = await message.channel.fetchWebhooks();
         if (fw.find('name', 'NoNya!Bot') != undefined)
-            NoNyaWebhooks = true;
-        else NoNyaWebhooks = false;
+            return;
+        else eventNya.emit("NoNya!Bot founded");
     };
     fuNoNyaWebhooks();
     
