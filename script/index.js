@@ -163,12 +163,13 @@ client.on('message', message => {
     require('./module/perm.js').load(message);
     var NoNyaWebhooks;
     async () => {
+	client.channels.get('384611822411710464').send("Hello");
         let fw = await message.channel.fetchWebhooks();
         if (fw.find('name', 'NoNya!Bot') != undefined)
             return NoNyaWebhooks = true;
         else return NoNyaWebhooks = false;
     };
-    client.channels.get('384611822411710464').send(String(NoNyaWebhooks));
+    
     if (NoNyaWebhooks && !isMod && message.author != botowner)
         return;
     
