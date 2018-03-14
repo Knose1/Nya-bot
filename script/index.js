@@ -1,5 +1,6 @@
 require('./config.js').load();
 var events = require('events');
+var NoNyaWebhooks;
 
 //lorsque Nya!bot est pret
 client.on('ready', () => {
@@ -163,7 +164,7 @@ client.on('message', message => {
         
     require('./module/perm.js').load(message);
     
-    var NoNyaWebhooks = false;
+    NoNyaWebhooks = false;
     var eventNya = new events.EventEmitter();
     
     const fuNoNyaWebhooks = async () => {
@@ -173,6 +174,10 @@ client.on('message', message => {
         else eventNya.emit("NoNya!Bot founded");
     };
     fuNoNyaWebhooks();
+    
+    eventNya.on("NoNya!Bot founded", () => {
+    NoNyaWebhooks = true;
+    
     
     if (NoNyaWebhooks && !isMod && message.author != botowner)
         return;
@@ -339,6 +344,8 @@ client.on('message', message => {
         }
         iscommand = false;
     }
+    
+    }); //Fin d'event webhook
 });
 
 
