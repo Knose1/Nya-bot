@@ -167,11 +167,15 @@ client.on('message', message => {
     
     
     const fuNoNyaWebhooks = async () => {
-        let fw = await message.channel.fetchWebhooks();
-        if (fw.find('name', 'NoNya!Bot') != undefined)
-            NoNyaWebhooks = true;
-        else
+        try {
+            let fw = await message.channel.fetchWebhooks();
+            if (fw.find('name', 'NoNya!Bot') != undefined)
+                NoNyaWebhooks = true;
+            else
+                NoNyaWebhooks = false;
+        } catch (err) {
             NoNyaWebhooks = false;
+        }
     if (NoNyaWebhooks && !isMod && message.author != botowner)
         return;
     
