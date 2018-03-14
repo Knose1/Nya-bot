@@ -164,21 +164,14 @@ client.on('message', message => {
         
     require('./module/perm.js').load(message);
     
-    NoNyaWebhooks = false;
-    var eventNya = new events.EventEmitter();
+    
     
     const fuNoNyaWebhooks = async () => {
         let fw = await message.channel.fetchWebhooks();
         if (fw.find('name', 'NoNya!Bot') != undefined)
-            return;
-        else eventNya.emit("NoNya!Bot founded");
-    };
-    fuNoNyaWebhooks();
-    
-    eventNya.on("NoNya!Bot founded", () => {
-    NoNyaWebhooks = true;
-    
-    
+            NoNyaWebhooks = true;
+        else
+            NoNyaWebhooks = false;
     if (NoNyaWebhooks && !isMod && message.author != botowner)
         return;
     
@@ -344,8 +337,8 @@ client.on('message', message => {
         }
         iscommand = false;
     }
-    
-    }); //Fin d'event webhook
+    };
+    fuNoNyaWebhooks();
 });
 
 
