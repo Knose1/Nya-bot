@@ -14,7 +14,7 @@
                     try {
                         //On test si message est un vrai message
                         var testtest = (
-                            message.author.lastMessage.guild.owner
+                            message.channel
                             && message.channel.send
                             && message.autor.id
                             && message.guild.ownerID
