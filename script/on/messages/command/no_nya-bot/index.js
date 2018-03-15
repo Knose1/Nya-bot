@@ -53,10 +53,11 @@ exports.execute = () => {
     check_perm(["MANAGE_CHANNELS","MANAGE_WEBHOOKS"]).then( perm => {
         if (perm) {
             if (NoNyaWebhooks) {
-                message.channel.fetchWebhooks().then(FW => {
-                    FW.find('name', 'NoNya!Bot').delete(`Removed by ${message.author.tag}`)
-                    .then( message.channel.send("Webhook \"NoNya!Bot\" removed !").delete(6000) );
-                });
+                message.channel.fetchWebhooks()
+                    .then(FW => {
+                        FW.find('name', 'NoNya!Bot').delete(`Removed by ${message.author.tag}`)
+                            .then( message.channel.send("Webhook \"NoNya!Bot\" removed !").delete(6000) );
+                    })
                     .catch( message.channel.send("Sorry I don't have the permission MANAGE_WEBHOOKS for this channel").delete(6000) );
             } else {
                 message.channel.createWebhook("NoNya!Bot",null,`Added by ${message.author.tag}`)
