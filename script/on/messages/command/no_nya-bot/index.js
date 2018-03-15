@@ -31,7 +31,8 @@ exports.execute = () => {
                     }
                 }
                 try {
-                    message.guild.member(message.author).hasPermissions(permissions)
+                    var x = message.guild.member(message.author).hasPermissions(permissions);
+                    resolve(x);
                 
                 } catch (err) {
                     if (message.autor.id != message.guild.ownerID) {
@@ -49,9 +50,24 @@ exports.execute = () => {
         return prms
     }
     
-    
+    check_perm(["MANAGE_CHANNELS","MANAGE_WEBHOOKS"]).then( perm => {
+        if (perm) {
+            if (NoNyaWebhooks) {
+                message.channel.fetchWebhooks().then(FW => {
+                    FW.find('name', 'NoNya!Bot').delete(`Removed by ${message.author.tag}`)
+                    .then( message.channel.send("Webhook \"NoNya!Bot\" removed !").delete(6000) );
+                });
+                    .catch( message.channel.send("Sorry I don't have the permission MANAGE_WEBHOOKS for this channel").delete(6000) );
+            } else {
+                message.channel.createWebhook("NoNya!Bot",null,`Added by ${message.author.tag}`)
+                    .then( message.channel.send("Webhook \"NoNya!Bot\" added !").delete(6000) )
+                    .catch( message.channel.send("Sorry I don't have the permission MANAGE_WEBHOOKS for this channel").delete(6000) );
+            }
+            
+        } else {
+            message.channel.reply("Sorry you don't have the permissions MANAGE_CHANNELS and MANAGE_WEBHOOKS.").delete(6000);
+        }
+    });
 
-    if (NoNyaWebhooks) {
-        
-    }
+    
 }
