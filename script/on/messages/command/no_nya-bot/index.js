@@ -33,12 +33,13 @@ exports.execute = () => {
                     }
                 }
                 if (Fauthor == undefined)
-                    Fauthor = message.autor;
+                    var Fauthor = message.autor;
                 
                 if (Fguild == undefined)
-                    Fguild = message.guild;
+                    var Fguild = message.guild;
                 if (Fchannel == undefined)
-                    Fchannel = message.channel;
+                    var Fchannel = message.channel;
+                
                 if (Fchannel.type != "text") {
                     reject( new Error("Fchannel is not a textual channel") );
                     return;
