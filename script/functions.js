@@ -30,7 +30,7 @@
                     }
                 }
                 if (Fauthor == undefined)
-                    var Fauthor = message.autor;
+                    var Fauthor = message.author;
                 
                 if (Fguild == undefined)
                     var Fguild = message.guild;
