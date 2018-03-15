@@ -1,7 +1,7 @@
 exports.execute = () => {
 
-    check_perm(["MANAGE_CHANNELS","MANAGE_WEBHOOKS"]).then( perm => {
-        check_perm(["MANAGE_WEBHOOKS"],message, client.user).then( nyaPerm => {
+    check_perm(["MANAGE_CHANNELS","MANAGE_WEBHOOKS"], message).then( perm => {
+        check_perm(["MANAGE_WEBHOOKS"], message, client.user).then( nyaPerm => {
             
             if (!nyaPerm) {
                 message.channel.send("Sorry I don't have the permission MANAGE_WEBHOOKS for this channel").then( m => m.delete(6000) )
