@@ -13,10 +13,10 @@
                 } else {
                     try {
                         //On test si message est un vrai message
-                        var testtest = (
+                        var testtest = Boolean(
                             message.channel
                             && message.channel.send
-                            && message.autor.id
+                            && message.author.id
                             && message.guild.ownerID
                         );
                         
