@@ -36,7 +36,8 @@ exports.execute = () => {
                 
                 } catch (err) {
                     if (message.autor.id != message.guild.ownerID) {
-                        message.channel.send("Sorry I don't have the permission to check permissions.").delete(6000);
+                        message.channel.send("Sorry I don't have the permission to check permissions.").then(m => m.delete(6000));
+                        reject();
                     } else
                         resolve(true);
                 }
@@ -56,17 +57,17 @@ exports.execute = () => {
                 message.channel.fetchWebhooks()
                     .then(FW => {
                         FW.find('name', 'NoNya!Bot').delete(`Removed by ${message.author.tag}`)
-                            .then( message.channel.send("Webhook \"NoNya!Bot\" removed !").delete(6000) );
+                            .then( message.channel.send("Webhook \"NoNya!Bot\" removed !").then(m => m.delete(6000)) );
                     })
-                    .catch( message.channel.send("Sorry I don't have the permission MANAGE_WEBHOOKS for this channel").delete(6000) );
+                    .catch( message.channel.send("Sorry I don't have the permission MANAGE_WEBHOOKS for this channel").then(m => m.delete(6000)) );
             } else {
                 message.channel.createWebhook("NoNya!Bot",null,`Added by ${message.author.tag}`)
                     .then( message.channel.send("Webhook \"NoNya!Bot\" added !").delete(6000) )
-                    .catch( message.channel.send("Sorry I don't have the permission MANAGE_WEBHOOKS for this channel").delete(6000) );
+                    .catch( message.channel.send("Sorry I don't have the permission MANAGE_WEBHOOKS for this channel").then(m => m.delete(6000)) );
             }
             
         } else {
-            message.channel.reply("Sorry you don't have the permissions MANAGE_CHANNELS and MANAGE_WEBHOOKS.").delete(6000);
+            message.channel.reply("Sorry you don't have the permissions MANAGE_CHANNELS and MANAGE_WEBHOOKS.").then(m => m.delete(6000));
         }
     });
 
