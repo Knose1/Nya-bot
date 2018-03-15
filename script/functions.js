@@ -1,3 +1,71 @@
+//On check les permissions
+    var check_perm1 = (permissions, mms, Fauthor, Fguild, Fchannel) => {
+        
+        let prms = new Promise(function(resolve, reject) {
+            
+            if (Array.isArray(permissions)) {
+                
+                if (message == undefined && mms == undefined) {
+                
+                    reject( new Error("message is not defined, please define mms at check_perm(permission, author, mms)") );
+                    return;
+                    
+                } else if (mms != undefined) {
+                    const message = mms;
+                    try {
+                        //On test si message est un vrai message
+                        var testtest = (
+                            message.author.lastMessage.guild.owner
+                            && message.channel.send
+                            && message.autor.id
+                            && message.guild.ownerID
+                        );
+                        
+                    } catch (err) {
+                        reject( new Error("mms isn't a real message") );
+                        return;
+                    }
+                    if (!testtest) {
+                        reject( new Error("mms isn't a real message") );
+                        return;
+                    }
+                }
+                if (Fauthor == undefined)
+                    var Fauthor = message.autor;
+                
+                if (Fguild == undefined)
+                    var Fguild = message.guild;
+                if (Fchannel == undefined)
+                    var Fchannel = message.channel;
+                
+                if (Fchannel.type != "text") {
+                    reject( new Error("Fchannel is not a textual channel") );
+                    return;
+                }
+                
+                try {
+                    var x = Fguild.member(Fauthor).hasPermissions(permissions);
+                    
+                    var y = Fchannel.permissionsFor(Fauthor).has(permissions);
+                    resolve(new Boolean(x && y));
+                
+                } catch (err) {
+                    if (message.autor.id != message.guild.ownerID) {
+                        message.channel.send("Sorry I don't have the permission to check permissions.").then(m => m.delete(6000));
+                        reject(new Error("permission MANAGE_WEBHOOKS denied to the bot"));
+                    } else
+                        resolve(true);
+                }
+              
+                    
+            } else {
+                reject( new Error('permissions is not an Array') );
+            }
+        });
+        
+        return prms
+    }
+
 /*Source of clean: 'https://anidiotsguide_old.gitbooks.io/discord-js-bot-guide/content/examples/making-an-eval-command.html' */
             const clean1 = text => {
                 if (typeof(text) === "string")
@@ -241,5 +309,5 @@ function f4(min,max) {
     return Math.floor((Math.random() * max) + min);
 };
 exports.load = () => {
-    return Database__1 = f1, TestDatabase = f2, Database = f3, rand = f4, clean = clean1, fulllog = fulllog1;
+    return Database__1 = f1, TestDatabase = f2, Database = f3, rand = f4, clean = clean1, fulllog = fulllog1, check_perm = check_perm1;
 }
