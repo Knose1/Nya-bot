@@ -1,17 +1,16 @@
 //On check les permissions
-    var check_perm1 = (permissions, mms, Fauthor, Fguild, Fchannel) => {
+    var check_perm1 = (permissions, message, Fauthor, Fguild, Fchannel) => {
         
         let prms = new Promise(function(resolve, reject) {
             
             if (Array.isArray(permissions)) {
                 
-                if (message == undefined && mms == undefined) {
+                if (message == undefined) {
                 
-                    reject( new Error("message is not defined, please define mms at check_perm(permission, author, mms)") );
+                    reject( new Error("message is not defined, please define message at check_perm(permission, author, message)") );
                     return;
                     
-                } else if (mms != undefined) {
-                    const message = mms;
+                } else {
                     try {
                         //On test si message est un vrai message
                         var testtest = (
@@ -22,11 +21,11 @@
                         );
                         
                     } catch (err) {
-                        reject( new Error("mms isn't a real message") );
+                        reject( new Error("\"message\" isn't a real message") );
                         return;
                     }
                     if (!testtest) {
-                        reject( new Error("mms isn't a real message") );
+                        reject( new Error("\"message\" isn't a real message") );
                         return;
                     }
                 }
@@ -50,7 +49,7 @@
                     resolve(new Boolean(x && y));
                 
                 } catch (err) {
-                    if (message.autor.id != message.guild.ownerID) {
+                    if (Fauthor.id != Fguild.ownerID) {
                         message.channel.send("Sorry I don't have the permission to check permissions.").then(m => m.delete(6000));
                         reject(new Error("permission MANAGE_WEBHOOKS denied to the bot"));
                     } else
