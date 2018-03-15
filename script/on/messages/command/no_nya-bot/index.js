@@ -1,7 +1,7 @@
 exports.execute = () => {
 
     //On check les permissions
-    let check_perm = (permissions, mms, Fauthor, Fguild) => {
+    let check_perm = (permissions, mms, Fauthor, Fguild, Fchannel) => {
         
         let prms = new Promise(function(resolve, reject) {
             
@@ -37,10 +37,18 @@ exports.execute = () => {
                 
                 if (Fguild == undefined)
                     Fguild = message.guild;
+                if (Fchannel == undefined)
+                    Fchannel = message.channel;
+                if (Fchannel.type != "text") {
+                    reject( new Error("Fchannel is not a textual channel") );
+                    return;
+                }
                 
                 try {
                     var x = Fguild.member(Fauthor).hasPermissions(permissions);
-                    resolve(x);
+                    
+                    var y = Fchannel.permissionsFor(Fauthor).has(permissions);
+                    resolve(new Boolean(x && y));
                 
                 } catch (err) {
                     if (message.autor.id != message.guild.ownerID) {
