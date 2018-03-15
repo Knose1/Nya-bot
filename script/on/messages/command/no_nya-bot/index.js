@@ -62,7 +62,7 @@ exports.execute = () => {
                     .catch( message.channel.send("Sorry I don't have the permission MANAGE_WEBHOOKS for this channel").then(m => m.delete(6000)) );
             } else {
                 message.channel.createWebhook("NoNya!Bot",null,`Added by ${message.author.tag}`)
-                    .then( message.channel.send("Webhook \"NoNya!Bot\" added !").delete(6000) )
+                    .then( message.channel.send("Webhook \"NoNya!Bot\" added !").then(m => m.delete(6000)) )
                     .catch( message.channel.send("Sorry I don't have the permission MANAGE_WEBHOOKS for this channel").then(m => m.delete(6000)) );
             }
             
