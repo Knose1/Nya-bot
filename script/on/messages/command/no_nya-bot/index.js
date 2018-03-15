@@ -90,9 +90,9 @@ exports.execute = () => {
                 message.channel.reply("Sorry you don't have the permissions MANAGE_CHANNELS and MANAGE_WEBHOOKS.").then(m => m.delete(6000));
             }
         })
-        .catch(err => message.channel.send(err, {split:true}));
+        .catch(err => message.channel.send(util.inspect(err), {split:true}));
     })
-    .catch(err => message.channel.send(err, {split:true}));
+    .catch(err => message.channel.send(util.inspect(err), {split:true}));
 
     
 }
