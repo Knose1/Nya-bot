@@ -1,68 +1,70 @@
 //On check les permissions
     var check_perm1 = (permissions, message, Fauthor, Fguild, Fchannel) => {
         
-        let prms = new Promise(function(resolve, reject) {
-            
-            if (Array.isArray(permissions)) {
+        this.check = () => {
+            let prms = new Promise(function(resolve, reject) {
                 
-                if (message == undefined) {
-                
-                    reject( new Error("message is not defined, please define message at check_perm(permission, author, message)") );
-                    return;
+                if (Array.isArray(permissions)) {
                     
-                } else {
-                    try {
-                        //On test si message est un vrai message
-                        var testtest = Boolean(
-                            message.channel
-                            && message.channel.send
-                            && message.author.id
-                            && message.guild.ownerID
-                        );
+                    if (message == undefined) {
+                
+                        reject( new Error("message is not defined, please define message at check_perm(permission, author, message)") );
+                        return;
                         
+                    } else {
+                        try {
+                            //On test si message est un vrai message
+                            var testtest = Boolean(
+                                message.channel
+                                && message.channel.send
+                                && message.author.id
+                                && message.guild.ownerID
+                            );
+                            
+                        } catch (err) {
+                            reject( new Error("\"message\" isn't a real message") );
+                            return;
+                        }
+                        if (!testtest) {
+                            reject( new Error("\"message\" isn't a real message") );
+                            return;
+                        }
+                    }
+                    if (Fauthor == undefined)
+                        var Fauthor = message.author;
+                    
+                    if (Fguild == undefined)
+                        var Fguild = message.guild;
+                    if (Fchannel == undefined)
+                        var Fchannel = message.channel;
+                    
+                    if (Fchannel.type != "text") {
+                        reject( new Error("Fchannel is not a textual channel") );
+                        return;
+                    }
+                    
+                    try {
+                        var x = Fguild.member(Fauthor).hasPermissions(permissions);
+                        
+                        var y = Fchannel.permissionsFor(Fauthor).has(permissions);
+                        resolve(y);
+                    
                     } catch (err) {
-                        reject( new Error("\"message\" isn't a real message") );
-                        return;
+                        if (Fauthor.id != Fguild.ownerID) {
+                            message.channel.send("Sorry I don't have the permission to check permissions.").then(m => m.delete(6000));
+                            reject(new Error("permission MANAGE_WEBHOOKS denied to the bot"));
+                        } else
+                            resolve(true);
                     }
-                    if (!testtest) {
-                        reject( new Error("\"message\" isn't a real message") );
-                        return;
-                    }
+                  
+                        
+                } else {
+                    reject( new Error('permissions is not an Array') );
                 }
-                if (Fauthor == undefined)
-                    var Fauthor = message.author;
-                
-                if (Fguild == undefined)
-                    var Fguild = message.guild;
-                if (Fchannel == undefined)
-                    var Fchannel = message.channel;
-                
-                if (Fchannel.type != "text") {
-                    reject( new Error("Fchannel is not a textual channel") );
-                    return;
-                }
-                
-                try {
-                    var x = Fguild.member(Fauthor).hasPermissions(permissions);
-                    
-                    var y = Fchannel.permissionsFor(Fauthor).has(permissions);
-                    resolve(y);
-                
-                } catch (err) {
-                    if (Fauthor.id != Fguild.ownerID) {
-                        message.channel.send("Sorry I don't have the permission to check permissions.").then(m => m.delete(6000));
-                        reject(new Error("permission MANAGE_WEBHOOKS denied to the bot"));
-                    } else
-                        resolve(true);
-                }
-              
-                    
-            } else {
-                reject( new Error('permissions is not an Array') );
-            }
-        });
+            });
+            return prms;
+        }
         
-        return prms
     }
 
 /*Source of clean: 'https://anidiotsguide_old.gitbooks.io/discord-js-bot-guide/content/examples/making-an-eval-command.html' */
