@@ -1,20 +1,15 @@
 //On check les permissions
-    function check_perm1(permissions, message, Fauthor, Fguild, Fchannel) {
+    function check_perm1(options) {
         //message.channel.send(`Before Before Before ${String(permissions)}, ${String(message.id)}, ${String(Fauthor)}, ${String(Fguild)}, ${String(Fchannel)}` )
-        this.check = function() {
-            var permissions, message, Fauthor, Fguild, Fchannel;
-            return this.checkkk([permissions, message, Fauthor, Fguild, Fchannel])
-        }
-        this.checkkk = function(arr) {return new Promise(function(resolve, reject) {
-		message.channel.send(arr.map(m => {return String(m)}).join(", "));
-                permissions = arr[0];
-                message = arr[1];
-                Fauthor = arr[2];
-                Fguild = arr[3];
-                Fchannel = arr[4];
+        
+        this.check = function() {return new Promise(function(resolve, reject) {
+                permissions = options.permissions;
+                message = options.message;
+                Fauthor = options.author;
+                Fguild = options.guild;
+                Fchannel = options.channel;
                 if (Array.isArray(permissions)) {
-                    message.channel.send(`Before Before ${String(permissions)}, ${String(message.id)}, ${String(Fauthor)}, ${String(Fguild)}, ${String(Fchannel)}` )
-                    
+			
                     if (message == undefined) {
                 
                         reject( new Error("message is not defined, please define message at check_perm(permission, author, message)") );
