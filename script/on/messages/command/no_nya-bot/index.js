@@ -18,8 +18,14 @@ exports.execute = () => {
         author: client.user
     }
     var perm_check = new check_perm(options_pch);
+    var perm_nyach = new check_perm(options_nyach);
     
-    perm_check.check().then( perm => {
+    perm_nyach.check().then( nya => {
+        if (!nya) {
+            message.channel.send("Sorry I don't have the permissions MANAGE_WEBHOOKS.");
+            return;
+        }
+        perm_check.check().then( perm => {
             
             if (perm) {
                 if (NoNyaWebhooks) {
@@ -37,5 +43,4 @@ exports.execute = () => {
                 message.channel.reply("Sorry you don't have the permissions MANAGE_CHANNELS and MANAGE_WEBHOOKS.").then(m => m.delete(6000));
             }
         })
-        .catch(err => message.channel.send(util.inspect(err), {split:true}));
 }
