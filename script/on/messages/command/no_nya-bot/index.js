@@ -1,6 +1,23 @@
 exports.execute = () => {
 
-    var perm_check = new check_perm(["MANAGE_CHANNELS","MANAGE_WEBHOOKS"], message);
+    /*
+        permissions = options.permissions;
+        message = options.message;
+        Fauthor = options.author;
+        Fguild = options.guild;
+        Fchannel = options.channel;
+    */
+    
+    var options_pch = {
+        permissions: ["MANAGE_CHANNELS","MANAGE_WEBHOOKS"],
+        message: message,
+    }
+    var options_nyach = {
+        permissions: ["MANAGE_CHANNELS","MANAGE_WEBHOOKS"],
+        message: message,
+        author: client.user
+    }
+    var perm_check = new check_perm(options_pch);
     
     perm_check.check().then( perm => {
             
