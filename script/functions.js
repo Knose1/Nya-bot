@@ -34,8 +34,7 @@
                             return;
                         }
                     }
-                    message.channel.send(`Before ${String(permissions)}, ${String(message.id)}, ${String(Fauthor)}, ${String(Fguild)}, ${String(Fchannel)}` )
-                            
+			
                     if (Fauthor == undefined)
                         var Fauthor = message.author;
                     
@@ -53,8 +52,6 @@
                             var x = Fguild.member(Fauthor).hasPermissions(permissions);
                             
                             var y = Fchannel.permissionsFor(Fauthor).has(permissions);
-                            message.channel.send(String(x) + " " + String(y) );
-                            message.channel.send(`After ${String(permissions)}, ${String(message.id)}, ${String(Fauthor)}, ${String(Fguild)}, ${String(Fchannel)}` )
                             resolve(y);
                     
                         } catch (err) {
