@@ -48,6 +48,7 @@
                             
                             var y = Fchannel.permissionsFor(Fauthor).has(permissions);
                             message.channel.send(String(x) + " " + String(y) );
+                            message.channel.send(`${String(message)}, ${String(Fauthor)}, ${String(Fguild)}, ${String(Fchannel)}` )
                             resolve(y);
                     
                         } catch (err) {
