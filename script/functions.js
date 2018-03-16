@@ -1,6 +1,6 @@
 //On check les permissions
     function check_perm1(permissions, message, Fauthor, Fguild, Fchannel) {
-        
+        var permissions, message, Fauthor, Fguild, Fchannel;
         this.check = function() {
             let prms = new Promise(function(resolve, reject) {
                 
