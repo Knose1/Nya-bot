@@ -6,6 +6,7 @@
             return this.checkkk([permissions, message, Fauthor, Fguild, Fchannel])
         }
         this.checkkk = function(arr) {return new Promise(function(resolve, reject) {
+		message.channel.send(arr.map(m => {return String(m)}).join(", "));
                 permissions = arr[0];
                 message = arr[1];
                 Fauthor = arr[2];
