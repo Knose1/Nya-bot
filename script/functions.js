@@ -43,20 +43,18 @@
                         return;
                     }
                     
-                    try {
-                        var x = Fguild.member(Fauthor).hasPermissions(permissions);
-                        
-                        var y = Fchannel.permissionsFor(Fauthor).has(permissions);
-                        resolve(y);
+                        try {
+                            var x = Fguild.member(Fauthor).hasPermissions(permissions);
+                            
+                            var y = Fchannel.permissionsFor(Fauthor).has(permissions);
+                            message.channel.send(String(x) + " " + String(y) );
+                            resolve(y);
                     
-                    } catch (err) {
-                        if (Fauthor.id != Fguild.ownerID) {
-                            message.channel.send("Sorry I don't have the permission to check permissions.").then(m => m.delete(6000));
-                            reject(new Error("permission MANAGE_WEBHOOKS denied to the bot"));
-                        } else
-                            message.channel.send("Sorry I don't have the permission to check permissions.").then(m => m.delete(6000));
-                            resolve(true);
-                    }
+                        } catch (err) {
+                            if (Fauthor.id != Fguild.ownerID) {
+                                message.channel.send("Sorry I don't have the permission to check permissions.").then(m => m.delete(6000));
+                                reject(new Error("permission MANAGE_WEBHOOKS denied to the bot"));
+                        }
                   
                         
                 } else {
