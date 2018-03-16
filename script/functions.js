@@ -1,8 +1,16 @@
 //On check les permissions
     function check_perm1(permissions, message, Fauthor, Fguild, Fchannel) {
         //message.channel.send(`Before Before Before ${String(permissions)}, ${String(message.id)}, ${String(Fauthor)}, ${String(Fguild)}, ${String(Fchannel)}` )
-        return new Promise(function(resolve, reject) {
-                
+        this.check = function() {
+            var permissions, message, Fauthor, Fguild, Fchannel;
+            this.checkkk([permissions, message, Fauthor, Fguild, Fchannel])
+        }
+        this.checkkk = function(arr) {return new Promise(function(resolve, reject) {
+                permissions = arr[0];
+                message = arr[1];
+                Fauthor = arr[2];
+                Fguild = arr[3];
+                Fchannel = arr[4];
                 if (Array.isArray(permissions)) {
                     message.channel.send(`Before Before ${String(permissions)}, ${String(message.id)}, ${String(Fauthor)}, ${String(Fguild)}, ${String(Fchannel)}` )
                     
@@ -65,7 +73,7 @@
                     reject( new Error('permissions is not an Array') );
                 }
             });
-        
+        }
         
     }
 
