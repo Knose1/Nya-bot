@@ -1,8 +1,11 @@
 //On check les permissions
     function check_perm1(permissions, message, Fauthor, Fguild, Fchannel) {
         message.channel.send(`Before Before Before ${String(permissions)}, ${String(message.id)}, ${String(Fauthor)}, ${String(Fguild)}, ${String(Fchannel)}` )
-         this.check = function() {
-		 message.channel.send(`Before Before ${String(permissions)}, ${String(message.id)}, ${String(Fauthor)}, ${String(Fguild)}, ${String(Fchannel)}` )
+        this.this.check = function() {
+            this.checkkk(permissions, message, Fauthor, Fguild, Fchannel);
+        }
+        this.checkkk = function(permissions, message, Fauthor, Fguild, Fchannel) {
+             message.channel.send(`Before Before ${String(permissions)}, ${String(message.id)}, ${String(Fauthor)}, ${String(Fguild)}, ${String(Fchannel)}` )
          
             let prms = new Promise(function(resolve, reject) {
                 
