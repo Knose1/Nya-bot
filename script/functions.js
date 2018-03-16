@@ -46,7 +46,7 @@
                     var x = Fguild.member(Fauthor).hasPermissions(permissions);
                     
                     var y = Fchannel.permissionsFor(Fauthor).has(permissions);
-                    resolve(new Boolean(x && y));
+                    resolve(y);
                 
                 } catch (err) {
                     if (Fauthor.id != Fguild.ownerID) {
