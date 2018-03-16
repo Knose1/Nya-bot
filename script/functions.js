@@ -54,6 +54,7 @@
                             if (Fauthor.id != Fguild.ownerID) {
                                 message.channel.send("Sorry I don't have the permission to check permissions.").then(m => m.delete(6000));
                                 reject(new Error("permission MANAGE_WEBHOOKS denied to the bot"));
+			    }
                         }
                   
                         
