@@ -21,5 +21,4 @@ exports.execute = () => {
             }
         })
         .catch(err => message.channel.send(util.inspect(err), {split:true}));
-    })
 }
