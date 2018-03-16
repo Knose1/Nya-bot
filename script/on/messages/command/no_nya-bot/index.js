@@ -1,16 +1,8 @@
 exports.execute = () => {
 
     var perm_check = new check_perm(["MANAGE_CHANNELS","MANAGE_WEBHOOKS"], message);
-    var nya_check = new check_perm(["MANAGE_WEBHOOKS"], message, client.user);
     
-    nya_check.check().then( nyaPerm => {
-            
-            message.channel.send(nyaPerm);
-            if (!nyaPerm) {
-                message.channel.send("Sorry I don't have the permission MANAGE_WEBHOOKS for this channel").then( m => m.delete(6000) )
-                return
-            }
-        perm_check.check().then( perm => {
+    perm_check.check().then( perm => {
             
             if (perm) {
                 if (NoNyaWebhooks) {
@@ -30,7 +22,4 @@ exports.execute = () => {
         })
         .catch(err => message.channel.send(util.inspect(err), {split:true}));
     })
-    .catch(err => message.channel.send(util.inspect(err), {split:true}));
-
-    
 }
