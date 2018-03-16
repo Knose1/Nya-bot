@@ -1,7 +1,7 @@
 //On check les permissions
     function check_perm1(permissions, message, Fauthor, Fguild, Fchannel) {
         
-        this.check = () => {
+        this.check = function() {
             let prms = new Promise(function(resolve, reject) {
                 
                 if (Array.isArray(permissions)) {
