@@ -1,7 +1,7 @@
 exports.execute = () => {
 
-    var perm_check = check_perm(["MANAGE_CHANNELS","MANAGE_WEBHOOKS"], message);
-    var nya_check = check_perm(["MANAGE_WEBHOOKS"], message, client.user) ;
+    var perm_check = check_perm;
+    var nya_check = check_perm;
     
     perm_check(["MANAGE_CHANNELS","MANAGE_WEBHOOKS"], message).then( perm => {
         nya_check(["MANAGE_WEBHOOKS"], message, client.user).then( nyaPerm => {
