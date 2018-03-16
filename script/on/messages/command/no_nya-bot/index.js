@@ -5,6 +5,7 @@ exports.execute = () => {
             
             if (!nyaPerm) {
                 message.channel.send("Sorry I don't have the permission MANAGE_WEBHOOKS for this channel").then( m => m.delete(6000) )
+                return
             }
             
             if (perm) {
