@@ -3,7 +3,7 @@
         //message.channel.send(`Before Before Before ${String(permissions)}, ${String(message.id)}, ${String(Fauthor)}, ${String(Fguild)}, ${String(Fchannel)}` )
         this.check = function() {
             var permissions, message, Fauthor, Fguild, Fchannel;
-            this.checkkk([permissions, message, Fauthor, Fguild, Fchannel])
+            return this.checkkk([permissions, message, Fauthor, Fguild, Fchannel])
         }
         this.checkkk = function(arr) {return new Promise(function(resolve, reject) {
                 permissions = arr[0];
