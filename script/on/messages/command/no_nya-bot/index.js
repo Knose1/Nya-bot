@@ -13,7 +13,7 @@ exports.execute = () => {
         message: message,
     }
     var options_nyach = {
-        permissions: ["MANAGE_CHANNELS","MANAGE_WEBHOOKS"],
+        permissions: ["MANAGE_WEBHOOKS"],
         message: message,
         author: client.user
     }
