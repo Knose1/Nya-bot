@@ -55,10 +55,9 @@
                             resolve(y);
                     
                         } catch (err) {
-                            if (Fauthor.id != Fguild.ownerID) {
-                                message.channel.send("Sorry I don't have the permission to check permissions.").then(m => m.delete(6000));
-                                reject(new Error("permission MANAGE_WEBHOOKS denied to the bot"));
-			    }
+                        
+                            reject(new Error("error in Permissions please check https://discord.js.org/#/docs/main/stable/class/Permissions?scrollTo=s-FLAGS\n"));
+			
                         }
                   
                         
