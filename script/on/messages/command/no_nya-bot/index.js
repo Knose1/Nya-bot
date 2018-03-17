@@ -39,7 +39,7 @@ exports.execute = () => {
                 }
             
             } else if (!perm) {
-                message.reply("Sorry you don't have the permissions MANAGE_CHANNELS and MANAGE_WEBHOOKS.").then(m => m.delete(6000));
+                message.channel.send( String(message.user) + "\n Sorry you don't have the permissions MANAGE_CHANNELS and MANAGE_WEBHOOKS.").then(m => m.delete(6000));
             }
         })
     })
