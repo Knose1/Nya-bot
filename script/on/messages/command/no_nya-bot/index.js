@@ -22,7 +22,7 @@ exports.execute = () => {
     
     perm_nyach.check().then( nya => {
         if (!nya) {
-            message.channel.send("Sorry I don't have the permissions MANAGE_WEBHOOKS.");
+            message.channel.send("Sorry I don't have the permissions MANAGE_WEBHOOKS.").then(m => m.delete(6000));
             return;
         }
         perm_check.check().then( perm => {
@@ -40,7 +40,7 @@ exports.execute = () => {
                 }
             
             } else {
-                message.channel.reply("Sorry you don't have the permissions MANAGE_CHANNELS and MANAGE_WEBHOOKS.").then(m => m.delete(6000));
+                message.reply("Sorry you don't have the permissions MANAGE_CHANNELS and MANAGE_WEBHOOKS.").then(m => m.delete(6000));
             }
         })
     })
