@@ -180,9 +180,9 @@ client.on('message', message => {
         permissions: ["MANAGE_CHANNELS","MANAGE_WEBHOOKS"],
         message: message,
     }
-    var perm_checking = new check_perm(options_pch);
+    var perm_checking = new check_perm(options_pch2);
     perm_checking.then(pprm => {
-        if (NoNyaWebhooks && !pprm)
+        if (NoNyaWebhooks && !pprm || message.author == client.user)
             return;
     
         //On récupère le suffix du vs
