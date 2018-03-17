@@ -181,7 +181,7 @@ client.on('message', message => {
         message: message,
     }
     var perm_checking = new check_perm(options_pch2);
-    perm_checking.then(pprm => {
+    perm_checking.check().then(pprm => {
         if (NoNyaWebhooks && !pprm && !(message.author.id == client.user.id) )
             return;
     
