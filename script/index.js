@@ -182,7 +182,7 @@ client.on('message', message => {
     }
     var perm_checking = new check_perm(options_pch2);
     perm_checking.then(pprm => {
-        if (NoNyaWebhooks && !pprm || message.author.id == client.user.id)
+        if (NoNyaWebhooks && !pprm && !(message.author.id == client.user.id) )
             return;
     
         //On récupère le suffix du vs
