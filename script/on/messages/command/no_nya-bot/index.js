@@ -23,7 +23,6 @@ exports.execute = () => {
     perm_nyach.check().then( nya => {
         if (!nya) {
             message.channel.send("Sorry I don't have the permissions MANAGE_WEBHOOKS.").then(m => m.delete(6000));
-            return;
         }
         perm_check.check().then( perm => {
             
