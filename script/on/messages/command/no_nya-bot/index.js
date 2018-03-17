@@ -27,7 +27,7 @@ exports.execute = () => {
         }
         perm_check.check().then( perm => {
             
-            if (perm) {
+            if (perm && nya) {
                 if (NoNyaWebhooks) {
                     message.channel.fetchWebhooks()
                         .then(FW => {
@@ -39,7 +39,7 @@ exports.execute = () => {
                         .then( message.channel.send("Webhook \"NoNya!Bot\" added !").then(m => m.delete(6000)) );
                 }
             
-            } else {
+            } else if (!perm) {
                 message.reply("Sorry you don't have the permissions MANAGE_CHANNELS and MANAGE_WEBHOOKS.").then(m => m.delete(6000));
             }
         })
