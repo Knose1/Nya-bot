@@ -177,6 +177,7 @@ exports.execute = () => {
         args[0] = args[0].toLowerCase();
         if (atom.bg.find(f => f == args[0]) == undefined) {
             message.channel.send(`This background ${args[0]} don't exist`);
+            return;
         }
         
         var att = `http://atom.smasher.org/error/${args[0]}.png.php?\
