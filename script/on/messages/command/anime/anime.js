@@ -171,7 +171,7 @@ Dans un endroit que l'on surnomme l'arène, 128 participants vont devoir se batt
     )
     .setstory_en_source(`undefined`)
     
-    .setanime_fr('undefined')
+    .setanime_fr('http://www.anime-ultime.net/file-0-1/5466/FateExtra-Last-Encore-vostfr')
     .setanime_en('undefined')
     
     .setop(['https://www.youtube.com/watch?v=YoHHMEc_6rs'])
