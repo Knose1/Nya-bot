@@ -15,7 +15,7 @@ new anime()
     .setop(['undefined'])
     .setopFull(['undefined'])
     .seted(['undefined'])
-    .setedFull(['undefined']);
+    .setedFull(['undefined'])
     
     .addTo(listAnime1);
 */
