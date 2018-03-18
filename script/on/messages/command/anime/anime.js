@@ -178,5 +178,5 @@ new anime()
  
 
 exports.load = () => {
-  return listAnime = listAnime1.object;
+  return listAnime = listAnime1.animes;
 }
