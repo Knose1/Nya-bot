@@ -154,10 +154,15 @@ new anime()
     
     .setstory_fr(
         
-        `undefined`
+        `Basé sur le jeu Fate/Extra sortie en 2010 sur PlayStation Portable.
+
+L'histoire se passe au sein de l'académie Tsukumihara, qui possède un environnement créé de toute pièce par le système Moon Cell. Cet environnement est la réplique parfaite de la Guerre du Saint Graal qui utilise le système SE.RA.PH pour invoquer les Servant.
+
+Dans un endroit que l'on surnomme l'arène, 128 participants vont devoir se battre grâce à leurs Servants pour obtenir le Saint Graal. Seulement une personne pourra l'obtenir.
+`
     
     )
-    .setstory_fr_source(`undefined`)
+    .setstory_fr_source([`Anime Ultime`,`http://www.anime-ultime.net/file-0-1/5466/FateExtra-Last-Encore-vostfr`])
     
     .setstory_en(
         
@@ -169,9 +174,9 @@ new anime()
     .setanime_fr('undefined')
     .setanime_en('undefined')
     
-    .setop(['undefined'])
+    .setop(['https://www.youtube.com/watch?v=YoHHMEc_6rs'])
     .setopFull(['https://www.youtube.com/watch?v=pq2Ira7hApg'])
-    .seted(['undefined'])
+    .seted(['https://www.youtube.com/watch?v=OjiiLTniyCs'])
     .setedFull(['https://www.youtube.com/watch?v=Ok-eSJNChss'])
      
     .addTo(listAnime1);
