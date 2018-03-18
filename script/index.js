@@ -17,6 +17,10 @@ client.on('ready', () => {
     
     client.channels.get('406802264540315648').send(`--Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} servers.`);
     
+    client.channels.get("420002162676858900").fetchMessage("424973658210041866").then(m => {
+        m.edit(listAnime.map(anime => {return `**N°${listAnime.indexOf(anime) + 1}** ${anime.name}`}).join("\n"))
+    });
+    
 });
 
 //Lorsque il a rejoins un serv
