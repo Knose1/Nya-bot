@@ -198,7 +198,7 @@ new anime()
     .setop([`https://www.youtube.com/watch?v=P9El0V0vWaU`])
     .setopFull([`https://www.youtube.com/watch?v=C0fmqy3MPa4`])
     .seted([`https://www.youtube.com/watch?v=xeRa7FNwtlY`])
-    .setedFull([`https://www.youtube.com/watch?v=tt_jLwMVNAs`]);
+    .setedFull([`https://www.youtube.com/watch?v=tt_jLwMVNAs`])
     
     .addTo(listAnime1);
 
