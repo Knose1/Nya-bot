@@ -22,10 +22,13 @@ exports.execute = () => {
         }
         if (anime.story_fr_source != `undefined`)
             var story_fr = `${anime.story_fr}\n\n[Source: ${anime.story_fr_source[0]}](${anime.story_fr_source[1]})`;
+        else
+            var story_fr = anime.story_fr;
         
         if (anime.story_en_source != `undefined`)
             var story_en = `${anime.story_en}\n\n[Source: ${anime.story_en_source[0]}](${anime.story_en_source[1]})`;
-        
+        else
+            var story_en = anime.story_en;
         
         var embedfr = new Discord.RichEmbed()
             .setTitle(anime.name)
@@ -206,10 +209,14 @@ exports.execute = () => {
                         
                         if (anime.story_fr_source != `undefined`)
                             var story_fr = `${anime.story_fr}\n\n[Source: ${anime.story_fr_source[0]}](${anime.story_fr_source[1]})`;
+                        else
+                            var story_fr = anime.story_fr;
                         
                         if (anime.story_en_source != `undefined`)
                             var story_en = `${anime.story_en}\n\n[Source: ${anime.story_en_source[0]}](${anime.story_en_source[1]})`;
-                        
+                        else
+                            var story_en = anime.story_en;
+                
                         var embedfr = new Discord.RichEmbed()
                             .setTitle(anime.name)
                             .setThumbnail(anime.image)
@@ -338,9 +345,13 @@ exports.execute = () => {
             
             if (anime.story_fr_source != `undefined`)
                 var story_fr = `${anime.story_fr}\n\n[Source: ${anime.story_fr_source[0]}](${anime.story_fr_source[1]})`;
-                
+            else
+                var story_fr = anime.story_fr;
+        
             if (anime.story_en_source != `undefined`)
                 var story_en = `${anime.story_en}\n\n[Source: ${anime.story_en_source[0]}](${anime.story_en_source[1]})`;
+            else
+                var story_en = anime.story_en;
             
             var embedfr = new Discord.RichEmbed()
                 .setTitle(anime.name)
