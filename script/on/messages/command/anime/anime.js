@@ -182,6 +182,27 @@ Dans un endroit que l'on surnomme l'arène, 128 participants vont devoir se batt
     .addTo(listAnime1);
  
 
+new anime()
+    .setname(`Sanrio Boys // Sanrio Danshi (サンリオ男子 en Japonais)`)
+    .setimage(`https://www.nautiljon.com/images/anime/00/76/mini/sanrio_danshi_6567.jpg?11521297809`)
+    
+    .setstory_fr(`On suit le quotidien d'un groupe de cinq jeunes garçons qui sont chacun fans d'un personnage du groupe Sanrio.`)
+    .setstory_fr_source([`Nautiljon`,`http://bit.ly/2G38kvR`])
+    
+    .setstory_en(`We follow the daily life of a group of five young boys who are each fans of a Sanrio's group's character. (Translated by <@327376797211820035>)`)
+    .setstory_en_source([`Nautiljon [FR]`,`http://bit.ly/2G38kvR`])
+    
+    .setanime_fr(`https://www.youtube.com/playlist?list=PLyT6R1TUs0uPBxd9U98dT1Ka1yUA7cxO7`)
+    .setanime_en(`https://www.youtube.com/playlist?list=PLyT6R1TUs0uM63Fqter3aBy_hDkHSHF_o`)
+    
+    .setop([`https://www.youtube.com/watch?v=P9El0V0vWaU`])
+    .setopFull([`https://www.youtube.com/watch?v=C0fmqy3MPa4`])
+    .seted([`https://www.youtube.com/watch?v=xeRa7FNwtlY`)
+    .setedFull([`https://www.youtube.com/watch?v=tt_jLwMVNAs`]);
+    
+    .addTo(listAnime1);
+
+
 exports.load = () => {
   return listAnime = listAnime1.animes;
 }
