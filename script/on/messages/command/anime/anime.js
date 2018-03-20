@@ -202,6 +202,26 @@ new anime()
     
     .addTo(listAnime1);
 
+//Il faut check la qualité des OP/ED ↓
+new anime()
+    .setname('La storia della Arcana Famiglia')
+    .setimage('http://www.jpopasia.com/i1/news/3/10075-lbrht5ecgh.jpg')
+    
+    .setstory_fr(`undefined`)
+    .setstory_fr_source(`undefined`)
+    
+    .setstory_en(`undefined`)
+    .setstory_en_source(`undefined`)
+    
+    .setanime_fr('undefined')
+    .setanime_en('undefined')
+    
+    .setop(['https://www.youtube.com/watch?v=fH9qpTJSSCY','https://www.youtube.com/watch?v=ihm8005rM3M'])
+    .setopFull(['https://www.youtube.com/watch?v=NlycbWjxpjA','https://www.youtube.com/watch?v=KMzTsW1Tpzk'])
+    .seted(['undefined'])
+    .setedFull(['https://www.youtube.com/watch?v=ARykpIbUry4'])
+    
+    .addTo(listAnime1);
 
 exports.load = () => {
   return listAnime = listAnime1.animes;
