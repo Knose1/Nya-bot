@@ -205,7 +205,7 @@ new anime()
 //Il faut check la qualité des OP/ED ↓
 new anime()
     .setname('La storia della Arcana Famiglia')
-    .setimage('http://www.jpopasia.com/i1/news/3/10075-lbrht5ecgh.jpg')
+    .setimage('https://www.nautiljon.com/images/anime/00/82/la_storia_della_arcana_famiglia_2228.jpg')
     
     .setstory_fr(`undefined`)
     .setstory_fr_source(`undefined`)
