@@ -16,7 +16,7 @@ exports.execute = () => {
             AnOp += `[Opening ${i + 1}](${anime.op[i]})\n`+
                     `[Opening ${i + 1} Full](${anime.opFull[i]})\n\n`;
             AnEd += `[Ending ${i + 1}](${anime.ed})\n`+
-                    `[Opening ${i + 1} Full](${anime.edFull})\n\n`
+                    `[Ending ${i + 1} Full](${anime.edFull})\n\n`
                     
         
         }
@@ -203,7 +203,7 @@ exports.execute = () => {
                             AnOp += `[Opening ${i + 1}](${anime.op[i]})\n`+
                                     `[Opening ${i + 1} Full](${anime.opFull[i]})\n\n`;
                             AnEd += `[Ending ${i + 1}](${anime.ed})\n`+
-                                    `[Opening ${i + 1} Full](${anime.edFull})\n\n`
+                                    `[Ending ${i + 1} Full](${anime.edFull})\n\n`
                     
         
                         }
@@ -339,7 +339,7 @@ exports.execute = () => {
                 AnOp += `[Opening ${i + 1}](${anime.op[i]})\n`+
                         `[Opening ${i + 1} Full](${anime.opFull[i]})\n\n`;
                 AnEd += `[Ending ${i + 1}](${anime.ed})\n`+
-                        `[Opening ${i + 1} Full](${anime.edFull})\n\n`
+                        `[Ending ${i + 1} Full](${anime.edFull})\n\n`
                 
                 
             }
