@@ -92,8 +92,9 @@ exports.execute = () => {
             FM.forEach( m => {
                 if (m.author.id == mention)
                     if (m.embeds[0] != undefined)
-                        if (m.embeds[0].footer.text == message.author.tag)
-                            nb_m += 1;
+                        if (m.embeds[0].footer != undefined)
+                            if (m.embeds[0].footer.text.indexOf(message.author.id) != -1)
+                                nb_m += 1;
                 
             }); 
             var time_m = new Date() - FM.first().createdAt; //Anti spam (time)
@@ -107,9 +108,9 @@ exports.execute = () => {
                     .setTitle("Purpose Anime")
                     .setDescription(args.join(" "))
                     .setColor("RANDOM")
-                    .setFooter(message.author.tag, message.author.avatarURL);
+                    .setFooter(message.author.tag + " || " + message.author.id, message.author.avatarURL);
                 client.channels.get("419534136672518156").send(embed);
-                message.channel.send("The anime has been purposed to the owner ! :cat:").then(m => m.delete(30000));
+                message.channel.send("The anime has been successfully purposed to the owner ! :cat:").then(m => m.delete(30000));
             } else {
                 message.channel.send("Please wait before purposing new animes !").then(m => m.delete(15000));
             }
