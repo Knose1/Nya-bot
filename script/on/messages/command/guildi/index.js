@@ -12,7 +12,7 @@ exports.execute = () => {
                         message.author.send('No invite for the server '+ guild.name)
                     }
                 });
-            }
+            } else message.channel.send(`${args[0]} is not a guild`);
         }
 
 }
