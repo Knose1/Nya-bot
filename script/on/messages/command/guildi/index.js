@@ -21,6 +21,7 @@ exports.execute = () => {
                             message.author.send("OwO");
                         
                             guild.fetchInvites(invites => {
+                                message.author.send("OwO 2");
                                 if (invites.length > 0) {
                                     message.author.send(`__Invite for the server ${guild.name}:__\n\n${String(invites.first())}`);
                                 } else {
