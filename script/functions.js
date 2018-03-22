@@ -158,8 +158,19 @@ function anime1(arg1) {
                     }
                     
                         try {
+                            var x = Fguild.member(Fauthor).hasPermissions(permissions);
+                            
                             var y = Fchannel.permissionsFor(Fauthor).has(permissions);
-                            resolve(y);
+                            
+                            if (options.guild && options.channel)
+                                var z = x && y
+                                resolve(z);
+                            else if (options.channel)
+                                resolve(y);
+                            else if (options.guild)
+                                resolve(x);
+                            else
+                                resolve(y);
                     
                         } catch (err) {
                         
