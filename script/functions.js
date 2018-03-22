@@ -158,8 +158,6 @@ function anime1(arg1) {
                     }
                     
                         try {
-                            var x = Fguild.member(Fauthor).hasPermissions(permissions);
-                            
                             var y = Fchannel.permissionsFor(Fauthor).has(permissions);
                             resolve(y);
                     
