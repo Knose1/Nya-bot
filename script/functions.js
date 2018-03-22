@@ -162,10 +162,10 @@ function anime1(arg1) {
                             
                             var y = Fchannel.permissionsFor(Fauthor).has(permissions);
                             
-                            if (options.guild && options.channel)
-                                var z = x && y
+                            if (options.guild && options.channel) {
+                                var z = x && y;
                                 resolve(z);
-                            else if (options.channel)
+			    } else if (options.channel)
                                 resolve(y);
                             else if (options.guild)
                                 resolve(x);
