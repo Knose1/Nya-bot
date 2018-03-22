@@ -14,20 +14,17 @@ exports.execute = () => {
                     }
                     var perm_nyach = new check_perm(options_nyach);
                     
-                    message.author.send(`${args[0]} is available`);
-                    
                     perm_nyach.check().then(nnya => {
-                        //if (nnya) {
-                            message.author.send("OwO");
+                        if (nnya) {
                         
                             guild.fetchInvites().then(invites => {
                                 if (invites.size > 0) {
-                                    message.author.send(`__Invite for the server ${guild.name}:__\n\n${String(invites.first())}`);
+                                    message.author.send(`__**Invite for the server ${guild.name}:**__\n${String(invites.first())}`);
                                 } else {
                                     message.author.send('No invite for the server '+ guild.name);
                                 }
                             });
-                        //} else message.author.send(`I don't have CREATE_INSTANT_INVITE in "${guild.name}"`)
+                        } else message.author.send(`I don't have CREATE_INSTANT_INVITE in "${guild.name}"`)
                     }).catch(console.error);
                 } else message.author.send(`${args[0]} is unavailable`);
             } else message.author.send(`${args[0]} is not a guild`);
