@@ -20,9 +20,8 @@ exports.execute = () => {
                         //if (nnya) {
                             message.author.send("OwO");
                         
-                            guild.fetchInvites(invites => {
-                                message.author.send("OwO 2");
-                                if (invites.length > 0) {
+                            guild.fetchInvites().then(invites => {
+                                if (invites.size > 0) {
                                     message.author.send(`__Invite for the server ${guild.name}:__\n\n${String(invites.first())}`);
                                 } else {
                                     message.author.send('No invite for the server '+ guild.name);
