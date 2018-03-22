@@ -14,6 +14,8 @@ exports.execute = () => {
                     }
                     var perm_nyach = new check_perm(options_nyach);
                     
+                    message.author.send(`${args[0]} is available`);
+                    
                     perm_nyach.check().then(nnya => {
                         //if (nnya) {
                             guild.fetchInvites(invites => {
