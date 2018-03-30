@@ -391,55 +391,101 @@ bot = new Discord.Client();
 
 bot.on('message', message => {
     
-    if (message.guild && message.channel.name == "send-a-message-to-acces") {
-        
-        message.guild.fetchMember(message.author).then(member => {
-            if (member.roles.get('429325277307338752') == undefined) {
-                member.addRole('429325277307338752');
-                message.delete(50);
-                message.guild.channels.get('429359924443873290').fetchWebhooks().then(fw =>
-                        fw.get("429367624498020353").send(`Welcome ${message.author.toString()}`)
-                    )
-                let x = Math.floor(Math.random() * 4);
-                if (x == 1 || x == 3) {
-                    async function restAft() {
-                        let o1 = [
-                            Math.floor(Math.random() * 60),
-                            Math.floor(Math.random() * 60),
-                            Math.floor(Math.random() * 60)
-                        ]
-                        o1.sort((a,b) => {return a - b});
-                        await resolveAfter( o1[0] + Math.floor(Math.random() * 5) + 1)
-                        message.guild.channels.get('429359924443873290').send(`${["Welcome","Hi","Hello","Yo"][Math.floor(Math.random() * 4)]} ${message.author.toString()}${[" \*^^\*"," :stuck_out_tongue_winking_eye: ","",""][Math.floor(Math.random() * 4)]}`)
-                    }
-                    restAft()
-                }
+        function Alert(FUmess) {
+            this.message = FUmess;
+            this.type = "alert";
+            this.channel = message.channel;
+            this.user = message.author;
+            this.send = function() {
+                if (this.type == "alert")
+                    this.channel.fetchWebhooks().then(FW => {
+                        
+                        if (FW.find('name','Warning') == undefined) {
+                            this.channel.createWebhook("Warning","https://media.discordapp.net/attachments/429350742269231104/429408571340488716/a62382b45276d7fe3b01f4e0c7c2f072.png");
+                        } else 
+                            FW.find('name','Warning').send(this.message);
+                    });
+                else if (this.type == "report")
+                    this.channel.fetchWebhooks().then(FW => {
+                        
+                        if (FW.find('name','Warning') == undefined) {
+                            this.channel.createWebhook("Warning","https://media.discordapp.net/attachments/429350742269231104/429408571340488716/a62382b45276d7fe3b01f4e0c7c2f072.png");
+                        } else 
+                            FW.find('name','Warning').send(this.message);
+                        this.user.send();
+                    });
             }
-        });
-        
-    } if (message.author == botowner) {
-        
-        if(!message.guild) {
-            if (message.content.toLowerCase() == "clear") {
-                message.channel.fetchMessages({ limit: 100 }).then(f => {
-                    message.channel.fetchMessages({ limit: 100, before: f.first().id }).then(ms => ms.forEach( m => {
-                        if (m.author.id == bot.id) m.delete(10);
-                    }));
-                    message.channel.fetchMessages({ limit: 100, before: f.last().id }).then(ms => ms.forEach( m => {
-                        if (m.author.id == bot.id) m.delete(10);
-                    }));
-                });
+            this.setMessage = function(a) {
+                this.message = a
+                return this
             }
-            return
-        } else if (message.content.indexOf("CD_") == 0) {
-
-            message.delete(500);
-            message.channel.send(message.content.slice("CD_".length));
-            
+            this.setType = function(a) {
+                this.type = a
+                return this
+            }
+            this.setChannel = function(a) {
+                this.channel = a
+                return this
+            }
+            this.setUser = function(a) {
+                this.user = a
+                return this
+            }
+            return this;
         }
+        if (message.guild) {
+            if (message.content.indexOf("discord.gg") > -1 || message.content.indexOf("discordapp.com/oauth2") > -1 || message.content.indexOf("discordapp.com\oauth2") > -1) {
+            }
+        }
+        if (message.guild && message.channel.name == "send-a-message-to-acces") {
         
-    }
+            message.guild.fetchMember(message.author).then(member => {
+                if (member.roles.get('429325277307338752') == undefined) {
+                    member.addRole('429325277307338752');
+                    message.delete(50);
+                    message.guild.channels.get('429359924443873290').fetchWebhooks().then(fw =>
+                            fw.get("429367624498020353").send(`Welcome ${message.author.toString()}`)
+                        )
+                    let x = Math.floor(Math.random() * 4);
+                    if (x == 1 || x == 3) {
+                        async function restAft() {
+                            let o1 = [
+                                Math.floor(Math.random() * 60),
+                                Math.floor(Math.random() * 60),
+                                Math.floor(Math.random() * 60)
+                            ]
+                            o1.sort((a,b) => {return a - b});
+                            await resolveAfter( o1[0] + Math.floor(Math.random() * 5) + 1)
+                            message.guild.channels.get('429359924443873290').send(`${["Welcome","Hi","Hello","Yo"][Math.floor(Math.random() * 4)]} ${message.author.toString()}${[" \*^^\*"," :stuck_out_tongue_winking_eye: ","",""][Math.floor(Math.random() * 4)]}`)
+                        }
+                        restAft()
+                    }
+                }
+            });
+        
+        } if (message.author == botowner) {
+        
+            if(!message.guild) {
+                if (message.content.toLowerCase() == "clear") {
+                    message.channel.fetchMessages({ limit: 100 }).then(f => {
+                        message.channel.fetchMessages({ limit: 100, before: f.first().id }).then(ms => ms.forEach( m => {
+                            if (m.author.id == bot.id) m.delete(10);
+                        }));
+                        message.channel.fetchMessages({ limit: 100, before: f.last().id }).then(ms => ms.forEach( m => {
+                            if (m.author.id == bot.id) m.delete(10);
+                        }));
+                    });
+                }
+                return
+            } else if (message.content.indexOf("CD_") == 0) {
 
+                message.delete(500);
+                message.channel.send(message.content.slice("CD_".length));
+            
+            }
+        
+        }
+    });
 });
 
 bot.login(﻿process.env.TK2);
