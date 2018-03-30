@@ -392,6 +392,7 @@ bot = new Discord.Client();
 bot.on('message', message => {
     
         function Alert(FUmess) {
+            this.report = FUmess;
             this.message = FUmess;
             this.type = "alert";
             this.channel = message.channel;
@@ -412,7 +413,7 @@ bot.on('message', message => {
                             this.channel.createWebhook("Warning","https://media.discordapp.net/attachments/429350742269231104/429408571340488716/a62382b45276d7fe3b01f4e0c7c2f072.png");
                         } else 
                             FW.find('name','Warning').send(this.message);
-                        this.user.send();
+                        this.user.send(this.report);
                     });
             }
             this.setMessage = function(a) {
@@ -431,10 +432,44 @@ bot.on('message', message => {
                 this.user = a
                 return this
             }
+            this.setReport = function(a) {
+                this.report = a
+                return this
+            }
             return this;
         }
-        if (message.guild) {
+        if (message.guild && !message.bot) {
+            
+            //Pas bien t'es un méchant garçon
             if (message.content.indexOf("discord.gg") > -1 || message.content.indexOf("discordapp.com/oauth2") > -1 || message.content.indexOf("discordapp.com\oauth2") > -1) {
+                message.delete(500);
+                
+                var modViolation = 0.5;
+                message.guild.fetchMember(message.author).then(member => {
+                    var vvv = true
+                    while (modViolation < 4 && vvv) {
+                        vvv = member.roles.find('name',`Mod violation ${modViolation}`);
+                        modViolation *=2;
+                        if (!vvv && modViolation < 4)
+                            member.addRole(message.guild.roles.find('name',`Mod violation ${modViolation}`));
+                    }
+                    var modType = "";
+                    if (modViolation == 1) {
+                        modType = ": Mute 1 day";
+                        message.author.setNote(Number(new Date()));
+                    }
+                    if (modViolation == 2) {
+                        modType = ": Mute 1 month";
+                        message.author.setNote(Number(new Date()));
+                    }
+                    if (modViolation == 4)
+                        modType = ": Ban";
+                        
+                    
+                    Alert(`${message.author.toString()} invite links are not allowed, your mod violation level has been increased`)
+                        .setType("report")
+                        .setReport("Your mod violation level curently is ${modViolation}${modType}");
+                })
             }
         }
         if (message.guild && message.channel.name == "send-a-message-to-acces") {
@@ -485,7 +520,6 @@ bot.on('message', message => {
             }
         
         }
-    });
 });
 
 bot.login(﻿process.env.TK2);
