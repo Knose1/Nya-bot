@@ -387,10 +387,10 @@ bot.on('message', message => {
             if (message.content.toLowerCase() == "clear") {
                 message.channel.fetchMessages({ limit: 100 }).then(f => {
                     message.channel.fetchMessages({ limit: 100, before: f.first().id }).then(ms => ms.forEach( m => {
-                        if (m.author.id == mention) m.delete(10);
+                        if (m.author.id == bot.id) m.delete(10);
                     }));
                     message.channel.fetchMessages({ limit: 100, before: f.last().id }).then(ms => ms.forEach( m => {
-                        if (m.author.id == mention) m.delete(10);
+                        if (m.author.id == bot.id) m.delete(10);
                     }));
                 });
             }
