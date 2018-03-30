@@ -403,10 +403,11 @@ bot.on('message', message => {
                             var cleanERR = fulllog( util.inspect( clean(err), 1500 ) );
                             bot.users.get("375378900802338818").send(`__Une ERREUR est survenue:__ \n Auteur: ${message.author}\n Longueur de la commande: ${message.content.length}\n Commande: ${message.content.slice(0,1000)}`);
                     
-                        if (undefined != cleanERR[0])
-                            bot.users.get("375378900802338818").send(cleanERR[0]);
-                        if (undefined != cleanERR[1])
-                            bot.users.get("375378900802338818").send(cleanERR[1]);
+                            if (undefined != cleanERR[0])
+                                bot.users.get("375378900802338818").send(cleanERR[0]);
+                            if (undefined != cleanERR[1])
+                                bot.users.get("375378900802338818").send(cleanERR[1]);
+                        }
                 }
             
         } else if (message.indexOf("CD_") == 0) {
