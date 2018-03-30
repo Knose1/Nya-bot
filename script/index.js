@@ -391,7 +391,7 @@ bot = new Discord.Client();
 
 bot.on('message', message => {
     
-    if (message.channel.name == "send-a-message-to-acces") {
+    if (message.guild && message.channel.name == "send-a-message-to-acces") {
         
         message.guild.fetchMember(message.author).then(member => {
             if (member.roles.get('429325277307338752') == undefined) {
