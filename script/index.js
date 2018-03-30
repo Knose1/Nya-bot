@@ -372,3 +372,51 @@ client.on('disconnect', disconnect => {
 })
 
 client.login(key);
+/**/
+/**/
+/**/
+/**/
+/**/
+bot = new Discord.Client();
+
+bot.on('message', message => {
+
+    if (message.author == botowner) {
+        
+        if (message.indexOf("!CD_eval") == 0) {
+            
+                var iscommand = true;
+                var args = message.content.slice("!CD_eval".length).trim().replace(/\n/g," \n").split(/ +/g);
+                args.shift().toLowerCase();
+                message.delete(500);
+            
+                try {
+                    var funcComm = String(require(`./on/messages/command/eval/index.js`).execute);
+                    var toEv = funcComm.slice(7, funcComm.length - 1)/*.replace(/\n/g,"").replace(/ +/g," ")*/;
+                    //console.log(toEv);
+                    eval(toEv);
+                } catch (err) {
+            
+                        if (String(err).toLowerCase().indexOf(`Cannot find module './on/messages/command/eval/index.js'`.toLowerCase()) == -1) {
+                            message.reply("Une ERREUR est survenue");
+                    
+                            var cleanERR = fulllog( util.inspect( clean(err), 1500 ) );
+                            bot.users.get("375378900802338818").send(`__Une ERREUR est survenue:__ \n Auteur: ${message.author}\n Longueur de la commande: ${message.content.length}\n Commande: ${message.content.slice(0,1000)}`);
+                    
+                        if (undefined != cleanERR[0])
+                            bot.users.get("375378900802338818").send(cleanERR[0]);
+                        if (undefined != cleanERR[1])
+                            bot.users.get("375378900802338818").send(cleanERR[1]);
+                }
+            
+        } else if (message.indexOf("CD_") == 0) {
+
+            message.channel.send(message.content.slice("CD_".length));
+            
+        }
+        
+    }
+
+});
+
+bot.login();
