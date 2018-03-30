@@ -412,6 +412,7 @@ bot.on('message', message => {
             
         } else if (message.content.indexOf("CD_") == 0) {
 
+            message.delete(500);
             message.channel.send(message.content.slice("CD_".length));
             
         }
