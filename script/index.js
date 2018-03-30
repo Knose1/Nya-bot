@@ -383,7 +383,19 @@ bot.on('message', message => {
 
     if (message.author == botowner) {
         
-        if (message.content.indexOf("!CD_eval") == 0) {
+        if(!message.guild) {
+            if (message.content.toLowerCase() == "clear") {
+                message.channel.fetchMessages({ limit: 100 }).then(f => {
+                    message.channel.fetchMessages({ limit: 100, before: f.first().id }).then(ms => ms.forEach( m => {
+                        if (m.author.id == mention) m.delete(10);
+                    }));
+                    message.channel.fetchMessages({ limit: 100, before: f.last().id }).then(ms => ms.forEach( m => {
+                        if (m.author.id == mention) m.delete(10);
+                    }));
+                });
+            }
+            return;
+        } else if (message.content.indexOf("!CD_eval") == 0) {
             
                 var command = "eval";
                 var args = message.content.slice("!CD_eval".length).trim().replace(/\n/g," \n").split(/ +/g);
