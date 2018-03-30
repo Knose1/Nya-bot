@@ -389,6 +389,8 @@ bot.on('message', message => {
             if (member.roles.get('429325277307338752') == undefined) {
                 member.addRole('429325277307338752');
                 message.delete(50);
+                if (Math.floor(Math.random() * 3) == 2)
+                    message.guild.channels.get('429359924443873290').send(`Welcome ${message.author.toString()}`)
             }
         });
         
