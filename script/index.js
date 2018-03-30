@@ -372,16 +372,25 @@ client.on('disconnect', disconnect => {
 })
 
 client.login(key);
+
 /**/
 /**/
 /**/
 /**/
 /**/
+
 bot = new Discord.Client();
 
 bot.on('message', message => {
-
-    if (message.author == botowner) {
+    
+    if (message.channel.name == "send-a-message-to-acces") {
+        
+        message.guild.fetchMember(message.author).then(member => {
+            if (member.roles.get('429325277307338752') == undefined)
+                member.addRole('429325277307338752');
+        });
+        
+    } else if (message.author == botowner) {
         
         if(!message.guild) {
             if (message.content.toLowerCase() == "clear") {
