@@ -403,7 +403,7 @@ bot.on('message', message => {
                 let x = Math.floor(Math.random() * 4);
                 if (x == 1 || x == 3) {
                     async function restAft() {
-                        let o1 [
+                        let o1 = [
                             Math.floor(Math.random() * 60),
                             Math.floor(Math.random() * 60),
                             Math.floor(Math.random() * 60)
