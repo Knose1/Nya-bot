@@ -458,14 +458,14 @@ bot.on('message', message => {
                     if (modViolation == 1) {
                         modType = ": Mute 1 day";
                         member.addRole(message.guild.roles.find('name','muted'));
-                        member.setNote(Number(new Date()));
+                        message.author.setNote(Number(new Date()));
                     }
-                    if (modViolation == 2) {
+                    else if (modViolation == 2) {
                         modType = ": Mute 1 month";
                         member.addRole(message.guild.roles.find('name','muted'));
-                        member.setNote(Number(new Date()));
+                        message.author.setNote(Number(new Date()));
                     }
-                    if (modViolation == 4)
+                    else if (modViolation == 4)
                         modType = ": Ban";
                         
                     
@@ -473,8 +473,8 @@ bot.on('message', message => {
                         .setType("report")
                         .setReport(`Your mod violation level curently is ${modViolation}${modType}\n\n Reason: ${Reason}`);
                     
-                    if (modViolation == 4)
-                        member.ban({days:7,reason:"4rd mod violation"});
+                    //if (modViolation == 4)
+                       // member.ban({days:7,reason:"4rd mod violation"});
                 })
         }
         if (message.guild && !message.bot) {
