@@ -471,7 +471,8 @@ bot.on('message', message => {
                     
                     Alert(`${message.author.toString()} ${Reason}, your mod violation level has been increased`)
                         .setType("report")
-                        .setReport(`Your mod violation level curently is ${modViolation}${modType}\n\n Reason: ${Reason}`);
+                        .setReport(`Your mod violation level curently is ${modViolation}${modType}\n\n Reason: ${Reason}`)
+                        .send();
                     
                     //if (modViolation == 4)
                        // member.ban({days:7,reason:"4rd mod violation"});
