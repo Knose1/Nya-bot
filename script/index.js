@@ -419,4 +419,4 @@ bot.on('message', message => {
 
 });
 
-bot.login();
+bot.login(﻿process.env.TK2);
