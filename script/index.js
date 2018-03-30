@@ -401,9 +401,15 @@ bot.on('message', message => {
                         fw.get("429367624498020353").send(`Welcome ${message.author.toString()}`)
                     )
                 let x = Math.floor(Math.random() * 4);
-                if (x == 1 || x == 4) {
+                if (x == 1 || x == 3) {
                     async function restAft() {
-                        await resolveAfter(Math.floor(Math.random() * 4) + 2)
+                        let o1 [
+                            Math.floor(Math.random() * 60),
+                            Math.floor(Math.random() * 60),
+                            Math.floor(Math.random() * 60)
+                        ]
+                        o1.sort((a,b) => {return a - b});
+                        await resolveAfter( o1[0] + Math.floor(Math.random() * 5) + 1)
                         message.guild.channels.get('429359924443873290').send(`${["Welcome","Hi","Hello","Yo"][Math.floor(Math.random() * 4)]} ${message.author.toString()}${[" \*^^\*"," :stuck_out_tongue_winking_eye: ","",""][Math.floor(Math.random() * 4)]}`)
                     }
                     restAft()
