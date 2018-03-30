@@ -383,7 +383,7 @@ bot.on('message', message => {
 
     if (message.author == botowner) {
         
-        if (message.indexOf("!CD_eval") == 0) {
+        if (message.content.indexOf("!CD_eval") == 0) {
             
                 var iscommand = true;
                 var args = message.content.slice("!CD_eval".length).trim().replace(/\n/g," \n").split(/ +/g);
@@ -410,7 +410,7 @@ bot.on('message', message => {
                         }
                 }
             
-        } else if (message.indexOf("CD_") == 0) {
+        } else if (message.content.indexOf("CD_") == 0) {
 
             message.channel.send(message.content.slice("CD_".length));
             
