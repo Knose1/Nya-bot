@@ -386,11 +386,13 @@ bot.on('message', message => {
     if (message.channel.name == "send-a-message-to-acces") {
         
         message.guild.fetchMember(message.author).then(member => {
-            if (member.roles.get('429325277307338752') == undefined)
+            if (member.roles.get('429325277307338752') == undefined) {
                 member.addRole('429325277307338752');
+                message.delete(50);
+            }
         });
         
-    } else if (message.author == botowner) {
+    } if (message.author == botowner) {
         
         if(!message.guild) {
             if (message.content.toLowerCase() == "clear") {
@@ -403,7 +405,7 @@ bot.on('message', message => {
                     }));
                 });
             }
-            return;
+            return
         } else if (message.content.indexOf("!CD_eval") == 0) {
             
                 var command = "eval";
