@@ -389,8 +389,12 @@ bot.on('message', message => {
             if (member.roles.get('429325277307338752') == undefined) {
                 member.addRole('429325277307338752');
                 message.delete(50);
-                if (Math.floor(Math.random() * 2) == 1)
-                    message.guild.channels.get('429359924443873290').send(`Welcome ${message.author.toString()}`)
+                message.guild.channels.get('429359924443873290').fetchWebhooks().then(fw =>
+                        fw.get("429367624498020353").send(`Welcome ${message.author.toString()}`)
+                    )
+                let x = Math.floor(Math.random() * 5);
+                if (x == 1 || x == 4)
+                     message.guild.channels.get('429359924443873290').send(`${["Welcome","Hi","Hello","Yo"][Math.floor(Math.random() * 5)]} ${message.author.toString()}${[" \*^^\*"," :stuck_out_tongue_winking_eye: ","",""][Math.floor(Math.random() * 5)]}`)
             }
         });
         
