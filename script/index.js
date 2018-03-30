@@ -385,7 +385,7 @@ bot.on('message', message => {
         
         if (message.content.indexOf("!CD_eval") == 0) {
             
-                var iscommand = true;
+                var command = "eval";
                 var args = message.content.slice("!CD_eval".length).trim().replace(/\n/g," \n").split(/ +/g);
                 args.shift().toLowerCase();
                 message.delete(500);
