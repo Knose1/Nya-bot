@@ -461,6 +461,7 @@ bot.on('message', message => {
                         modType = ": Mute 1 day";
                         member.addRole(message.guild.roles.find('name','muted'));
                         console.log("Ok addRole");
+                        console.log(message.author);
                         message.author.setNote( String(Number(new Date())) );
                         console.log("Ok setNote");
                     }
