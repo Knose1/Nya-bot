@@ -470,12 +470,12 @@ bot.on('message', message => {
                     else if (modViolation == 4)
                         modType = ": Ban";
                         
-                    
+                    console.log("Ok 2");
                     Alert(`${message.author.toString()} ${Reason}, your mod violation level has been increased`)
                         .setType("report")
                         .setReport(`Your mod violation level curently is ${modViolation}${modType}\n\n Reason: ${Reason}`)
                         .send();
-                    
+                    console.log("Ok 3");
                     //if (modViolation == 4)
                        // member.ban({days:7,reason:"4rd mod violation"});
                 })
