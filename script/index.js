@@ -458,12 +458,12 @@ bot.on('message', message => {
                     if (modViolation == 1) {
                         modType = ": Mute 1 day";
                         member.addRole(message.guild.roles.find('name','muted'));
-                        message.author.setNote(Number(new Date()));
+                        message.author.setNote( String(Number(new Date())) );
                     }
                     else if (modViolation == 2) {
                         modType = ": Mute 1 month";
                         member.addRole(message.guild.roles.find('name','muted'));
-                        message.author.setNote(Number(new Date()));
+                        message.author.setNote( String(Number(new Date())) );
                     }
                     else if (modViolation == 4)
                         modType = ": Ban";
