@@ -445,8 +445,9 @@ bot.on('message', message => {
         //Augmenter le modViolation
         function increaseMod(Reason) {
             
-            var modViolation = 0.5;
+            
                 message.guild.fetchMember(message.author).then(member => {
+                    var modViolation = 0.5;
                     var vvv = true
                     while (modViolation < 4 && vvv) {
                         vvv = member.roles.find('name',`Mod violation ${modViolation}`);
@@ -454,6 +455,7 @@ bot.on('message', message => {
                         if (!vvv && modViolation < 4)
                             member.addRole(message.guild.roles.find('name',`Mod violation ${modViolation}`));
                     }
+                    console.log("Ok");
                     var modType = "";
                     if (modViolation == 1) {
                         modType = ": Mute 1 day";
