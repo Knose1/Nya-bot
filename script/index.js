@@ -455,12 +455,14 @@ bot.on('message', message => {
                         if (!vvv && modViolation < 4)
                             member.addRole(message.guild.roles.find('name',`Mod violation ${modViolation}`));
                     }
-                    console.log("Ok");
+                    console.log("Ok first");
                     var modType = "";
                     if (modViolation == 1) {
                         modType = ": Mute 1 day";
                         member.addRole(message.guild.roles.find('name','muted'));
+                        console.log("Ok addRole");
                         message.author.setNote( String(Number(new Date())) );
+                        console.log("Ok setNote");
                     }
                     else if (modViolation == 2) {
                         modType = ": Mute 1 month";
@@ -470,12 +472,12 @@ bot.on('message', message => {
                     else if (modViolation == 4)
                         modType = ": Ban";
                         
-                    console.log("Ok 2");
+                    console.log("Ok Final");
                     Alert(`${message.author.toString()} ${Reason}, your mod violation level has been increased`)
                         .setType("report")
                         .setReport(`Your mod violation level curently is ${modViolation}${modType}\n\n Reason: ${Reason}`)
                         .send();
-                    console.log("Ok 3");
+                    console.log("Ok Alert");
                     //if (modViolation == 4)
                        // member.ban({days:7,reason:"4rd mod violation"});
                 })
