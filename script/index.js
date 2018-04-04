@@ -455,13 +455,13 @@ bot.on('message', message => {
                                 .setType("report")
                                 .setReport(`Your mod violation level curently is 4: Ban 7 days\n\n Reason: ${Reason} on spawn in the server`)
                                 .send();
-                            await resolveAfter(2);
+                            await resolveAfter(1);
                             member.ban({days:7,reason:Reason});
                         }
                         FireBan();
                         return;
                             
-                    }
+                    } else {
                     
                     var modViolation = 0.5;
                     var vvv = true
@@ -497,7 +497,8 @@ bot.on('message', message => {
                     //console.log("Ok Alert");
                     //if (modViolation == 4)
                        // member.ban({days:7,reason:"4rd mod violation"});
-                })
+                    }
+                });
         }
         if (message.guild && message.channel.name == "get-member-role") {
         
