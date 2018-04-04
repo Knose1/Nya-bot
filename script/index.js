@@ -463,10 +463,11 @@ bot.on('message', message => {
                 message.guild.fetchMember(message.author).then(member => {
                     
                     if (message.channel.name == "get-member-role") {
+                        Reason = "Mod violation on spawn, " + Reason;
                         async function FireBan() {
                             Alert()
                                 .setType("report")
-                                .setReport(`Your mod violation level curently is 4: Ban 7 days\n\n Reason: ${Reason} on spawn in the server`)
+                                .setReport(`Your mod violation level curently is 4: Ban 7 days\n\n Reason: ${Reason}`)
                                 .send();
                             await resolveAfter(1);
                             member.ban({days:7,reason:Reason});
@@ -556,7 +557,7 @@ bot.on('message', message => {
 			}
             
         
-        } if (message.content.indexOf("!CD_purge") == 0 && haveRole(message.author,"431001790474092545") ) {
+        } if (message.content.indexOf("!CD_purge") == 0 && (haveRole(message.author,"431001790474092545") || message.author == botowner)) {
 			
             if (message.content.slice("!CD_purge".length).trim().length != 0) {
                 if ("NaN" != String(Number( message.content.slice("!CD_purge".length).trim() )) ) {
