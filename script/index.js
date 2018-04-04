@@ -500,6 +500,17 @@ bot.on('message', message => {
                     }
                 });
         }
+    
+        if (message.guild && !message.bot) {
+            
+            //Reglement
+            if (message.content.indexOf("https://discordapp.com/invite/") > -1 || message.content.indexOf("discord.gg") > -1 || message.content.indexOf("discordapp.com/oauth2") > -1 || message.content.indexOf("discordapp.com\oauth2") > -1) {
+                message.delete(500);
+                increaseMod("invite links are not allowed");
+                    return;
+            }
+                
+        }
         if (message.guild && message.channel.name == "get-member-role") {
         
             message.guild.fetchMember(message.author).then(member => {
@@ -533,14 +544,6 @@ bot.on('message', message => {
             
             }
         
-        } if (message.guild && !message.bot) {
-            
-            //Pas bien t'es un méchant garçon
-            if (message.content.indexOf("https://discordapp.com/invite/") > -1 || message.content.indexOf("discord.gg") > -1 || message.content.indexOf("discordapp.com/oauth2") > -1 || message.content.indexOf("discordapp.com\oauth2") > -1) {
-                message.delete(500);
-                increaseMod("invite links are not allowed");
-            }
-                
         }
 });
 
