@@ -418,7 +418,7 @@ bot.on('message', message => {
                         
                         if (FW.find('name','Warning') == undefined) {
                             this.channel.createWebhook("Warning","https://media.discordapp.net/attachments/407271018516971532/431071685609783296/a62382b45276d7fe3b01f4e0c7c2f072.png");
-                        } else 
+                        } else if (this.message)
                             FW.find('name','Warning').send(this.message);
                     });
                 else if (this.type == "report")
@@ -426,7 +426,7 @@ bot.on('message', message => {
                         
                         if (FW.find('name','Warning') == undefined) {
                             this.channel.createWebhook("Warning","https://media.discordapp.net/attachments/407271018516971532/431071685609783296/a62382b45276d7fe3b01f4e0c7c2f072.png");
-                        } else 
+                        } else if (this.message)
                             FW.find('name','Warning').send(this.message);
                        
                         try {
@@ -464,7 +464,7 @@ bot.on('message', message => {
                     
                     if (message.channel.name == "get-member-role") {
                         async function FireBan() {
-                            Alert(`${message.author.toString()} ${Reason}, your mod violation level has been increased`)
+                            Alert()
                                 .setType("report")
                                 .setReport(`Your mod violation level curently is 4: Ban 7 days\n\n Reason: ${Reason} on spawn in the server`)
                                 .send();
