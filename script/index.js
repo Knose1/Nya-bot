@@ -391,6 +391,19 @@ bot = new Discord.Client();
 
 bot.on('message', message => {
     
+    function haveRole(user,role) {
+        if (user.id)
+            var v1 = message.guild.members.get(user.id);
+        else
+            var v1 = message.guild.members.get(user);
+        
+        
+        if (role.id) 
+            return Boolean( v1.roles.get(role.id) );
+        else
+            return Boolean( v1.roles.get(role) );
+    }
+    
     if (message.guild) if (message.guild.id != "430843861326102529") return;
     
         function Alert(FUmess) {
@@ -542,27 +555,27 @@ bot.on('message', message => {
                 message.delete(500);
                 message.channel.send(message.content.slice("CD_".length));
             
-            } else if (message.content.indexOf("!CD_purge") == 0) {
-                
-                message.delete(500);
-                if (message.content.slice("!CD_purge".length).trim().length != 0) {
-                    if ("NaN" != String(Number( message.content.slice("!CD_purge".length).trim() )) ) {
-                        if ( Math.floor( Number(message.content.slice("!CD_purge".length).trim() ) ) <= 100 && Math.floor( Number(message.content.slice("!CD_purge".length).trim() ) ) > 0 ) {
-                            message.delete(500);
-                            message.channel.fetchMessages({before: message.id, limit: Math.floor( Number(message.content.slice("!CD_purge".length).trim() ) ) }).then(ms => ms.forEach( m => {
-                                m.delete(10);
-                            }));
-                        } else {
-                            message.channel.send("Please enter a number between 1 and 100").then(m => m.delete(8000))
-                        }
+            
+        
+        } if (message.content.indexOf("!CD_purge") == 0 && haveRole(message.author,"431001790474092545") ) {
+            
+            message.delete(500);
+            if (message.content.slice("!CD_purge".length).trim().length != 0) {
+                if ("NaN" != String(Number( message.content.slice("!CD_purge".length).trim() )) ) {
+                    if ( Math.floor( Number(message.content.slice("!CD_purge".length).trim() ) ) <= 100 && Math.floor( Number(message.content.slice("!CD_purge".length).trim() ) ) > 0 ) {     
+                        message.delete(500);
+                        message.channel.fetchMessages({before: message.id, limit: Math.floor( Number(message.content.slice("!CD_purge".length).trim() ) ) }).then(ms => ms.forEach( m => {
+                            m.delete(10);
+                        }));
                     } else {
-                        message.channel.send("Please enter a number to purge").then(m => m.delete(8000))
+                        message.channel.send("Please enter a number between 1 and 100").then(m => m.delete(8000))
                     }
                 } else {
                     message.channel.send("Please enter a number to purge").then(m => m.delete(8000))
                 }
+            } else {
+                message.channel.send("Please enter a number to purge").then(m => m.delete(8000))
             }
-        
         }
 });
 
