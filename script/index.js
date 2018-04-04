@@ -451,14 +451,15 @@ bot.on('message', message => {
                     
                     if (message.channel.name == "get-member-role") {
                         async function FireBan() {
-                            await Alert(`${message.author.toString()} ${Reason}, your mod violation level has been increased`)
+                            Alert(`${message.author.toString()} ${Reason}, your mod violation level has been increased`)
                                 .setType("report")
                                 .setReport(`Your mod violation level curently is 4: Ban 7 days\n\n Reason: ${Reason} on spawn in the server`)
                                 .send();
+                            await resolveAfter(2);
                             member.ban({days:7,reason:Reason});
                         }
-                            FireBan();
-                            return;
+                        FireBan();
+                        return;
                             
                     }
                     
