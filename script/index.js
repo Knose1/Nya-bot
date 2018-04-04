@@ -447,16 +447,17 @@ bot.on('message', message => {
         //Augmenter le modViolation
         function increaseMod(Reason) {
             
-                if (message.channel.name == "get-member-role") {
-                    Alert(`${message.author.toString()} ${Reason}, your mod violation level has been increased`)
-                        .setType("report")
-                        .setReport(`Your mod violation level curently is 4: Ban 7 days\n\n Reason: ${Reason} on spawn in the server`)
-                        .send();
-                    member.ban({days:7,reason:Reason});
-                    return;
-                }
-            
                 message.guild.fetchMember(message.author).then(member => {
+                    
+                    if (message.channel.name == "get-member-role") {
+                        Alert(`${message.author.toString()} ${Reason}, your mod violation level has been increased`)
+                            .setType("report")
+                            .setReport(`Your mod violation level curently is 4: Ban 7 days\n\n Reason: ${Reason} on spawn in the server`)
+                            .send();
+                        member.ban({days:7,reason:Reason});
+                        return;
+                    }
+                    
                     var modViolation = 0.5;
                     var vvv = true
                     while (modViolation < 4 && vvv) {
@@ -529,7 +530,7 @@ bot.on('message', message => {
         } if (message.guild && !message.bot) {
             
             //Pas bien t'es un méchant garçon
-            if (message.content.indexOf("discord.gg") > -1 || message.content.indexOf("discordapp.com/oauth2") > -1 || message.content.indexOf("discordapp.com\oauth2") > -1) {
+            if (message.content.indexOf("https://discordapp.com/invite/") > -1 || message.content.indexOf("discord.gg") > -1 || message.content.indexOf("discordapp.com/oauth2") > -1 || message.content.indexOf("discordapp.com\oauth2") > -1) {
                 message.delete(500);
                 increaseMod("invite links are not allowed");
             }
