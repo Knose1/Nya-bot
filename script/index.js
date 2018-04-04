@@ -450,12 +450,15 @@ bot.on('message', message => {
                 message.guild.fetchMember(message.author).then(member => {
                     
                     if (message.channel.name == "get-member-role") {
-                        Alert(`${message.author.toString()} ${Reason}, your mod violation level has been increased`)
-                            .setType("report")
-                            .setReport(`Your mod violation level curently is 4: Ban 7 days\n\n Reason: ${Reason} on spawn in the server`)
-                            .send();
-                        member.ban({days:7,reason:Reason});
-                        return;
+                        async function FireBan() {
+                            await Alert(`${message.author.toString()} ${Reason}, your mod violation level has been increased`)
+                                .setType("report")
+                                .setReport(`Your mod violation level curently is 4: Ban 7 days\n\n Reason: ${Reason} on spawn in the server`)
+                                .send();
+                            member.ban({days:7,reason:Reason});
+                            return;
+                            FireBan();
+                        }
                     }
                     
                     var modViolation = 0.5;
