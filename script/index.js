@@ -555,6 +555,7 @@ bot.on('message', message => {
                 message.delete(500);
                 message.channel.send(message.content.slice("CD_".length));
             
+            }
             
         
         } if (message.content.indexOf("!CD_purge") == 0 && haveRole(message.author,"431001790474092545") ) {
