@@ -513,18 +513,17 @@ bot.on('message', message => {
                     }
                 });
         }
-    	var i_m_not_true = true;
-        if (message.guild && !message.bot) {
+    	if (message.guild && !message.bot && message.author != botowner) {
             
             //Reglement
             if (message.content.indexOf("https://discordapp.com/invite/") > -1 || message.content.indexOf("discord.gg") > -1 || message.content.indexOf("discordapp.com/oauth2") > -1 || message.content.indexOf("discordapp.com\oauth2") > -1) {
                 message.delete(500);
                 increaseMod("invite links are not allowed");
-				i_m_not_true = false;
+				return;
                 //return;
             }
                 
-        } if (i_m_not_true && message.guild && message.channel.name == "get-member-role") {
+        } if (message.guild && message.channel.name == "get-member-role") {
         
             message.guild.fetchMember(message.author).then(member => {
                 if (member.roles.find('name','Members') == undefined) {
@@ -536,7 +535,7 @@ bot.on('message', message => {
                 }
             });
         
-        } if (i_m_not_true && message.author == botowner) {
+        } if (message.author == botowner) {
         
             if(!message.guild) {
                 if (message.content.toLowerCase() == "clear") {
@@ -557,7 +556,7 @@ bot.on('message', message => {
 			}
             
         
-        } if (i_m_not_true && message.content.indexOf("!CD_purge") == 0 && haveRole(message.author,"431001790474092545") ) {
+        } if (message.content.indexOf("!CD_purge") == 0 && haveRole(message.author,"431001790474092545") ) {
 			
             if (message.content.slice("!CD_purge".length).trim().length != 0) {
                 if ("NaN" != String(Number( message.content.slice("!CD_purge".length).trim() )) ) {
