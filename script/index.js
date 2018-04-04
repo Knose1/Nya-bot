@@ -477,7 +477,7 @@ bot.on('message', message => {
                             
                     } else {
                     
-                    var modViolation = 0.5;
+                    var modViolation = 0.25;
                     var vvv = true
                     while (modViolation < 4 && vvv) {
                         vvv = member.roles.find('name',`Mod violation ${modViolation}`);
