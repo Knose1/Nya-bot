@@ -390,8 +390,8 @@ function resolveAfter(x) {
 bot = new Discord.Client();
 
 bot.on('message', message => {
-        
-    if (message.guild.id != "430843861326102529") return;
+    
+    if (message.guild) if (message.guild.id != "430843861326102529") return;
     
         function Alert(FUmess) {
             this.report = FUmess;
@@ -456,9 +456,10 @@ bot.on('message', message => {
                                 .setReport(`Your mod violation level curently is 4: Ban 7 days\n\n Reason: ${Reason} on spawn in the server`)
                                 .send();
                             member.ban({days:7,reason:Reason});
-                            return;
-                            FireBan();
                         }
+                            FireBan();
+                            return;
+                            
                     }
                     
                     var modViolation = 0.5;
