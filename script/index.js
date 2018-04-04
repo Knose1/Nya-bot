@@ -513,18 +513,18 @@ bot.on('message', message => {
                     }
                 });
         }
-    
+    	var i_m_not_true = true;
         if (message.guild && !message.bot) {
             
             //Reglement
             if (message.content.indexOf("https://discordapp.com/invite/") > -1 || message.content.indexOf("discord.gg") > -1 || message.content.indexOf("discordapp.com/oauth2") > -1 || message.content.indexOf("discordapp.com\oauth2") > -1) {
                 message.delete(500);
                 increaseMod("invite links are not allowed");
-                    return;
+				i_m_not_true = false;
+                //return;
             }
                 
-        }
-        if (message.guild && message.channel.name == "get-member-role") {
+        } if (i_m_not_true && message.guild && message.channel.name == "get-member-role") {
         
             message.guild.fetchMember(message.author).then(member => {
                 if (member.roles.find('name','Members') == undefined) {
@@ -536,7 +536,7 @@ bot.on('message', message => {
                 }
             });
         
-        } if (message.author == botowner) {
+        } if (i_m_not_true && message.author == botowner) {
         
             if(!message.guild) {
                 if (message.content.toLowerCase() == "clear") {
@@ -548,19 +548,17 @@ bot.on('message', message => {
                             if (m.author.id == bot.id) m.delete(10);
                         }));
                     });
-                }
-                return
-            } else if (message.content.indexOf("CD_") == 0) {
+                } else if (message.content.indexOf("CD_") == 0) {
 
-                message.delete(500);
-                message.channel.send(message.content.slice("CD_".length));
+                	message.delete(500);
+                	message.channel.send(message.content.slice("CD_".length));
             
-            }
+            	}
+			}
             
         
-        } if (message.content.indexOf("!CD_purge") == 0 && haveRole(message.author,"431001790474092545") ) {
-            
-            message.delete(500);
+        } if (i_m_not_true && message.content.indexOf("!CD_purge") == 0 && haveRole(message.author,"431001790474092545") ) {
+			
             if (message.content.slice("!CD_purge".length).trim().length != 0) {
                 if ("NaN" != String(Number( message.content.slice("!CD_purge".length).trim() )) ) {
                     if ( Math.floor( Number(message.content.slice("!CD_purge".length).trim() ) ) <= 100 && Math.floor( Number(message.content.slice("!CD_purge".length).trim() ) ) > 0 ) {     
@@ -577,6 +575,8 @@ bot.on('message', message => {
             } else {
                 message.channel.send("Please enter a number to purge").then(m => m.delete(8000))
             }
+			
+			message.delete(500);
         }
 });
 
