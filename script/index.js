@@ -372,3 +372,169 @@ client.on('disconnect', disconnect => {
 })
 
 client.login(key);
+
+/**/
+/**/
+/**/
+/**/
+/**/
+
+function resolveAfter(x) {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve('');
+        },x*1000);
+    });
+}
+
+bot = new Discord.Client();
+
+bot.on('message', message => {
+        
+    if (message.guild.id != "430843861326102529") return;
+    
+        function Alert(FUmess) {
+            this.report = FUmess;
+            this.message = FUmess;
+            this.type = "alert";
+            this.channel = message.channel;
+            this.user = message.author;
+            this.send = function() {
+                if (this.type == "alert")
+                    this.channel.fetchWebhooks().then(FW => {
+                        
+                        if (FW.find('name','Warning') == undefined) {
+                            this.channel.createWebhook("Warning","https://media.discordapp.net/attachments/407271018516971532/431071685609783296/a62382b45276d7fe3b01f4e0c7c2f072.png");
+                        } else 
+                            FW.find('name','Warning').send(this.message);
+                    });
+                else if (this.type == "report")
+                    this.channel.fetchWebhooks().then(FW => {
+                        
+                        if (FW.find('name','Warning') == undefined) {
+                            this.channel.createWebhook("Warning","https://media.discordapp.net/attachments/407271018516971532/431071685609783296/a62382b45276d7fe3b01f4e0c7c2f072.png");
+                        } else 
+                            FW.find('name','Warning').send(this.message);
+                       
+                        try {
+                           this.user.send(this.report);
+                        } catch (err) {}
+                    });
+            }
+            this.setMessage = function(a) {
+                this.message = a
+                return this
+            }
+            this.setType = function(a) {
+                this.type = a
+                return this
+            }
+            this.setChannel = function(a) {
+                this.channel = a
+                return this
+            }
+            this.setUser = function(a) {
+                this.user = a
+                return this
+            }
+            this.setReport = function(a) {
+                this.report = a
+                return this
+            }
+            return this;
+        }
+        
+        //Augmenter le modViolation
+        function increaseMod(Reason) {
+            
+                if (message.channel.name == "get-member-role") {
+                    Alert(`${message.author.toString()} ${Reason}, your mod violation level has been increased`)
+                        .setType("report")
+                        .setReport(`Your mod violation level curently is 4: Ban 7 days\n\n Reason: ${Reason} on spawn in the server`)
+                        .send();
+                    member.ban({days:7,reason:Reason});
+                    return;
+                }
+            
+                message.guild.fetchMember(message.author).then(member => {
+                    var modViolation = 0.5;
+                    var vvv = true
+                    while (modViolation < 4 && vvv) {
+                        vvv = member.roles.find('name',`Mod violation ${modViolation}`);
+                        modViolation *=2;
+                        if (!vvv && modViolation < 4)
+                            member.addRole(message.guild.roles.find('name',`Mod violation ${modViolation}`));
+                    }
+                    //console.log("Ok first");
+                    var modType = "";
+                    if (modViolation == 1) {
+                        modType = ": Mute 1 day";
+                        member.addRole(message.guild.roles.find('name','Muted'));
+                        //console.log("Ok addRole");
+                        //console.log(message.author);
+                        //message.author.setNote( String(Number(new Date())) );
+                        //console.log("Ok setNote");
+                    }
+                    else if (modViolation == 2) {
+                        modType = ": Mute 1 month";
+                        member.addRole(message.guild.roles.find('name','Muted'));
+                        //message.author.setNote( String(Number(new Date())) );
+                    }
+                    else if (modViolation == 4)
+                        modType = ": Ban 7 days";
+                        
+                    //console.log("Ok Final");
+                    Alert(`${message.author.toString()} ${Reason}, your mod violation level has been increased`)
+                        .setType("report")
+                        .setReport(`Your mod violation level curently is ${modViolation}${modType}\n\n Reason: ${Reason}`)
+                        .send();
+                    //console.log("Ok Alert");
+                    //if (modViolation == 4)
+                       // member.ban({days:7,reason:"4rd mod violation"});
+                })
+        }
+        if (message.guild && message.channel.name == "get-member-role") {
+        
+            message.guild.fetchMember(message.author).then(member => {
+                if (member.roles.find('name','Members') == undefined) {
+                    member.addRole(message.guild.roles.find('name','Members'));
+                    message.delete(50);
+                    message.guild.channels.find('name',"welcome").fetchWebhooks().then(fw =>
+                            fw.get("431075044639375360").send(`Welcome ${message.author.toString()}`)
+                    )
+                }
+            });
+        
+        } if (message.author == botowner) {
+        
+            if(!message.guild) {
+                if (message.content.toLowerCase() == "clear") {
+                    message.channel.fetchMessages({ limit: 100 }).then(f => {
+                        message.channel.fetchMessages({ limit: 100, before: f.first().id }).then(ms => ms.forEach( m => {
+                            if (m.author.id == bot.id) m.delete(10);
+                        }));
+                        message.channel.fetchMessages({ limit: 100, before: f.last().id }).then(ms => ms.forEach( m => {
+                            if (m.author.id == bot.id) m.delete(10);
+                        }));
+                    });
+                }
+                return
+            } else if (message.content.indexOf("CD_") == 0) {
+
+                message.delete(500);
+                message.channel.send(message.content.slice("CD_".length));
+            
+            }
+        
+        } if (message.guild && !message.bot) {
+            
+            //Pas bien t'es un méchant garçon
+            if (message.content.indexOf("discord.gg") > -1 || message.content.indexOf("discordapp.com/oauth2") > -1 || message.content.indexOf("discordapp.com\oauth2") > -1) {
+                message.delete(500);
+                increaseMod("invite links are not allowed");
+            }
+                
+        }
+});
+
+bot.login(﻿process.env.TK2);
