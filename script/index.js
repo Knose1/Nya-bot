@@ -497,7 +497,7 @@ bot.on('message', message => {
         
             message.guild.fetchMember(message.author).then(member => {
                 if (member.roles.find('name','Members') == undefined) {
-                    member.addRole(message.guild.roles.find('name','Members'));
+                    member.addRole(message.guild.roles.find('name','Members').id);
                     message.delete(50);
                     message.guild.channels.find('name',"welcome").fetchWebhooks().then(fw =>
                             fw.get("431075044639375360").send(`Welcome ${message.author.toString()}`)
