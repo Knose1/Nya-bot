@@ -544,11 +544,12 @@ bot.on('message', message => {
             
             } else if (message.content.indexOf("!CD_purge") == 0) {
                 
-                if (message.content.slice("!CD_purge".length).length != 0) {
-                    if ("NaN" != String(Number( message.content.slice("!CD_purge".length) )) ) {
-                        if ( Math.floor( Number(message.content.slice("!CD_purge".length)) ) <= 100 && Math.floor( Number(message.content.slice("!CD_purge".length)) ) > 0 ) {
+                message.delete(500);
+                if (message.content.slice("!CD_purge".length).trim().length != 0) {
+                    if ("NaN" != String(Number( message.content.slice("!CD_purge".length).trim() )) ) {
+                        if ( Math.floor( Number(message.content.slice("!CD_purge".length).trim() ) ) <= 100 && Math.floor( Number(message.content.slice("!CD_purge".length).trim() ) ) > 0 ) {
                             message.delete(500);
-                            message.channel.fetchMessages({ limit: Math.floor( Number(message.content.slice("!CD_purge".length)) ) }).then(ms => ms.forEach( m => {
+                            message.channel.fetchMessages({ limit: Math.floor( Number(message.content.slice("!CD_purge".length).trim() ) ) }).then(ms => ms.forEach( m => {
                                 m.delete(10);
                             }));
                         } else {
