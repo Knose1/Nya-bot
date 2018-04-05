@@ -508,13 +508,13 @@ bot.on('message', message => {
                         modType = ": Mute 1 day";
                         member.addRole(message.guild.roles.find('name','Muted'));
                         member.removeRole(message.guild.roles.find('name','Members'));
-                        message.author.setNickname( String(Number(new Date())) );
+                        member.setNickname( String(Number(new Date())) );
                     }
                     else if (modViolation == 2) {
                         modType = ": Mute 1 month";
                         member.addRole(message.guild.roles.find('name','Muted'));
                         member.removeRole(message.guild.roles.find('name','Members'));
-                        message.author.setNickname( String(Number(new Date())) );
+                        member.setNickname( String(Number(new Date())) );
                     }
                     else if (modViolation == 4)
                         modType = ": Ban 7 days";
