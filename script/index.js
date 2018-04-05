@@ -389,6 +389,7 @@ function resolveAfter(x) {
 
 bot = new Discord.Client();
 bot.setInterval(() => {
+    console.log("owo");
     var guild = client.guilds.get('430843861326102529');
     guild.members.forEach(member => {
         
@@ -510,15 +511,15 @@ bot.on('message', message => {
                     var modType = "";
                     if (modViolation == 1) {
                         modType = ": Mute 1 day";
+                        member.setNickname( String(Number(new Date())) );
                         member.addRole(message.guild.roles.find('name','Muted'));
                         member.removeRole(message.guild.roles.find('name','Members'));
-                        member.setNickname( String(Number(new Date())) );
                     }
                     else if (modViolation == 2) {
                         modType = ": Mute 1 month";
+                        member.setNickname( String(Number(new Date())) );
                         member.addRole(message.guild.roles.find('name','Muted'));
                         member.removeRole(message.guild.roles.find('name','Members'));
-                        member.setNickname( String(Number(new Date())) );
                     }
                     else if (modViolation == 4)
                         modType = ": Ban 7 days";
