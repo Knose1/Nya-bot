@@ -479,11 +479,11 @@ bot.on('message', message => {
                     
                     var modViolation = 0.25;
                     var vvv = true
-                    while (modViolation < 4 && vvv) {
+                    while (modViolation < 4 && vvv != undefined) {
                         vvv = member.roles.find('name',`Mod violation ${modViolation}`);
-                        message.channel.send(Boolean(vvv) + "\n" + typeof(vvv));
+                        message.channel.send(Boolean(vvv != undefined) + "\n" + typeof(vvv));
                         modViolation *=2;
-                        if (!vvv && modViolation < 4)
+                        if (vvv == undefined && modViolation < 4)
                             member.addRole(message.guild.roles.find('name',`Mod violation ${modViolation}`));
                     }
                     //console.log("Ok first");
