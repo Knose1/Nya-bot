@@ -484,11 +484,10 @@ bot.on('message', message => {
                         
                         //message.channel.send(Boolean(vvv != undefined) + "\n" + typeof(vvv));
                         
-                        if (!vvv && modViolation < 4) {
+                        if (!vvv && modViolation < 4) 
                             member.addRole(message.guild.roles.find('name',`Mod violation ${modViolation}`));
-                        }
-                        
-                        modViolation *=2;
+                        else 
+                            modViolation *=2;
                     }
                     //console.log("Ok first");
                     var modType = "";
