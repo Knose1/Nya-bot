@@ -388,7 +388,20 @@ function resolveAfter(x) {
 }
 
 bot = new Discord.Client();
-
+bot.setInterval(() => {
+    var guild = client.guilds.get('430843861326102529');
+    guild.members.forEach(member => {
+        
+         if (member.roles.find('name',"Muted") != undefined) {
+            if (member.roles.find('name',"Mod violation 2") != undefined && new Date(new Date() - new Date(member.nickname)) > new Date(0,1,0,0,0,0,0)) {
+                
+            } else if (member.roles.find('name',"Mod violation 1") != undefined && new Date(new Date() - new Date(member.nickname)) > new Date(0,0,1,0,0,0,0)) {
+            
+            }
+        }
+        
+    });
+}, 2000)
 bot.on('message', message => {
     
     function haveRole(user,role) {
@@ -494,15 +507,14 @@ bot.on('message', message => {
                     if (modViolation == 1) {
                         modType = ": Mute 1 day";
                         member.addRole(message.guild.roles.find('name','Muted'));
-                        //console.log("Ok addRole");
-                        //console.log(message.author);
-                        //message.author.setNote( String(Number(new Date())) );
-                        //console.log("Ok setNote");
+                        member.removeRole(message.guild.roles.find('name','Members'));
+                        message.author.setNickname( String(Number(new Date())) );
                     }
                     else if (modViolation == 2) {
                         modType = ": Mute 1 month";
                         member.addRole(message.guild.roles.find('name','Muted'));
-                        //message.author.setNote( String(Number(new Date())) );
+                        member.removeRole(message.guild.roles.find('name','Members'));
+                        message.author.setNickname( String(Number(new Date())) );
                     }
                     else if (modViolation == 4)
                         modType = ": Ban 7 days";
@@ -513,8 +525,8 @@ bot.on('message', message => {
                         .setReport(`Your mod violation level curently is ${modViolation}${modType}\n\n Reason: ${Reason}`)
                         .send();
                     //console.log("Ok Alert");
-                    //if (modViolation == 4)
-                       // member.ban({days:7,reason:"4rd mod violation"});
+                    if (modViolation == 4)
+                        member.ban({days:7,reason:"4rd mod violation"});
                     }
                 });
         }
