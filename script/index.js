@@ -481,6 +481,7 @@ bot.on('message', message => {
                     var vvv = true
                     while (modViolation < 4 && vvv) {
                         vvv = member.roles.find('name',`Mod violation ${modViolation}`);
+                        message.channel.send(vvv.toString());
                         modViolation *=2;
                         if (!vvv && modViolation < 4)
                             member.addRole(message.guild.roles.find('name',`Mod violation ${modViolation}`));
