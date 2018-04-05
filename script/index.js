@@ -395,10 +395,12 @@ bot.setInterval(() => {
          if (member.roles.find('name',"Muted") != undefined) {
             if (member.roles.find('name',"Mod violation 2") != undefined && new Date(new Date() - new Date(member.nickname)) > new Date(0,1,0,0,0,0,0)) {
                 member.setNickname("_");
-                member.removeRole(message.guild.roles.find('name','Muted'))
+                member.removeRole(guild.roles.find('name','Muted'));
+                member.addRole(guild.roles.find('name','Members'));
             } else if (member.roles.find('name',"Mod violation 1") != undefined && new Date(new Date() - new Date(member.nickname)) > new Date(0,0,1,0,0,0,0)) {
                 member.setNickname("_");
-                member.removeRole(message.guild.roles.find('name','Muted'))
+                member.removeRole(guild.roles.find('name','Muted'));
+                member.addRole(guild.roles.find('name','Members'));
             }
         }
         
