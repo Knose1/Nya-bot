@@ -481,7 +481,7 @@ bot.on('message', message => {
                     var vvv = true
                     while (modViolation < 4 && vvv) {
                         vvv = member.roles.find('name',`Mod violation ${modViolation}`);
-                        message.channel.send(vvv.toString());
+                        message.channel.send(Boolean(vvv) + "\n" + typeof(vvv));
                         modViolation *=2;
                         if (!vvv && modViolation < 4)
                             member.addRole(message.guild.roles.find('name',`Mod violation ${modViolation}`));
@@ -549,13 +549,13 @@ bot.on('message', message => {
                             if (m.author.id == bot.id) m.delete(10);
                         }));
                     });
-                } else if (message.content.indexOf("CD_") == 0) {
-
-                	message.delete(500);
-                	message.channel.send(message.content.slice("CD_".length));
+                }
+            } else if (message.content.indexOf("CD_") == 0) {
+                
+                message.delete(500);
+                message.channel.send(message.content.slice("CD_".length));
             
-            	}
-			}
+            }
             
         
         } if (message.content.indexOf("!CD_purge") == 0 && (haveRole(message.author,"431001790474092545") || message.author == botowner)) {
