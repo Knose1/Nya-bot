@@ -404,7 +404,7 @@ function resolveAfter(x) {
 
 bot = new Discord.Client();
 bot.on('ready', () => {
-    
+    console.log("OwO");
     bot.setInterval(() => {
     var guild = bot.guilds.get('430843861326102529');
     guild.members.forEach(member => {
