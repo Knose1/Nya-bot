@@ -546,15 +546,18 @@ bot.on('message', message => {
             
             Bad_words.map(BW => {
                 var scoreBW = 0;
+                var BWG = / eval(BW) /g;
                 if (message.content.toLowerCase().indexOf(BW) > -1)
-                    scoreBW = a.match(BW).length;
+                    scoreBW = message.content.toLowerCase().match(BWG).length;
                 if (message.content.indexOf(" " + BW + " ") > -1)
                     scoreBW = 100;
                 return scoreBW;
             });
-            if (a) {
+            var nbBW = 0;
+            Bad_words.forEach(m)
+            if (nbBW > 15) {
                 message.delete(500);
-                increaseMod("invite links are not allowed");
+                increaseMod("watch your language");
 				return;
             }
                 
@@ -612,26 +615,30 @@ bot.on('message', message => {
 			
 			message.delete(500);
         } if (message.content.indexOf("!CD_avatar") == 0) {
-            
+            message.channel.send("owo");
             var args = message.content.slice("!CD_purge".length).trim().replace(/\n/g," \n").split(/ +/g);
-            
-            if(args[0]) {
-                if (message.mentions) {
-                    if (message.mentions.users.array().length > 0) {
-                        message.channel.send(message.mentions.users.first().avatarURL);
+            try {
+                if(args[0]) {
+                    if (message.mentions) {
+                        if (message.mentions.users.array().length > 0) {
+                            message.channel.send(message.mentions.users.first().avatarURL);
+                    
+                        } else if(bot.users.find('tag',args[0])) {
+                            message.channel.send(bot.users.find('tag',args[0]).avatarURL);
+                        } else if(bot.users.find('username',args[0])) {
+                            message.channel.send(bot.users.find('tag',args[0]).avatarURL);
+                        }
                     
                     } else if(bot.users.find('tag',args[0])) {
                         message.channel.send(bot.users.find('tag',args[0]).avatarURL);
                     } else if(bot.users.find('username',args[0])) {
                         message.channel.send(bot.users.find('tag',args[0]).avatarURL);
                     }
-                    
-                } else if(bot.users.find('tag',args[0])) {
-                    message.channel.send(bot.users.find('tag',args[0]).avatarURL);
-                } else if(bot.users.find('username',args[0])) {
-                    message.channel.send(bot.users.find('tag',args[0]).avatarURL);
-                }
-            } else message.channel.send(message.author.avatarURL);
+                } else message.channel.send(message.author.avatarURL);
+            } catch (err) {
+                message.channel.send("The user don't exist");
+            }
+            message.delete(500);
         }
 });
 
