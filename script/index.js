@@ -555,16 +555,16 @@ bot.on('message', message => {
             Bad_words.map(BW => {
                 var scoreBW = 0;
                 var BWG = eval("/"+BW+"/g");
-                if (message.content.toLowerCase().indexOf(BW) > -1)
-                    scoreBW = message.content.toLowerCase().match(BWG).length;
-                
-                if (message.content.indexOf(" " + BW + " ") > -1 || message.content.indexOf("\"" + BW + "\"") > -1 || message.content.indexOf("'" + BW + "'") > -1 || message.content.indexOf("_" + BW + "_") > -1 || message.content.indexOf("*" + BW + "*") > -1)
+                if (message.content.indexOf(BW) == 0 || message.content.indexOf(" " + BW + " ") > -1 || message.content.indexOf("\"" + BW + "\"") > -1 || message.content.indexOf("'" + BW + "'") > -1 || message.content.indexOf("_" + BW + "_") > -1 || message.content.indexOf("*" + BW + "*") > -1)
                     scoreBW = 100;
+                else if (message.content.toLowerCase().indexOf(BW) > -1)
+                    scoreBW = message.content.toLowerCase().match(BWG).length;
                 
                 return scoreBW;
             });
             var nbBW = 0;
             Bad_words.forEach(m => nbBW += m);
+            message.channel.send(nbBW);
             if (nbBW > 15) {
                 message.delete(500);
                 increaseMod("watch your language");
