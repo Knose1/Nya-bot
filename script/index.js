@@ -404,23 +404,20 @@ function resolveAfter(x) {
 
 bot = new Discord.Client();
 bot.setInterval(() => {
-    console.log("owo");
     var guild = bot.guilds.get('430843861326102529');
     guild.members.forEach(member => {
          if (haveRole(member,"431001790474092545") || member == botowner) return;
          else if (member.roles.find('name',"Muted")) {
             if (member.roles.find('name',"Mod violation 2") && new Date(new Date() - new Date(member.nickname)) > new Date(0,1,0,0,0,0,0)) {
-                member.setNickname("_").catch(console.log(1));
-                member.removeRole(guild.roles.find('name','Muted')).catch(console.log(2));
-                member.addRole(guild.roles.find('name','Members')).catch(console.log(3));
+                member.setNickname("_");
+                member.removeRole(guild.roles.find('name','Muted'));
+                member.addRole(guild.roles.find('name','Members'));
             } else if (member.roles.find('name',"Mod violation 1") && new Date(new Date() - new Date(member.nickname)) > new Date(0,0,1,0,0,0,0)) {
-                console.log(member)
-                member.setNickname("_").catch(console.log(4));
-                member.removeRole(guild.roles.find('name','Muted')).catch(console.log(5));
-                member.addRole(guild.roles.find('name','Members')).catch(console.log(6));
+                member.setNickname("_");
+                member.removeRole(guild.roles.find('name','Muted'));
+                member.addRole(guild.roles.find('name','Members'));
             }
         }
-        debugger;
     });
 }, 2000)
 bot.on('message', message => {
