@@ -556,18 +556,19 @@ bot.on('message', message => {
                 var scoreBW = 0;
                 var BWG = eval("/"+BW+"/g");
                 if (message.content.toLowerCase().indexOf(BW) > -1)
-                    if (message.content.toLowerCase().match(BWG))
-                        scoreBW = message.content.toLowerCase().match(BWG).length;
+                    scoreBW = message.content.toLowerCase().match(BWG).length;
+                
                 if (message.content.indexOf(" " + BW + " ") > -1 || message.content.indexOf("\"" + BW + "\"") > -1 || message.content.indexOf("'" + BW + "'") > -1 || message.content.indexOf("_" + BW + "_") > -1 || message.content.indexOf("*" + BW + "*") > -1)
                     scoreBW = 100;
+                
                 return scoreBW;
             });
             var nbBW = 0;
-            Bad_words.forEach(m => nbBW += m)
+            Bad_words.forEach(m => nbBW += m);
             if (nbBW > 15) {
                 message.delete(500);
                 increaseMod("watch your language");
-				return;
+                return;
             }
                 
         } if (message.guild && message.channel.name == "get-member-role") {
@@ -625,7 +626,7 @@ bot.on('message', message => {
 			message.delete(500);
         } if (message.content.indexOf("!CD_avatar") == 0) {
             var args = message.content.slice("!CD_purge".length).trim().replace(/\n/g," \n").split(/ +/g);
-            message.channel.send(args.join);
+            message.channel.send(args.join("\n"));
             try {
                 if(args[0]) {
                     if (message.mentions) {
