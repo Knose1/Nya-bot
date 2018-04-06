@@ -421,7 +421,7 @@ bot.setInterval(() => {
     });
 }, 2000)
 bot.on('message', message => {
-    
+    if (message.author.bot) return;
     if (message.guild) if (message.guild.id != "430843861326102529") return;
     
         function Alert(FUmess) {
@@ -534,7 +534,7 @@ bot.on('message', message => {
                     }
                 });
         }
-    	if (message.guild && !message.author.bot && (haveRole(message.author,"431001790474092545") || message.author == botowner)) {
+    	if (message.guild && (haveRole(message.author,"431001790474092545") || message.author == botowner)) {
             
             //Reglement
             if (message.content.indexOf("https://discordapp.com/invite/") > -1 || message.content.indexOf("discord.gg") > -1 || message.content.indexOf("discordapp.com/oauth2") > -1 || message.content.indexOf("discordapp.com\oauth2") > -1) {
