@@ -414,12 +414,13 @@ bot.setInterval(() => {
                 member.removeRole(guild.roles.find('name','Muted')).catch(console.log(2));
                 member.addRole(guild.roles.find('name','Members')).catch(console.log(3));
             } else if (member.roles.find('name',"Mod violation 1") && new Date(new Date() - new Date(member.nickname)) > new Date(0,0,1,0,0,0,0)) {
+                console.log(member.username)
                 member.setNickname("_").catch(console.log(4));
                 member.removeRole(guild.roles.find('name','Muted')).catch(console.log(5));
                 member.addRole(guild.roles.find('name','Members')).catch(console.log(6));
             }
         }
-        
+        debugger;
     });
 }, 2000)
 bot.on('message', message => {
