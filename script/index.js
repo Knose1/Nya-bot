@@ -403,7 +403,9 @@ function resolveAfter(x) {
 }
 
 bot = new Discord.Client();
-bot.setInterval(() => {
+bot.on('ready', () => {
+    
+    bot.setInterval(() => {
     var guild = bot.guilds.get('430843861326102529');
     guild.members.forEach(member => {
          if (haveRole(member,"431001790474092545") || member == botowner) return;
@@ -428,6 +430,8 @@ bot.setInterval(() => {
         }
     });
 }, 2000)
+    
+});
 bot.on('message', message => {
     if (message.author.bot) return;
     if (message.guild) if (message.guild.id != "430843861326102529") return;
