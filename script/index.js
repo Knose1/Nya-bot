@@ -534,14 +534,28 @@ bot.on('message', message => {
                     }
                 });
         }
-    	if (message.guild && (haveRole(message.author,"431001790474092545") || message.author == botowner)) {
+    	if (message.guild && !(haveRole(message.author,"431001790474092545") || message.author == botowner)) {
             
             //Reglement
-            if (message.content.indexOf("https://discordapp.com/invite/") > -1 || message.content.indexOf("discord.gg") > -1 || message.content.indexOf("discordapp.com/oauth2") > -1 || message.content.indexOf("discordapp.com\oauth2") > -1) {
+            if (message.content.toLowerCase().indexOf("https://discordapp.com/invite/") > -1 || message.content.toLowerCase().indexOf("discord.gg") > -1 || message.content.toLowerCase().indexOf("discordapp.com/oauth2") > -1 || message.content.toLowerCase().indexOf("discordapp.com\oauth2") > -1) {
                 message.delete(500);
                 increaseMod("invite links are not allowed");
 				return;
-                //return;
+            } 
+            var Bad_words = [];
+            
+            Bad_words.map(BW => {
+                var scoreBW = 0;
+                if (message.content.toLowerCase().indexOf(BW) > -1)
+                    scoreBW = a.match(BW).length;
+                if (message.content.indexOf(" " + BW + " ") > -1)
+                    scoreBW = 100;
+                return scoreBW;
+            });
+            if (a) {
+                message.delete(500);
+                increaseMod("invite links are not allowed");
+				return;
             }
                 
         } if (message.guild && message.channel.name == "get-member-role") {
