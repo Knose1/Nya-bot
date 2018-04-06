@@ -379,6 +379,21 @@ client.login(key);
 /**/
 /**/
 
+function haveRole(user,role) {
+        var guild = client.guilds.get('430843861326102529');
+        
+        if (user.id)
+            var v1 = guild.members.get(user.id);
+        else
+            var v1 = guild.members.get(user);
+        
+        
+        if (role.id) 
+            return Boolean( v1.roles.get(role.id) );
+        else
+            return Boolean( v1.roles.get(role) );
+}
+
 function resolveAfter(x) {
     return new Promise(resolve => {
         setTimeout(() => {
@@ -408,19 +423,6 @@ bot.setInterval(() => {
     });
 }, 2000)
 bot.on('message', message => {
-    
-    function haveRole(user,role) {
-        if (user.id)
-            var v1 = message.guild.members.get(user.id);
-        else
-            var v1 = message.guild.members.get(user);
-        
-        
-        if (role.id) 
-            return Boolean( v1.roles.get(role.id) );
-        else
-            return Boolean( v1.roles.get(role) );
-    }
     
     if (message.guild) if (message.guild.id != "430843861326102529") return;
     
