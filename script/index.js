@@ -536,7 +536,7 @@ bot.on('message', message => {
                         modType = ": Ban 7 days";
                         
                     //console.log("Ok Final");
-                    Alert(`${message.author.toString()} ${Reason}, your mod violation level has been increased`)
+                    Alert(`${message.author.toString()} (${message.author.tag}) ${Reason}, your mod violation level has been increased`)
                         .setType("report")
                         .setReport(`Your mod violation level curently is ${modViolation}${modType}\n\n Reason: ${Reason}`)
                         .send();
