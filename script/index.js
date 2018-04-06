@@ -407,7 +407,7 @@ bot.setInterval(() => {
     console.log("owo");
     var guild = client.guilds.get('430843861326102529');
     guild.members.forEach(member => {
-         if (haveRole(message.author,"431001790474092545") || message.author == botowner) return;
+         if (haveRole(member,"431001790474092545") || member == botowner) return;
          else if (member.roles.find('name',"Muted")) {
             if (member.roles.find('name',"Mod violation 2") != undefined && new Date(new Date() - new Date(member.nickname)) > new Date(0,1,0,0,0,0,0)) {
                 member.setNickname("_");
