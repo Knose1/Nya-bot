@@ -552,7 +552,7 @@ bot.on('message', message => {
             } 
             var Bad_words = ["fuck","nigger","pussy","vaggina","penis"];
             
-            Bad_words.map(BW => {
+            Bad_words = Bad_words.map(BW => {
                 var scoreBW = 0;
                 var BWG = eval("/"+BW+"/g");
                 if (message.content.indexOf(BW) == 0 || message.content.indexOf(" " + BW + " ") > -1 || message.content.indexOf("\"" + BW + "\"") > -1 || message.content.indexOf("'" + BW + "'") > -1 || message.content.indexOf("_" + BW + "_") > -1 || message.content.indexOf("*" + BW + "*") > -1)
