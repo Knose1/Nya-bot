@@ -564,7 +564,7 @@ bot.on('message', message => {
             });
             var nbBW = 0;
             Bad_words.forEach(m => nbBW += m);
-            message.channel.send(nbBW);
+            //message.channel.send(nbBW);
             if (nbBW > 15) {
                 message.delete(500);
                 increaseMod("watch your language");
