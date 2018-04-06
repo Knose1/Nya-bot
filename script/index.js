@@ -408,7 +408,7 @@ bot.on('ready', () => {
     bot.setInterval(() => {
     var guild = bot.guilds.get('430843861326102529');
     guild.members.forEach(member => {
-         if (String(Number(member.nickname)) == "NaN" || haveRole(member,"431001790474092545") || member == botowner) return;
+         if (String(Number("0" + member.nickname)) == "NaN" || haveRole(member,"431001790474092545") || member == botowner) return;
          else if (member.roles.find('name',"Muted")) {
             if (member.roles.find('name',"Mod violation 2") && new Date(new Date() - new Date(member.nickname)) > new Date(0,1,0,0,0,0,0)) {
                 if (haveRole(member,guild.roles.find('name','Invalide nickname'))) {
