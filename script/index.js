@@ -409,11 +409,19 @@ bot.setInterval(() => {
          if (haveRole(member,"431001790474092545") || member == botowner) return;
          else if (member.roles.find('name',"Muted")) {
             if (member.roles.find('name',"Mod violation 2") && new Date(new Date() - new Date(member.nickname)) > new Date(0,1,0,0,0,0,0)) {
-                member.setNickname("_");
+                if (haveRole(member,guild.roles.find('name','Invalide nickname'))) {
+                    member.setNickname("_");
+                } else {
+                    member.setNickname(member.username);
+                }
                 member.removeRole(guild.roles.find('name','Muted'));
                 member.addRole(guild.roles.find('name','Members'));
             } else if (member.roles.find('name',"Mod violation 1") && new Date(new Date() - new Date(member.nickname)) > new Date(0,0,1,0,0,0,0)) {
-                member.setNickname("_");
+                if (haveRole(member,guild.roles.find('name','Invalide nickname'))) {
+                    member.setNickname("_");
+                } else {
+                    member.setNickname(member.username);
+                }
                 member.removeRole(guild.roles.find('name','Muted'));
                 member.addRole(guild.roles.find('name','Members'));
             }
@@ -542,7 +550,7 @@ bot.on('message', message => {
                 increaseMod("invite links are not allowed");
 				return;
             } 
-            var Bad_words = [];
+            var Bad_words = ["fuck","nigger","pussy","vaggina","penis"];
             
             Bad_words.map(BW => {
                 var scoreBW = 0;
@@ -615,8 +623,8 @@ bot.on('message', message => {
 			
 			message.delete(500);
         } if (message.content.indexOf("!CD_avatar") == 0) {
-            message.channel.send("owo");
             var args = message.content.slice("!CD_purge".length).trim().replace(/\n/g," \n").split(/ +/g);
+            message.channel.send(args.join);
             try {
                 if(args[0]) {
                     if (message.mentions) {
