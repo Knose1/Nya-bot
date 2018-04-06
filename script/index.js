@@ -599,7 +599,7 @@ bot.on('message', message => {
 			message.delete(500);
         } if (message.content.indexOf("!CD_avatar") == 0) {
             
-            message.content.slice("!CD_purge".length).trim().replace(/\n/g," \n").split(/ +/g);
+            var args = message.content.slice("!CD_purge".length).trim().replace(/\n/g," \n").split(/ +/g);
             
             if(args[0]) {
                 if (message.mentions) {
@@ -608,10 +608,10 @@ bot.on('message', message => {
                         return;
                     }
                 }
-                if(client.users.find('tag',args[0])) {
-                    message.channel.send(client.users.find('tag',args[0]).avatarURL);
-                } else if(client.users.find('username',args[0])) {
-                    message.channel.send(client.users.find('tag',args[0]).avatarURL);
+                if(bot.users.find('tag',args[0])) {
+                    message.channel.send(bot.users.find('tag',args[0]).avatarURL);
+                } else if(bot.users.find('username',args[0])) {
+                    message.channel.send(bot.users.find('tag',args[0]).avatarURL);
                 }
             } else message.channel.send(message.author.avatarURL);
         }
