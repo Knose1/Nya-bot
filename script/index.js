@@ -625,8 +625,7 @@ bot.on('message', message => {
 			
 			message.delete(500);
         } if (message.content.indexOf("!CD_avatar") == 0) {
-            var args = message.content.slice("!CD_purge".length).trim().replace(/\n/g," \n").split(/ +/g);
-            message.channel.send(args.join("\n"));
+            var args = message.content.slice("!CD_avatar".length).trim().replace(/\n/g," \n").split(/ +/g);
             try {
                 if(args[0]) {
                     if (message.mentions) {
