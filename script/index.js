@@ -605,10 +605,14 @@ bot.on('message', message => {
                 if (message.mentions) {
                     if (message.mentions.users.array().length > 0) {
                         message.channel.send(message.mentions.users.first().avatarURL);
-                        return;
+                    
+                    } else if(bot.users.find('tag',args[0])) {
+                        message.channel.send(bot.users.find('tag',args[0]).avatarURL);
+                    } else if(bot.users.find('username',args[0])) {
+                        message.channel.send(bot.users.find('tag',args[0]).avatarURL);
                     }
-                }
-                if(bot.users.find('tag',args[0])) {
+                    
+                } else if(bot.users.find('tag',args[0])) {
                     message.channel.send(bot.users.find('tag',args[0]).avatarURL);
                 } else if(bot.users.find('username',args[0])) {
                     message.channel.send(bot.users.find('tag',args[0]).avatarURL);
