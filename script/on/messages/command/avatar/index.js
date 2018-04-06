@@ -3,10 +3,13 @@ exports.execute = () => {
         if (message.mentions) {
             if (message.mentions.users.array().length > 0) {
                 message.channel.send(message.mentions.users.first().avatarURL);
-                return;
+            } else if(client.users.find('tag',args[0])) {
+                message.channel.send(client.users.find('tag',args[0]).avatarURL);
+            } else if(client.users.find('username',args[0])) {
+                message.channel.send(client.users.find('tag',args[0]).avatarURL);
             }
-        }
-        if(client.users.find('tag',args[0])) {
+        
+        } else if(client.users.find('tag',args[0])) {
             message.channel.send(client.users.find('tag',args[0]).avatarURL);
         } else if(client.users.find('username',args[0])) {
             message.channel.send(client.users.find('tag',args[0]).avatarURL);
