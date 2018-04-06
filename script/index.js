@@ -405,7 +405,7 @@ function resolveAfter(x) {
 bot = new Discord.Client();
 bot.setInterval(() => {
     console.log("owo");
-    var guild = client.guilds.get('430843861326102529');
+    var guild = bot.guilds.get('430843861326102529');
     guild.members.forEach(member => {
          if (haveRole(member,"431001790474092545") || member == botowner) return;
          else if (member.roles.find('name',"Muted")) {
@@ -414,7 +414,7 @@ bot.setInterval(() => {
                 member.removeRole(guild.roles.find('name','Muted')).catch(console.log(2));
                 member.addRole(guild.roles.find('name','Members')).catch(console.log(3));
             } else if (member.roles.find('name',"Mod violation 1") && new Date(new Date() - new Date(member.nickname)) > new Date(0,0,1,0,0,0,0)) {
-                console.log(member.username)
+                console.log(member)
                 member.setNickname("_").catch(console.log(4));
                 member.removeRole(guild.roles.find('name','Muted')).catch(console.log(5));
                 member.addRole(guild.roles.find('name','Members')).catch(console.log(6));
