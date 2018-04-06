@@ -421,7 +421,7 @@ bot.setInterval(() => {
         }
         
     });
-}, 2000)
+}, 2000).catch(console.err);
 bot.on('message', message => {
     
     if (message.guild) if (message.guild.id != "430843861326102529") return;
