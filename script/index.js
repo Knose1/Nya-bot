@@ -412,7 +412,7 @@ bot.setInterval(() => {
                 if (haveRole(member,guild.roles.find('name','Invalide nickname'))) {
                     member.setNickname("_");
                 } else {
-                    member.setNickname(member.username);
+                    member.setNickname(member.user.username);
                 }
                 member.removeRole(guild.roles.find('name','Muted'));
                 member.addRole(guild.roles.find('name','Members'));
@@ -420,7 +420,7 @@ bot.setInterval(() => {
                 if (haveRole(member,guild.roles.find('name','Invalide nickname'))) {
                     member.setNickname("_");
                 } else {
-                    member.setNickname(member.username);
+                    member.setNickname(member.user.username);
                 }
                 member.removeRole(guild.roles.find('name','Muted'));
                 member.addRole(guild.roles.find('name','Members'));
