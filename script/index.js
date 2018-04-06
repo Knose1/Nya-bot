@@ -392,13 +392,13 @@ bot.setInterval(() => {
     console.log("owo");
     var guild = client.guilds.get('430843861326102529');
     guild.members.forEach(member => {
-        
-         if (member.roles.find('name',"Muted") != undefined) {
+         if (haveRole(message.author,"431001790474092545") || message.author == botowner) return;
+         else if (member.roles.find('name',"Muted")) {
             if (member.roles.find('name',"Mod violation 2") != undefined && new Date(new Date() - new Date(member.nickname)) > new Date(0,1,0,0,0,0,0)) {
                 member.setNickname("_");
                 member.removeRole(guild.roles.find('name','Muted'));
                 member.addRole(guild.roles.find('name','Members'));
-            } else if (member.roles.find('name',"Mod violation 1") != undefined && new Date(new Date() - new Date(member.nickname)) > new Date(0,0,1,0,0,0,0)) {
+            } else if (member.roles.find('name',"Mod violation 1") && new Date(new Date() - new Date(member.nickname)) > new Date(0,0,1,0,0,0,0)) {
                 member.setNickname("_");
                 member.removeRole(guild.roles.find('name','Muted'));
                 member.addRole(guild.roles.find('name','Members'));
@@ -479,7 +479,6 @@ bot.on('message', message => {
         function increaseMod(Reason) {
             
                 message.guild.fetchMember(message.author).then(member => {
-                    
                     if (message.channel.name == "get-member-role") {
                         Reason = "Mod violation on spawn, " + Reason;
                         async function FireBan() {
@@ -535,7 +534,7 @@ bot.on('message', message => {
                     }
                 });
         }
-    	if (message.guild && !message.bot && message.author != botowner) {
+    	if (message.guild && !message.author.bot && (haveRole(message.author,"431001790474092545") || message.author == botowner)) {
             
             //Reglement
             if (message.content.indexOf("https://discordapp.com/invite/") > -1 || message.content.indexOf("discord.gg") > -1 || message.content.indexOf("discordapp.com/oauth2") > -1 || message.content.indexOf("discordapp.com\oauth2") > -1) {
