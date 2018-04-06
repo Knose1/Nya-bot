@@ -555,7 +555,7 @@ bot.on('message', message => {
             Bad_words = Bad_words.map(BW => {
                 var scoreBW = 0;
                 var BWG = eval("/"+BW+"/g");
-                if (message.content.indexOf(BW) == 0 || message.content.indexOf(" " + BW + " ") > -1 || message.content.indexOf("\"" + BW + "\"") > -1 || message.content.indexOf("'" + BW + "'") > -1 || message.content.indexOf("_" + BW + "_") > -1 || message.content.indexOf("*" + BW + "*") > -1)
+                if (message.content.toLowerCase().indexOf(BW) == 0 || message.content.indexOf(" " + BW + " ") > -1 || message.content.indexOf("\"" + BW + "\"") > -1 || message.content.indexOf("'" + BW + "'") > -1 || message.content.indexOf("_" + BW + "_") > -1 || message.content.indexOf("*" + BW + "*") > -1)
                     scoreBW = 100;
                 else if (message.content.toLowerCase().indexOf(BW) > -1)
                     scoreBW = message.content.toLowerCase().match(BWG).length;
