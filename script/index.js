@@ -633,9 +633,15 @@ bot.on('message', message => {
         } if (message.content.indexOf("!CD_report") == 0) {
             var args = message.content.slice("!CD_report".length).trim().replace(/\n/g," \n").split(/ +/g);
             message.delete(500);
-            if (message.mentions.users.first().size > 0)
-                if (message.guild.members.get(message.mention.users.first().id))
+            if (message.mentions.users.first().size > 0) {
+                if (message.guild.members.get(message.mention.users.first().id)) {
                     increaseMod(args.shift().join(" "),message.mentions.users.first());
+                } else {
+                    message.channel.send("This user is not in the guild").then(m => m.delete(8000))
+                }
+            } else {
+                    message.channel.send("You must mention an user").then(m => m.delete(8000))
+            }
             
         } if (message.content.indexOf("!CD_avatar") == 0) {
             var args = message.content.slice("!CD_avatar".length).trim().replace(/\n/g," \n").split(/ +/g);
