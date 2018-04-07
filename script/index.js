@@ -488,10 +488,11 @@ bot.on('message', message => {
         }
         
         //Augmenter le modViolation
-        function increaseMod(Reason) {
+        function increaseMod(Reason,FuncMember1) {
+                if (!FuncMember1) var FuncMember = message.author;
             
-                message.guild.fetchMember(message.author).then(member => {
-                    if (message.channel.name == "get-member-role") {
+                message.guild.fetchMember(FuncMember).then(member => {
+                    if (message.channel.name == "get-member-role" && !FuncMember1) {
                         Reason = "Mod violation on spawn, " + Reason;
                         async function FireBan() {
                             Alert()
@@ -507,7 +508,7 @@ bot.on('message', message => {
                     } else {
                     
                     var modViolation = 0.5;
-                    var vvv = true
+                    var vvv = true;
                     while (modViolation < 4 && vvv) {
                         vvv = member.roles.find('name',`Mod violation ${modViolation}`);
                         
@@ -536,9 +537,10 @@ bot.on('message', message => {
                         modType = ": Ban 7 days";
                         
                     //console.log("Ok Final");
-                    Alert(`${message.author.toString()} (${message.author.tag}) ${Reason}, your mod violation level has been increased`)
+                    Alert(`${FuncMember.toString()} (${FuncMember.tag}) ${Reason}, your mod violation level has been increased`)
                         .setType("report")
                         .setReport(`Your mod violation level curently is ${modViolation}${modType}\n\n Reason: ${Reason}`)
+                        .setUser(FuncMember)
                         .send();
                     //console.log("Ok Alert");
                     if (modViolation == 4)
@@ -628,6 +630,11 @@ bot.on('message', message => {
             }
 			
 			message.delete(500);
+        } if (message.content.indexOf("!CD_report") == 0) {
+            var args = message.content.slice("!CD_report".length).trim().replace(/\n/g," \n").split(/ +/g);
+            message.delete(500);
+            increaseMod("");
+            
         } if (message.content.indexOf("!CD_avatar") == 0) {
             var args = message.content.slice("!CD_avatar".length).trim().replace(/\n/g," \n").split(/ +/g);
             try {
