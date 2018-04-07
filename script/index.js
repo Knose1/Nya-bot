@@ -633,7 +633,9 @@ bot.on('message', message => {
         } if (message.content.indexOf("!CD_report") == 0) {
             var args = message.content.slice("!CD_report".length).trim().replace(/\n/g," \n").split(/ +/g);
             message.delete(500);
-            increaseMod("");
+            if (message.mentions.users.first().size > 0)
+                if (message.guild.members.get(message.mention.users.first().id))
+                    increaseMod(args.shift().join(" "),message.mentions.users.first());
             
         } if (message.content.indexOf("!CD_avatar") == 0) {
             var args = message.content.slice("!CD_avatar".length).trim().replace(/\n/g," \n").split(/ +/g);
