@@ -405,30 +405,6 @@ function resolveAfter(x) {
 bot = new Discord.Client();
 bot.on('ready', () => {
     console.log("OwO");
-    bot.setInterval(() => {
-    var guild = bot.guilds.get('430843861326102529');
-    guild.members.forEach(member => {
-         if (String(Number("0" + member.nickname)) == "NaN" || haveRole(member,"431001790474092545") || member == botowner) return;
-         else if (member.roles.find('name',"Muted")) {
-            if (member.roles.find('name',"Mod violation 2") && new Date(new Date() - new Date(member.nickname)) > new Date(0,1,0,0,0,0,0)) {
-                if (haveRole(member,guild.roles.find('name','Invalide nickname'))) {
-                    member.setNickname("_");
-                } else {
-                    member.setNickname(member.user.username);
-                }
-                member.removeRole(guild.roles.find('name','Muted'));
-                member.addRole(guild.roles.find('name','Members'));
-            } else if (member.roles.find('name',"Mod violation 1") && new Date(new Date() - new Date(member.nickname)) > new Date(0,0,1,0,0,0,0)) {
-                if (haveRole(member,guild.roles.find('name','Invalide nickname'))) {
-                    member.setNickname("_");
-                } else {
-                    member.setNickname(member.user.username);
-                }
-                member.removeRole(guild.roles.find('name','Muted'));
-                member.addRole(guild.roles.find('name','Members'));
-            }
-        }
-    });
 }, 2000)
     
 });
