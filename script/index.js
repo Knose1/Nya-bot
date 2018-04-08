@@ -633,16 +633,20 @@ bot.on('message', message => {
         } if (message.content.indexOf("!CD_report") == 0) {
             var args = message.content.slice("!CD_report".length).trim().replace(/\n/g," \n").split(/ +/g);
             message.delete(500);
-            if (message.mentions.users.size > 0) {
-                if (message.guild.members.get(message.mentions.users.first().id)) {
-                    increaseMod(args.shift().join(" "),message.mentions.users.first());
+            let shifted = args.shift();
+            if (shifted.indexOf("<") == 0 && shifted.indexOf(">") == shifted.length - 1 && shifted.replace(/</g,"").replace(/@/g,"").replace(/!/g,"").replace(/>/g,"").length > 0 && String(Number(shifted.replace(/</g,"").replace(/@/g,"").replace(/!/g,"").replace(/>/g,"") )) != "NaN") {
+                if (message.mentions.users.size > 0) {
+                    if (message.guild.members.get(message.mentions.users.first().id)) {
+                        increaseMod(args.join(" "),message.mentions.users.first());
+                    } else {
+                        message.channel.send("This user is not in the guild").then(m => m.delete(8000))
+                    }
                 } else {
-                    message.channel.send("This user is not in the guild").then(m => m.delete(8000))
+                        message.channel.send("You must mention an user").then(m => m.delete(8000))
                 }
             } else {
-                    message.channel.send("You must mention an user").then(m => m.delete(8000))
+                message.channel.send("You must mention an user").then(m => m.delete(8000))
             }
-            
         } if (message.content.indexOf("!CD_avatar") == 0) {
             var args = message.content.slice("!CD_avatar".length).trim().replace(/\n/g," \n").split(/ +/g);
             try {
