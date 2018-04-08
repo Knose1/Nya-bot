@@ -490,6 +490,7 @@ bot.on('message', message => {
         //Augmenter le modViolation
         function increaseMod(Reason,FuncMember1) {
                 if (!FuncMember1) var FuncMember = message.author;
+                else var FuncMember = FuncMember1;
             
                 message.guild.fetchMember(FuncMember).then(member => {
                     if (message.channel.name == "get-member-role" && !FuncMember1) {
