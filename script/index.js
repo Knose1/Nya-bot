@@ -405,8 +405,6 @@ function resolveAfter(x) {
 bot = new Discord.Client();
 bot.on('ready', () => {
     console.log("OwO");
-}, 2000)
-    
 });
 bot.on('message', message => {
     if (message.author.bot) return;
