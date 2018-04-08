@@ -466,10 +466,7 @@ bot.on('message', message => {
                 message.delete(500);
                 message.channel.send(message.content.slice("CD_".length));
             
-            }
-            
-        
-        } if (message.content.indexOf("!CD_purge") == 0 && (haveRole(message.author,"431001790474092545") || message.author == botowner)) {
+            } else if (message.content.indexOf("!CD_purge") == 0) {
 			
             if (message.content.slice("!CD_purge".length).trim().length != 0) {
                 if ("NaN" != String(Number( message.content.slice("!CD_purge".length).trim() )) ) {
@@ -489,7 +486,10 @@ bot.on('message', message => {
             }
 			
 			message.delete(500);
-        } if (message.content.indexOf("!CD_avatar") == 0) {
+        } 
+            
+        
+        }if (message.content.indexOf("!CD_avatar") == 0) {
             var args = message.content.slice("!CD_avatar".length).trim().replace(/\n/g," \n").split(/ +/g);
             try {
                 if(args[0]) {
