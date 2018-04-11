@@ -208,7 +208,7 @@ new anime()
     .setimage('https://www.nautiljon.com/images/anime/00/82/la_storia_della_arcana_famiglia_2228.jpg')
     
     .setstory_fr(`Arcana Famiglia est un organisme qui protège Regalo, un pays qui est une petite île. La famille se charge des affaires commerciales, de la sécurité et même la santé sur Regalo depuis longtemps. Cette année, le chef de la famille, "Papa" Mondo, prévoit de prendre sa retraite. Il décide d’organiser un tournoi pour choisir son successeur le "Arcana Duello!". Le gagnant aura le droit à un vœu exaucé par Mondo, et aura la main de sa fille "Felicita".`)
-    .setstory_fr_source([`Anime ultime`][`http://www.anime-ultime.net/file-0-1/3147/Arcana-Famiglia-vostfr`])
+    .setstory_fr_source([`Anime ultime`,`http://www.anime-ultime.net/file-0-1/3147/Arcana-Famiglia-vostfr`])
     
     .setstory_en(`undefined`)
     .setstory_en_source(`undefined`)
