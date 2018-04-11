@@ -189,7 +189,7 @@ new anime()
     .setstory_fr(`On suit le quotidien d'un groupe de cinq jeunes garçons qui sont chacun fans d'un personnage du groupe Sanrio.`)
     .setstory_fr_source([`Nautiljon`,`http://bit.ly/2G38kvR`])
     
-    .setstory_en(`We follow the daily life of a group of five young boys who are each fans of a Sanrio's group's character. (Translated by <@327376797211820035>)`)
+    .setstory_en(`We're following the daily life of a group of five young boys who are each fans of a Sanrio's group's character. (Translated by <@327376797211820035>)`)
     .setstory_en_source([`Nautiljon [FR]`,`http://bit.ly/2G38kvR`])
     
     .setanime_fr(`https://www.youtube.com/playlist?list=PLyT6R1TUs0uPBxd9U98dT1Ka1yUA7cxO7`)
@@ -207,13 +207,13 @@ new anime()
     .setname('La storia della Arcana Famiglia')
     .setimage('https://www.nautiljon.com/images/anime/00/82/la_storia_della_arcana_famiglia_2228.jpg')
     
-    .setstory_fr(`undefined`)
-    .setstory_fr_source(`undefined`)
+    .setstory_fr(`Arcana Famiglia est un organisme qui protège Regalo, un pays qui est une petite île. La famille se charge des affaires commerciales, de la sécurité et même la santé sur Regalo depuis longtemps. Cette année, le chef de la famille, "Papa" Mondo, prévoit de prendre sa retraite. Il décide d’organiser un tournoi pour choisir son successeur le "Arcana Duello!". Le gagnant aura le droit à un vœu exaucé par Mondo, et aura la main de sa fille "Felicita".`)
+    .setstory_fr_source([`Anime ultime`][`http://www.anime-ultime.net/file-0-1/3147/Arcana-Famiglia-vostfr`])
     
     .setstory_en(`undefined`)
     .setstory_en_source(`undefined`)
     
-    .setanime_fr('undefined')
+    .setanime_fr('http://www.anime-ultime.net/file-0-1/3147/Arcana-Famiglia-vostfr')
     .setanime_en('undefined')
     
     .setop(['https://www.youtube.com/watch?v=fH9qpTJSSCY','https://www.youtube.com/watch?v=ihm8005rM3M'])
