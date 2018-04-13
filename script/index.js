@@ -1,4 +1,6 @@
 require('./config.js').load();
+var MongoClient = require('mongodb').MongoClient; 
+var uri = process.env.MONGO_DB + "mydb";
 var events = require('events');
 var NoNyaWebhooks;
 
