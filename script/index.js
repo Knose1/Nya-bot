@@ -5,6 +5,14 @@ var testuri = process.env.MONGO_DB + "mydb";
 var events = require('events');
 var NoNyaWebhooks;
 
+function resolveAfter(x) {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve('');
+        },x*1000);
+    });
+}
+
 //lorsque Nya!bot est pret
 client.on('ready', () => {
     client.user.setStatus('online');
@@ -421,14 +429,6 @@ function haveRole(user,role) {
             return Boolean( v1.roles.get(role.id) );
         else
             return Boolean( v1.roles.get(role) );
-}
-
-function resolveAfter(x) {
-    return new Promise(resolve => {
-        setTimeout(() => {
-            resolve('');
-        },x*1000);
-    });
 }
 
 bot = new Discord.Client();
