@@ -284,7 +284,7 @@ client.on('message', message => {
             else if (require("./on/messages/vs/finaly.js").execute(message, isVs, Pfx)   );
      
             //RPG
-            else if (message.content.indexOf("cat>") == 0 && (  (betaTest == 'off') || ( betaTest == 'on' && (isBTest || (isWhitelisted)) )  )//Si le RPG est en vertion Test il faut être Béta testeur) {
+            else if (message.content.indexOf("cat>") == 0 && (  (betaTest == 'off') || ( betaTest == 'on' && (isBTest) )  )/*Si le RPG est en vertion Test il faut être Béta testeur*/) {
                 try {
                     var args = message.content.slice("cat>".length).trim().replace(/\n/g," ").split(/ +/g);
                     var command = args.shift().toLowerCase();
