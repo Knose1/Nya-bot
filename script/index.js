@@ -269,16 +269,7 @@ client.on('message', message => {
                     .catch(console.error);
             }
     
-        /*if (message.author == botowner && (!isVs || (message.guild.id == "377892426569744387" && message.channel.name != "nya-bot-vs-log"))) {
-            if (Database('407142766674575361',['user:','xp:']).get('user:',message.author.id,['xp:'])['xp:'].value[0] != 'NaN') {
-                Database('407142766674575361',['user:','xp:']).get('user:',message.author.id,['xp:'])['xp:'].set([String(Number(Database('407142766674575361',['user:','xp:']).get('user:',message.author.id,['xp:'])['xp:'].value[0] + 1))]);
         
-               if( Math.floor( (Number(Database('407142766674575361',['user:','xp:']).get('user:',message.author.id,['xp:'])['xp:'].value[0] ) +1) / 10 ) == (Number(Database('407142766674575361',['user:','xp:']).get('user:',message.author.id,['xp:'])['xp:'].value[0] ) +1)/ 10) {
-                    message.channel.send(`Bravo Knose1 tu as ${Number(Database('407142766674575361',['user:','xp:']).get('user:',message.author.id,['xp:'])['xp:'].value[0]) + 1} xp`)
-                        .then(msg => msg.delete(10000));
-                }
-            }
-        }*/
     
         //VS
             if (require("./on/messages/vs/error_userBan.js").execute(message, isVs, isbanned) );
@@ -290,9 +281,44 @@ client.on('message', message => {
             else if (require("./on/messages/vs/command_unban.js").execute(message, isVs, isbanned, vsban)  );
             else if (require("./on/messages/vs/finaly.js").execute(message, isVs, Pfx)   );
      
+            //RPG
+            else if (message.content.indexOf("cat>") == 0 && (  (betaTest == 'off') || ( betaTest == 'on' && (isBTest || (isWhitelisted)) )  ) //Si le RPG est en vertion Test il faut être Béta testeur)
+                try {
+                    var args = message.content.slice("cat>".length).trim().replace(/\n/g," ").split(/ +/g);
+                    var command = args.shift().toLowerCase();
         
-        //RPG
-        //else if (require("./on/messages/rpg/index.js").execute(message)    );
+                    message.delete(500)
+                        .then(msg => console.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
+                        .catch(console.error);
+                    var funcComm = String(require(`./on/messages/rpg/${command}/index.js`).execute);
+                    var toEv = funcComm.slice(7, funcComm.length - 1)/*.replace(/\n/g,"").replace(/ +/g," ")*/;
+                    //console.log(toEv);
+                    eval(toEv);
+                } catch (err) {
+            
+                    if (String(err).toLowerCase().indexOf(`Cannot find module './on/messages/rpg/${command}/index.js'`.toLowerCase()) == -1) {
+                        message.reply("Une ERREUR est survenue");
+                    
+                        var cleanERR = fulllog( util.inspect( clean(err), 1500 ) );
+                        client.users.get("375378900802338818").send(`__Une ERREUR est survenue:__ \n Auteur: ${message.author}\n Longueur de la commande: ${message.content.length}\n Commande: ${message.content.slice(0,1000)}`);
+                    
+                        if (undefined != cleanERR[0])
+                            client.users.get("375378900802338818").send(cleanERR[0]);
+                        if (undefined != cleanERR[1])
+                            client.users.get("375378900802338818").send(cleanERR[1]);
+                    
+                        haderror = true;
+                        client.user.setStatus('dnd');
+                        client.user.setActivity(`ERROR`,{type: "PLAYING"});
+                    
+                    } else {
+                        if (message.guild.id != '110373943822540800') {
+                            message.channel.send('"'+message.content+' "'+" n'est pas une commande")
+                                .then(msg => msg.delete(15000));
+                        }
+                    }
+            }
+            }
         
         //COMMAND
         else if (iscommand == true) {
