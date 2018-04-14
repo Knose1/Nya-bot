@@ -8,7 +8,8 @@
   },
   "dependencies": {
     "discord.js": "",
-    "mongodb": ""
+    "mongodb": "",
+    "nodemailer": ""
   },
   "author": "knose1",
   "license": "ISC"
