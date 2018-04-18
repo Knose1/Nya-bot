@@ -14,7 +14,7 @@ function resolveAfter(x) {
 }
 
 //lorsque Nya!bot est pret
-client.on('ready', () => {
+client.on('ready', async function() {
     client.user.setStatus('online');
     
     CanReloading = true;
@@ -28,9 +28,20 @@ client.on('ready', () => {
     
     client.channels.get('406802264540315648').send(`--Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} servers.`);
     
-    client.channels.get("420002162676858900").fetchMessage("424973658210041866").then(m => {
-        m.edit(listAnime.map(anime => {return `**N°${listAnime.indexOf(anime) + 1}** ${anime.name}`}).join("\n"))
-    });
+    //Messages delect
+    try {
+        client.channels.get("420002162676858900").fetchMessages({ limit: 100 }).then(FM => {
+            FM.forEach(m => m.delete(10));
+        });
+        client.channels.get("420002162676858900").fetchMessages({ limit: 100 }).then(FM => {
+            FM.forEach(m => m.delete(10));
+        });
+        client.channels.get("420002162676858900").fetchMessages({ limit: 100 }).then(FM => {
+            FM.forEach(m => m.delete(10));
+        });
+        await resolveAfter(3*100*10);
+        client.channels.get("420002162676858900").send(listAnime.map(anime => {return `**N°${listAnime.indexOf(anime) + 1}** ${anime.name}`}).join("\n"),{split: true});
+    } catch (err) {}
     
 });
 
