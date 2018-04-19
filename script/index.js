@@ -1,7 +1,3 @@
-var MongoClient = require('mongodb').MongoClient; 
-var uri = process.env.MONGO_DB;
-var events = require('events');
-var NoNyaWebhooks;
 require('./config.js').load();
 
 function resolveAfter(x) {
