@@ -116,11 +116,12 @@ class MongoFunctions1 {
                         dbo.collection(CollectionNAME).find({}).toArray(function(err, result) {
                             if (err) throw err;
                             thisVarFunc.result = result;
+                            console.log(thisVarFunc.result);
                             db.close();
                         });
                     }
                 });
-                
+                console.log(thisVarFunc.result);
                 return thisVarFunc.result;
             }
         }
