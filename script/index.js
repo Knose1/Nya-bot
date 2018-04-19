@@ -1,13 +1,5 @@
 require('./config.js').load();
 
-function resolveAfter(x) {
-    return new Promise(resolve => {
-        setTimeout(() => {
-            resolve('');
-        },x*1000);
-    });
-}
-
 //lorsque Nya!bot est pret
 client.on('ready', async function() {
     client.user.setStatus('online');
