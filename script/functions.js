@@ -217,10 +217,10 @@ class MongoFunctions1 {
             parent: this,
             in: function(CollectionNAME) {
                 
-                this.parent.log += "\nTried to deleteOne().in()";
+                this.parent.log += "\nTried to deleteMany().in()";
                 
                 if (typeof(CollectionNAME) != "string") {
-                    throw new Error("CollectionNAME is not a string at this.deleteOne().in()");
+                    throw new Error("CollectionNAME is not a string at this.deleteMany().in()");
                     return;
                 }
                 var thisVarFunc = this;
@@ -236,6 +236,18 @@ class MongoFunctions1 {
                 return this.parent;
             }
         }
+    }
+    drop(CollectionNAME) {
+        this.parent.log += "\nTried to drop()";
+        var thisVarFunc = this;
+        MongoClient.connect(thisVarFunc.parent.uri, function(err, db) {
+            if (err) throw err;
+            var dbo = db.db(thisVarFunc.parent.dbNAME);
+            dbo.collection(CollectionNAME).drop(function(err, delOK) {
+                if (err) throw err;
+                db.close();
+            });
+        });
     }
 }
 
