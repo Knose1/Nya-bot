@@ -238,7 +238,7 @@ class MongoFunctions1 {
         }
     }
     drop(CollectionNAME) {
-        this.parent.log += "\nTried to drop()";
+        this.log += "\nTried to drop()";
         var thisVarFunc = this;
         MongoClient.connect(thisVarFunc.parent.uri, function(err, db) {
             if (err) throw err;
@@ -248,6 +248,8 @@ class MongoFunctions1 {
                 db.close();
             });
         });
+        
+        return this;
     }
 }
 
