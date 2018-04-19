@@ -1,3 +1,11 @@
+function resolveAfter1(x) {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve('');
+        },x*1000);
+    });
+}
+
 class MongoFunctions1 {
     
     constructor(dbNAME) {
@@ -93,7 +101,7 @@ class MongoFunctions1 {
         
         return {
             parent: this,
-            in: function(CollectionNAME) {
+            in: async function(CollectionNAME) {
                 
                 this.parent.log += "\nTried to find().in()";
                 
@@ -121,6 +129,7 @@ class MongoFunctions1 {
                         });
                     }
                 });
+		await resolveAfter1(1.3);
                 console.log(thisVarFunc.result);
                 return thisVarFunc.result;
             }
@@ -611,5 +620,5 @@ function f4(min,max) {
     return Math.floor((Math.random() * max) + min);
 };
 exports.load = () => {
-    return MongoFunctions = MongoFunctions1, Database__1 = f1, TestDatabase = f2, Database = f3, rand = f4, clean = clean1, fulllog = fulllog1, check_perm = check_perm1, animelist = animelist1, anime = anime1;
+    return resolveAfter = resolveAfter1, MongoFunctions = MongoFunctions1, Database__1 = f1, TestDatabase = f2, Database = f3, rand = f4, clean = clean1, fulllog = fulllog1, check_perm = check_perm1, animelist = animelist1, anime = anime1;
 }
