@@ -17,11 +17,13 @@ class MongoFunctions1 {
         
         if (typeof(CollectionNAME) != "string") throw new Error("CollectionNAME is not a string at this.createCollection");
         
-        MongoClient.connect(this.uri, function(err, db) {
+        var thisVarFunc = this;
+        
+        MongoClient.connect(thisVarFunc.uri, function(err, db) {
             
             if (err) throw err;
             
-            var dbo = db.db(this.dbNAME);
+            var dbo = db.db(thisVarFunc.dbNAME);
             dbo.createCollection(CollectionNAME, function(err, res) {
                     
                 if (err) throw err;
@@ -36,16 +38,16 @@ class MongoFunctions1 {
             parent: this,
             into: function(CollectionNAME) {
                 
-                this.parent.log += "\nTried to insertOne().into(CollectionNAME)";
+                this.parent.log += "\nTried to insertOne().into()";
                 
                 if (typeof(CollectionNAME) != "string") {
                     throw new Error("CollectionNAME is not a string at this.insertOne().into()");
                     return;
                 }
-                
-                MongoClient.connect(this.parent.uri, function(err, db) {
+                var thisVarFunc = this;
+                MongoClient.connect(thisVarFunc.parent.uri, function(err, db) {
                     if (err) throw err;
-                    var dbo = db.db(this.parent.dbNAME);
+                    var dbo = db.db(thisVarFunc.parent.dbNAME);
                     dbo.collection(CollectionNAME).insertOne(toInsert, function(err, res) {
                         if (err) throw err;
                         db.close();
@@ -70,13 +72,13 @@ class MongoFunctions1 {
                 this.parent.log += "\nTried to insertMany().into()";
                 
                 if (typeof(CollectionNAME) != "string") {
-                    throw new Error("CollectionNAME is not a string at this.insertOne().into()");
+                    throw new Error("CollectionNAME is not a string at this.insertMany().into()");
                     return;
                 }
-                
-                MongoClient.connect(this.parent.uri, function(err, db) {
+                var thisVarFunc = this;
+                MongoClient.connect(thisVarFunc.parent.uri, function(err, db) {
                     if (err) throw err;
-                    var dbo = db.db(this.parent.dbNAME);
+                    var dbo = db.db(thisVarFunc.parent.dbNAME);
                     dbo.collection(CollectionNAME).insertMany(toInsert, function(err, res) {
                         if (err) throw err;
                         db.close();
@@ -93,53 +95,53 @@ class MongoFunctions1 {
             parent: this,
             in: function(CollectionNAME) {
                 
-                this.parent.log += "\nTried to insertMany().into()";
+                this.parent.log += "\nTried to find().in()";
                 
                 if (typeof(CollectionNAME) != "string") {
                     throw new Error("CollectionNAME is not a string at this.find().in()");
                     return;
                 }
-                
-                MongoClient.connect(this.parent.uri, function(err, db) {
+                var thisVarFunc = this;
+                MongoClient.connect(thisVarFunc.parent.uri, function(err, db) {
                     if (err) throw err;
                     
-                    var dbo = db.db(this.parent.dbNAME);
+                    var dbo = db.db(thisVarFunc.parent.dbNAME);
                     if (toFind)
-                        dbo.collection("customers").find({}, toFind).toArray(function(err, result) {
+                        dbo.collection(CollectionNAME).find({}, toFind).toArray(function(err, result) {
                             if (err) throw err;
                             this.result = result;
                             db.close();
                         });
                     else {
-                        dbo.collection("customers").find({}).toArray(function(err, result) {
+                        dbo.collection(CollectionNAME).find({}).toArray(function(err, result) {
                             if (err) throw err;
-                            this.result = result;
+                            thisVarFunc.result = result;
                             db.close();
                         });
                     }
                 });
                 
-                return this.result;
+                return thisVarFunc.result;
             }
         }
     }
-    updateOne(toUpdate,newValUP) {
+    updateOne(toUpdate,toInsert) {
         
         return {
             parent: this,
             into: function(CollectionNAME) {
                 
-                this.parent.log += "\nTried to insertOne().into(CollectionNAME)";
+                this.parent.log += "\nTried to updateOne().into()";
                 
                 if (typeof(CollectionNAME) != "string") {
-                    throw new Error("CollectionNAME is not a string at this.insertOne().into()");
+                    throw new Error("CollectionNAME is not a string at this.updateOne().into()");
                     return;
                 }
-                
-                MongoClient.connect(this.parent.uri, function(err, db) {
+                var thisVarFunc = this;
+                MongoClient.connect(thisVarFunc.parent.uri, function(err, db) {
                     if (err) throw err;
-                    var dbo = db.db(this.parent.dbNAME);
-                    dbo.collection(CollectionNAME).updateOne(toUpdate,newValUP, function(err, res) {
+                    var dbo = db.db(thisVarFunc.parent.dbNAME);
+                    dbo.collection(CollectionNAME).updateOne(toUpdate,toInsert, function(err, res) {
                         if (err) throw err;
                         db.close();
                     });
@@ -149,23 +151,23 @@ class MongoFunctions1 {
             }
         }
     }
-    updateMany(toUpdate,newValUP) {
+    updateMany(toUpdate,toInsert) {
         
         return {
             parent: this,
             into: function(CollectionNAME) {
                 
-                this.parent.log += "\nTried to insertMany().into()";
+                this.parent.log += "\nTried to updateMany().into()";
                 
                 if (typeof(CollectionNAME) != "string") {
-                    throw new Error("CollectionNAME is not a string at this.insertOne().into()");
+                    throw new Error("CollectionNAME is not a string at this.updateMany().into()");
                     return;
                 }
-                
-                MongoClient.connect(this.parent.uri, function(err, db) {
-                    if (err) throw err;
-                    var dbo = db.db(this.parent.dbNAME);
-                    dbo.collection(CollectionNAME).updateMany(toInsert,toUpdate,function(err, res) {
+                var thisVarFunc = this;
+                MongoClient.connect(thisVarFunc.parent.uri, function(err, db) {
+                    if (err) thisVarFunc err;
+                    var dbo = db.db(thisVarFunc.parent.dbNAME);
+                    dbo.collection(CollectionNAME).updateMany(toUpdate,toInsert,function(err, res) {
                         if (err) throw err;
                         db.close();
                     });
