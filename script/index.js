@@ -1,9 +1,8 @@
-require('./config.js').load();
 var MongoClient = require('mongodb').MongoClient; 
-var rpguri = process.env.MONGO_DB + "rpg";
-var testuri = process.env.MONGO_DB + "mydb";
+var uri = process.env.MONGO_DB;
 var events = require('events');
 var NoNyaWebhooks;
+require('./config.js').load();
 
 function resolveAfter(x) {
     return new Promise(resolve => {
