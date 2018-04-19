@@ -240,9 +240,9 @@ class MongoFunctions1 {
     drop(CollectionNAME) {
         this.log += "\nTried to drop()";
         var thisVarFunc = this;
-        MongoClient.connect(thisVarFunc.parent.uri, function(err, db) {
+        MongoClient.connect(thisVarFunc.uri, function(err, db) {
             if (err) throw err;
-            var dbo = db.db(thisVarFunc.parent.dbNAME);
+            var dbo = db.db(thisVarFunc.dbNAME);
             dbo.collection(CollectionNAME).drop(function(err, delOK) {
                 if (err) throw err;
                 db.close();
