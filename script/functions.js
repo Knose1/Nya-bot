@@ -187,6 +187,56 @@ class MongoFunctions1 {
             }
         }
     }
+    deleteOne(toDelete) {
+        return {
+            parent: this,
+            in: function(CollectionNAME) {
+                
+                this.parent.log += "\nTried to deleteOne().in()";
+                
+                if (typeof(CollectionNAME) != "string") {
+                    throw new Error("CollectionNAME is not a string at this.deleteOne().in()");
+                    return;
+                }
+                var thisVarFunc = this;
+                MongoClient.connect(thisVarFunc.parent.uri, function(err, db) {
+                    if (err) throw err;
+                    var dbo = db.db(thisVarFunc.parent.dbNAME);
+                    dbo.collection(CollectionNAME).deleteOne(toDelete,function(err, res) {
+                        if (err) throw err;
+                        db.close();
+                    });
+                });
+                
+                return this.parent;
+            }
+        }
+    }
+    deleteMany(toDelete) {
+        return {
+            parent: this,
+            in: function(CollectionNAME) {
+                
+                this.parent.log += "\nTried to deleteOne().in()";
+                
+                if (typeof(CollectionNAME) != "string") {
+                    throw new Error("CollectionNAME is not a string at this.deleteOne().in()");
+                    return;
+                }
+                var thisVarFunc = this;
+                MongoClient.connect(thisVarFunc.parent.uri, function(err, db) {
+                    if (err) throw err;
+                    var dbo = db.db(thisVarFunc.parent.dbNAME);
+                    dbo.collection(CollectionNAME).deleteMany(toDelete,function(err, res) {
+                        if (err) throw err;
+                        db.close();
+                    });
+                });
+                
+                return this.parent;
+            }
+        }
+    }
 }
 
 function animelist1() {
@@ -356,7 +406,7 @@ function anime1(arg1) {
                             if (options.guild && options.channel) {
                                 var z = x && y;
                                 resolve(z);
-			    } else if (options.channel)
+                            } else if (options.channel)
                                 resolve(y);
                             else if (options.guild)
                                 resolve(x);
