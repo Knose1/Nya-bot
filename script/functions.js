@@ -165,7 +165,7 @@ class MongoFunctions1 {
                 }
                 var thisVarFunc = this;
                 MongoClient.connect(thisVarFunc.parent.uri, function(err, db) {
-                    if (err) thisVarFunc err;
+                    if (err) throw err;
                     var dbo = db.db(thisVarFunc.parent.dbNAME);
                     dbo.collection(CollectionNAME).updateMany(toUpdate,toInsert,function(err, res) {
                         if (err) throw err;
