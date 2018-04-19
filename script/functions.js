@@ -1,3 +1,182 @@
+class MongoFunctions1 {
+    
+    constructor(dbNAME) {
+        if (!dbNAME) throw new Error("dbNAME is not defined at MongoFunctions.constructor") 
+        
+        this.dbNAME = dbNAME;
+        this.log = "CREATED / OPPENED DB\n";
+        this.uri = uri + dbNAME;
+        MongoClient.connect(uri + dbNAME, function(err, db) {
+            if (err) throw err;
+            db.close();
+        });
+    }
+    createCollection(CollectionNAME) {
+    
+        this.log += "\nTried to createCollection()";
+        
+        if (typeof(CollectionNAME) != "string") throw new Error("CollectionNAME is not a string at this.createCollection");
+        
+        MongoClient.connect(this.uri, function(err, db) {
+            
+            if (err) throw err;
+            
+            var dbo = db.db(this.dbNAME);
+            dbo.createCollection(CollectionNAME, function(err, res) {
+                    
+                if (err) throw err;
+                db.close();
+            });
+        });
+        return this;
+    }
+    insertOne(toInsert) {
+        
+        return {
+            parent: this,
+            into: function(CollectionNAME) {
+                
+                this.parent.log += "\nTried to insertOne().into(CollectionNAME)";
+                
+                if (typeof(CollectionNAME) != "string") {
+                    throw new Error("CollectionNAME is not a string at this.insertOne().into()");
+                    return;
+                }
+                
+                MongoClient.connect(this.parent.uri, function(err, db) {
+                    if (err) throw err;
+                    var dbo = db.db(this.parent.dbNAME);
+                    dbo.collection(CollectionNAME).insertOne(toInsert, function(err, res) {
+                        if (err) throw err;
+                        db.close();
+                    });
+                });
+                
+                return this.parent;
+            }
+        }
+    }
+    insertMany(toInsert) {
+        
+        if (!Array().isArray(toInsert)) {
+            throw new Error("toInsert is not an array at this.insertMany()");
+            return;
+        }
+        
+        return {
+            parent: this,
+            into: function(CollectionNAME) {
+                
+                this.parent.log += "\nTried to insertMany().into()";
+                
+                if (typeof(CollectionNAME) != "string") {
+                    throw new Error("CollectionNAME is not a string at this.insertOne().into()");
+                    return;
+                }
+                
+                MongoClient.connect(this.parent.uri, function(err, db) {
+                    if (err) throw err;
+                    var dbo = db.db(this.parent.dbNAME);
+                    dbo.collection(CollectionNAME).insertMany(toInsert, function(err, res) {
+                        if (err) throw err;
+                        db.close();
+                    });
+                });
+                
+                return this.parent;
+            }
+        }
+    }
+    find(toFind) {
+        
+        return {
+            parent: this,
+            in: function(CollectionNAME) {
+                
+                this.parent.log += "\nTried to insertMany().into()";
+                
+                if (typeof(CollectionNAME) != "string") {
+                    throw new Error("CollectionNAME is not a string at this.find().in()");
+                    return;
+                }
+                
+                MongoClient.connect(this.parent.uri, function(err, db) {
+                    if (err) throw err;
+                    
+                    var dbo = db.db(this.parent.dbNAME);
+                    if (toFind)
+                        dbo.collection("customers").find({}, toFind).toArray(function(err, result) {
+                            if (err) throw err;
+                            this.result = result;
+                            db.close();
+                        });
+                    else {
+                        dbo.collection("customers").find({}).toArray(function(err, result) {
+                            if (err) throw err;
+                            this.result = result;
+                            db.close();
+                        });
+                    }
+                });
+                
+                return this.result;
+            }
+        }
+    }
+    updateOne(toUpdate,newValUP) {
+        
+        return {
+            parent: this,
+            into: function(CollectionNAME) {
+                
+                this.parent.log += "\nTried to insertOne().into(CollectionNAME)";
+                
+                if (typeof(CollectionNAME) != "string") {
+                    throw new Error("CollectionNAME is not a string at this.insertOne().into()");
+                    return;
+                }
+                
+                MongoClient.connect(this.parent.uri, function(err, db) {
+                    if (err) throw err;
+                    var dbo = db.db(this.parent.dbNAME);
+                    dbo.collection(CollectionNAME).updateOne(toUpdate,newValUP, function(err, res) {
+                        if (err) throw err;
+                        db.close();
+                    });
+                });
+                
+                return this.parent;
+            }
+        }
+    }
+    updateMany(toUpdate,newValUP) {
+        
+        return {
+            parent: this,
+            into: function(CollectionNAME) {
+                
+                this.parent.log += "\nTried to insertMany().into()";
+                
+                if (typeof(CollectionNAME) != "string") {
+                    throw new Error("CollectionNAME is not a string at this.insertOne().into()");
+                    return;
+                }
+                
+                MongoClient.connect(this.parent.uri, function(err, db) {
+                    if (err) throw err;
+                    var dbo = db.db(this.parent.dbNAME);
+                    dbo.collection(CollectionNAME).updateMany(toInsert,toUpdate,function(err, res) {
+                        if (err) throw err;
+                        db.close();
+                    });
+                });
+                
+                return this.parent;
+            }
+        }
+    }
+}
+
 function animelist1() {
 
     this.add = function(anime) {
@@ -211,34 +390,32 @@ function anime1(arg1) {
                     popout[i] = FuncArgument1.slice(0,4);
                     
 					
-					if (popout[i].lastIndexOf(" ") != -1) 
-                    	popout[i] = popout[i].slice(0,popout[i].lastIndexOf(" ") + 1);
+                    if (popout[i].lastIndexOf(" ") != -1) 
+                        popout[i] = popout[i].slice(0,popout[i].lastIndexOf(" ") + 1);
                         
                     else if (popout[i].lastIndexOf(";") != -1) 
-                    	popout[i] = popout[i].slice(0,popout[i].lastIndexOf(";") + 1);
-                        
-					else if (popout[i].lastIndexOf(",") != -1) 
-                    	popout[i] = popout[i].slice(0,popout[i].lastIndexOf(",") + 1);
+                        popout[i] = popout[i].slice(0,popout[i].lastIndexOf(";") + 1);
+                    
+                    else if (popout[i].lastIndexOf(",") != -1) 
+                        popout[i] = popout[i].slice(0,popout[i].lastIndexOf(",") + 1);
                     else {
-                    
-                    	popout[i] = FuncArgument1.slice(0,10 + max);
-                    
-					
-						if (popout[i].lastIndexOf(" ") != -1) 
-                    		popout[i] = popout[i].slice(0,popout[i].lastIndexOf(" ") + 1);
+                        popout[i] = FuncArgument1.slice(0,10 + max);
                         
-                    	else if (popout[i].lastIndexOf(";") != -1) 
-                    		popout[i] = popout[i].slice(0,popout[i].lastIndexOf(";") + 1);
+                        if (popout[i].lastIndexOf(" ") != -1) 
+                            popout[i] = popout[i].slice(0,popout[i].lastIndexOf(" ") + 1);
                         
-						else if (popout[i].lastIndexOf(",") != -1) 
-                    		popout[i] = popout[i].slice(0,popout[i].lastIndexOf(",") + 1);
+                        else if (popout[i].lastIndexOf(";") != -1) 
+                            popout[i] = popout[i].slice(0,popout[i].lastIndexOf(";") + 1);
+                        
+                        else if (popout[i].lastIndexOf(",") != -1) 
+                            popout[i] = popout[i].slice(0,popout[i].lastIndexOf(",") + 1);
                     
                     }
                     
                     
                     FuncArgument1 = FuncArgument1.slice(popout[i].length);
                     if (FuncArgument1.length != 0) 
-	                    popout[i + 1] = FuncArgument1;
+                        popout[i + 1] = FuncArgument1;
                     
                     i += 1;
                 };
@@ -246,7 +423,7 @@ function anime1(arg1) {
                 while (i2 < 20) {
                     popout.forEach( m => {
                         if (m.length == 0 || m.replace(/ +/g,"").length == 0)
-    		                popout.splice(popout.indexOf(m), 1);
+                            popout.splice(popout.indexOf(m), 1);
                     });
                     i2 += 1;
                 }
@@ -255,6 +432,7 @@ function anime1(arg1) {
             /**/
 
 
+/*OLD DB USING GUILD*/
 /*The DB PART 1*/
 function f1(SGuild, allRolePrefix, gt) {
 //Si on a donner une liste de prefix
@@ -430,5 +608,5 @@ function f4(min,max) {
     return Math.floor((Math.random() * max) + min);
 };
 exports.load = () => {
-    return Database__1 = f1, TestDatabase = f2, Database = f3, rand = f4, clean = clean1, fulllog = fulllog1, check_perm = check_perm1, animelist = animelist1, anime = anime1;
+    return MongoFunctions = MongoFunctions1, Database__1 = f1, TestDatabase = f2, Database = f3, rand = f4, clean = clean1, fulllog = fulllog1, check_perm = check_perm1, animelist = animelist1, anime = anime1;
 }
