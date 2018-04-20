@@ -20,13 +20,18 @@ client.on('ready', async function() {
         client.channels.get("420002162676858900").fetchMessages({ limit: 100 }).then(FM => {
             FM.forEach(m => m.delete(10));
         });
+        await resolveAfter(10);
+        
         client.channels.get("420002162676858900").fetchMessages({ limit: 100 }).then(FM => {
             FM.forEach(m => m.delete(10));
         });
+        await resolveAfter(10);
+        
         client.channels.get("420002162676858900").fetchMessages({ limit: 100 }).then(FM => {
             FM.forEach(m => m.delete(10));
         });
-        await resolveAfter(3*100*10);
+        await resolveAfter(15);
+        
         client.channels.get("420002162676858900").send(listAnime.map(anime => {return `**N°${listAnime.indexOf(anime) + 1}** ${anime.name}`}).join("\n"),{split: true});
     } catch (err) {}
     
