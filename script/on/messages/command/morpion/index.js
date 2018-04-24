@@ -5,7 +5,7 @@ exports.execute = () => {
     if (args[0])
         if (availableSubcommands.indexOf(args[0].toLowerCase()) > -1) {
             var funcSubComm = String(require(`./args[0].js`).execute);
-            var toEvSC = funcSubComm.slice(7, funcComm.length - 1)/*.replace(/\n/g,"").replace(/ +/g," ")*/;
+            var toEvSC = funcSubComm.slice(7, funcSubComm.length - 1)/*.replace(/\n/g,"").replace(/ +/g," ")*/;
             //console.log(toEvSC);
             eval(toEvSC);
         }
