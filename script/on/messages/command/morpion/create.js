@@ -12,7 +12,7 @@ exports.execute = () => {
         });
         message.channel.send(`Partie crée ! ID : ${partID}\nFaites ${prefix}morpion join ${partID} pour rejoindre la partie !`);
     } else {
-        var MORPFoundedID = mpParties.indexof( mpParties.filter(m => {return m.tour != 0 && (m.j1 == message.author.id || m.j2 == message.author.id)})[0] );
+        var MORPFoundedID = mpParties.indexOf( mpParties.filter(m => {return m.tour != 0 && (m.j1 == message.author.id || m.j2 == message.author.id)})[0] );
         
         if (Number(new Date()) >= mpParties[MORPFoundedID].maxTime) {
             
