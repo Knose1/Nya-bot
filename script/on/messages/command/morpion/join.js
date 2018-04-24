@@ -27,10 +27,10 @@ exports.execute = () => {
         if (Number(new Date()) >= mpParties[MORPFoundedID].maxTime) {
             
             mpParties[MORPFoundedID].tour = 0;
-            message.channel.send(`{message.author},\n\nVous avez déjà une partie dont la durée limite (1h) a été atteint.\nCelle si à été supprimé\n\n**ID: ${MORPFoundedID}**`);
+            message.channel.send(`${message.author},\n\nVous avez déjà une partie dont la durée limite (1h) a été atteint.\nCelle si à été supprimé\n\n**ID: ${MORPFoundedID}**`);
             
         } else {
-            message.channel.send(`{message.author},\n\nVous avez déjà une partie\n**ID: ${MORPFoundedID}**`);
+            message.channel.send(`${message.author},\n\nVous avez déjà une partie\n**ID: ${MORPFoundedID}**`);
             
         }
     }
