@@ -21,5 +21,6 @@ return key = ﻿process.env.TOKEN,
     MongoClient = require('mongodb').MongoClient, 
     uri = process.env.MONGO_DB,
     events = require('events'),
-    NoNyaWebhooks = "";
+    NoNyaWebhooks = "",
+    mpParties = [];
 }
