@@ -17,7 +17,7 @@ exports.execute = () => {
                                 message.channel.send(`La partie **ID: ${args[1]}** à été supprimé par ${message.author}`)
                         
                         }else message.channel.send(`${message.author},\n\nVous n'êtes pas dans la partie`);
-                    }else message.channel.send(`${message.author},\n\nLa partie ${args[1]} à déjà été supprimé`)
+                    }else message.channel.send(`${message.author},\n\nLa partie ${args[1]} a déjà été supprimé`)
                 }else message.channel.send(`${message.author},\n\nLa partie ${args[1]} n'existe pas`);
             } else message.channel.send(`${message.author},\n\nL'id doit être un nombre`);
         } else message.channel.send(`${message.author},\n\nUtilisation: \`cat:morpion delete <id>\``);
