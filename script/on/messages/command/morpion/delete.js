@@ -6,7 +6,7 @@ exports.execute = () => {
         message.channel.send(`${message.author},\n\n Vous n'avez aucune partie en cours`);
         
     } else {
-        var AllMORPFoundedID = mpParties.indexOf( mpParties.filter(m => {return m.tour != 0 && (m.j1 == message.author.id || m.j2 == message.author.id)}) );
+        var AllMORPFoundedID = mpParties.filter(m => {return m.tour != 0 && (m.j1 == message.author.id || m.j2 == message.author.id)});
         if (args[1]) {
             if (args[1].replace(/0/g,"").replace(/1/g,"").replace(/2/g,"").replace(/3/g,"").replace(/4/g,"").replace(/5/g,"").replace(/6/g,"").replace(/7/g,"").replace(/8/g,"").replace(/9/g,"").length == 0 ) {
                 if (mpParties[args[1]]) {
