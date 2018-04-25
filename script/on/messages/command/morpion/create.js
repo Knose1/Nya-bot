@@ -7,7 +7,7 @@ exports.execute = () => {
             maxTime: Number(new Date()) + 3600000, //Durée max d'une partie: 1h après la création
             j1: message.author.id,
             j2: false,
-            positions: [0,0,0,0,0,0,0,0,0,0], //0: pas encore prise || 1: prise pas le joueur 1 || 2: prise par le joueur 2
+            positions: [0,0,0,0,0,0,0,0,0], //0: pas encore prise || 1: prise pas le joueur 1 || 2: prise par le joueur 2
             tour: -1 // -1 :la partie n'as pas commencé || 0: la partie est finie || 1 ou 2: joueur 1 ou 2
         });
         message.channel.send(`Partie crée ! Host: ${message.author}\nID : ${partID}\nFaites ${prefix}morpion join ${partID} pour rejoindre la partie !`);
