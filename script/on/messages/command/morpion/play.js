@@ -33,23 +33,23 @@ exports.execute = () => {
                                         
                                         if (
                                             //colones
-                                            morpPlayerNum == mpParties[args[1]].positions[0] == mpParties[args[1]].positions[3] == mpParties[args[1]].positions[6]
+                                            Array(mpParties[args[1]].positions[0] , mpParties[args[1]].positions[3] , mpParties[args[1]].positions[6]).filter(m => m == morpPlayerNum).length == 3
                                                 ||
-                                            morpPlayerNum == mpParties[args[1]].positions[1] == mpParties[args[1]].positions[4] == mpParties[args[1]].positions[7]
+                                            Array(mpParties[args[1]].positions[1] , mpParties[args[1]].positions[4] , mpParties[args[1]].positions[7]).filter(m => m == morpPlayerNum).length == 3
                                                 ||
-                                            morpPlayerNum == mpParties[args[1]].positions[2] == mpParties[args[1]].positions[5] == mpParties[args[1]].positions[8]
+                                            Array(mpParties[args[1]].positions[2] , mpParties[args[1]].positions[5] , mpParties[args[1]].positions[8]).filter(m => m == morpPlayerNum).length == 3
                                                 ||
                                             //lignes
-                                            morpPlayerNum == mpParties[args[1]].positions[0] == mpParties[args[1]].positions[1] == mpParties[args[1]].positions[2]
+                                            Array(mpParties[args[1]].positions[0] , mpParties[args[1]].positions[1] , mpParties[args[1]].positions[2]).filter(m => m == morpPlayerNum).length == 3
                                                 ||
-                                            morpPlayerNum == mpParties[args[1]].positions[3] == mpParties[args[1]].positions[4] == mpParties[args[1]].positions[5]
+                                            Array(mpParties[args[1]].positions[3] , mpParties[args[1]].positions[4] , mpParties[args[1]].positions[5]).filter(m => m == morpPlayerNum).length == 3
                                                 ||
-                                            morpPlayerNum == mpParties[args[1]].positions[6] == mpParties[args[1]].positions[7] == mpParties[args[1]].positions[8]
+                                            Array(mpParties[args[1]].positions[6] , mpParties[args[1]].positions[7] , mpParties[args[1]].positions[8]).filter(m => m == morpPlayerNum).length == 3
                                                 ||
                                             //Diagonales
-                                            morpPlayerNum == mpParties[args[1]].positions[0] == mpParties[args[1]].positions[4] == mpParties[args[1]].positions[8]
+                                            Array(mpParties[args[1]].positions[0] , mpParties[args[1]].positions[4] , mpParties[args[1]].positions[8]).filter(m => m == morpPlayerNum).length == 3
                                                 ||
-                                            morpPlayerNum == mpParties[args[1]].positions[6] == mpParties[args[1]].positions[4] == mpParties[args[1]].positions[2]
+                                            Array(mpParties[args[1]].positions[6] , mpParties[args[1]].positions[4] , mpParties[args[1]].positions[2]).filter(m => m == morpPlayerNum).length == 3
                                             
                                         ) {
                                             
