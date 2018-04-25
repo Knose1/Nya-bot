@@ -54,12 +54,12 @@ exports.execute = () => {
                                         ) {
                                             
                                             mpParties[args[1]].tour = 0;
-                                            message.channel.send(`${message.author} a gagné !`);
+                                            message.channel.send(`${message.author} a gagné !\n\`\`\`Positions (un 0 signifie que la case n'est pas occupé):\n\n${mpParties[args[1]].positions[6]} | ${mpParties[args[1]].positions[7]} | ${mpParties[args[1]].positions[8]}\n${mpParties[args[1]].positions[3]} | ${mpParties[args[1]].positions[4]} | ${mpParties[args[1]].positions[5]}\n${mpParties[args[1]].positions[0]} | ${mpParties[args[1]].positions[1]} | ${mpParties[args[1]].positions[2]}\`\`\``);
                                             
                                         } else if(mpParties[args[1]].positions.indexOf(0) == -1) {
                                             
                                             mpParties[args[1]].tour = 0;
-                                            message.channel.send(`Match nul !`);
+                                            message.channel.send(`Match nul !\n\`\`\`Positions (un 0 signifie que la case n'est pas occupé):\n\n${mpParties[args[1]].positions[6]} | ${mpParties[args[1]].positions[7]} | ${mpParties[args[1]].positions[8]}\n${mpParties[args[1]].positions[3]} | ${mpParties[args[1]].positions[4]} | ${mpParties[args[1]].positions[5]}\n${mpParties[args[1]].positions[0]} | ${mpParties[args[1]].positions[1]} | ${mpParties[args[1]].positions[2]}\`\`\``);
                                             
                                         } else {
                                             
