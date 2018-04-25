@@ -11,7 +11,7 @@ exports.execute = () => {
                             mpParties[args[1]].j2 = message.author.id;
                             mpParties[args[1]].tour = rand(1,2);
                             eval(`var morpFirstPlayer = mpParties[args[1]].j${mpParties[args[1]].tour}`);
-                            message.channel.send(`<@${mpParties[args[1]].j1}> VS <@${mpParties[args[1]].j2}> || C'est <@${morpFirstPlayer}> qui commence !\nVoici les positions:\n\n7 | 8 | 9\n4 | 5 | 6\n1 | 2 | 3`)
+                            message.channel.send(`<@${mpParties[args[1]].j1}> VS <@${mpParties[args[1]].j2}> || C'est <@${morpFirstPlayer}> qui commence !\n\`\`\`js\nVoici les positions:\n\n7 | 8 | 9\n4 | 5 | 6\n1 | 2 | 3\`\`\``)
                         
                         } else message.channel.send(`${message.author},\n\nLa partie est déjà complète`);
                     }else message.channel.send(`${message.author},\n\nLa partie ${args[1]} a été supprimé`)
