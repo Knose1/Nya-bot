@@ -8,7 +8,7 @@ function resolveAfter1(x) {
 
 class MongoFunctions1 {
     
-    async constructor(dbNAME) {
+    constructor(dbNAME) {
         if (!dbNAME) throw Error("dbNAME is not defined at MongoFunctions.constructor") 
         
         this.dbNAME = dbNAME;
@@ -23,7 +23,6 @@ class MongoFunctions1 {
             }
             db.close();
         });
-        if (dbError) throw dbError;
         
     }
     async createCollection(CollectionNAME) {
