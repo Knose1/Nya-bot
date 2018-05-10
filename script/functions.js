@@ -16,7 +16,7 @@ class MongoFunctions1 {
         this.uri = uri + dbNAME;
         
         MongoClient.connect(uri + dbNAME, function(err, db) {
-            //if (err) throw Error(err.message);
+            if (err) throw Error(err.message);
             db.close();
         });
         
@@ -36,7 +36,7 @@ class MongoFunctions1 {
             var dbo = db.db(thisVarFunc.dbNAME);
             dbo.createCollection(CollectionNAME, function(err, res) {
                     
-                if (err) throw Error(err.message);
+                //if (err) throw Error(err.message);
                 db.close();
             });
         });
