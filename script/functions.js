@@ -8,7 +8,7 @@ function resolveAfter1(x) {
 
 class MongoFunctions1 {
     
-    constructor(dbNAME) {
+    async constructor(dbNAME) {
         if (!dbNAME) throw Error("dbNAME is not defined at MongoFunctions.constructor") 
         
         this.dbNAME = dbNAME;
@@ -26,7 +26,7 @@ class MongoFunctions1 {
         if (dbError) throw dbError;
         
     }
-    createCollection(CollectionNAME) {
+    async createCollection(CollectionNAME) {
     
         this.log += "\nTried to createCollection()";
         
@@ -37,9 +37,7 @@ class MongoFunctions1 {
         MongoClient.connect(thisVarFunc.uri, function(err, db) {
             
             if (err) {
-                console.log("error");
                 thisVarFunc.err = err;
-                console.log(thisVarFunc);
                 return;
             }
             
@@ -47,16 +45,15 @@ class MongoFunctions1 {
             dbo.createCollection(CollectionNAME, function(err, res) {
                     
                 if (err) {
-                    console.log("error");
                     thisVarFunc.err = err;
-                    console.log(thisVarFunc);
                     return;
                 }
                 db.close();
             });
         });
-        console.log("thisVarFunc:");
-        console.log(thisVarFunc);
+        
+        await resolveAfter1(1.3);
+        
         if (thisVarFunc.err) throw thisVarFunc.err;
         return this;
     }
@@ -64,7 +61,7 @@ class MongoFunctions1 {
         
         return {
             parent: this,
-            into: function(CollectionNAME) {
+            into: async function(CollectionNAME) {
                 
                 this.parent.log += "\nTried to insertOne().into()";
                 
@@ -88,6 +85,8 @@ class MongoFunctions1 {
                     });
                 });
                 
+                await resolveAfter1(1.3);
+        
                 if (thisVarFunc.err) throw thisVarFunc.err;
                 return this.parent;
             }
@@ -102,7 +101,7 @@ class MongoFunctions1 {
         
         return {
             parent: this,
-            into: function(CollectionNAME) {
+            into: async function(CollectionNAME) {
                 
                 this.parent.log += "\nTried to insertMany().into()";
                 
@@ -126,6 +125,8 @@ class MongoFunctions1 {
                     });
                 });
                 
+                await resolveAfter1(1.3);
+        
                 if (thisVarFunc.err) throw thisVarFunc.err;
                 return this.parent;
             }
@@ -185,7 +186,7 @@ class MongoFunctions1 {
         
         return {
             parent: this,
-            into: function(CollectionNAME) {
+            into: async function(CollectionNAME) {
                 
                 this.parent.log += "\nTried to updateOne().into()";
                 
@@ -209,6 +210,8 @@ class MongoFunctions1 {
                     });
                 });
                 
+                await resolveAfter1(1.3);
+        
                 if (thisVarFunc.err) throw thisVarFunc.err;
                 return this.parent;
             }
@@ -218,7 +221,7 @@ class MongoFunctions1 {
         
         return {
             parent: this,
-            into: function(CollectionNAME) {
+            into: async function(CollectionNAME) {
                 
                 this.parent.log += "\nTried to updateMany().into()";
                 
@@ -242,6 +245,8 @@ class MongoFunctions1 {
                     });
                 });
                 
+                await resolveAfter1(1.3);
+        
                 if (thisVarFunc.err) throw thisVarFunc.err;
                 return this.parent;
             }
@@ -250,7 +255,7 @@ class MongoFunctions1 {
     deleteOne(toDelete) {
         return {
             parent: this,
-            in: function(CollectionNAME) {
+            in: async function(CollectionNAME) {
                 
                 this.parent.log += "\nTried to deleteOne().in()";
                 
@@ -274,6 +279,8 @@ class MongoFunctions1 {
                     });
                 });
                 
+                await resolveAfter1(1.3);
+        
                 if (thisVarFunc.err) throw thisVarFunc.err;
                 return this.parent;
             }
@@ -282,7 +289,7 @@ class MongoFunctions1 {
     deleteMany(toDelete) {
         return {
             parent: this,
-            in: function(CollectionNAME) {
+            in: async function(CollectionNAME) {
                 
                 this.parent.log += "\nTried to deleteMany().in()";
                 
@@ -306,12 +313,14 @@ class MongoFunctions1 {
                     });
                 });
                 
+                await resolveAfter1(1.3);
+        
                 if (thisVarFunc.err) throw thisVarFunc.err;
                 return this.parent;
             }
         }
     }
-    drop(CollectionNAME) {
+    async drop(CollectionNAME) {
         this.log += "\nTried to drop()";
         var thisVarFunc = this;
         MongoClient.connect(thisVarFunc.uri, function(err, db) {
@@ -328,6 +337,8 @@ class MongoFunctions1 {
                 db.close();
             });
         });
+        
+        await resolveAfter1(1.3);
         
         if (thisVarFunc.err) throw thisVarFunc.err;
         return this;
