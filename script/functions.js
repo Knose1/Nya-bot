@@ -14,11 +14,16 @@ class MongoFunctions1 {
         this.dbNAME = dbNAME;
         this.log = "CREATED / OPPENED DB\n";
         this.uri = uri + dbNAME;
+        var dbError = undefined
         
         MongoClient.connect(uri + dbNAME, function(err, db) {
-            if (err) throw Error(err.message);
+            if (err) {
+                dbError = err;
+                return;
+            }
             db.close();
         });
+        if (dbError) throw dbError;
         
     }
     createCollection(CollectionNAME) {
@@ -31,15 +36,23 @@ class MongoFunctions1 {
         
         MongoClient.connect(thisVarFunc.uri, function(err, db) {
             
-            if (err) throw Error(err.message);
+            if (err) {
+                thisVarFunc.err = err;
+                return;
+            }
             
             var dbo = db.db(thisVarFunc.dbNAME);
             dbo.createCollection(CollectionNAME, function(err, res) {
                     
-                //if (err) throw Error(err.message);
+                if (err) {
+                    thisVarFunc.err = err;
+                    return;
+                }
                 db.close();
             });
         });
+        
+        if (thisVarFunc.err) throw thisVarFunc.err;
         return this;
     }
     insertOne(toInsert) {
@@ -56,14 +69,21 @@ class MongoFunctions1 {
                 }
                 var thisVarFunc = this;
                 MongoClient.connect(thisVarFunc.parent.uri, function(err, db) {
-                    if (err) throw Error(err.message);
+                    if (err) {
+                        thisVarFunc.err = err;
+                        return;
+                    }
                     var dbo = db.db(thisVarFunc.parent.dbNAME);
                     dbo.collection(CollectionNAME).insertOne(toInsert, function(err, res) {
-                        if (err) throw Error(err.message);
+                        if (err) {
+                            thisVarFunc.err = err;
+                            return;
+                        }
                         db.close();
                     });
                 });
                 
+                if (thisVarFunc.err) throw thisVarFunc.err;
                 return this.parent;
             }
         }
@@ -87,14 +107,21 @@ class MongoFunctions1 {
                 }
                 var thisVarFunc = this;
                 MongoClient.connect(thisVarFunc.parent.uri, function(err, db) {
-                    if (err) throw Error(err.message);
+                    if (err) {
+                        thisVarFunc.err = err;
+                        return;
+                    }
                     var dbo = db.db(thisVarFunc.parent.dbNAME);
                     dbo.collection(CollectionNAME).insertMany(toInsert, function(err, res) {
-                        if (err) throw Error(err.message);
+                        if (err) {
+                            thisVarFunc.err = err;
+                            return;
+                        }
                         db.close();
                     });
                 });
                 
+                if (thisVarFunc.err) throw thisVarFunc.err;
                 return this.parent;
             }
         }
@@ -113,26 +140,38 @@ class MongoFunctions1 {
                 }
                 var thisVarFunc = this;
                 MongoClient.connect(thisVarFunc.parent.uri, function(err, db) {
-                    if (err) throw Error(err.message);
+                    if (err) {
+                        thisVarFunc.err = err;
+                        return;
+                    }
                     
                     var dbo = db.db(thisVarFunc.parent.dbNAME);
                     if (toFind)
                         dbo.collection(CollectionNAME).find({}, toFind).toArray(function(err, result) {
-                            if (err) throw Error(err.message);
+                            if (err) {
+                                thisVarFunc.err = err;
+                                return;
+                            }
                             this.result = result;
                             db.close();
                         });
                     else {
                         dbo.collection(CollectionNAME).find({}).toArray(function(err, result) {
-                            if (err) throw Error(err.message);
+                            if (err) {
+                                thisVarFunc.err = err;
+                                return;
+                            }
                             thisVarFunc.result = result;
                             console.log(thisVarFunc.result);
                             db.close();
                         });
                     }
                 });
-		await resolveAfter1(1.3);
-                console.log(thisVarFunc.result);
+                
+                await resolveAfter1(1.3);
+                
+                //console.log(thisVarFunc.result);
+                if (thisVarFunc.err) throw thisVarFunc.err;
                 return thisVarFunc.result;
             }
         }
@@ -151,14 +190,21 @@ class MongoFunctions1 {
                 }
                 var thisVarFunc = this;
                 MongoClient.connect(thisVarFunc.parent.uri, function(err, db) {
-                    if (err) throw Error(err.message);
+                    if (err) {
+                        thisVarFunc.err = err;
+                        return;
+                    }
                     var dbo = db.db(thisVarFunc.parent.dbNAME);
                     dbo.collection(CollectionNAME).updateOne(toUpdate,toInsert, function(err, res) {
-                        if (err) throw Error(err.message);
+                        if (err) {
+                            thisVarFunc.err = err;
+                            return;
+                        }
                         db.close();
                     });
                 });
                 
+                if (thisVarFunc.err) throw thisVarFunc.err;
                 return this.parent;
             }
         }
@@ -177,14 +223,21 @@ class MongoFunctions1 {
                 }
                 var thisVarFunc = this;
                 MongoClient.connect(thisVarFunc.parent.uri, function(err, db) {
-                    if (err) throw err;
+                    if (err) {
+                        thisVarFunc.err = err;
+                        return;
+                    }
                     var dbo = db.db(thisVarFunc.parent.dbNAME);
                     dbo.collection(CollectionNAME).updateMany(toUpdate,toInsert,function(err, res) {
-                        if (err) throw err;
+                        if (err) {
+                            thisVarFunc.err = err;
+                            return;
+                        }
                         db.close();
                     });
                 });
                 
+                if (thisVarFunc.err) throw thisVarFunc.err;
                 return this.parent;
             }
         }
@@ -202,14 +255,21 @@ class MongoFunctions1 {
                 }
                 var thisVarFunc = this;
                 MongoClient.connect(thisVarFunc.parent.uri, function(err, db) {
-                    if (err) throw Error(err.message);
+                    if (err) {
+                        thisVarFunc.err = err;
+                        return;
+                    }
                     var dbo = db.db(thisVarFunc.parent.dbNAME);
                     dbo.collection(CollectionNAME).deleteOne(toDelete,function(err, res) {
-                        if (err) throw Error(err.message);
+                        if (err) {
+                            thisVarFunc.err = err;
+                            return;
+                        }
                         db.close();
                     });
                 });
                 
+                if (thisVarFunc.err) throw thisVarFunc.err;
                 return this.parent;
             }
         }
@@ -227,14 +287,21 @@ class MongoFunctions1 {
                 }
                 var thisVarFunc = this;
                 MongoClient.connect(thisVarFunc.parent.uri, function(err, db) {
-                    if (err) throw Error(err.message);
+                    if (err) {
+                        thisVarFunc.err = err;
+                        return;
+                    }
                     var dbo = db.db(thisVarFunc.parent.dbNAME);
                     dbo.collection(CollectionNAME).deleteMany(toDelete,function(err, res) {
-                        if (err) throw Error(err.message);
+                        if (err) {
+                            thisVarFunc.err = err;
+                            return;
+                        }
                         db.close();
                     });
                 });
                 
+                if (thisVarFunc.err) throw thisVarFunc.err;
                 return this.parent;
             }
         }
@@ -243,14 +310,21 @@ class MongoFunctions1 {
         this.log += "\nTried to drop()";
         var thisVarFunc = this;
         MongoClient.connect(thisVarFunc.uri, function(err, db) {
-            if (err) throw Error(err.message);
+            if (err) {
+                thisVarFunc.err = err;
+                return;
+            }
             var dbo = db.db(thisVarFunc.dbNAME);
             dbo.collection(CollectionNAME).drop(function(err, delOK) {
-                if (err) throw Error(err.message);
+                if (err) {
+                    thisVarFunc.err = err;
+                    return;
+                }
                 db.close();
             });
         });
         
+        if (thisVarFunc.err) throw thisVarFunc.err;
         return this;
     }
 }
