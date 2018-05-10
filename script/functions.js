@@ -37,7 +37,9 @@ class MongoFunctions1 {
         MongoClient.connect(thisVarFunc.uri, function(err, db) {
             
             if (err) {
+                console.log("error");
                 thisVarFunc.err = err;
+                console.log(thisVarFunc);
                 return;
             }
             
@@ -45,13 +47,16 @@ class MongoFunctions1 {
             dbo.createCollection(CollectionNAME, function(err, res) {
                     
                 if (err) {
+                    console.log("error");
                     thisVarFunc.err = err;
+                    console.log(thisVarFunc);
                     return;
                 }
                 db.close();
             });
         });
-        
+        console.log("thisVarFunc:");
+        console.log(thisVarFunc);
         if (thisVarFunc.err) throw thisVarFunc.err;
         return this;
     }
