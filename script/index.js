@@ -523,3 +523,6 @@ bot.on('message', message => {
 });
 
 bot.login(﻿process.env.TK2);
+
+var bt = new Discord.Client();
+bt.login(﻿process.env.BTFB_TOKEN);
