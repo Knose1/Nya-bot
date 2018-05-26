@@ -115,28 +115,28 @@ Les id sont marqués en bas des messages du VirtualServeur (VS)'
     //commande help
         
         if ((command == 'help' || command == 'aide') && args[0] == 'new(vs)') {
-            message.channel.send(cmHelp.newVs)
+            message.channel.send(cmHelp.newVs, {split:true})
             .then(msg => msg.delete(25000));
         }
         
         else if (command == 'help' && ((args[0]== 'vs' && args[1] == 'here') || (args[0] == 'here' && args[1] == 'vs'))) {
-            message.channel.send(cmHelp.vs);
+            message.channel.send(cmHelp.vs, {split:true});
         }
         
         else if (command == 'help' && args[0] == 'vs') {
-            message.author.send(cmHelp.vs);
+            message.author.send(cmHelp.vs, {split:true});
         }
 	    
         else if ((command == 'help' || command == 'aide') && args[0] == 'here' ) {
-        message.channel.send(cmHelp.cUser);
+        message.channel.send(cmHelp.cUser, {split:true});
         }
         
         else if ((command == 'help' || command == 'aide') && message.author == botowner) {
-        message.author.send(cmHelp.botOwner);
+        message.author.send(cmHelp.botOwner, {split:true});
         }
         
         else if (command == 'help' || command == 'aide') {
-        message.author.send(cmHelp.cUser);
+        message.author.send(cmHelp.cUser, {split:true});
         }
 
 }
