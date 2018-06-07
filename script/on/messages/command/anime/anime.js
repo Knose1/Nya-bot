@@ -223,6 +223,29 @@ new anime()
     
     .addTo(listAnime1);
 
+
+new anime()
+    .setname('Hakkenden Touhou Hakken Ibun')
+    .setimage('http://www.anime-ultime.net/images/img31541.jpg')
+    
+    .setstory_fr(`Il y a cinq ans, une épidémie de peste toucha un village entier. Seul survivant, un jeune garçon se résigna à mourir aux côtés de ses deux meilleurs amis jusqu’à qu’un mystérieux homme lui propose un pacte.
+Miraculeusement guéris, les trois amis trouvent refuge dans une église.
+Finalement, l’Eglise Impériale commence à manifester son intérêt à posséder « Murasame », l’épée démoniaque connu pour « contenir la vie »… mais quel rapport l’épée légendaire a avec les trois survivants de cette épidémie dévastatrice ?`)
+    .setstory_fr_source([`Anime ultime`,`http://www.anime-ultime.net/file-0-1/3546/Hakkenden--touhou-hakken-ibun-vostfr`])
+    
+    .setstory_en(`undefined`)
+    .setstory_en_source('undefined')
+    
+    .setanime_fr('http://www.anime-ultime.net/file-0-1/3546/Hakkenden--touhou-hakken-ibun-vostfr')
+    .setanime_en('undefined')
+    
+    .setop(['https://www.youtube.com/watch?v=WMNd9ByqFqs','https://www.youtube.com/watch?v=1iDwf-vQwLo'])
+    .setopFull(['https://www.youtube.com/watch?v=1n11qtBxqPc','https://www.youtube.com/watch?v=6bDyGIHkQLE&pbjreload=10'])
+    .seted(['https://www.youtube.com/watch?v=vIjDNqf7WrM1','https://www.youtube.com/watch?v=zvXQncZbq2E'])
+    .setedFull(['undefined', 'https://www.youtube.com/watch?v=RbdiGf4VsCo'])
+    
+    .addTo(listAnime1);
+
 exports.load = () => {
   return listAnime = listAnime1.animes;
 }
