@@ -246,6 +246,27 @@ Finalement, l’Eglise Impériale commence à manifester son intérêt à possé
     
     .addTo(listAnime1);
 
+new anime()
+    .setname('Hiiro no Kakera')
+    .setimage('http://www.anime-ultime.net/images/img29364.jpg')
+    
+    .setstory_fr(`L'histoire se concentre sur Tamaki Kasuga, une lycéenne de 17 ans qui doit déménager dans la ville natale de sa mère pour vivre avec sa grand-mère après le départ à l'étranger des ses parents.
+Le jour même où Tamaki arrive au village, elle se fait attaquer par d?étranges créatures, c'est alors qu'un mystérieux garçon vient à son secours, ce jeune homme n'est autre que Takuma Onizaki le premier des 5 gardiens de Tamayohime, en charge de la protection d'un puissante épée.`)
+    .setstory_fr_source(["Anime ultime",`http://www.anime-ultime.net/file-0-1/2897/Hiiro-no-Kakera-vostfr`])
+
+    .setstory_en('undefined')
+    .setstory_en_source('undefined')
+
+    .setanime_fr(`Saison 1 : http://www.anime-ultime.net/file-0-1/2897/Hiiro-no-Kakera-vostfr\n Saison 2 : http://www.anime-ultime.net/file-0-1/3300/Hiiro-No-Kakera-2-vostfr`)
+    .setanime_en(`undefined`)
+
+    .setop([`https://www.youtube.com/watch?v=8jYyq3lCgGs`,`https://www.youtube.com/watch?v=xFvVpRviE3U`])
+    .setopFull([`https://www.youtube.com/watch?v=Sk16wshBsv4`,`https://www.youtube.com/watch?v=5ZiLax3OpGM`])
+    .seted([`undefined`,`undefined`])
+    .setedFull([`https://www.youtube.com/watch?v=XHsTfwujRsA`,`https://www.youtube.com/watch?v=44TsjDV7dqQ`])
+    
+    .addTo(listAnime1);
+
 exports.load = () => {
   return listAnime = listAnime1.animes;
 }
