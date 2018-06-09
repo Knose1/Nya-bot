@@ -39,9 +39,9 @@ __**Commandes bot owner:**__ \n\n\
     `cat:mathstest [min] <max>` Permet de jouer à un jeu où le but est d'obtenir le résultat à partir des différents nombres\n\
     \n\
     `cat:morpion create` Créer une partie de morpion et donne l'id de la partie\n\
-    `cat:delete <id>` Permet de supprimer une partie de morpion\n\
-    `cat:join <id>` Permet de rejoindre une partie\n\
-    `cat:play <id> <position>` Permet de jouer lorsque c'est votre tour\
+    `cat:morpion delete <id>` Permet de supprimer une partie de morpion\n\
+    `cat:morpion join <id>` Permet de rejoindre une partie\n\
+    `cat:morpion play <id> <position>` Permet de jouer lorsque c'est votre tour\
 ",
     
     
@@ -73,9 +73,9 @@ __**Commandes:**__ \n\n\
     `cat:mathstest [min] <max>` Permet de jouer à un jeu où le but est d'obtenir le résultat à partir des différents nombres\n\
     \n\
     `cat:morpion create` Créer une partie de morpion et donne l'id de la partie\n\
-    `cat:delete <id>` Permet de supprimer une partie de morpion\n\
-    `cat:join <id>` Permet de rejoindre une partie\n\
-    `cat:play <id> <position>` Permet de jouer lorsque c'est votre tour\
+    `cat:morpion delete <id>` Permet de supprimer une partie de morpion\n\
+    `cat:morpion join <id>` Permet de rejoindre une partie\n\
+    `cat:morpion play <id> <position>` Permet de jouer lorsque c'est votre tour\
 ",
     
     
