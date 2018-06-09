@@ -1,3 +1,19 @@
+Array1 = Array;
+Array1.prototype.replaceAllOccurcences = function(filterF,toReplace) {
+    var newThis = this;
+    if (typeof(filterF) != "function" || typeof(toReplace) == undefined) {
+        return console.error("Array.replaceAllOccurcences(filter TYPE:Function,toReplace TYPE:Any) require 2 arguments")
+    }
+    var i = 0
+    while (i < newThis.length) {
+        if (filterF(newThis[i] , i) == true) {
+            newThis[i] = toReplace;
+        }
+    i = i+1;
+    }
+    return newThis;
+}
+
 function resolveAfter1(x) {
     return new Promise(resolve => {
         setTimeout(() => {
@@ -775,5 +791,5 @@ function f4(min,max) {
     return Math.floor((Math.random() * max) + min);
 };
 exports.load = () => {
-    return resolveAfter = resolveAfter1, MongoFunctions = MongoFunctions1, Database__1 = f1, TestDatabase = f2, Database = f3, rand = f4, clean = clean1, fulllog = fulllog1, check_perm = check_perm1, animelist = animelist1, anime = anime1;
+    return resolveAfter = resolveAfter1, MongoFunctions = MongoFunctions1, Database__1 = f1, TestDatabase = f2, Database = f3, rand = f4, clean = clean1, fulllog = fulllog1, check_perm = check_perm1, animelist = animelist1, anime = anime1, Array = Array1;
 }
