@@ -572,8 +572,10 @@ function anime1(arg1) {
                 while (FuncArgument1.length > max && i < 100) {
                     popout[i] = FuncArgument1.slice(0,4);
                     
-					
-                    if (popout[i].lastIndexOf(" ") != -1) 
+					if (popout[i].lastIndexOf("\n") != -1) 
+                        popout[i] = popout[i].slice(0,popout[i].lastIndexOf("\n") + 1);
+                    
+                    else if (popout[i].lastIndexOf(" ") != -1) 
                         popout[i] = popout[i].slice(0,popout[i].lastIndexOf(" ") + 1);
                         
                     else if (popout[i].lastIndexOf(";") != -1) 
