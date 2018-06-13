@@ -309,7 +309,7 @@ client.on('message', message => {
                     //console.log(toEv);
                     eval(toEv);
                 } catch (err) {
-            
+                
                     if (String(err).toLowerCase().indexOf(`Cannot find module './on/messages/rpg/${command}/index.js'`.toLowerCase()) == -1) {
                         message.reply("Une ERREUR est survenue");
                     
@@ -331,7 +331,7 @@ client.on('message', message => {
                                 .then(msg => msg.delete(15000));
                         }
                     }
-            }
+                }
             }
         
         //COMMAND
