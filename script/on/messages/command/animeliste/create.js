@@ -3,7 +3,7 @@ exports.execute = () => {
         var anGuild = client.guilds.get("456965774452719619");
         var anCategID = anGuild.channels.find("name","anime_ref").parentID;
         
-        var foundedChannels = anGuild.channels.findAll("name",args[1]).filter( c => {
+        var foundedChannels = anGuild.channels.findAll("name",args[1].toLowerCase()).filter( c => {
             return c.parentID != anGuild.channels.find("name","général").parentID && c.type == "text"
         });
         
