@@ -1,10 +1,10 @@
-exports.execute = () => { 
+exports.execute = () => {
     if (args[1] && args[1] != "anime_ref" && args[2] && String(Number(args[2])) != "NaN") {
         var anGuild = client.guilds.get("456965774452719619");
         var anCategID = anGuild.channels.find("name","anime_ref").parentID;
         
         var foundedChannels = anGuild.channels.findAll("name",args[1]).filter( c => {
-            return c.parentID == anCategID && c.type == "text"
+            return c.parentID != anGuild.channels.find("name","général").parentID && c.type == "text"
         });
         
         if (foundedChannels.length != 0) {
@@ -23,12 +23,12 @@ exports.execute = () => {
             message.channel.send("L'anime a bien été modifiée").then(m => m.delete(20000));
             
         } else {
-            anGuild.createChannel(args[1], 'text').then( animeChannel => {
+            anGuild.createChannel(args[1], 'text').then( async (animeChannel) => {
                 if (args[3])
-                    animeChannel.send(args[3]);
+                    await animeChannel.send(args[3]);
                     
-                animeChannel.edit({ topic: 'Episode: ' + args[2] });
-                animeChannel.setParent(anCategID);
+                await animeChannel.edit({ topic: 'Episode: ' + args[2] });
+                await animeChannel.setParent(anCategID);
                 message.channel.send("L'anime a bien été crée").then(m => m.delete(20000));
             });
         }
