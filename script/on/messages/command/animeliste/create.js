@@ -19,7 +19,7 @@ exports.execute = () => {
                 }); // les autres supprimés
             
             }
-            animeChannel.edit({ topic: 'Dernière épisode vu: ' + args[2] });
+            animeChannel.edit({ topic: 'Dernière épisode vu: ' + args[2].replace(/_/g," ") });
             message.channel.send("L'anime a bien été modifiée").then(m => m.delete(20000));
             
         } else {
@@ -27,7 +27,7 @@ exports.execute = () => {
                 if (args[3])
                     await animeChannel.send(args[3]);
                     
-                await animeChannel.edit({ topic: 'Dernière épisode vu: ' + args[2] });
+                await animeChannel.edit({ topic: 'Dernière épisode vu: ' + args[2].replace(/_/g," ") });
                 await animeChannel.setParent(anCategID);
                 message.channel.send("L'anime a bien été crée").then(m => m.delete(20000));
             });
