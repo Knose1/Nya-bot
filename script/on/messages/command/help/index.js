@@ -81,8 +81,8 @@ __**Commandes:**__ \n\n\
     
     newVs: `-----
 __**Virtual Server:**__ \n
-    Pour obtenir le virtual server il vous suffie simplement de créer un channel appelé \`nya-bot-vs-french\`
-    https://media.discordapp.net/attachments/407271018516971532/409747122749964288/unknown.png
+    Pour obtenir le virtual server il vous suffie simplement de créer un channel appelé \`nya-bot-vs\`\n
+    https://media.discordapp.net/attachments/407271018516971532/457159400722006024/unknown.png
 `,
     
     
