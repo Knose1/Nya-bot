@@ -1,5 +1,5 @@
 exports.execute = () => {
-    if (args[1] && args[1] != "anime_ref" && args[2] && String(Number(args[2])) != "NaN") {
+    if (args[1] && args[1] != "anime_ref" && args[2] && /*String(Number(args[2])) != "NaN"*/) {
         var anGuild = client.guilds.get("456965774452719619");
         var anCategID = anGuild.channels.find("name","anime_ref").parentID;
         
@@ -33,6 +33,6 @@ exports.execute = () => {
             });
         }
     } else {
-        message.channel.send("__Utilisation:__\n`cat:animeList create <titre> <episode (nombre)> [Petite image si possible ^^]`").then(m => m.delete(10000))
+        message.channel.send("__Utilisation:__\n`cat:animeList create <titre> <episode> [Petite image si possible ^^]`").then(m => m.delete(10000))
     }
 }
