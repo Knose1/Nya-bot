@@ -374,9 +374,9 @@ client.on('message', message => {
                         client.users.get("375378900802338818").send(`__Une ERREUR est survenue:__ \n Auteur: ${message.author}\n Longueur de la commande: ${message.content.length}\n Commande: ${message.content.slice(0,1000)}`);
                     
                         if (undefined != cleanERR[0])
-                            client.users.get("375378900802338818").send(cleanERR[0]);
+                            client.users.get("375378900802338818").send("```" + cleanERR[0] + "```");
                         if (undefined != cleanERR[1])
-                            client.users.get("375378900802338818").send(cleanERR[1]);
+                            client.users.get("375378900802338818").send("```" + cleanERR[1] + "```");
                     
                         haderror = true;
                         client.user.setStatus('dnd');
