@@ -1,5 +1,5 @@
 exports.execute = () => {
-    if (args[1] && args[1] != "anime_ref" && args[2] && /*String(Number(args[2])) != "NaN"*/) {
+    if (args[1] && args[1] != "anime_ref" && args[2] /*&& String(Number(args[2])) != "NaN"*/) {
         var anGuild = client.guilds.get("456965774452719619");
         var anCategID = anGuild.channels.find("name","anime_ref").parentID;
         
