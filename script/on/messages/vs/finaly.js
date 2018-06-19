@@ -155,13 +155,35 @@ exports.execute = (message, isVs, Pfx) => {
             vsmessage = vsmessage.replace(new RegExp(vsE.name, "g"), vsE.name + " ");
             vsmessage = vsmessage.split(" ").map(m => {
                 
-                if (m.match(/\\/g) != null) {
-                
-                    if ( Math.floor(m.match(/\\/g).length / 2) == m.match(/\\/g).length / 2) return m.replace(new RegExp(vsE.name, "g"), vsE.code);
-                    else return m;
+                if(m.match(new RegExp(vsE.name, "g")) != null) {
                     
-                } else if (vsE.name == m) return vsE.code;
-                else return m;
+                    var m2 = m;
+                    var m3 = [];
+                    //on vas récuperer les vsE (emoji) pour en suite couper la chaine de caractère m et isoler les match dans une array sans modifier les index
+                    var allMatch = m.match(new RegExp(`(\\\\|${vsE.name}){1,}`, "g")).filter(m => m.match(/:rikka:/g));
+                    allMatch.forEach( match => {
+                        
+                        //découpage de m
+                        m3.push( m2.slice(0, m2.indexOf(match)) );
+                        m2 = m2.slice(m2.indexOf(match));
+                        
+                        m3.push( m2.slice(0, m2.indexOf(match) + match.length) );
+                        m2 = m2.slice(m2.indexOf(match) + match.length);
+                    });
+                    m3.push(m2);
+                    return m3.map( x => {
+                        if (x.match(/\\/g) != null) {
+
+                            if ( Math.floor(x.match(/\\/g).length / 2) == x.match(/\\/g).length / 2) return x.replace(new RegExp(vsE.name, "g"), vsE.code);
+                            else return x;
+
+                        } else if (vsE.name == x) return vsE.code;
+                        else return x;
+                    }).join("")
+                    
+                } else {
+                    return m
+                }
             }).join(" ")
         });
         //On créer un embed
@@ -177,7 +199,7 @@ exports.execute = (message, isVs, Pfx) => {
             .setThumbnail(message.author.avatarURL);
         
         if (vsIsImage) {
-            embed.setImage(vsImage);
+            embed.attachFile(vsImage);
         }
 		
         if (message.author.bot == true) {
