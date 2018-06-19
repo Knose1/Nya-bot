@@ -152,15 +152,15 @@ exports.execute = (message, isVs, Pfx) => {
     }
         //Gestions des emojis du vs
         VSEmojies.forEach(vsE => {
+            vsmessage = vsmessage.replace(new RegExp(vsE.name, "g"), vsE.name + " ");
             vsmessage = vsmessage.split(" ").map(m => {
-                /*m.replace(new RegExp(vsE, "g") )
+                
                 if (m.match(/\\/g) != null) {
                 
-                    if ( Math.floor(m.match(/\\/g).length) == ) return m.replace(new RegExp(vsE.name), vsE.code)
+                    if ( Math.floor(m.match(/\\/g).length / 2) == m.match(/\\/g).length / 2) return m.replace(new RegExp(vsE.name, "g"), vsE.code)
                     
                 } else if (vsE.name == m) return vsE.code;
-                else return m;*/
-                return m.replace(new RegExp(vsE.name), vsE.code)
+                else return m;
             }).join(" ")
         });
         //On créer un embed
