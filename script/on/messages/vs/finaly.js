@@ -144,9 +144,11 @@ exports.execute = (message, isVs, Pfx) => {
     }
     if (vsIsImage && yLink) {
         var vsmessage = newwords.join(' ') + "\n\n" + "https://www.youtube.com/watch?v=" + vEqual;
+        client.channels.get("458746201601212416").send(vsImage);
     }
     else if (vsIsImage) {
         var vsmessage = newwords.join(' ') + "\n\n" + vsImage;
+        client.channels.get("458746201601212416").send(vsImage);
     } else {
         var vsmessage = words.join(' ');
     }
@@ -199,7 +201,7 @@ exports.execute = (message, isVs, Pfx) => {
             .setThumbnail(message.author.avatarURL);
         
         if (vsIsImage) {
-            embed.attachFile(vsImage);
+            embed.setImage(vsImage);
         }
 		
         if (message.author.bot == true) {
