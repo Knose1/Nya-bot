@@ -150,10 +150,14 @@ exports.execute = (message, isVs, Pfx) => {
     } else {
         var vsmessage = words.join(' ');
     }
+        //Gestions des emojis du vs
+        VSEmojies.forEach(vsE => {
+            vsmessage.split(" ").replace(new RegExp(vsE.name,"g") , vsE.code)
+        });
         //On créer un embed
         
         var nbmois = new Date().getMonth();
-	    nbmois = nbmois+1;
+        nbmois = nbmois+1;
         const embed = new Discord.RichEmbed()
             //.setTitle("Virtual Channel")
             .setAuthor(message.author.username+"#"+message.author.discriminator /*, message.author.avatarURL*/)
