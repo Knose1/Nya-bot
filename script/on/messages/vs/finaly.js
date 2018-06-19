@@ -157,7 +157,8 @@ exports.execute = (message, isVs, Pfx) => {
                 
                 if (m.match(/\\/g) != null) {
                 
-                    if ( Math.floor(m.match(/\\/g).length / 2) == m.match(/\\/g).length / 2) return m.replace(new RegExp(vsE.name, "g"), vsE.code)
+                    if ( Math.floor(m.match(/\\/g).length / 2) == m.match(/\\/g).length / 2) return m.replace(new RegExp(vsE.name, "g"), vsE.code);
+                    else return m;
                     
                 } else if (vsE.name == m) return vsE.code;
                 else return m;
