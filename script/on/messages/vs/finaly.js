@@ -1,4 +1,4 @@
-exports.execute = (message, isVs, Pfx) => {
+exports.execute = async function(message, isVs, Pfx) {
     
     //Commande-VS = Ok
     if     (
@@ -138,17 +138,16 @@ exports.execute = (message, isVs, Pfx) => {
             wordsIndex = wordsIndex + 1 ;
             vsImage[wordsIndex] = attachment.url;
         });
-        vsImage = vsImage.join('\n');
+        await resolveAfter(1.5);
+	vsImage = vsImage.join('\n');
         vsIsImage = true;
         newwords = words;
     }
     if (vsIsImage && yLink) {
         var vsmessage = newwords.join(' ') + "\n\n" + "https://www.youtube.com/watch?v=" + vEqual;
-        client.channels.get("458746201601212416").send(vsImage);
     }
     else if (vsIsImage) {
         var vsmessage = newwords.join(' ') + "\n\n" + vsImage;
-        client.channels.get("458746201601212416").send(vsImage);
     } else {
         var vsmessage = words.join(' ');
     }
