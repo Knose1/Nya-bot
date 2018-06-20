@@ -286,17 +286,19 @@ client.on('message', message => {
 
 
             //VS
-                if (require("./on/messages/vs/error_userBan.js").execute(message, isVs, isbanned) );
-                else if (require("./on/messages/vs/error_command.js").execute(message, isVs, iscommand)  );
-                else if (require("./on/messages/vs/error_noPfix.js").execute(message, isVs) );
-                else if (require("./on/messages/vs/command_nya.js").execute(message, isVs)  );
-                else if (require("./on/messages/vs/command_purge.js").execute(message, isVs, Pfx)    );
-                else if (require("./on/messages/vs/command_ban.js").execute(message, isVs, isbanned, vsban)  );
-                else if (require("./on/messages/vs/command_unban.js").execute(message, isVs, isbanned, vsban)  );
-                else if (require("./on/messages/vs/finaly.js").execute(message, isVs, Pfx)   );
+                if (require("./on/messages/vs/error_userBan.js").execute(message, isVs, isbanned) ) console.log("vs1");
+                else if (require("./on/messages/vs/error_command.js").execute(message, isVs, iscommand)  ) console.log("vs2");
+                else if (require("./on/messages/vs/error_noPfix.js").execute(message, isVs) ) console.log("vs3");
+                else if (require("./on/messages/vs/command_nya.js").execute(message, isVs)  ) console.log("vs4");
+                else if (require("./on/messages/vs/command_purge.js").execute(message, isVs, Pfx)    ) console.log("vs5");
+                else if (require("./on/messages/vs/command_ban.js").execute(message, isVs, isbanned, vsban)  ) console.log("vs6");
+                else if (require("./on/messages/vs/command_unban.js").execute(message, isVs, isbanned, vsban)  ) console.log("vs7");
+                else if (require("./on/messages/vs/finaly.js").execute(message, isVs, Pfx)   ) console.log("vs8");
 
                 //RPG
-                else if (message.content.indexOf("cat>") == 0 && (  (betaTest == 'off') || ( betaTest == 'on' && (isBTest) )  )/*Si le RPG est en vertion Test il faut être Béta testeur*/) {
+                else if (message.content.indexOf("cat>") == 0 && (  (betaTest == 'off') || ( betaTest == 'on' && (isBTest) )  )/*Si le RPG est en vertion Test il faut être Béta testeur*/) 
+                {
+                    console.log("rpg")
                     try {
                         var args = message.content.slice("cat>".length).trim().replace(/\n/g," ").split(/ +/g);
                         var command = args.shift().toLowerCase();
