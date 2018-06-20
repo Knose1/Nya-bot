@@ -1,6 +1,6 @@
 exports.execute = (message, isVs, Pfx) => {
     
-    Pfx = Pfx.name
+	try{ Pfx = Pfx.name } catch(e) {}
     
     /*On vas purge car c'est l'enfer*/
     if ((isVs || (message.guild.id == "377892426569744387" && message.channel.name != "nya-bot-vs-log")) && (message.content.indexOf('--suppr') == 0 || message.content.indexOf('--Suppr') == 0 || message.content.indexOf('//suppr') == 0 || message.content.indexOf('//Suppr') == 0 || /**/ message.content.indexOf('--purge') == 0 || message.content.indexOf('--Purge') == 0 || message.content.indexOf('//purge') == 0 || message.content.indexOf('//Purge') == 0) && (message.author == botowner || isMod)) {
