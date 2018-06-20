@@ -158,7 +158,7 @@ exports.execute = async function(message, isVs, Pfx) {
             VSEmojies.forEach(vsE => {
                 vsmessage = vsmessage.replace(new RegExp(vsE.name, "g"), vsE.name + " ");
                 vsmessage = vsmessage.split(" ").map(m => {
-                    
+                    m = m.replace(new RegExp(vsE.code, "g"),vsE.name)
                     if (m == vsE.code || m == vsE.name) {
                         return m
                     }
