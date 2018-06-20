@@ -158,8 +158,11 @@ exports.execute = async function(message, isVs, Pfx) {
             VSEmojies.forEach(vsE => {
                 vsmessage = vsmessage.replace(new RegExp(vsE.name, "g"), vsE.name + " ");
                 vsmessage = vsmessage.split(" ").map(m => {
-
-                    if(m.match(new RegExp(vsE.name, "g")) != null) {
+                    
+                    if (m = vsE.code) {
+                        return m
+                    }
+                    else if(m.match(new RegExp(vsE.name, "g")) != null) {
 
                         var m2 = m;
                         var m3 = [];
