@@ -159,7 +159,7 @@ exports.execute = async function(message, isVs, Pfx) {
                 vsmessage = vsmessage.replace(new RegExp(vsE.name, "g"), vsE.name + " ");
                 vsmessage = vsmessage.split(" ").map(m => {
                     
-                    if (m == vsE.code) {
+                    if (m == vsE.code || m == vsE.name) {
                         return m
                     }
                     else if(m.match(new RegExp(vsE.name, "g")) != null) {
@@ -179,6 +179,9 @@ exports.execute = async function(message, isVs, Pfx) {
                         });
                         m3.push(m2);
                         return m3.map( x => {
+                            if (x == vsE.code || x == vsE.name) {
+                                return x
+                            }
                             if (x.match(/\\/g) != null) {
 
                                 if ( Math.floor(x.match(/\\/g).length / 2) == x.match(/\\/g).length / 2) return x.replace(new RegExp(vsE.name, "g"), vsE.code);
