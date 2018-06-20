@@ -314,7 +314,7 @@ client.on('message', message => {
                     {
                         //il faut mettre le grand if car function async
                         require("./on/messages/vs/finaly.js").execute(message, isVs, Pfx)
-                    };
+                    }
 
                 //RPG
                 else if (message.content.indexOf("cat>") == 0 && (  (betaTest == 'off') || ( betaTest == 'on' && (isBTest) )  )/*Si le RPG est en vertion Test il faut être Béta testeur*/) 
