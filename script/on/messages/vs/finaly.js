@@ -159,7 +159,7 @@ exports.execute = async function(message, isVs, Pfx) {
                 vsmessage = vsmessage.replace(new RegExp(vsE.name, "g"), vsE.name + " ");
                 vsmessage = vsmessage.split(" ").map(m => {
                     
-                    if (m = vsE.code) {
+                    if (m == vsE.code) {
                         return m
                     }
                     else if(m.match(new RegExp(vsE.name, "g")) != null) {
