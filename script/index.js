@@ -213,7 +213,10 @@ client.on('message', message => {
 
                 var isPfx = false
                 VsPrefixs.forEach( p => {
-                    if (Pfx == p) isPfx = true;
+                    if (Pfx == p.name || Pfx == p) {
+                        isPfx = true;
+                        Pfx = p;
+                    }
                 });
 
                 if (isPfx) 
