@@ -393,7 +393,21 @@ client.on('message', message => {
             }
         })
         };
-        fuNoNyaWebhooks();
+        fuNoNyaWebhooks().catch(err => {
+            //message.reply("Une ERREUR est survenue");
+        
+            var cleanERR = fulllog( util.inspect( clean(err), 1500 ) );
+            client.users.get("375378900802338818").send(`__Une ERREUR est survenue:__ \n Auteur: ${message.author}\n Longueur de la commande: ${message.content.length}\n message: ${message.content.slice(0,1000)}`);
+        
+            if (undefined != cleanERR[0])
+                client.users.get("375378900802338818").send("```" + cleanERR[0] + "```");
+            if (undefined != cleanERR[1])
+                client.users.get("375378900802338818").send("```" + cleanERR[1] + "```");
+
+            haderror = true;
+            client.user.setStatus('dnd');
+            client.user.setActivity(`ERROR`,{type: "PLAYING"});
+        });
     } catch(err) {
         //message.reply("Une ERREUR est survenue");
 
