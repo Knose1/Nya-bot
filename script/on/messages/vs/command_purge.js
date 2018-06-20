@@ -42,13 +42,12 @@ exports.execute = (message, isVs, Pfx) => {
                 
                 all_vs.forEach(ch => {
                     if (ch.type == 'text')
-                        ch.fetchMessages().then(m => {
-                            let a = 0;
-                            if (ch == message.channel)
-                                a = 1;
-                            
-                            m.first(i + a).forEach(p => {
-                                try {p.delete(500)} catch (err) {}
+                        ch.fetchMessages({limite:100}).then(m => {
+                            var a = 0
+                            m.filterArray(p => p.author.id == client.user.id && p.embeds.length > 0).forEach(p => {
+                                a += 1;
+                                if (a <= i)
+                                    try {p.delete(500)} catch (err) {}
                             });
                         });
                 });
