@@ -139,7 +139,7 @@ client.on('resume', resume => {
 
 
 client.on('message', message => {
-        //try {
+        try {
         if (haderror && message.author != botowner && message.author.id != mention) {
             client.user.setStatus('dnd');
             client.user.setActivity(`ERROR`,{type: "PLAYING"});
@@ -432,7 +432,7 @@ client.on('message', message => {
             client.user.setStatus('dnd');
             client.user.setActivity(`ERROR`,{type: "PLAYING"});
         });
-    /*} catch(err) {
+    } catch(err) {
         //message.reply("Une ERREUR est survenue");
 
         var cleanERR = fulllog( util.inspect( clean(err), 1500 ) );
@@ -446,7 +446,7 @@ client.on('message', message => {
         haderror = true;
         client.user.setStatus('dnd');
         client.user.setActivity(`ERROR`,{type: "PLAYING"});
-    }*/
+    }
 });
 
 
