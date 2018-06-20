@@ -199,7 +199,7 @@ exports.execute = async function(message, isVs, Pfx) {
                 .setAuthor(message.author.username+"#"+message.author.discriminator /*, message.author.avatarURL*/)
                 .setColor("#ff1a8c")
                 .setDescription(vsmessage)
-                .setFooter("Le "+ UTCDate(2).getDate()+"/"+ nbmois+"/"+ UTCDate(2).getFullYear()+" à "+ UTCDate(2).toLocaleTimeString()+" (UTC+2) | "+message.guild.name.replace(/`/g,"").replace(/_/g,"").replace(/\*/g,"")+" | "+message.author.id , message.guild.iconURL)
+                .setFooter("Le "+ UTCDate(Pfx.UTC).getDate()+"/"+ nbmois+"/"+ UTCDate(Pfx.UTC).getFullYear()+" à "+ UTCDate(Pfx.UTC).toLocaleTimeString()+` (UTC+${Pfx.UTC}) | `+message.guild.name.replace(/`/g,"").replace(/_/g,"").replace(/\*/g,"")+" | "+message.author.id , message.guild.iconURL)
                 .setThumbnail(message.author.avatarURL);
 
             if (vsIsImage) {
@@ -253,7 +253,7 @@ exports.execute = async function(message, isVs, Pfx) {
 
                 guild.channels.forEach(function (channel) {
                     //On regarde s'il se nome nya-bot-vs ou nya-bot-vs-log (dans le serv log)
-                    if (channel.name == "nya-bot-vs"+Pfx || channel.name == "nya-bot-vs-"+Pfx ) {
+                    if (channel.name == "nya-bot-vs"+Pfx.name || channel.name == "nya-bot-vs-"+Pfx.name ) {
 
 
                         //On envoie l'embed
@@ -272,11 +272,11 @@ exports.execute = async function(message, isVs, Pfx) {
                             })
                         });*/
                     }
-                    else if (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log" && Pfx != 'nsfw') {
+                    else if (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log" && Pfx.name != 'nsfw') {
 
 
                         //On envoie l'embed
-                        channel.send(`__Virtual Channel: ${Pfx}__`,{embed})
+                        channel.send(`__Virtual Channel: ${Pfx.name}__`,{embed})
                         /*.then(msg => {
                             client.guilds.get('415208185616531456').createRole({
                                 name: `mess ${cid}:${IdMess} ${msg.id}`,
