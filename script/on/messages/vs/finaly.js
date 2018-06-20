@@ -138,7 +138,7 @@ exports.execute = async function(message, isVs, Pfx) {
             wordsIndex = wordsIndex + 1 ;
             vsImage[wordsIndex] = attachment.url;
         });
-        await resolveAfter(1.5);
+        await resolveAfter(2.5);
 	vsImage = vsImage.join('\n');
         vsIsImage = true;
         newwords = words;
@@ -290,6 +290,9 @@ exports.execute = async function(message, isVs, Pfx) {
                 }
             });
 		});
+    if (message.attachments.size != 0) {
+        await resolveAfter(1);
+    }
     message.delete(1000)
         .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
         .catch(console.error);
