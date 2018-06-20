@@ -286,14 +286,35 @@ client.on('message', message => {
 
 
             //VS
-                if (require("./on/messages/vs/error_userBan.js").execute(message, isVs, isbanned) ) console.log("vs1");
-                else if (require("./on/messages/vs/error_command.js").execute(message, isVs, iscommand)  ) console.log("vs2");
-                else if (require("./on/messages/vs/error_noPfix.js").execute(message, isVs) ) console.log("vs3");
-                else if (require("./on/messages/vs/command_nya.js").execute(message, isVs)  ) console.log("vs4");
-                else if (require("./on/messages/vs/command_purge.js").execute(message, isVs, Pfx)    ) console.log("vs5");
-                else if (require("./on/messages/vs/command_ban.js").execute(message, isVs, isbanned, vsban)  ) console.log("vs6");
-                else if (require("./on/messages/vs/command_unban.js").execute(message, isVs, isbanned, vsban)  ) console.log("vs7");
-                else if (require("./on/messages/vs/finaly.js").execute(message, isVs, Pfx)   ) console.log("vs8");
+                if (require("./on/messages/vs/error_userBan.js").execute(message, isVs, isbanned) ) ;
+                else if (require("./on/messages/vs/error_command.js").execute(message, isVs, iscommand)  ) ;
+                else if (require("./on/messages/vs/error_noPfix.js").execute(message, isVs) ) ;
+                else if (require("./on/messages/vs/command_nya.js").execute(message, isVs)  ) ;
+                else if (require("./on/messages/vs/command_purge.js").execute(message, isVs, Pfx)    ) ;
+                else if (require("./on/messages/vs/command_ban.js").execute(message, isVs, isbanned, vsban)  ) ;
+                else if (require("./on/messages/vs/command_unban.js").execute(message, isVs, isbanned, vsban)  ) ;
+                else if     (
+                                (
+                                    isVs || 
+                                    (
+                                        message.guild.id == "377892426569744387" && 
+                                        message.channel.name == "nya-bot-vs-log"
+                                    )
+                                ) //Conditions du channel (nya-bot-vs)
+                                    && 
+                                (
+                                    message.content.indexOf('--') == 0 ||   /**/
+                                    message.content.indexOf('//') == 0 ||   /*Préfix ou attachement*/
+                                    message.attachments.size != 0 &&        /**/
+                                    (
+                                        message.content.length == 0 //Si c'est un attachement sans préfix il faut pas de contenu
+                                    )
+                                )
+                            )
+                    {
+                        //il faut mettre le grand if car function async
+                        require("./on/messages/vs/finaly.js").execute(message, isVs, Pfx)
+                    };
 
                 //RPG
                 else if (message.content.indexOf("cat>") == 0 && (  (betaTest == 'off') || ( betaTest == 'on' && (isBTest) )  )/*Si le RPG est en vertion Test il faut être Béta testeur*/) 
