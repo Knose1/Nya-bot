@@ -199,7 +199,7 @@ exports.execute = async function(message, isVs, Pfx) {
                 .setAuthor(message.author.username+"#"+message.author.discriminator /*, message.author.avatarURL*/)
                 .setColor("#ff1a8c")
                 .setDescription(vsmessage)
-                .setFooter("Le "+new Date().getDate()+"/"+ nbmois+"/"+new Date().getFullYear()+" à "+new Date().toLocaleTimeString()+" | "+message.guild.name.replace(/`/g,"").replace(/_/g,"").replace(/\*/g,"")+" | "+message.author.id , message.guild.iconURL)
+                .setFooter("Le "+ UTCDate(2).getDate()+"/"+ nbmois+"/"+ UTCDate(2).getFullYear()+" à "+ UTCDate(2).toLocaleTimeString()+" (UTC+2) | "+message.guild.name.replace(/`/g,"").replace(/_/g,"").replace(/\*/g,"")+" | "+message.author.id , message.guild.iconURL)
                 .setThumbnail(message.author.avatarURL);
 
             if (vsIsImage) {
