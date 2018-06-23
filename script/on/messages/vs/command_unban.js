@@ -84,11 +84,11 @@ exports.execute = (message, isVs, isbanned, vsban) => {
                 }
 			    
                 if (client.users.get(id) != undefined && isgood == true && stop == 0) {
-                    //console.log("id = "+id);
-                    //console.log(client.users.get(id));
+                    //Nya.log("id = "+id);
+                    //Nya.log(client.users.get(id));
                     guild.roles.find('name', id).delete()
-                        //.then(r => console.log(`Deleted role ${r}`))
-                        .catch(console.error);
+                        .then(r => Nya.log(`Unbanned user ${r.name}`))
+                        .catch(Nya.error);
                     
     				var unbanuser = client.users.get(id);
                     var channel = client.channels.get('407169845889597440');
@@ -97,8 +97,8 @@ exports.execute = (message, isVs, isbanned, vsban) => {
             }
         });
 	    message.delete(500)
-                    .then(msg => console.log(`Message supprimé, raison: Unban Virtual channel; Auteur: ${msg.author}`))
-                    .catch(console.error);
+                    .then(msg => Nya.log(`Message supprimé, raison: Unban Virtual channel; Auteur: ${msg.author}`))
+                    .catch(Nya.error);
         return true;
     } else return false;
     /*Fin du UNBAN*/
