@@ -3,8 +3,8 @@ exports.execute = (message, isVs, iscommand) => {
     if ((isVs || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && iscommand == true) {
         message.author.send(message.author+' les commandes sont interdits dans se channel');
         message.delete(500)
-                .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
-                .catch(console.error);
+                .then(msg => Nya.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
+                .catch(Nya.error);
         return true;
     }
     return false;
