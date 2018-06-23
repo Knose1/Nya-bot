@@ -1,6 +1,13 @@
+const EventEmitter1 = require('events');
+
+class MyEmitter1 extends EventEmitter1 {}
+
+const myEmitter1 = new MyEmitter();
+
 /*key is the bot's token; mention is the bot's id*; logserv is the server for bot log*/
 exports.load = () => {
-return key = ﻿process.env.TOKEN,
+return EventEmitter = EventEmitter1, MyEmitter = MyEmitter1, myEmitter = myEmitter1,
+    key = ﻿process.env.TOKEN,
     mention = ﻿process.env.BOTMENTION,
     logserv = process.env.LOGSERV,
     botowner = process.env.BOTW,
