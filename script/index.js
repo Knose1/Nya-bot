@@ -27,7 +27,6 @@ myEmitter.on('error', (err) => {
 myEmitter.on('log', (log) => {
   try {
         var cleanLog = fulllog( util.inspect( clean(log), 1500 ) );
-        client.channels.get(consoleChannel).send(`__Log:__`);
 
         if (undefined != cleanLog[0]) {
             client.channels.get(consoleChannel).send("```" + cleanLog[0] + "```");
