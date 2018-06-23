@@ -13,9 +13,9 @@ myEmitter.on('error', (err) => {
             client.channels.get(consoleChannel).send("```" + cleanERR[1] + "```");
         }
 
-        haderror = true;
-        client.user.setStatus('dnd');
-        client.user.setActivity(`ERROR`,{type: "PLAYING"});
+        //haderror = true;
+        //client.user.setStatus('dnd');
+        //client.user.setActivity(`ERROR`,{type: "PLAYING"});
   
   } catch(e) {}
 });
