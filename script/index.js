@@ -24,12 +24,27 @@ myEmitter.on('error', (err) => {
   } catch(e) {}
 });
 
+myEmitter.on('log', (log) => {
+  try {
+        var cleanLog = fulllog( util.inspect( clean(log), 1500 ) );
+        client.channels.get(consoleChannel).send(`__Log:__`);
+
+        if (undefined != cleanERR[0]) {
+            client.channels.get(consoleChannel).send("```" + cleanLog[0] + "```");
+        }
+        if (undefined != cleanERR[1]) {
+            client.channels.get(consoleChannel).send("```" + cleanLog[1] + "```");
+        }
+  
+  } catch(e) {}
+});
+
 //lorsque Nya!bot est pret
 client.on('ready', async function() {
     client.user.setStatus('online');
 
     CanReloading = true;
-    console.log(`Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} servers.`);
+    Nya.log(`Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} servers.`);
     //envoyer un message au server log
     var channel = client.channels.get(logserv);
     channel.send(`Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} servers.`);
@@ -64,7 +79,7 @@ client.on('ready', async function() {
 //Lorsque il a rejoins un serv
 client.on("guildCreate", guild => {
 
-    console.log(`Nouveau serv: ${guild.name} (id: ${guild.id}). Nmb de membres: ${guild.memberCount}`);
+    Nya.log(`Nouveau serv: ${guild.name} (id: ${guild.id}). Nmb de membres: ${guild.memberCount}`);
     var channel = client.channels.get(logserv);
     channel.send(`Nouveau serv: ${guild.name} (id: ${guild.id}). Nmb de membres: ${guild.memberCount}`);
 
@@ -75,7 +90,7 @@ client.on("guildCreate", guild => {
 client.on("guildDelete", guild => {
 
 
-    console.log(`Un server a suppr nya!bot: ${guild.name} (id: ${guild.id})`);
+    Nya.log(`Un server a suppr nya!bot: ${guild.name} (id: ${guild.id})`);
     var channel = client.channels.get(logserv);
     channel.send(`Un server a suppr nya!bot: ${guild.name} (id: ${guild.id})`)
 });
@@ -84,7 +99,7 @@ client.on("guildDelete", guild => {
 client.on('reconnecting', reconnecting=> {
 
     client.user.setStatus('invisible');
-    console.log('Reconnection');
+    Nya.log('Reconnection');
     var channel = client.channels.get(logserv);
     channel.send('Reconnection');
 
@@ -122,7 +137,7 @@ client.on('resume', resume => {
 
 
     client.user.setStatus('online');
-    console.log('Reprise du nya!bot');
+    Nya.log('Reprise du nya!bot');
     var channel = client.channels.get(logserv);
     channel.send('Reprise du nya!bot');
 
@@ -246,7 +261,7 @@ client.on('message', message => {
                 if (isPfx) 
                     isVs = true;
 
-                //console.log(isVs+" ; "+Pfx);
+                //Nya.log(isVs+" ; "+Pfx);
             }
 
             //On récupère la liste des ban
@@ -256,9 +271,9 @@ client.on('message', message => {
             guild.roles.forEach(function (role) {
                 vsx = vsx+1;
                 vsban[vsx] = role.name;
-                //console.log(role.name);
+                //Nya.log(role.name);
             });
-            //console.log(message.author.id);
+            //Nya.log(message.author.id);
 
             //On regarde si la personne est ban
             var isbanned = false;
@@ -275,21 +290,21 @@ client.on('message', message => {
                             //Bot ban et bot différent de nya!bot
                             if (isVs && isbanned == true && message.author.id != mention) {
                                 message.delete(500)
-                                    .then(msg => console.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
+                                    .then(msg => Nya.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
                                     .catch(console.error);
                                 return;
                             }
                             //Nya!bot commande
                             else if ((isVs || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && iscommand == true) {
                                 message.delete(500)
-                                    .then(msg => console.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
+                                    .then(msg => Nya.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
                                     .catch(console.error);
                                 return;
                             }
                             //Si pas de -- et pas de // et différent de nya!bot
                             else if ((isVs || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--') != 0 && message.content.indexOf('//') != 0) && message.author.id != mention) {
                                 message.delete(500)
-                                    .then(msg => console.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
+                                    .then(msg => Nya.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
                                     .catch(console.error);
                                 return;
                             }
@@ -306,7 +321,7 @@ client.on('message', message => {
                     var command = args.shift().toLowerCase();
 
                     message.delete(500)
-                        .then(msg => console.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
+                        .then(msg => Nya.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
                         .catch(console.error);
                 }
 
@@ -346,17 +361,17 @@ client.on('message', message => {
                 //RPG
                 else if (message.content.indexOf("cat>") == 0 && (  (betaTest == 'off') || ( betaTest == 'on' && (isBTest) )  )/*Si le RPG est en vertion Test il faut être Béta testeur*/) 
                 {
-                    console.log("rpg")
+                    Nya.log("rpg")
                     try {
                         var args = message.content.slice("cat>".length).trim().replace(/\n/g," ").split(/ +/g);
                         var command = args.shift().toLowerCase();
 
                         message.delete(500)
-                            .then(msg => console.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
+                            .then(msg => Nya.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
                             .catch(console.error);
                         var funcComm = String(require(`./on/messages/rpg/${command}/index.js`).execute);
                         var toEv = funcComm.slice(7, funcComm.length - 1)/*.replace(/\n/g,"").replace(/ +/g," ")*/;
-                        //console.log(toEv);
+                        //Nya.log(toEv);
                         eval(toEv);
                     } catch (err) {
 
@@ -386,7 +401,7 @@ client.on('message', message => {
 
             //COMMAND
             else if (iscommand == true) {
-                console.log("step1")
+                Nya.log("step1")
 
                if (command == "github") {
                     command = "git";
@@ -410,14 +425,14 @@ client.on('message', message => {
                 return;
                 }
                 try {
-                    console.log("step2")
+                    Nya.log("step2")
                     var funcComm = String(require(`./on/messages/command/${command}/index.js`).execute);
                     var toEv = funcComm.slice(7, funcComm.length - 1)/*.replace(/\n/g,"").replace(/ +/g," ")*/;
-                    //console.log(toEv);
+                    //Nya.log(toEv);
                     eval(toEv);
                 }
                 catch (err) {
-                        console.log("step3")
+                        Nya.log("step3")
                         if (String(err).toLowerCase().indexOf(`Cannot find module './on/messages/command/${command}/index.js'`.toLowerCase()) == -1) {
                             message.reply("Une ERREUR est survenue");
 
@@ -499,7 +514,7 @@ client.on('message', message => {
 client.on('disconnect', disconnect => {
 
     client.user.setStatus('invisible');
-    console.log('déconnecté');
+    Nya.log('déconnecté');
     var channel = client.channels.get(logserv);
     channel.send('Déconnecté');
 })
