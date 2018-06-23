@@ -1,3 +1,10 @@
+var Nya1 = {};
+Nya1.error = function(err) { myEmitter.emit('error', new Error(err)) }
+Nya1.log = function(log) {
+    console.log(log);
+    myEmitter.emit('log', log)
+}
+
 Array1 = Array;
 Array1.prototype.replaceAllOccurcences = function(filterF,toReplace) {
     var newThis = this;
@@ -802,5 +809,5 @@ function f4(min,max) {
     return Math.floor((Math.random() * max) + min);
 };
 exports.load = () => {
-    return resolveAfter = resolveAfter1, MongoFunctions = MongoFunctions1, Database__1 = f1, TestDatabase = f2, Database = f3, rand = f4, clean = clean1, fulllog = fulllog1, check_perm = check_perm1, animelist = animelist1, anime = anime1, Array = Array1, UTCDate = UTCDate1;
+    return Nya = Nya1, resolveAfter = resolveAfter1, MongoFunctions = MongoFunctions1, Database__1 = f1, TestDatabase = f2, Database = f3, rand = f4, clean = clean1, fulllog = fulllog1, check_perm = check_perm1, animelist = animelist1, anime = anime1, Array = Array1, UTCDate = UTCDate1;
 }
