@@ -9,8 +9,8 @@ exports.execute = (message, isVs, Pfx) => {
         /*if (Pfx == 'nsfw') {
             message.author.send('Tu ne peux pas purge le nsfw');
             message.delete(1000)
-                .then(msg => console.log(`Message supprimé, raison: Virtual channel --suppr; Auteur: ${msg.author}`))
-                .catch(console.error);
+                .then(msg => Nya.log(`Message supprimé, raison: Virtual channel --suppr; Auteur: ${msg.author}`))
+                .catch(Nya.error);
             return true;
         }*/
         if (args.length == 1) {
@@ -18,14 +18,14 @@ exports.execute = (message, isVs, Pfx) => {
                 if ( message.author != botowner && (Number(args[0]) < 1 || Number(args[0]) > 10)) {
                     message.author.send('Nan mais wtf pk tu veux purge un tel nombre de message ! -.-');
                     message.delete(1000)
-                        .then(msg => console.log(`Message supprimé, raison: Virtual channel --suppr; Auteur: ${msg.author}`))
-                        .catch(console.error);
+                        .then(msg => Nya.log(`Message supprimé, raison: Virtual channel --suppr; Auteur: ${msg.author}`))
+                        .catch(Nya.error);
                     return true;
                 } else if (message.author == botowner && (Number(args[0]) < 1 || Number(args[0]) > 49)) {
                     message.author.send('Nan mais wtf pk tu veux purge un tel nombre de message ! -.-');
                     message.delete(1000)
-                        .then(msg => console.log(`Message supprimé, raison: Virtual channel --suppr; Auteur: ${msg.author}`))
-                        .catch(console.error);
+                        .then(msg => Nya.log(`Message supprimé, raison: Virtual channel --suppr; Auteur: ${msg.author}`))
+                        .catch(Nya.error);
                     return true;
                 }
                 let i = Number(args[0]);
@@ -62,8 +62,8 @@ exports.execute = (message, isVs, Pfx) => {
             message.author.send(`__Utilisation **--suppr**:__\n\n \`//suppr <nombre>\` \n\n alias: \`//purge <nombre>\``);
         }
         message.delete(1000)
-            .then(msg => console.log(`Message supprimé, raison: Virtual channel --suppr; Auteur: ${msg.author}`))
-            .catch(console.error);
+            .then(msg => Nya.log(`Message supprimé, raison: Virtual channel --suppr; Auteur: ${msg.author}`))
+            .catch(Nya.error);
             
     return true;
     } else return false;
