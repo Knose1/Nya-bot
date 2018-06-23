@@ -2,7 +2,9 @@
 exports.load = () => {
 return key = ﻿process.env.TOKEN,
     mention = ﻿process.env.BOTMENTION,
-    logserv = process.env.LOGSERV,botowner = process.env.BOTW,
+    logserv = process.env.LOGSERV,
+    botowner = process.env.BOTW,
+    consoleChannel = "459999139028008980",
     prefix ='cat:',
     betaTest = 'on',
     CanReloading = false,
