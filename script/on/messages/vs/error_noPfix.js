@@ -32,8 +32,8 @@ exports.execute = (message, isVs) => {
         {
             message.author.send(message.author+' utilisez -- ou // pour parler dans le vs');
             message.delete(500)
-                    .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
-                    .catch(console.error);
+                    .then(msg => Nya.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
+                    .catch(Nya.error);
         }
 
 }
