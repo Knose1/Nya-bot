@@ -5,15 +5,11 @@ myEmitter.on('error', (err) => {
   //message.reply("Une ERREUR est survenue");
 
         var cleanERR = fulllog( util.inspect( clean(err), 1500 ) );
-        client.users.get("375378900802338818").send(`__Une ERREUR est survenue:__`);
-        client.channels.get(consoleChannel).send(`__Une ERREUR est survenue:__`);
 
         if (undefined != cleanERR[0]) {
-            client.users.get("375378900802338818").send("```" + cleanERR[0] + "```");
             client.channels.get(consoleChannel).send("```" + cleanERR[0] + "```");
         }
         if (undefined != cleanERR[1]) {
-            client.users.get("375378900802338818").send("```" + cleanERR[1] + "```");
             client.channels.get(consoleChannel).send("```" + cleanERR[1] + "```");
         }
 
