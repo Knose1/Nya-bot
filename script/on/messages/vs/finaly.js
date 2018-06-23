@@ -297,7 +297,7 @@ exports.execute = async function(message, isVs, Pfx) {
             await resolveAfter(1);
         }
         message.delete(1000)
-            .then(msg => console.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
-            .catch(console.error);
+            .then(msg => Nya.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
+            .catch(Nya.error);
     }
 }
