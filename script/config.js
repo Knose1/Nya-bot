@@ -2,7 +2,7 @@ const EventEmitter1 = require('events');
 
 class MyEmitter1 extends EventEmitter1 {}
 
-const myEmitter1 = new MyEmitter();
+const myEmitter1 = new MyEmitter1();
 
 /*key is the bot's token; mention is the bot's id*; logserv is the server for bot log*/
 exports.load = () => {
