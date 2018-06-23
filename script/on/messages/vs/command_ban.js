@@ -79,12 +79,12 @@ exports.execute = (message, isVs, isbanned, vsban) => {
                 }
 			
                 if (client.users.get(id) != undefined && isgood == true && stop == 0) {
-                    //console.log("id = "+id);
-                    //console.log(client.users.get(id));
+                    //Nya.log("id = "+id);
+                    //Nya.log(client.users.get(id));
                     guild.createRole({
                         name: id,
                     })
-                    //.then(role => console.log(`Created role ${role}`))
+                    //.then(role => Nya.log(`Created role ${role}`))
                     .catch(Nya.error);
                     var banuser = client.users.get(id);
                     var channel = client.channels.get('407169845889597440');
