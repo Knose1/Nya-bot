@@ -29,10 +29,10 @@ myEmitter.on('log', (log) => {
         var cleanLog = fulllog( util.inspect( clean(log), 1500 ) );
         client.channels.get(consoleChannel).send(`__Log:__`);
 
-        if (undefined != cleanERR[0]) {
+        if (undefined != cleanLog[0]) {
             client.channels.get(consoleChannel).send("```" + cleanLog[0] + "```");
         }
-        if (undefined != cleanERR[1]) {
+        if (undefined != cleanLog[1]) {
             client.channels.get(consoleChannel).send("```" + cleanLog[1] + "```");
         }
   
