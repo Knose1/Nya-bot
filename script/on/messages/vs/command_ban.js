@@ -85,7 +85,7 @@ exports.execute = (message, isVs, isbanned, vsban) => {
                         name: id,
                     })
                     //.then(role => console.log(`Created role ${role}`))
-                    .catch(console.error);
+                    .catch(Nya.error);
                     var banuser = client.users.get(id);
                     var channel = client.channels.get('407169845889597440');
                     channel.send('Personne banni du VS: '+banuser.username+"#"+banuser.discriminator+" ("+id+")");
@@ -93,8 +93,8 @@ exports.execute = (message, isVs, isbanned, vsban) => {
             }
         });
 	    message.delete(500)
-                    .then(msg => console.log(`Message supprimé, raison: Ban Virtual channel; Auteur: ${msg.author}`))
-                    .catch(console.error);
+                    .then(msg => Nya.log(`Message supprimé, raison: Ban Virtual channel; Auteur: ${msg.author}`))
+                    .catch(Nya.error);
     return true;
     } else return false;
     /*Fin du BAN*/
