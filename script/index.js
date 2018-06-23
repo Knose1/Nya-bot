@@ -356,7 +356,7 @@ client.on('message', message => {
                 //RPG
                 else if (message.content.indexOf("cat>") == 0 && (  (betaTest == 'off') || ( betaTest == 'on' && (isBTest) )  )/*Si le RPG est en vertion Test il faut être Béta testeur*/) 
                 {
-                    Nya.log("rpg")
+                    //Nya.log("rpg")
                     try {
                         var args = message.content.slice("cat>".length).trim().replace(/\n/g," ").split(/ +/g);
                         var command = args.shift().toLowerCase();
@@ -396,7 +396,7 @@ client.on('message', message => {
 
             //COMMAND
             else if (iscommand == true) {
-                Nya.log("step1")
+                //Nya.log("step1")
 
                if (command == "github") {
                     command = "git";
@@ -420,14 +420,14 @@ client.on('message', message => {
                 return;
                 }
                 try {
-                    Nya.log("step2")
+                    //Nya.log("step2")
                     var funcComm = String(require(`./on/messages/command/${command}/index.js`).execute);
                     var toEv = funcComm.slice(7, funcComm.length - 1)/*.replace(/\n/g,"").replace(/ +/g," ")*/;
                     //Nya.log(toEv);
                     eval(toEv);
                 }
                 catch (err) {
-                        Nya.log("step3")
+                        //Nya.log("step3")
                         if (String(err).toLowerCase().indexOf(`Cannot find module './on/messages/command/${command}/index.js'`.toLowerCase()) == -1) {
                             message.reply("Une ERREUR est survenue");
 
