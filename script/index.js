@@ -8,9 +8,11 @@ myEmitter.on('error', (err) => {
 
         if (undefined != cleanERR[0]) {
             client.channels.get(consoleChannel).send("```" + cleanERR[0] + "```");
+            client.channels.get(errorChannel).send("```" + cleanERR[0] + "```");
         }
         if (undefined != cleanERR[1]) {
             client.channels.get(consoleChannel).send("```" + cleanERR[1] + "```");
+            client.channels.get(errorChannel).send("```" + cleanERR[1] + "```");
         }
 
         //haderror = true;
