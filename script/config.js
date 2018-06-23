@@ -12,6 +12,7 @@ return EventEmitter = EventEmitter1, MyEmitter = MyEmitter1, myEmitter = myEmitt
     logserv = process.env.LOGSERV,
     botowner = process.env.BOTW,
     consoleChannel = "459999139028008980",
+    errorChannel = "460024079261499392",
     prefix ='cat:',
     betaTest = 'on',
     CanReloading = false,
