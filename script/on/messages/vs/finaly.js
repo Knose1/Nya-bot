@@ -294,7 +294,7 @@ exports.execute = async function(message, isVs, Pfx) {
                 });
             });
         if (message.attachments.size != 0) {
-            await resolveAfter(1);
+            await resolveAfter(3);
         }
         message.delete(1000)
             .then(msg => Nya.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
