@@ -12,8 +12,8 @@ exports.execute = (message, isVs) => {
         
         message.channel.send("--"+args.join(' '));
         message.delete(500)
-                .then(msg => console.log(`Message supprimé, raison: Nya Virtual channel; Auteur: ${msg.author}`))
-                .catch(console.error);
+                .then(msg => Nya.log(`Message supprimé, raison: Nya Virtual channel; Auteur: ${msg.author}`))
+                .catch(Nya.error);
         return true;
     } else return false;
     /*FIN DE --NYA*/
