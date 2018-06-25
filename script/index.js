@@ -332,6 +332,7 @@ client.on('message', message => {
                 else if (require("./on/messages/vs/command_purge.js").execute(message, isVs, Pfx)    ) ;
                 else if (require("./on/messages/vs/command_ban.js").execute(message, isVs, isbanned, vsban)  ) ;
                 else if (require("./on/messages/vs/command_unban.js").execute(message, isVs, isbanned, vsban)  ) ;
+                else if (require("./on/messages/vs/command_status.js").execute(message, isVs, Pfx)    ) ;
                 else if     (
                                 (
                                     isVs || 
