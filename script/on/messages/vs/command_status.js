@@ -10,7 +10,7 @@ exports.execute = (message, isVs, Pfx) => {
         
         args.shift().toLowerCase(); //on retire "status" (ps: le ToLowerCase est un peu de trops)
         
-        var allNya = client.channels.filter(f => {return (f.name == "nya-bot-vs-" + Pfx || f.name == "nya-bot-vs" + Pfx) && f.type == "text" && f.name != "nya-bot-vs-log"})
+        var allNya = client.channels.filter(f => {return (f.name == "nya-bot-vs-" + Pfx.name || f.name == "nya-bot-vs" && Pfx.name == "") && f.type == "text" && f.name != "nya-bot-vs-log"})
         Nya.log(allNya.map(m => m.name))
         
         if (args[0]) {
