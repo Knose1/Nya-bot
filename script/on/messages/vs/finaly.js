@@ -317,25 +317,27 @@ exports.execute = async function(message, isVs, Pfx) {
                 .setThumbnail(message.author.avatarURL);
             
             allNya.forEach( n => n.send({embedStatus}).then(d => d.delete(20000)) )
-        }
+        } else if (message.mentions.members.array().length > 0) {
         
-        message.mentions.members.forEach(m => {
-            if (vsStatus[m.id] != undefined) {
-                //On créer l'embed
+            message.mentions.members.forEach(m => {
+                if (vsStatus[m.id] != undefined) {
+                    //On créer l'embed
+
+                    var nbmois = new Date().getMonth();
+                    nbmois = nbmois+1;
+                    const embedStatus = new Discord.RichEmbed()
+                        //.setTitle("Virtual Channel")
+                        .setAuthor(m.username+"#"+m.discriminator /*, message.author.avatarURL*/)
+                        .setColor("#FFFFFF")
+                        .setDescription("__Status:__\n\n" + vsStatus[m.id])
+                        .setFooter("Le "+ UTCDate(Pfx.UTC).getDate()+"/"+ nbmois+"/"+ UTCDate(Pfx.UTC).getFullYear()+" à "+ UTCDate(Pfx.UTC).toLocaleTimeString()+` (UTC+${Pfx.UTC}) | `+m.id)
+                        .setThumbnail(m.avatarURL);
+
+                    allNya.forEach( n => n.send({embedStatus}).then(d => d.delete(20000)) )
+                }
+            });
             
-                var nbmois = new Date().getMonth();
-                nbmois = nbmois+1;
-                const embedStatus = new Discord.RichEmbed()
-                    //.setTitle("Virtual Channel")
-                    .setAuthor(m.username+"#"+m.discriminator /*, message.author.avatarURL*/)
-                    .setColor("#FFFFFF")
-                    .setDescription("__Status:__\n\n" + vsStatus[m.id])
-                    .setFooter("Le "+ UTCDate(Pfx.UTC).getDate()+"/"+ nbmois+"/"+ UTCDate(Pfx.UTC).getFullYear()+" à "+ UTCDate(Pfx.UTC).toLocaleTimeString()+` (UTC+${Pfx.UTC}) | `+m.id)
-                    .setThumbnail(m.avatarURL);
-                
-            allNya.forEach( n => n.send({embedStatus}).then(d => d.delete(20000)) )
-            }
-        });
+        }
         message.delete(1000)
             .then(msg => Nya.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
             .catch(Nya.error);
