@@ -28,7 +28,7 @@ exports.execute = (message, isVs, Pfx) => {
                 .setFooter("Le "+ UTCDate(Pfx.UTC).getDate()+"/"+ nbmois+"/"+ UTCDate(Pfx.UTC).getFullYear()+" à "+ UTCDate(Pfx.UTC).toLocaleTimeString()+` (UTC+${Pfx.UTC}) | `+message.guild.name.replace(/`/g,"").replace(/_/g,"").replace(/\*/g,"")+" | "+message.author.id , message.guild.iconURL)
                 .setThumbnail(message.author.avatarURL);
                 
-            allNya.forEach( n => n.send(embed).then(d => d.delete(20000))
+            allNya.forEach( n => n.send(embed).then(d => d.delete(20000)) )
                 
         } else {
             if (!vsStatus[message.author.id]) {message.delete(100) ; return true}
@@ -47,7 +47,7 @@ exports.execute = (message, isVs, Pfx) => {
                 .setFooter("Le "+ UTCDate(Pfx.UTC).getDate()+"/"+ nbmois+"/"+ UTCDate(Pfx.UTC).getFullYear()+" à "+ UTCDate(Pfx.UTC).toLocaleTimeString()+` (UTC+${Pfx.UTC}) | `+message.guild.name.replace(/`/g,"").replace(/_/g,"").replace(/\*/g,"")+" | "+message.author.id , message.guild.iconURL)
                 .setThumbnail(message.author.avatarURL);
             
-            allNya.forEach( n => n.send(embed).then(d => d.delete(20000) )
+            allNya.forEach( n => n.send(embed).then(d => d.delete(20000)) )
         }
         message.delete(100);
         return true;
