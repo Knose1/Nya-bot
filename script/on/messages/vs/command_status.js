@@ -49,8 +49,9 @@ exports.execute = (message, isVs, Pfx) => {
             
             allNya.forEach( n => n.send(embed).then(d => d.delete(20000) )
         }
-        message.delete(100)
-        return true
+        message.delete(100);
+        return true;
     }
-    return false
+    else
+        return false;
 }
