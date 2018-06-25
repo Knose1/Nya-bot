@@ -11,7 +11,7 @@ exports.execute = (message, isVs, Pfx) => {
         args.shift().toLowerCase(); //on retire "status" (ps: le ToLowerCase est un peu de trops)
         var guild = client.guilds.get('406926403628695556');
         
-        var allNya = client.channels.filter(f => {return f.name == "nya-bot-vs" + Pfx && f.type == "text" && f.name != "nya-bot-vs-log"})
+        var allNya = client.channels.filter(f => {return (f.name == "nya-bot-vs-" + Pfx || f.name == "nya-bot-vs") && f.type == "text" && f.name != "nya-bot-vs-log"})
         
         if (args[0]) {
             vsStatus[message.author.id] = args.join(" ")
