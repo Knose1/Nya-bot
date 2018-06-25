@@ -32,7 +32,7 @@ exports.execute = (message, isVs, Pfx) => {
                 
         } else {
             if (!vsStatus[message.author.id]) {message.delete(100) ; return true}
-            oldVsStatus = vsStatus[message.author.id];
+            var oldVsStatus = vsStatus[message.author.id];
             vsStatus[message.author.id] = undefined
         
             //On créer l'embed
