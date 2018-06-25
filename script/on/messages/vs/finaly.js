@@ -308,7 +308,7 @@ exports.execute = async function(message, isVs, Pfx) {
             
             var nbmois = new Date().getMonth();
             nbmois = nbmois+1;
-            const embed = new Discord.RichEmbed()
+            const embedStatus = new Discord.RichEmbed()
                 //.setTitle("Virtual Channel")
                 .setAuthor(message.author.username+"#"+message.author.discriminator /*, message.author.avatarURL*/)
                 .setColor("#FFFFFF")
@@ -316,22 +316,22 @@ exports.execute = async function(message, isVs, Pfx) {
                 .setFooter("Le "+ UTCDate(Pfx.UTC).getDate()+"/"+ nbmois+"/"+ UTCDate(Pfx.UTC).getFullYear()+" à "+ UTCDate(Pfx.UTC).toLocaleTimeString()+` (UTC+${Pfx.UTC}) | `+message.guild.name.replace(/`/g,"").replace(/_/g,"").replace(/\*/g,"")+" | "+message.author.id , message.guild.iconURL)
                 .setThumbnail(message.author.avatarURL);
             
-            allNya.forEach( n => n.send({embed}).then(d => d.delete(20000)) )
+            allNya.forEach( n => n.send({embedStatus}).then(d => d.delete(20000)) )
         }
         
-        message.mentions.members.map(m => m.id).forEach(m => {
-            if (vsStatus[m]) {
+        message.mentions.members.forEach(m => {
+            if (vsStatus[m.id] != undefined) {
                 //On créer l'embed
             
                 var nbmois = new Date().getMonth();
                 nbmois = nbmois+1;
                 const embedStatus = new Discord.RichEmbed()
                     //.setTitle("Virtual Channel")
-                    .setAuthor(message.author.username+"#"+message.author.discriminator /*, message.author.avatarURL*/)
+                    .setAuthor(m.username+"#"+m.discriminator /*, message.author.avatarURL*/)
                     .setColor("#FFFFFF")
-                    .setDescription("__Status:__\n\n" + vsStatus[m])
-                    .setFooter("Le "+ UTCDate(Pfx.UTC).getDate()+"/"+ nbmois+"/"+ UTCDate(Pfx.UTC).getFullYear()+" à "+ UTCDate(Pfx.UTC).toLocaleTimeString()+` (UTC+${Pfx.UTC}) | `+message.guild.name.replace(/`/g,"").replace(/_/g,"").replace(/\*/g,"")+" | "+message.author.id , message.guild.iconURL)
-                    .setThumbnail(message.author.avatarURL);
+                    .setDescription("__Status:__\n\n" + vsStatus[m.id])
+                    .setFooter("Le "+ UTCDate(Pfx.UTC).getDate()+"/"+ nbmois+"/"+ UTCDate(Pfx.UTC).getFullYear()+" à "+ UTCDate(Pfx.UTC).toLocaleTimeString()+` (UTC+${Pfx.UTC}) | `+m.id)
+                    .setThumbnail(m.avatarURL);
                 
             allNya.forEach( n => n.send({embedStatus}).then(d => d.delete(20000)) )
             }
