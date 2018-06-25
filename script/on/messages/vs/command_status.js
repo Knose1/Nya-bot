@@ -31,7 +31,13 @@ exports.execute = (message, isVs, Pfx) => {
             allNya.forEach( n => n.send({embed}).then(d => d.delete(20000)) )
                 
         } else {
-            if (!vsStatus[message.author.id]) {message.delete(100) ; return true}
+            if (!vsStatus[message.author.id]) {
+                message.delete(500)
+                    .then(msg => Nya.log(`Message supprimé, raison: Ban Virtual channel; Auteur: ${msg.author}`))
+                    .catch(Nya.error);
+                
+                return true
+            }
             var oldVsStatus = vsStatus[message.author.id];
             vsStatus[message.author.id] = undefined
         
@@ -49,7 +55,9 @@ exports.execute = (message, isVs, Pfx) => {
             
             allNya.forEach( n => n.send({embed}).then(d => d.delete(20000)) )
         }
-        message.delete(100);
+        message.delete(500)
+            .then(msg => Nya.log(`Message supprimé, raison: Ban Virtual channel; Auteur: ${msg.author}`))
+            .catch(Nya.error);
         return true;
     }
     else
