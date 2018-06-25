@@ -319,7 +319,7 @@ exports.execute = async function(message, isVs, Pfx) {
             allNya.forEach( n => n.send({embedStatus}).then(d => d.delete(20000)) )
         } else if (message.mentions.members.array().length > 0) {
         
-            message.mentions.members.forEach(m => {
+            let m = message.mentions.members.first().user
                 if (vsStatus[m.id] != undefined) {
                     //On créer l'embed
 
