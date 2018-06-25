@@ -33,5 +33,6 @@ return EventEmitter = EventEmitter1, MyEmitter = MyEmitter1, myEmitter = myEmitt
     uri = process.env.MONGO_DB,
     events = require('events'),
     NoNyaWebhooks = "",
-    mpParties = [];
+    mpParties = [],
+    vsStatus = [];
 }
