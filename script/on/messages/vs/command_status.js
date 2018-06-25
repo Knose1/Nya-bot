@@ -24,7 +24,7 @@ exports.execute = (message, isVs, Pfx) => {
                 //.setTitle("Virtual Channel")
                 .setAuthor(message.author.username+"#"+message.author.discriminator /*, message.author.avatarURL*/)
                 .setColor("#FFFFFF")
-                .setDescription("__Status:__" + args.join(" "))
+                .setDescription("__Status:__\n\n" + args.join(" "))
                 .setFooter("Le "+ UTCDate(Pfx.UTC).getDate()+"/"+ nbmois+"/"+ UTCDate(Pfx.UTC).getFullYear()+" à "+ UTCDate(Pfx.UTC).toLocaleTimeString()+` (UTC+${Pfx.UTC}) | `+message.guild.name.replace(/`/g,"").replace(/_/g,"").replace(/\*/g,"")+" | "+message.author.id , message.guild.iconURL)
                 .setThumbnail(message.author.avatarURL);
                 
