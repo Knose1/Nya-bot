@@ -299,13 +299,13 @@ exports.execute = async function(message, isVs, Pfx) {
         
         
         var allNya = client.channels.filter(f => {return (f.name == "nya-bot-vs-" + Pfx.name || f.name == "nya-bot-vs" && Pfx.name == "") && f.type == "text" && f.name != "nya-bot-vs-log"})
-        if (vsStatus[message.author.id] || (message.author == botowner && client.channels.get('461052318532763666').topic != null) ) {
+        if (vsStatus[message.author.id] || (message.author == botowner && client.channels.get('461052318532763666').topic != null && client.channels.get('461052318532763666').topic != "461052318532763666") ) {
             
             if (message.author == botowner && client.channels.get('461052318532763666').topic != "461052318532763666" && client.channels.get('461052318532763666').topic != null) {
                 
-                if (!vsStatus[message.author.id] && client.channels.get('461052318532763666').topic != "461052318532763666" && client.channels.get('461052318532763666').topic != null)
+                if (!vsStatus[message.author.id])
                     vsStatus[message.author.id] = client.channels.get('461052318532763666').topic;
-                else return
+                
                 client.channels.get('461052318532763666').setTopic("461052318532763666");
                 
             }
