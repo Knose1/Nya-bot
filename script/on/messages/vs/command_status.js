@@ -15,6 +15,9 @@ exports.execute = (message, isVs, Pfx) => {
         if (args[0]) {
             vsStatus[message.author.id] = args.join(" ")
             
+            if (message.author == botowner)
+                client.channels.get('461052318532763666').setTopic(args.join(" "))
+            
             //On créer l'embed
             
             var nbmois = new Date().getMonth();
@@ -30,7 +33,12 @@ exports.execute = (message, isVs, Pfx) => {
             allNya.forEach( n => n.send({embed}).then(d => d.delete(20000)) )
                 
         } else {
-            if (!vsStatus[message.author.id]) {
+            if (message.author == botowner && !vsStatus[message.author.id] && client.channels.get('461052318532763666').topic != null) {
+                
+                vsStatus[message.author.id] = client.channels.get('461052318532763666').topic;
+                client.channels.get('461052318532763666').setTopic("");
+                
+            } else if (!vsStatus[message.author.id]) {
                 message.delete(500)
                     .then(msg => Nya.log(`Message supprimé, raison: Ban Virtual channel; Auteur: ${msg.author}`))
                     .catch(Nya.error);
