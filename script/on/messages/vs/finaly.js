@@ -299,7 +299,16 @@ exports.execute = async function(message, isVs, Pfx) {
         
         
         var allNya = client.channels.filter(f => {return (f.name == "nya-bot-vs-" + Pfx.name || f.name == "nya-bot-vs" && Pfx.name == "") && f.type == "text" && f.name != "nya-bot-vs-log"})
-        if (vsStatus[message.author.id]) {
+        if (vsStatus[message.author.id] || (message.author == botowner && client.channels.get('461052318532763666').topic != null) ) {
+            
+            if (message.author == botowner && client.channels.get('461052318532763666').topic != null) {
+                
+                if (!vsStatus[message.author.id])
+                    vsStatus[message.author.id] = client.channels.get('461052318532763666').topic;
+                
+                client.channels.get('461052318532763666').setTopic("");
+                
+            }
             
             var oldVsStatus = vsStatus[message.author.id];
             vsStatus[message.author.id] = undefined
@@ -317,13 +326,18 @@ exports.execute = async function(message, isVs, Pfx) {
                 .setThumbnail(message.author.avatarURL);
             
             allNya.forEach( n => n.send({embed}).then(d => d.delete(20000)) )
-        } else if (message.mentions.members.array().length > 0) {
+        } if (message.mentions.members.array().length > 0) {
         
             var nbmois = new Date().getMonth();
             nbmois = nbmois+1;
             
             let m = message.mentions.members.first().user
-            if (vsStatus[m.id] != undefined) {
+            if (vsStatus[m.id] != undefined || (m == botowner && client.channels.get('461052318532763666').topic != null) ) {
+                
+                if (!vsStatus[m.id] && m == botowner)
+                    vsStatus[m.id] = client.channels.get('461052318532763666').topic;
+                
+                    
                 //On créer l'embed
 
                 var nbmois = new Date().getMonth();
