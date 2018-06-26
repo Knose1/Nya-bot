@@ -301,12 +301,12 @@ exports.execute = async function(message, isVs, Pfx) {
         var allNya = client.channels.filter(f => {return (f.name == "nya-bot-vs-" + Pfx.name || f.name == "nya-bot-vs" && Pfx.name == "") && f.type == "text" && f.name != "nya-bot-vs-log"})
         if (vsStatus[message.author.id] || (message.author == botowner && client.channels.get('461052318532763666').topic != null) ) {
             
-            if (message.author == botowner && client.channels.get('461052318532763666').topic != null) {
+            if (message.author == botowner && client.channels.get('461052318532763666').topic != "461052318532763666" && client.channels.get('461052318532763666').topic != null) {
                 
                 if (!vsStatus[message.author.id])
                     vsStatus[message.author.id] = client.channels.get('461052318532763666').topic;
                 
-                client.channels.get('461052318532763666').setTopic("");
+                client.channels.get('461052318532763666').setTopic("461052318532763666");
                 
             }
             
@@ -332,7 +332,7 @@ exports.execute = async function(message, isVs, Pfx) {
             nbmois = nbmois+1;
             
             let m = message.mentions.members.first().user
-            if (vsStatus[m.id] != undefined || (m == botowner && client.channels.get('461052318532763666').topic != null) ) {
+            if (vsStatus[m.id] != undefined || (m == botowner && client.channels.get('461052318532763666').topic != "461052318532763666" && client.channels.get('461052318532763666').topic != null) ) {
                 
                 if (!vsStatus[m.id] && m == botowner)
                     vsStatus[m.id] = client.channels.get('461052318532763666').topic;
