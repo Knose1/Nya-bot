@@ -303,9 +303,9 @@ exports.execute = async function(message, isVs, Pfx) {
             
             if (message.author == botowner && client.channels.get('461052318532763666').topic != "461052318532763666" && client.channels.get('461052318532763666').topic != null) {
                 
-                if (!vsStatus[message.author.id])
+                if (!vsStatus[message.author.id] && client.channels.get('461052318532763666').topic != "461052318532763666" && client.channels.get('461052318532763666').topic != null)
                     vsStatus[message.author.id] = client.channels.get('461052318532763666').topic;
-                
+                else return
                 client.channels.get('461052318532763666').setTopic("461052318532763666");
                 
             }
