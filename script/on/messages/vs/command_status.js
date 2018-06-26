@@ -35,15 +35,9 @@ exports.execute = (message, isVs, Pfx) => {
         } else {
             if (message.author == botowner && client.channels.get('461052318532763666').topic != "461052318532763666" && client.channels.get('461052318532763666').topic != null) {
                 
-                if (!vsStatus[message.author.id] && client.channels.get('461052318532763666').topic != "461052318532763666" && client.channels.get('461052318532763666').topic != null)
+                if (!vsStatus[message.author.id])
                     vsStatus[message.author.id] = client.channels.get('461052318532763666').topic;
-                else {
-                    message.delete(500)
-                    .then(msg => Nya.log(`Message supprimé, raison: Ban Virtual channel; Auteur: ${msg.author}`))
-                    .catch(Nya.error);
                 
-                    return true
-                }
                 client.channels.get('461052318532763666').setTopic("461052318532763666");
                 
             } else if (!vsStatus[message.author.id]) {
