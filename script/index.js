@@ -229,8 +229,11 @@ client.on('message', message => {
 
 
 
-    //Module de commande Handle par un webhook (autorisation / refus) 
-    eval(require("./on/messages/webhook/noNyaBot.js").execute.toString().slice(7, funcComm.length - 1))
+    //Module de commande Handle par un webhook (autorisation / refus)
+        var funcComm = String(require(`./on/messages/webhook/noNyaBot.js`).execute);
+        var toEv = funcComm.slice(7, funcComm.length - 1);
+        //Nya.log(toEv);
+        eval(toEv);
 });
 
 
