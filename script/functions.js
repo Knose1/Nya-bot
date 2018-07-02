@@ -489,7 +489,7 @@ function anime1(arg1) {
     function check_perm1(options) {
         //message.channel.send(`Before Before Before ${String(permissions)}, ${String(message.id)}, ${String(Fauthor)}, ${String(Fguild)}, ${String(Fchannel)}` )
         
-        this.check = function() {return new Promise(function(resolve, reject) {
+        return function() {return new Promise(function(resolve, reject) {
                 permissions = options.permissions;
                 message = options.message;
                 Fauthor = options.author;
