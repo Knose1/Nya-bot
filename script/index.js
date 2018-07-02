@@ -224,8 +224,9 @@ client.on('message', message => {
         require('./module/perm.js').load(message);
 
 
-
-        
+   
+        //Module de commande Handle par un webhook (autorisation / refus) 
+        let fuNoNyaWebhooks = require("on/messages/webhook/noNyaBot.js").execute
         fuNoNyaWebhooks().catch(err => {
             //message.reply("Une ERREUR est survenue");
 
