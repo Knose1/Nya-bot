@@ -230,10 +230,10 @@ client.on('message', message => {
 
 
     //Module de commande Handle par un webhook (autorisation / refus)
-        var funcComm = String(require(`./on/messages/webhook/noNyaBot.js`).execute);
-        var toEv = funcComm.slice(7, funcComm.length - 1);
+        var funcComm2 = String(require(`./on/messages/webhook/noNyaBot.js`).execute);
+        var toEv2 = funcComm2.slice(7, funcComm2.length - 1);
         //Nya.log(toEv);
-        eval(toEv);
+        eval(toEv2);
 });
 
 
