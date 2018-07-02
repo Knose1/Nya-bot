@@ -1,3 +1,5 @@
+CRASH !
+
 require('./config.js').load();
 
 myEmitter.on('error', (err) => {
