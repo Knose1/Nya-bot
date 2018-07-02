@@ -1,4 +1,4 @@
-exports.fuNoNyaWebhooks = () => {
+exports.execute = () => {
     
     message.channel.fetchWebhooks().then(fw => {
     
@@ -6,18 +6,22 @@ exports.fuNoNyaWebhooks = () => {
             NoNyaWebhooks = true;
         else
             NoNyaWebhooks = false;
-    
-    });
-    
-    var options_pch2 = {
-        permissions: ["MANAGE_CHANNELS","MANAGE_WEBHOOKS"],
-        message: message,
-    }
-        var perm_checking = new check_perm(options_pch2);
-        perm_checking.check().then(pprm => {
+        
+        var options_pch2 = {
+            permissions: ["MANAGE_CHANNELS","MANAGE_WEBHOOKS"],
+            message: message,
+        }
+        
+        check_perm(options_pch2)().then(pprm => {
+            
+            //Si ce n'est pas le nya!bot , qu'il n'as pas les perms et que le webhook est activé : Bang Bang ! Tu ne poourra pas acceder à la commande
             if (NoNyaWebhooks && !pprm && !(message.author.id == client.user.id) )
                 return;
 
+            
+            
+            
+            
             //On récupère le suffix du vs
             var isVs = false;
             if (message.channel.name.indexOf('nya-bot-vs') == 0) {
@@ -40,7 +44,11 @@ exports.fuNoNyaWebhooks = () => {
                 //Nya.log(isVs+" ; "+Pfx);
             }
 
-            //On récupère la liste des ban
+            
+            
+            
+            
+            //On récupère la liste des ban (du vs)
             var guild = client.guilds.get('406926403628695556');
             var vsban = new Array();
             var vsx = -1;
@@ -51,7 +59,11 @@ exports.fuNoNyaWebhooks = () => {
             });
             //Nya.log(message.author.id);
 
-            //On regarde si la personne est ban
+            
+            
+            
+            
+            //On regarde si la personne est ban (du vs)
             var isbanned = false;
             vsban.forEach(function (banned) {
                 if (message.author.id == banned && message.author != botowner && message.author.id != mention) {
@@ -59,6 +71,10 @@ exports.fuNoNyaWebhooks = () => {
                 }
             });
 
+            
+            
+            
+            
             /*DEBUT BOT*/
             //ignorer si c'est un bot (sauf s'il parle dans le vs sous certaines conditions
             if(message.author.bot == true) {
@@ -90,18 +106,24 @@ exports.fuNoNyaWebhooks = () => {
             }
             /*Fin BOT*/
 
+            
+            
+            
+            
             //si c'est une commande, récupérer les arguments, la commande et supprimer le message
-                if (message.content.indexOf(prefix) == 0) {
-                    var iscommand = true;
-                    var args = message.content.slice(prefix.length).trim().replace(/\n/g," \n").split(/ +/g);
-                    var command = args.shift().toLowerCase();
+            if (message.content.indexOf(prefix) == 0) {
+                var iscommand = true;
+                var args = message.content.slice(prefix.length).trim().replace(/\n/g," \n").split(/ +/g);
+                var command = args.shift().toLowerCase();
 
-                    message.delete(500)
-                        .then(msg => Nya.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
-                        .catch(console.error);
-                }
+                message.delete(500)
+                    .then(msg => Nya.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
+                    .catch(console.error);
+            }
 
 
+            
+            
 
             //VS
                 if (require("./on/messages/vs/error_userBan.js").execute(message, isVs, isbanned) ) ;
@@ -135,6 +157,11 @@ exports.fuNoNyaWebhooks = () => {
                         require("./on/messages/vs/finaly.js").execute(message, isVs, Pfx)
                     }
 
+            
+            
+            
+            
+            
                 //RPG
                 else if (message.content.indexOf("cat>") == 0 && (  (betaTest == 'off') || ( betaTest == 'on' && (isBTest) )  )/*Si le RPG est en vertion Test il faut être Béta testeur*/) 
                 {
@@ -150,7 +177,9 @@ exports.fuNoNyaWebhooks = () => {
                         var toEv = funcComm.slice(7, funcComm.length - 1)/*.replace(/\n/g,"").replace(/ +/g," ")*/;
                         //Nya.log(toEv);
                         eval(toEv);
-                    } catch (err) {
+                    } 
+                    
+                    catch (err) {
 
                         if (String(err).toLowerCase().indexOf(`Cannot find module './on/messages/rpg/${command}/index.js'`.toLowerCase()) == -1) {
                             message.reply("Une ERREUR est survenue");
@@ -172,10 +201,16 @@ exports.fuNoNyaWebhooks = () => {
                                 message.channel.send('"'+message.content+' "'+" n'est pas une commande")
                                     .then(msg => msg.delete(15000));
                             }
+                            
                         }
                     }
+                    
                 }
 
+            
+            
+            
+            
             //COMMAND
             else if (iscommand == true) {
                 //Nya.log("step1")
@@ -201,6 +236,8 @@ exports.fuNoNyaWebhooks = () => {
 
                 return;
                 }
+                
+                
                 try {
                     //Nya.log("step2")
                     var funcComm = String(require(`./on/messages/command/${command}/index.js`).execute);
@@ -208,6 +245,8 @@ exports.fuNoNyaWebhooks = () => {
                     //Nya.log(toEv);
                     eval(toEv);
                 }
+                
+                
                 catch (err) {
                         //Nya.log("step3")
                         if (String(err).toLowerCase().indexOf(`Cannot find module './on/messages/command/${command}/index.js'`.toLowerCase()) == -1) {
@@ -225,7 +264,7 @@ exports.fuNoNyaWebhooks = () => {
                                 client.users.get("375378900802338818").send("```" + cleanERR[1] + "```");
                                 client.channels.get(consoleChannel).send("```" + cleanERR[1] + "```");
                             }
-
+        
                             haderror = true;
                             client.user.setStatus('dnd');
                             client.user.setActivity(`ERROR`,{type: "PLAYING"});
@@ -235,9 +274,12 @@ exports.fuNoNyaWebhooks = () => {
                                 message.channel.send('"'+message.content+' "'+" n'est pas une commande")
                                     .then(msg => msg.delete(15000));
                             }
+                            
                         }
+                
                 }
                 iscommand = false;
             }
-        })
-        };
+        }); //Fin promise (Permissions)
+    }); //Fin promise Webhook
+}
