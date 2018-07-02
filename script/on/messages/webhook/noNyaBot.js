@@ -292,5 +292,5 @@ exports.execute = () => {
             
         }); //Fin promise (Permissions)
     }) //Fin promise Webhook
-    .catch(messDefault())
+    .catch(e => {Nya.log(e);messDefault()})
 }
