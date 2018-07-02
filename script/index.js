@@ -182,96 +182,55 @@ client.on('resume', resume => {
 
 
 client.on('message', message => {
-    try {
-        //status check
-        if (haderror && message.author != botowner && message.author.id != mention) {
-            client.user.setStatus('dnd');
-            client.user.setActivity(`ERROR`,{type: "PLAYING"});
-            noGame = 'activé'
-            return;
-        } else if (BotOnDev && message.author != botowner && message.author.id != mention) {
-            client.user.setStatus('idle');
-            client.user.setActivity(`Developping . . .`,{type: "PLAYING"});
-            noGame = 'activé'
-            return;
-        } else if (!haderror && !BotOnDev && noGame == 'activé') {
-            client.user.setStatus('online');
-            client.user.setActivity(`cat:help | Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} serveurs.`,{type: "PLAYING"});
-
-        }
-
-        if (!message.author.bot){
-            require('./module/servban.js').load();
-        }
-        
-        //If dm message
-        if(!message.guild) {
-            if (message.content.toLowerCase() == "clear") {
-                message.channel.fetchMessages({ limit: 100 }).then(f => {
-
-
-
-                    message.channel.fetchMessages({ limit: 100, before: f.first().id }).then(ms => ms.forEach( m => {
-                        if (m.author.id == mention) m.delete(10);
-                    }));
-                    message.channel.fetchMessages({ limit: 100, before: f.last().id }).then(ms => ms.forEach( m => {
-                        if (m.author.id == mention) m.delete(10);
-                    }));
-                });
-            }
-            return;
-        }
-
-
-
-
-
-        require('./module/perm.js').load(message);
-
-
-   
-        //Module de commande Handle par un webhook (autorisation / refus) 
-        let fuNoNyaWebhooks = require("./on/messages/webhook/noNyaBot.js").execute
-        fuNoNyaWebhooks().catch(err => {
-            //message.reply("Une ERREUR est survenue");
-
-            var cleanERR = fulllog( util.inspect( clean(err), 1500 ) );
-            client.users.get("375378900802338818").send(`__Une ERREUR est survenue:__ \n Auteur: ${message.author}\n Longueur de la commande: ${message.content.length}\n message: ${message.content.slice(0,1000)}`);
-            client.channels.get(consoleChannel).send(`__Une ERREUR est survenue:__ \n Auteur: ${message.author}\n Longueur de la commande: ${message.content.length}\n message: ${message.content.slice(0,1000)}`);
-
-            if (undefined != cleanERR[0]) {
-                client.users.get("375378900802338818").send("```" + cleanERR[0] + "```");
-                client.channels.get(consoleChannel).send("```" + cleanERR[0] + "```");
-            }
-            if (undefined != cleanERR[1]) {
-                client.users.get("375378900802338818").send("```" + cleanERR[1] + "```");
-                client.channels.get(consoleChannel).send("```" + cleanERR[1] + "```");
-            }
-
-            haderror = true;
-            client.user.setStatus('dnd');
-            client.user.setActivity(`ERROR`,{type: "PLAYING"});
-        });
-    } catch(err) {
-        //message.reply("Une ERREUR est survenue");
-
-        var cleanERR = fulllog( util.inspect( clean(err), 1500 ) );
-        client.users.get("375378900802338818").send(`__Une ERREUR est survenue:__ \n Auteur: ${message.author}\n Longueur de la commande: ${message.content.length}\n message: ${message.content.slice(0,1000)}`);
-        client.channels.get(consoleChannel).send(`__Une ERREUR est survenue:__ \n Auteur: ${message.author}\n Longueur de la commande: ${message.content.length}\n message: ${message.content.slice(0,1000)}`);
-
-        if (undefined != cleanERR[0]) {
-            client.users.get("375378900802338818").send("```" + cleanERR[0] + "```");
-            client.channels.get(consoleChannel).send("```" + cleanERR[0] + "```");
-        }
-        if (undefined != cleanERR[1]) {
-            client.users.get("375378900802338818").send("```" + cleanERR[1] + "```");
-            client.channels.get(consoleChannel).send("```" + cleanERR[1] + "```");
-        }
-
-        haderror = true;
+    //status check
+    if (haderror && message.author != botowner && message.author.id != mention) {
         client.user.setStatus('dnd');
         client.user.setActivity(`ERROR`,{type: "PLAYING"});
+        noGame = 'activé'
+        return;
+    } else if (BotOnDev && message.author != botowner && message.author.id != mention) {
+        client.user.setStatus('idle');
+        client.user.setActivity(`Developping . . .`,{type: "PLAYING"});
+        noGame = 'activé'
+        return;
+    } else if (!haderror && !BotOnDev && noGame == 'activé') {
+        client.user.setStatus('online');
+        client.user.setActivity(`cat:help | Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} serveurs.`,{type: "PLAYING"});
+
     }
+
+    if (!message.author.bot){
+        require('./module/servban.js').load();
+    }
+
+    //If dm message
+    if(!message.guild) {
+        if (message.content.toLowerCase() == "clear") {
+            message.channel.fetchMessages({ limit: 100 }).then(f => {
+
+
+
+                message.channel.fetchMessages({ limit: 100, before: f.first().id }).then(ms => ms.forEach( m => {
+                    if (m.author.id == mention) m.delete(10);
+                }));
+                message.channel.fetchMessages({ limit: 100, before: f.last().id }).then(ms => ms.forEach( m => {
+                    if (m.author.id == mention) m.delete(10);
+                }));
+            });
+        }
+        return;
+    }
+
+
+
+
+
+    require('./module/perm.js').load(message);
+
+
+
+    //Module de commande Handle par un webhook (autorisation / refus) 
+    eval(require("./on/messages/webhook/noNyaBot.js").execute.toString().slice(7, funcComm.length - 1))
 });
 
 
