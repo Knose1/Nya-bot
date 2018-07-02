@@ -1,12 +1,17 @@
 exports.execute = () => {
     
     message.channel.fetchWebhooks().then(fw => {
-    
+        
+        try {
+        
         if (fw.find('name', 'NoNya!Bot') != undefined)
             NoNyaWebhooks = true;
         else
             NoNyaWebhooks = false;
-        
+        } catch (e) {
+            NoNyaWebhooks = false;
+        }
+            
         var options_pch2 = {
             permissions: ["MANAGE_CHANNELS","MANAGE_WEBHOOKS"],
             message: message,
