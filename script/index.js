@@ -1,5 +1,7 @@
 require('./config.js').load();
 
+var errorCount = 0
+
 myEmitter.on('error', (err) => {
   try {
   //message.reply("Une ERREUR est survenue");
@@ -15,9 +17,14 @@ myEmitter.on('error', (err) => {
             client.channels.get(errorChannel).send("```" + cleanERR[1] + "```");
         }
 
-        //haderror = true;
-        //client.user.setStatus('dnd');
-        //client.user.setActivity(`ERROR`,{type: "PLAYING"});
+        errorCount += 1
+        if (errorCount > 3) {
+            haderror = true;
+            client.user.setStatus('dnd');
+            client.user.setActivity(`ERROR`,{type: "PLAYING"});
+        } else if (errorCount > 100) {
+            client.destroy();
+        }
   
   } catch(e) {}
 });
