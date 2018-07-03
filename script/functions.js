@@ -1,5 +1,5 @@
 var Nya1 = {};
-Nya1.error = function(err) { myEmitter.emit('error', new Error(err)) }
+Nya1.error = function(err,light) { myEmitter.emit('error', {error:new Error(err) , light: Boolean(light)}) }
 Nya1.log = function(log) {
     console.log(log);
     myEmitter.emit('log', log)
