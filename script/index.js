@@ -3,10 +3,12 @@ require('./config.js').load();
 var errorCount = 0
 
 myEmitter.on('error', (err) => {
+  
+  var e = err.error || err;
   try {
   //message.reply("Une ERREUR est survenue");
 
-        var cleanERR = fulllog( util.inspect( clean(err), 1500 ) );
+        var cleanERR = fulllog( util.inspect( clean(e), 1500 ) );
 
         if (undefined != cleanERR[0]) {
             client.channels.get(consoleChannel).send("```" + cleanERR[0] + "```");
@@ -17,13 +19,15 @@ myEmitter.on('error', (err) => {
             client.channels.get(errorChannel).send("```" + cleanERR[1] + "```");
         }
 
-        errorCount += 1
-        if (errorCount > 3) {
-            haderror = true;
-            client.user.setStatus('dnd');
-            client.user.setActivity(`ERROR`,{type: "PLAYING"});
-        } else if (errorCount > 100) {
-            client.destroy();
+        if (!err.light) {
+            errorCount += 1
+            if (errorCount > 3) {
+                haderror = true;
+                client.user.setStatus('dnd');
+                client.user.setActivity(`ERROR`,{type: "PLAYING"});
+            } else if (errorCount > 100) {
+                client.destroy();
+            }
         }
   
   } catch(e) {}
