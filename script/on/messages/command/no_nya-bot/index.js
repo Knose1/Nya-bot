@@ -17,14 +17,14 @@ exports.execute = () => {
         message: message,
         author: client.user
     }
-    var perm_check = new check_perm(options_pch);
-    var perm_nyach = new check_perm(options_nyach);
+    var perm_check = check_perm(options_pch);
+    var perm_nyach = check_perm(options_nyach);
     
-    perm_nyach.check().then( nya => {
+    perm_nyach().then( nya => {
         if (!nya) {
             message.channel.send("Sorry I don't have the permissions MANAGE_WEBHOOKS.").then(m => m.delete(6000));
         }
-        perm_check.check().then( perm => {
+        perm_check().then( perm => {
             
             if (perm && nya) {
                 if (NoNyaWebhooks) {
