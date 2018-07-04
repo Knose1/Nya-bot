@@ -3,6 +3,9 @@ exports.execute = () => {
     let availableSubcommands = ["delete","create","get"];
     
     if (args[0] && message.author == botowner) {
+        
+        if (args[0].toLowerCase() == "add")
+                args[0] == "create";
         if (availableSubcommands.indexOf(args[0].toLowerCase()) > -1) {
             
             var funcSubComm = String(require(`./on/messages/command/animeliste/${args[0]}.js`).execute);
