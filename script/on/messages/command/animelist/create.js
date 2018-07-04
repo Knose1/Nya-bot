@@ -1,7 +1,7 @@
 exports.execute = () => {
-    var arg1 = args.pop();
+    var arg0 = args.pop();
     args = args.join(" ").split("\n::").map(m => encodeURIComponent( m.trim() ));
-    args.unshift(arg1);
+    args.unshift(arg0);
     
     args[1] = args[1].replace(/ +/g,"-");
     
