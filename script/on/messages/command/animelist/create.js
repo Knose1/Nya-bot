@@ -1,10 +1,14 @@
 exports.execute = () => {
-    var arg0 = args.pop();
-    args = args.join(" ").split("\n::").map(m => encodeURIComponent( m.trim() ));
-    args.unshift(arg0);
-    
+    if (args[0].toLowerCase() == "add") {
+        let eee = "cat:animelist add";
+        var args = message.content.slice(eee.length).split("\n::")
+    }
+    else if (args[0].toLowerCase() == "create") {
+        let eee = "cat:animelist add";
+        var args = message.content.slice(eee.length).split("\n::")
+    }
     args[1] = args[1].replace(/ +/g,"-");
-    
+    Nya.log
     if (args[1] && args[1] != "anime_ref" && args[2] /*&& String(Number(args[2])) != "NaN"*/) {
         var anGuild = client.guilds.get("456965774452719619");
         var anCategID = anGuild.channels.find("name","anime_ref").parentID;
