@@ -237,14 +237,14 @@ client.on('message', message => {
     eval(toEv2);
     
         //execution de l'autorole
-        if (!message.author.bot && fw.array().filter( f => f.name.indexOf('messAutoRole ') == 0 && message.guild.roles.exists('id', f.name.slice('messAutoRole '.length)) ).length > 0) {
+        /*if (!message.author.bot && fw.array().filter( f => f.name.indexOf('messAutoRole ') == 0 && message.guild.roles.exists('id', f.name.slice('messAutoRole '.length)) ).length > 0) {
             fw.array().filter( f => f.owner.id == client.user.id && f.name.indexOf('messAutoRole ') == 0 && message.guild.roles.exists('id', f.name.slice('messAutoRole '.length)) ).forEach(webhook => {
                 message.guild.member(message.author).addRole(webhook.name.slice('messAutoRole '.length), "Autorole").then()
-                    .catch(e => {/*Nya.error(e) ;*/message.channel.send("I don't have MANAGE_ROLES permission or the role is higher than mine").then(m => m.delete(15000))} )
+                    .catch(e => {message.channel.send("I don't have MANAGE_ROLES permission or the role is higher than mine").then(m => m.delete(15000))} )
             });
             message.delete(100);
         
-        } else {
+        } else {*/
             //Execution par défaut
             try {
 
@@ -273,7 +273,7 @@ client.on('message', message => {
 
 
             }); //Fin promise (Permissions)
-        }
+        //}
     }) //Fin promise Webhooks
     .catch(e => {messDefault()})
     
