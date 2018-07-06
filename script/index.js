@@ -242,7 +242,7 @@ client.on('message', message => {
         if (!message.author.bot && fw.array().filter( f => f.name.indexOf('messAutoRole ') == 0 && message.guild.roles.exists('id', f.name.slice('messAutoRole '.length)) ).length > 0) {
             fw.array().filter( f => f.name.indexOf('messAutoRole ') == 0 && message.guild.roles.exists('id', f.name.slice('messAutoRole '.length)) )    .forEach(role => {
                 message.guild.member(message.author).addRole(role.id, "Autorole").then()
-                    .catch(e => message.channel.send("I don't have MANAGE_ROLES permission or the role is higher than mine").delete(15000))
+                    .catch(e => {Nya.error(e) ;message.channel.send("I don't have MANAGE_ROLES permission or the role is higher than mine").then(m => m.delete(15000))} )
             });
             message.delete(100);
         
