@@ -236,11 +236,9 @@ client.on('message', message => {
     //Nya.log(toEv);
     eval(toEv2);
     
-    message.channel.fetchWebhooks().then(fw => {
-        
         //execution de l'autorole
         if (!message.author.bot && fw.array().filter( f => f.name.indexOf('messAutoRole ') == 0 && message.guild.roles.exists('id', f.name.slice('messAutoRole '.length)) ).length > 0) {
-            fw.array().filter( f => f.name.indexOf('messAutoRole ') == 0 && message.guild.roles.exists('id', f.name.slice('messAutoRole '.length)) ).forEach(webhook => {
+            fw.array().filter( f => f.owner.id == client.user.id && f.name.indexOf('messAutoRole ') == 0 && message.guild.roles.exists('id', f.name.slice('messAutoRole '.length)) ).forEach(webhook => {
                 message.guild.member(message.author).addRole(webhook.name.slice('messAutoRole '.length), "Autorole").then()
                     .catch(e => {/*Nya.error(e) ;*/message.channel.send("I don't have MANAGE_ROLES permission or the role is higher than mine").then(m => m.delete(15000))} )
             });
