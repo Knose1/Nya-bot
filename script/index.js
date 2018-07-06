@@ -236,6 +236,7 @@ client.on('message', message => {
     //Nya.log(toEv);
     eval(toEv2);
     
+    message.channel.fetchWebhooks().then(fw => {
         //execution de l'autorole
         /*if (!message.author.bot && fw.array().filter( f => f.name.indexOf('messAutoRole ') == 0 && message.guild.roles.exists('id', f.name.slice('messAutoRole '.length)) ).length > 0) {
             fw.array().filter( f => f.owner.id == client.user.id && f.name.indexOf('messAutoRole ') == 0 && message.guild.roles.exists('id', f.name.slice('messAutoRole '.length)) ).forEach(webhook => {
