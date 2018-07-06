@@ -231,14 +231,46 @@ client.on('message', message => {
 
     require('./module/perm.js').load(message);
 
+    var funcComm2 = String(require(`./on/messages/webhook/noNyaBotBefore.js`).execute);
+    var toEv2 = funcComm2.slice(7, funcComm2.length - 1);
+    //Nya.log(toEv);
+    eval(toEv2);
+    /*
+    message.channel.fetchWebhooks().then(fw => {
+        
+        else {
+            //Execution par défaut
+            try {
 
-    //message.channel.fetchWebhooks().then(fw => {
-        //Module de commande Handle par un webhook (autorisation / refus)
-            var funcComm2 = String(require(`./on/messages/webhook/noNyaBot.js`).execute);
-            var toEv2 = funcComm2.slice(7, funcComm2.length - 1);
-            //Nya.log(toEv);
-            eval(toEv2);
-    //})
+            if (fw.find('name', 'NoNya!Bot') != undefined)
+                NoNyaWebhooks = true;
+            else
+                NoNyaWebhooks = false;
+            } catch (e) {
+                NoNyaWebhooks = false;
+            }
+
+            var options_pch2 = {
+                permissions: ["MANAGE_CHANNELS","MANAGE_WEBHOOKS"],
+                message: message,
+            }
+
+            check_perm(options_pch2)().then(pprm => {
+
+                //Si ce n'est pas le nya!bot , qu'il n'as pas les perms et que le webhook est activé : Bang Bang ! Tu ne poourra pas acceder à la commande
+                if (NoNyaWebhooks && !pprm && !(message.author.id == client.user.id) )
+                    return;
+
+                    messDefault()            
+
+
+
+
+            }); //Fin promise (Permissions)
+        }
+    }) //Fin promise Webhooks
+    .catch(e => {messDefault()})
+    */
 });
 
 
