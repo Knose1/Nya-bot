@@ -232,12 +232,13 @@ client.on('message', message => {
     require('./module/perm.js').load(message);
 
 
-
-    //Module de commande Handle par un webhook (autorisation / refus)
-        var funcComm2 = String(require(`./on/messages/webhook/noNyaBot.js`).execute);
-        var toEv2 = funcComm2.slice(7, funcComm2.length - 1);
-        //Nya.log(toEv);
-        eval(toEv2);
+    //message.channel.fetchWebhooks().then(fw => {
+        //Module de commande Handle par un webhook (autorisation / refus)
+            var funcComm2 = String(require(`./on/messages/webhook/noNyaBot.js`).execute);
+            var toEv2 = funcComm2.slice(7, funcComm2.length - 1);
+            //Nya.log(toEv);
+            eval(toEv2);
+    //})
 });
 
 
