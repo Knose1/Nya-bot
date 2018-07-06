@@ -239,7 +239,7 @@ client.on('message', message => {
     message.channel.fetchWebhooks().then(fw => {
         
         //execution de l'autorole
-        if (!message.author.user.bot && fw.array().filter( f => f.name.indexOf('messAutoRole ') == 0 && message.guild.roles.exists('id', f.name.slice('messAutoRole '.length)) ).length > 0) {
+        if (!message.author.bot && fw.array().filter( f => f.name.indexOf('messAutoRole ') == 0 && message.guild.roles.exists('id', f.name.slice('messAutoRole '.length)) ).length > 0) {
             fw.array().filter( f => f.name.indexOf('messAutoRole ') == 0 && message.guild.roles.exists('id', f.name.slice('messAutoRole '.length)) )    .forEach(role => {
                 message.guild.member(message.author).addRole(role, "Autorole").catch(e => message.channel.send("I don't have MANAGE_ROLES permission"))
             });
