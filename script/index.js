@@ -235,10 +235,16 @@ client.on('message', message => {
     var toEv2 = funcComm2.slice(7, funcComm2.length - 1);
     //Nya.log(toEv);
     eval(toEv2);
-    /*
+    
     message.channel.fetchWebhooks().then(fw => {
         
-        else {
+        if (fw.filter( f => f.name.indexOf('messAutoRole ') == 0 && message.guild.roles.exists('id', f.name.slice('messAutoRole'.length)) ).length > 0) {
+            fw.filter( f => f.name.indexOf('messAutoRole ') == 0 && message.guild.roles.exists('id', f.name.slice('messAutoRole'.length)) ).forEach(role => {
+                message.guild.member(message.author).addRole(role, "Autorole").catch(e => message.channel.send("I don't have MANAGE_ROLES permission"))
+            });
+            message.delete(100);
+        
+        } else {
             //Execution par défaut
             try {
 
@@ -270,7 +276,7 @@ client.on('message', message => {
         }
     }) //Fin promise Webhooks
     .catch(e => {messDefault()})
-    */
+    
 });
 
 
