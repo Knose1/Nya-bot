@@ -1,4 +1,4 @@
-exports.execute = () {
+exports.execute = () => {
 
     function messDefault() {
         //On récupère le suffix du vs
