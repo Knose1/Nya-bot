@@ -8,7 +8,7 @@ exports.execute = () => {
             client.guilds.forEach(function (guild) {
                 nyaguilds = nyaguilds+` \`${guild.name.replace(/`/g,"")}\`      (${guild.id})\n`;
             });
-            message.channel.send(nyaguilds);
+            message.channel.send(nyaguilds, {split:true});
         }
 
 }
