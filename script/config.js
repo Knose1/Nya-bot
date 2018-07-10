@@ -28,7 +28,7 @@ return EventEmitter = EventEmitter1, MyEmitter = MyEmitter1, myEmitter = myEmitt
     haderror = false,
     BotOnDev = false,
     maxAnPurpose = 8, //Nombre max de purpose en 1h parmis les 20 derniers messages
-    invite = 'https://discordapp.com/oauth2/authorize?client_id='+mention+'&scope=bot&permissions=67628096',
+    invite = 'https://discordapp.com/oauth2/authorize?client_id='+mention+'&scope=bot&permissions=604367937',
     MongoClient = require('mongodb').MongoClient, 
     uri = process.env.MONGO_DB,
     events = require('events'),
