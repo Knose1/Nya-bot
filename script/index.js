@@ -317,7 +317,11 @@ function haveRole(user,role) {
             return Boolean( v1.roles.get(role) );
 }
 
-bot = new Discord.Client();
+
+const DBL = require("dblapi.js");
+const dbl = new DBL(﻿process.env.dblapitoken, client);
+
+/*bot = new Discord.Client();
 bot.on('ready', () => {
     console.log("OwO");
 });
@@ -405,7 +409,7 @@ bot.on('message', message => {
         }
 });
 
-bot.login(﻿process.env.TK2);
+bot.login(﻿process.env.TK2);*/
 
 var bt = new Discord.Client();
 bt.login(﻿process.env.BTFB_TOKEN);
