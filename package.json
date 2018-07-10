@@ -9,7 +9,8 @@
   "dependencies": {
     "discord.js": "",
     "mongodb": "",
-    "nodemailer": ""
+    "nodemailer": "",
+    "dblapi.js": ""
   },
   "author": "knose1",
   "license": "ISC"
