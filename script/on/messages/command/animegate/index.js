@@ -15,7 +15,11 @@ exports.execute() => {
             
             request('https://api.anime-gate.net/', query)
                 .then(queryResult => {
-                    boucle(i,result.push(queryResult));
+                    //on charge max 500 pages
+                    if (i < 500)
+                        boucle(i + 1,result.concat(queryResult.anime.data));
+                    else
+                        resolve(result.concat(queryResult.anime.data))
                 })
             
                 .catch(r => {
