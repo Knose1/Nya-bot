@@ -3,13 +3,19 @@ require('./config.js').load();
 var errorCount = 0
 
 myEmitter.on('error', (err) => {
-  
-  var e = err.error || err;
-  try {
-  //message.reply("Une ERREUR est survenue");
-
+    
+    var e = err.error || err;
+    try {
+        if  (String(e).split("\n")[0].indexOf("Unknown Message") > -1) {
+            err = {
+                light: true, error: e
+            }
+        }
+        
+        //message.reply("Une ERREUR est survenue");
+        
         var cleanERR = fulllog( util.inspect( clean(e), 1500 ) );
-
+        
         if (undefined != cleanERR[0]) {
             client.channels.get(consoleChannel).send("```" + cleanERR[0] + "```");
             client.channels.get(errorChannel).send("```" + cleanERR[0] + "```");
@@ -18,7 +24,7 @@ myEmitter.on('error', (err) => {
             client.channels.get(consoleChannel).send("```" + cleanERR[1] + "```");
             client.channels.get(errorChannel).send("```" + cleanERR[1] + "```");
         }
-
+        
         if (!err.light) {
             errorCount += 1
             if (errorCount > 3) {
@@ -29,12 +35,12 @@ myEmitter.on('error', (err) => {
                 client.destroy();
             }
         }
-  
-  } catch(e) {}
+    
+    } catch(e) {}
 });
 
 myEmitter.on('log', (log) => {
-  try {
+    try {
         var cleanLog = fulllog( util.inspect( clean(log), 1500 ) );
 
         if (undefined != cleanLog[0]) {
@@ -44,7 +50,7 @@ myEmitter.on('log', (log) => {
             client.channels.get(consoleChannel).send("```" + cleanLog[1] + "```");
         }
   
-  } catch(e) {}
+    } catch(e) {}
 });
 
 //lorsque Nya!bot est pret
