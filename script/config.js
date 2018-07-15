@@ -35,6 +35,5 @@ return EventEmitter = EventEmitter1, MyEmitter = MyEmitter1, myEmitter = myEmitt
     NoNyaWebhooks = "",
     mpParties = [],
     vsStatus = [],
-    Lokka = require('lokka').Lokka,
-    Transport = require('lokka-transport-http').Transport;
+    { request } = require('graphql-request');
 }
