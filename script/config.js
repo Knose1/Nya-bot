@@ -34,5 +34,7 @@ return EventEmitter = EventEmitter1, MyEmitter = MyEmitter1, myEmitter = myEmitt
     events = require('events'),
     NoNyaWebhooks = "",
     mpParties = [],
-    vsStatus = [];
+    vsStatus = [],
+    Lokka = require('lokka').Lokka,
+    Transport = require('lokka-transport-http').Transport;
 }
