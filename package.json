@@ -11,8 +11,6 @@
     "mongodb": "",
     "nodemailer": "",
     "dblapi.js": "",
-    "lokka": "",
-    "lokka-transport-http": "",
     "graphql-request": ""
   },
   "author": "knose1",
