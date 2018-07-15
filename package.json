@@ -12,7 +12,8 @@
     "nodemailer": "",
     "dblapi.js": "",
     "lokka": "",
-    "lokka-transport-http":""
+    "lokka-transport-http": "",
+    "graphql-request": ""
   },
   "author": "knose1",
   "license": "ISC"
