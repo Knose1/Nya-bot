@@ -4,22 +4,28 @@ exports.execute() => {
         function boucle(i,result) {
             const query = 
             `
-                {
-                    anime(page: ${i + 1}){
-                        data{
-                            title, episodes
-                        }
-                    }
-                }
+                query { 
+                    media(page: ${i + 1}) { 
+                        ... on Anime { 
+                            id, 
+                            title, 
+                            titleEnglish, 
+                            startDate, 
+                            format, 
+                            status, 
+                            url 
+                        } 
+                    } 
+                } 
             `
             
             request('https://api.anime-gate.net/', query)
                 .then(queryResult => {
                     //on charge max 500 pages
                     if (i < 500)
-                        boucle(i + 1,result.concat(queryResult.anime.data));
+                        boucle(i + 1,result.concat(queryResult.media));
                     else
-                        resolve(result.concat(queryResult.anime.data))
+                        resolve(result.concat(queryResult.media))
                 })
             
                 .catch(r => {
