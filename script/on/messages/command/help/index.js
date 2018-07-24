@@ -118,7 +118,7 @@ Les id sont marqués en bas des messages du VirtualServeur (VS)'
     if (args[0].toLowerCase() == "vsemojis") {
         if (String(Number(args[1])) == NaN)
             args[1] = 1;
-        message.author.send(`__Page :__\n\n ${VSEmojies.slice[20*(args[1] - 1), 20*args[1] - 1].map(m => `\\${m.name} ${m.code}`).join("\n")}`, {split:true}) 
+        message.author.send(`__Page :__\n\n ${VSEmojies.slice(20*(args[1] - 1), 20*args[1] - 1).map(m => `\\${m.name} ${m.code}`).join("\n")}`, {split:true}) 
     }
     else if (args[0].toLowerCase() == 'new(vs)') {
         message.channel.send(cmHelp.newVs, {split:true})
