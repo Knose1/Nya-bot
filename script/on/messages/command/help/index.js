@@ -5,6 +5,7 @@ var cmHelp = {
 __**Commandes bot owner:**__ \n\n\
     `cat:help new(vs)` Obtenir de l'aide sur la mise en place du Virtual Server\n\
     `cat:help vs` Obtenir les commandes du Virtual Server\n\
+    `cat:help vsemojis <page>` Obtenir les émojis du nya!bot vs\n\
     \n\
     `cat:no_nya-bot` Permet de désactiver les commandes du nya!bot (dans le channel) à tout ceux qui n'ont pas le droit d'utiliser cette commande\n\
     \n\
@@ -49,6 +50,7 @@ __**Commandes bot owner:**__ \n\n\
 __**Commandes:**__ \n\n\
     `cat:help new(vs)` Obtenir de l'aide sur la mise en place du Virtual Server\n\
     `cat:help vs` Obtenir les commandes du Virtual Server\n\
+    `cat:help vsemojis <page>` Obtenir les émojis du nya!bot vs\n\
     \n\
     `cat:no_nya-bot` Permet de désactiver les commandes du nya!bot (dans le channel) à tout ceux qui n'ont pas le droit d'utiliser cette commande\n\
     \n\
@@ -113,30 +115,38 @@ __Uniquement pour les **MODÉRATEURS DU BOT** :__ \n\
 Les id sont marqués en bas des messages du VirtualServeur (VS)'
 }
     //commande help
-        
-        if ((command == 'help' || command == 'aide') && args[0] == 'new(vs)') {
-            message.channel.send(cmHelp.newVs, {split:true})
-            .then(msg => msg.delete(25000));
-        }
-        
-        else if (command == 'help' && ((args[0]== 'vs' && args[1] == 'here') || (args[0] == 'here' && args[1] == 'vs'))) {
-            message.channel.send(cmHelp.vs, {split:true});
-        }
-        
-        else if (command == 'help' && args[0] == 'vs') {
-            message.author.send(cmHelp.vs, {split:true});
-        }
-	    
-        else if ((command == 'help' || command == 'aide') && args[0] == 'here' ) {
+    if (args[0].toLowerCase() == "vsemojis") {
+        if (String(Number(args[1])) == NaN)
+            args[1] = 1;
+        message.author.send(`__Page :__\n\n ${VSEmojies.slice[20*(args[1] - 1), 20*args[1] - 1].map(m => `\\${m.name} ${m.code}`).join("\n")}`, {split:true}) 
+    }
+    else if (args[0].toLowerCase() == 'new(vs)') {
+        message.channel.send(cmHelp.newVs, {split:true})
+        .then(msg => msg.delete(25000));
+    }
+
+    else if ((args[0].toLowerCase()== 'vs' && args[1].toLowerCase() == 'here') || (args[0].toLowerCase() == 'here' && args[1].toLowerCase() == 'vs')) {
+        message.channel.send(cmHelp.vs, {split:true});
+    }
+
+    else if (args[0].toLowerCase() == 'vs') {
+        message.author.send(cmHelp.vs, {split:true});
+    }
+
+    else if (args[0].toLowerCase() == 'here' ) {
         message.channel.send(cmHelp.cUser, {split:true});
-        }
-        
-        else if ((command == 'help' || command == 'aide') && message.author == botowner) {
+    }
+
+    else if (message.author == botowner && !args[0]) {
         message.author.send(cmHelp.botOwner, {split:true});
-        }
-        
-        else if (command == 'help' || command == 'aide') {
+    }
+
+    else if (!args[0]) {
         message.author.send(cmHelp.cUser, {split:true});
-        }
+    }
+
+    else {
+        message.author.send("You typed a wrong help command");
+    }
 
 }
