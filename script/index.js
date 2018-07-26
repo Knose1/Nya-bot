@@ -119,32 +119,32 @@ client.on('reconnecting', reconnecting=> {
         channel.send('Reconnection');
     
     const embed = new Discord.RichEmbed()
-            //.setTitle("Virtual Channel")
-            .setAuthor("BOT: "+client.user.username+"#"+client.user.discriminator, "https://media.discordapp.net/attachments/407271018516971532/407272279416766475/BOT.png")
-            .setColor("#DD00FF")
-            .setDescription('Le nya!bot revien, veuillez patienter ...')
-            .setFooter("Le "+new Date().getDate()+"/"+(new Date().getMonth() + 1)+"/"+new Date().getFullYear()+" à "+new Date().toLocaleTimeString()+" | "+client.guilds.get('377892426569744387').name.replace(/`/g,"").replace(/_/g,"").replace(/\*/g,"")+" | "+client.user.id , client.guilds.get('377892426569744387').iconURL)
-            .setThumbnail(client.user.avatarURL);
+        //.setTitle("Virtual Channel")
+        .setAuthor("BOT: "+client.user.username+"#"+client.user.discriminator, "https://media.discordapp.net/attachments/407271018516971532/407272279416766475/BOT.png")
+        .setColor("#DD00FF")
+        .setDescription('Le nya!bot revien, veuillez patienter ...')
+        .setFooter("Le "+new Date().getDate()+"/"+(new Date().getMonth() + 1)+"/"+new Date().getFullYear()+" à "+new Date().toLocaleTimeString()+" | "+client.guilds.get('377892426569744387').name.replace(/`/g,"").replace(/_/g,"").replace(/\*/g,"")+" | "+client.user.id , client.guilds.get('377892426569744387').iconURL)
+        .setThumbnail(client.user.avatarURL);
 
 
 
-        /*Fin embed*/
+    /*Fin embed*/
 
-        //Pour chaque serv:
+    //Pour chaque serv:
 
-        client.guilds.forEach(function (guild) {
-            //Pour chaque channel
+    client.guilds.forEach(function (guild) {
+        //Pour chaque channel
 
-            guild.channels.forEach(function (channel) {
-                //On regarde s'il se nome nya-bot-vs ou nya-bot-vs-log (dans le serv log)
-                if (CanReloading && channel.type == "text" && channel.name == "nya-bot-vs" || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) {
+        guild.channels.forEach(function (channel) {
+            //On regarde s'il se nome nya-bot-vs ou nya-bot-vs-log (dans le serv log)
+            if (CanReloading && channel.type == "text" && channel.name == "nya-bot-vs" || (guild.id == "377892426569744387" && channel.name == "nya-bot-vs-log")) {
 
-                    //On envoie l'embed
-                    channel.send({embed});
-                }
-            });
+                //On envoie l'embed
+                channel.send({embed});
+            }
         });
-        CanReloading = false;
+    });
+    CanReloading = false;
     
     
 
@@ -152,7 +152,8 @@ client.on('reconnecting', reconnecting=> {
 
 client.on('resume', resume => {
 
-
+    
+    CanReloading = true;
     client.user.setStatus('online');
     Nya.log('Reprise du nya!bot');
     var channel = client.channels.get(logserv);
@@ -184,7 +185,6 @@ client.on('resume', resume => {
                 }
             });
         });
-        CanReloading = true;
 });
 
 
