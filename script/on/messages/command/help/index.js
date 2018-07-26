@@ -115,7 +115,10 @@ __Uniquement pour les **MODÉRATEURS DU BOT** :__ \n\
 Les id sont marqués en bas des messages du VirtualServeur (VS)'
 }
     //commande help
-    if (args[0].toLowerCase() == "vsemojis") {
+    if (!args[0]) {
+        message.author.send(cmHelp.cUser, {split:true});
+    }
+    else if (args[0].toLowerCase() == "vsemojis") {
         if (String(Number(args[1])) == NaN)
             args[1] = 1;
         message.author.send(`__Page ${args[1]}:__\n\n ${VSEmojies.slice(20*(args[1] - 1), 20*args[1] - 1).map(m => `\\${m.name} ${m.code}`).join("\n")}`, {split:true}) 
@@ -140,11 +143,7 @@ Les id sont marqués en bas des messages du VirtualServeur (VS)'
     else if (message.author == botowner && !args[0]) {
         message.author.send(cmHelp.botOwner, {split:true});
     }
-
-    else if (!args[0]) {
-        message.author.send(cmHelp.cUser, {split:true});
-    }
-
+    
     else {
         message.author.send("You typed a wrong help command");
     }
