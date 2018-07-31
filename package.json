@@ -13,7 +13,8 @@
     "dblapi.js": "",
     "graphql-request": "",
     "ffmpeg-binaries":"",
-    "opusscript":""
+    "opusscript":"",
+    "ytdl-core":""
   },
   "author": "knose1",
   "license": "GPL-3.0"
