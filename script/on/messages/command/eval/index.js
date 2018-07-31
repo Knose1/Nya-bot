@@ -1,5 +1,9 @@
 exports.execute = () => {
-
+    
+    message.delete(500)
+                    .then(msg => Nya.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
+                    .catch(e => Nya.error(e,true));
+    
     //Commande eval
         if (command.toLowerCase() == 'eval' && message.author != botowner) {
             message.reply('You can\'t use eval command ! :pouting_cat:')
