@@ -3,7 +3,7 @@ exports.execute = () => {
         message.member.voiceChannel.leave()
         message.member.voiceChannel.join()
             .then(connection => {
-                const link = message.content.trim().slice("!play".length).trim().split(/ +/g)[0]    
+                const link = args[0]    
                 const stream = require('stream');    
 
                 if (link.indexOf("https://www.youtube.com/watch?v=") == 0 || link.indexOf("https://youtu.be/") == 0) {
