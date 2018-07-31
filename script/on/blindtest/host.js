@@ -9,6 +9,7 @@ exports.execute = () => {
                 message.guild.channels.get("473822354800377867").join()
                     .then(connection => {
                         const dispatcher = connection.playFile(message.content.trim().slice("!play".length).trim());
+                        connection.on('error', (e) => Nya.error(e,true))
                         dispatcher.on('error', (e) => Nya.error(e,true))
                         message.channel.send("Now playing . . .")
                     })
