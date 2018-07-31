@@ -20,7 +20,7 @@ exports.execute = () => {
                         }
                         connection.on('error', (e) => Nya.error(e,true))
                         dispatcher.on('error', (e) => Nya.error(e,true))
-                        message.channel.send("Now playing . . .")
+                        message.channel.send("Now playing link")
                     })
                     .catch(e => Nya.error(e,true));
             })
