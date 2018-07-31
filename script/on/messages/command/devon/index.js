@@ -1,5 +1,7 @@
 exports.execute = () => {
-
+    message.delete(500)
+        .then(msg => Nya.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
+        .catch(e => Nya.error(e,true));
     if (message.author == botowner && BotOnDev) {
         
         client.user.setStatus('online');
