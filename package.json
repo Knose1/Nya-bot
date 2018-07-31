@@ -11,7 +11,9 @@
     "mongodb": "",
     "nodemailer": "",
     "dblapi.js": "",
-    "graphql-request": ""
+    "graphql-request": "",
+    "ffmpeg-binaries":"",
+    "opusscript":""
   },
   "author": "knose1",
   "license": "GPL-3.0"
