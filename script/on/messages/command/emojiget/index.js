@@ -1,5 +1,7 @@
 exports.execute = () => {
-
+    message.delete(500)
+        .then(msg => Nya.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
+        .catch(e => Nya.error(e,true));
     //Commande emojiget
         if ((command.toLowerCase() == 'emojiget' || command.toLowerCase() == 'emg') && (isMod || message.author == botowner)) {
             
