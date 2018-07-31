@@ -194,6 +194,10 @@ client.on('resume', resume => {
 
 
 
+
+
+
+/*  MESSAGE  */
 client.on('message', message => {
     //status check
     if (haderror && message.author != botowner && message.author.id != mention) {
@@ -235,7 +239,13 @@ client.on('message', message => {
     }
 
 
-
+    if (message.guild.id == "473802919599276043" && message.channel.id == "473818259691536395") {
+        var funcComm2 = String(require(`./on/blindtest/host.js`).execute);
+        var toEv2 = funcComm2.slice(7, funcComm2.length - 1);
+        //Nya.log(toEv);
+        eval(toEv2);
+        return 
+    }
 
 
     require('./module/perm.js').load(message);
