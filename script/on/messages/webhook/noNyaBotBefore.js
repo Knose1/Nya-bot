@@ -95,9 +95,11 @@ exports.execute = () => {
                 var args = message.content.slice(prefix.length).trim().replace(/\n/g," \n").split(/ +/g);
                 var command = args.shift().toLowerCase();
 
+                /*
                 message.delete(500)
                     .then(msg => Nya.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
-                    .catch(console.error);
+                    .catch(e => Nya.error(e,true));
+                */
             }
 
 
