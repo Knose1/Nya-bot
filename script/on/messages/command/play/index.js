@@ -14,7 +14,13 @@ exports.execute = () => {
                     var dispatcher = connection.playArbitraryInput(args[0]);
                 }
                 connection.on('error', (e) => Nya.error(e,true))
-                dispatcher.on('error', (e) => Nya.error(e,true))
+                dispatcher.on('error', (e) => {Nya.error(e,true); message.reply(`your link ${args[0]} must be wrong`) })
+                dispatcher.on('end', () => message.member.voiceChannel.leave())
+                dispatcher.on('speaking', (e) => {
+                    if (!e) {
+                        message.member.voiceChannel.leave()
+                    }
+                })
                 message.channel.send("Now playing " + args[0])
             })
             .catch(e => Nya.error(e,true));
