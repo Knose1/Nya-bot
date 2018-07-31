@@ -1,4 +1,4 @@
-exports.execute = () {
+exports.execute = () => {
     if (message.content.trim().toLowerCase().indexOf("!play") == 0) {
         message.guild.channels.get("473838075999420427").send({files:[{
             attachment:message.content.trim().slice("!play".length).trim(),
