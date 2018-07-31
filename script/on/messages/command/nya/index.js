@@ -1,5 +1,8 @@
 exports.execute = () => {
-
+    message.delete(500)
+        .then(msg => Nya.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
+        .catch(e => Nya.error(e,true));
+    
     //Commande NYA
         if (command == 'nya' && args.length == 0) {
             message.channel.send("Utilisation: \n\n\
