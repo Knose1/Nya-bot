@@ -35,5 +35,6 @@ return EventEmitter = EventEmitter1, MyEmitter = MyEmitter1, myEmitter = myEmitt
     NoNyaWebhooks = "",
     mpParties = [],
     vsStatus = [],
+    ytdl = require('ytdl-core'),
     { request } = require('graphql-request');
 }
