@@ -8,7 +8,7 @@ exports.execute = () => {
                 const stream = require('stream');    
 
                 if (args[0].indexOf("https://www.youtube.com/watch?v=") == 0 || args[0].indexOf("https://youtu.be/") == 0) {
-                    var steamAudio = ytdl(message.content.trim().slice("!play".length).trim(), { filter : 'audioonly' })
+                    var steamAudio = ytdl(args[0], { filter : 'audioonly' })
                     var dispatcher = connection.playStream(steamAudio,{ seek: 0, volume: 1 });
                 } else {
                     var dispatcher = connection.playArbitraryInput(args[0]);
