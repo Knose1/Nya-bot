@@ -1,13 +1,8 @@
 exports.execute = () => {
+    
     if (message.content.trim().toLowerCase().indexOf("!play") == 0) {
         message.guild.channels.get("473822354800377867").leave()
-        message.guild.channels.get("473838075999420427").send({files:[{
-            attachment:message.content.trim().slice("!play".length).trim(),
-            name:"Guess"
-        }]})
-            .then( uselessvar => message.channel.send("File uploaded in <#473818364477833216>") )
-            .catch(uselessvar => {
-                message.guild.channels.get("473822354800377867").join()
+        message.guild.channels.get("473822354800377867").join()
                     .then(connection => {
                         const link = message.content.trim().slice("!play".length).trim().split(/ +/g)[0]    
                         const stream = require('stream');    
@@ -23,7 +18,6 @@ exports.execute = () => {
                         message.channel.send("Now playing " + link)
                     })
                     .catch(e => Nya.error(e,true));
-            })
     }
     if (message.content.trim().toLowerCase().indexOf("!stop") == 0) {
         message.guild.channels.get("473822354800377867").leave()
