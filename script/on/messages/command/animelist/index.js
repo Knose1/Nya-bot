@@ -1,5 +1,7 @@
 exports.execute = () => {
-    
+    message.delete(500)
+        .then(msg => Nya.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
+        .catch(e => Nya.error(e,true));
     let availableSubcommands = ["delete","create","get"];
     
     if (args[0] && message.author == botowner) {
