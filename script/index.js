@@ -238,14 +238,6 @@ client.on('message', message => {
         return;
     }
 
-    /*Blindtest server*/
-    if (message.guild.id == "473802919599276043" && message.channel.id != "473844161989181441") {
-        var funcComm2 = String(require(`./on/blindtest/host.js`).execute);
-        var toEv2 = funcComm2.slice(7, funcComm2.length - 1);
-        //Nya.log(toEv);
-        eval(toEv2);
-        return 
-    }
 
 
     require('./module/perm.js').load(message);
