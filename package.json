@@ -15,6 +15,14 @@
     "ffmpeg-binaries":"",
     "opusscript":""
   },
+  "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-nodejs"
+    },
+    {
+      "url": "https://github.com/issueapp/heroku-buildpack-ffmpeg"
+    }
+  ],
   "author": "knose1",
   "license": "GPL-3.0"
 }
