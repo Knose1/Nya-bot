@@ -197,6 +197,14 @@ client.on('resume', resume => {
 
 
 
+
+
+
+
+
+
+
+
 /*  MESSAGE  */
 client.on('message', message => {
     //status check
