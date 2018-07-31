@@ -1,5 +1,6 @@
 exports.execute = () => {
     if (message.content.trim().toLowerCase().indexOf("!play") == 0) {
+        message.guild.channels.get("473822354800377867").leave()
         message.guild.channels.get("473838075999420427").send({files:[{
             attachment:message.content.trim().slice("!play".length).trim(),
             name:"Guess"
@@ -24,5 +25,7 @@ exports.execute = () => {
                     .catch(e => Nya.error(e,true));
             })
     }
-    
+    if (message.content.trim().toLowerCase().indexOf("!stop") == 0) {
+        message.guild.channels.get("473822354800377867").leave()
+    }
 }
