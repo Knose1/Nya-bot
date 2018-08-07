@@ -67,6 +67,9 @@ client.on('ready', async function() {
         /*
             We are going to reload the last 10 messages (= create new message event) sended after the message "m" for each #nya-bot-vs (the nya!bot's messages wron't be resend
         */
+        
+        //We wait 1.5sec else the bot wron't be able to delete the messages
+        await resolveAfter(1.5);
         client.channels.array().filter(f => f.name.indexOf('nya-bot-vs') == 0).forEach(chann => {
             chann.fetchMessages({limit:10,before:m.id}).then(fv => {
                 fv.array().filter(f => f.id != "377888169355640832").forEach(fetchedMessage => {
