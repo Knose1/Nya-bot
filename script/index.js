@@ -66,7 +66,7 @@ client.on('ready', async function() {
         //m is the sended message
         /*
             We are going to reload the last 10 messages (= create new message event) sended after the message "m" for each #nya-bot-vs (the nya!bot's messages wron't be resend
-        */
+        
         
         //We wait 1.5sec else the bot wron't be able to delete the messages
         await resolveAfter(1.5);
@@ -78,7 +78,7 @@ client.on('ready', async function() {
             })
         });
     
-    });
+    }); disabled because of a bug*/
     client.user.setActivity(`cat:help | Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} serveurs.`, {type: "PLAYING"});
 
     require('./module/servban.js').load();
