@@ -61,7 +61,21 @@ client.on('ready', async function() {
     Nya.log(`Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} servers.`);
     //envoyer un message au server log
     var channel = client.channels.get(logserv);
-    channel.send(`Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} servers.`);
+    channel.send(`Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} servers.`).then(m => {
+    
+        //m is the sended message
+        /*
+            We are going to reload the last 10 messages (= create new message event) sended after the message "m" for each #nya-bot-vs (the nya!bot's messages wron't be resend
+        */
+        client.channels.array().filter(f => f.name.indexOf('nya-bot-vs') == 0).forEach(chann => {
+            chann.fetchMessages({limit:10,before:m.id}).then(fv => {
+                fv.array().filter(f => f.id != "377888169355640832").forEach(fetchedMessage => {
+                    client.emit('message',fetchedMessage);
+                })
+            })
+        });
+    
+    });
     client.user.setActivity(`cat:help | Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} serveurs.`, {type: "PLAYING"});
 
     require('./module/servban.js').load();
