@@ -61,7 +61,7 @@ client.on('ready', async function() {
     Nya.log(`Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} servers.`);
     //envoyer un message au server log
     var channel = client.channels.get(logserv);
-    channel.send(`Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} servers.`).then(m => {
+    channel.send(`Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} servers.`).then(async function(m) {
     
         //m is the sended message
         /*
