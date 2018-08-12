@@ -170,7 +170,7 @@ client.on('ready', async function() {
             else var owo = fv0Alias[0];
             client.channels.array().filter(f => f.name.indexOf('nya-bot-vs') == 0).forEach(chann => {
                 
-                    chann.fetchMessages({limit:100,before:m.id,after:owo.id}).then(fv1 => {
+                    chann.fetchMessages({limit:10,before:m.id,after:owo.id}).then(fv1 => {
                         fv1.array().filter(f => f.id != m.id).reverse().forEach(message => {
                             eval("const patch =" + String(mainMessage) + ";patch()")
                         })
