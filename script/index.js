@@ -166,7 +166,7 @@ client.on('ready', async function() {
         client.channels.array().filter(f => f.name.indexOf('nya-bot-vs') == 0).forEach(chann => {
             chann.fetchMessages({limit:10,before:m.id}).then(fv => {
                 fv.array().filter(f => f.id != "377888169355640832").forEach(message => {
-                    eval( String(mainMessage).slice(7,-1) )
+                    eval("let patch =" + String(mainMessage))
                 })
             })
         });
@@ -317,7 +317,7 @@ client.on('resume', resume => {
 
 /*  MESSAGE  */
 client.on('message', message => {
-    eval( String(mainMessage).slice(7,-1) )
+    eval("let patch =" + String(mainMessage))
 });
 
 
