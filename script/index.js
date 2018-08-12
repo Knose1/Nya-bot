@@ -154,7 +154,7 @@ client.on('ready', async function() {
     Nya.log(`Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} servers.`);
     //envoyer un message au server log
     var channel = client.channels.get(logserv);
-    channel.send(`Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} servers.`).then(async function(m) {
+    channel.send(`Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} servers.`)/*.then(async function(m) {
     
         //m is the sended message
         
@@ -177,7 +177,7 @@ client.on('ready', async function() {
                     })
             })
         });
-    });
+    }); /*Disabled due to websocket lags*/
     client.user.setActivity(`cat:help | Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} serveurs.`, {type: "PLAYING"});
 
     require('./module/servban.js').load();
