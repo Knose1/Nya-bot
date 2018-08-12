@@ -162,7 +162,7 @@ client.on('ready', async function() {
         
         
         //We wait 1.5sec else the bot wron't be able to delete the messages (but it still can't :joy:
-        await resolveAfter(1.5);
+        //await resolveAfter(1.5);
         //On vas get le 1ere message du nya!bot qui est avant m.id mais qui ne contient pas "reconnection"
         client.channels.get("384415796798947329").fetchMessages({limit:100,before:m.id}).then(fv0 => {
             var fv0Alias = fv0.array().filter(f => f.id != m.id).filter(f => f.content.indexOf("Nya!Bot est en marche") != -1 || f.content.indexOf("Reprise du nya!bot") != -1);
