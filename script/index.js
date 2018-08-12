@@ -164,11 +164,18 @@ client.on('ready', async function() {
         //We wait 1.5sec else the bot wron't be able to delete the messages
         await resolveAfter(1.5);
         client.channels.array().filter(f => f.name.indexOf('nya-bot-vs') == 0).forEach(chann => {
-            chann.fetchMessages({limit:10,before:m.id}).then(fv => {
-                fv.array().filter(f => f.id != "377888169355640832").forEach(message => {
-                    eval("const patch =" + String(mainMessage) + ";patch()")
+            //On vas get le 1ere message du nya!bot qui est avant m.id mais qui ne contient pas "reconnection"
+            client.get("384415796798947329").fetchMessages({limit:3,before:m.id}).then(fv0 => {
+                
+                console.log(  fv0.array().filter(f => f.id != m.id).filter(f => f.content.toLowerCase() != "reconnection").length  );
+                /*
+                chann.fetchMessages({limit:100,before:m.id,after:owo.id}).then(fv1 => {
+                    fv1.array().filter(f => f.id != m.id).reverse.forEach(message => {
+                        eval("const patch =" + String(mainMessage) + ";patch()")
+                    })
                 })
-            })
+                */
+            }
         });
     
     });
