@@ -158,7 +158,7 @@ client.on('ready', async function() {
     
         //m is the sended message
         
-            We are going to reload the last 10 messages (= create new message event) sended after the message "m" for each #nya-bot-vs (the nya!bot's messages wron't be resend
+            //We are going to reload the last 10 messages (= create new message event) sended after the message "m" for each #nya-bot-vs (the nya!bot's messages wron't be resend
         
         
         //We wait 1.5sec else the bot wron't be able to delete the messages
