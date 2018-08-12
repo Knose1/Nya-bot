@@ -175,7 +175,7 @@ client.on('ready', async function() {
                     })
                 })
                 */
-            }
+            })
         });
     
     });
