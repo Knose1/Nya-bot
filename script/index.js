@@ -165,7 +165,7 @@ client.on('ready', async function() {
         await resolveAfter(1.5);
         client.channels.array().filter(f => f.name.indexOf('nya-bot-vs') == 0).forEach(chann => {
             //On vas get le 1ere message du nya!bot qui est avant m.id mais qui ne contient pas "reconnection"
-            client.get("384415796798947329").fetchMessages({limit:3,before:m.id}).then(fv0 => {
+            client.channnels.get("384415796798947329").fetchMessages({limit:3,before:m.id}).then(fv0 => {
                 
                 console.log(  fv0.array().filter(f => f.id != m.id).filter(f => f.content.toLowerCase() != "reconnection").length  );
                 /*
