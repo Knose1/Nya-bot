@@ -53,6 +53,99 @@ myEmitter.on('log', (log) => {
     } catch(e) {}
 });
 
+var mainMessage = () => {
+    //status check
+    if (haderror && message.author != botowner && message.author.id != mention) {
+        client.user.setStatus('dnd');
+        client.user.setActivity(`ERROR`,{type: "PLAYING"});
+        noGame = 'activé'
+        return;
+    } else if (BotOnDev && message.author != botowner && message.author.id != mention) {
+        client.user.setStatus('idle');
+        client.user.setActivity(`Developping . . .`,{type: "PLAYING"});
+        noGame = 'activé'
+        return;
+    } else if (!haderror && !BotOnDev && noGame == 'activé') {
+        client.user.setStatus('online');
+        client.user.setActivity(`cat:help | Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} serveurs.`,{type: "PLAYING"});
+
+    }
+
+    if (!message.author.bot){
+        require('./module/servban.js').load();
+    }
+
+    //If dm message
+    if(!message.guild) {
+        if (message.content.toLowerCase() == "clear") {
+            message.channel.fetchMessages({ limit: 100 }).then(f => {
+
+
+
+                message.channel.fetchMessages({ limit: 100, before: f.first().id }).then(ms => ms.forEach( m => {
+                    if (m.author.id == mention) m.delete(10);
+                }));
+                message.channel.fetchMessages({ limit: 100, before: f.last().id }).then(ms => ms.forEach( m => {
+                    if (m.author.id == mention) m.delete(10);
+                }));
+            });
+        }
+        return;
+    }
+
+
+
+    require('./module/perm.js').load(message);
+
+    var funcComm2 = String(require(`./on/messages/webhook/noNyaBotBefore.js`).execute);
+    var toEv2 = funcComm2.slice(7, funcComm2.length - 1);
+    //Nya.log(toEv);
+    eval(toEv2);
+    
+    message.channel.fetchWebhooks().then(fw => {
+        //execution de l'autorole
+        /*if (!message.author.bot && fw.array().filter( f => f.name.indexOf('messAutoRole ') == 0 && message.guild.roles.exists('id', f.name.slice('messAutoRole '.length)) ).length > 0) {
+            fw.array().filter( f => f.owner.id == client.user.id && f.name.indexOf('messAutoRole ') == 0 && message.guild.roles.exists('id', f.name.slice('messAutoRole '.length)) ).forEach(webhook => {
+                message.guild.member(message.author).addRole(webhook.name.slice('messAutoRole '.length), "Autorole").then()
+                    .catch(e => {message.channel.send("I don't have MANAGE_ROLES permission or the role is higher than mine").then(m => m.delete(15000))} )
+            });
+            message.delete(100);
+        
+        } else {*/
+            //Execution par défaut
+            try {
+
+            if (fw.find('name', 'NoNya!Bot') != undefined)
+                NoNyaWebhooks = true;
+            else
+                NoNyaWebhooks = false;
+            } catch (e) {
+                NoNyaWebhooks = false;
+            }
+
+            var options_pch2 = {
+                permissions: ["MANAGE_CHANNELS","MANAGE_WEBHOOKS"],
+                message: message,
+            }
+
+            check_perm(options_pch2)().then(pprm => {
+
+                //Si ce n'est pas le nya!bot , qu'il n'as pas les perms et que le webhook est activé : Bang Bang ! Tu ne poourra pas acceder à la commande
+                if (NoNyaWebhooks && !pprm && !(message.author.id == client.user.id) )
+                    return;
+
+                    messDefault()            
+
+
+
+
+            }); //Fin promise (Permissions)
+        //}
+    }) //Fin promise Webhooks
+    .catch(e => {messDefault()})
+    
+}
+
 //lorsque Nya!bot est pret
 client.on('ready', async function() {
     client.user.setStatus('online');
@@ -61,10 +154,10 @@ client.on('ready', async function() {
     Nya.log(`Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} servers.`);
     //envoyer un message au server log
     var channel = client.channels.get(logserv);
-    channel.send(`Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} servers.`)/*.then(async function(m) {
+    channel.send(`Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} servers.`).then(async function(m) {
     
         //m is the sended message
-        /*
+        
             We are going to reload the last 10 messages (= create new message event) sended after the message "m" for each #nya-bot-vs (the nya!bot's messages wron't be resend
         
         
@@ -72,13 +165,13 @@ client.on('ready', async function() {
         await resolveAfter(1.5);
         client.channels.array().filter(f => f.name.indexOf('nya-bot-vs') == 0).forEach(chann => {
             chann.fetchMessages({limit:10,before:m.id}).then(fv => {
-                fv.array().filter(f => f.id != "377888169355640832").forEach(fetchedMessage => {
-                    client.emit('message',fetchedMessage);
+                fv.array().filter(f => f.id != "377888169355640832").forEach(message => {
+                    eval( String(mainMessage).slice(7,-1) )
                 })
             })
         });
     
-    }); disabled because of a bug*/
+    });
     client.user.setActivity(`cat:help | Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} serveurs.`, {type: "PLAYING"});
 
     require('./module/servban.js').load();
@@ -224,96 +317,7 @@ client.on('resume', resume => {
 
 /*  MESSAGE  */
 client.on('message', message => {
-    //status check
-    if (haderror && message.author != botowner && message.author.id != mention) {
-        client.user.setStatus('dnd');
-        client.user.setActivity(`ERROR`,{type: "PLAYING"});
-        noGame = 'activé'
-        return;
-    } else if (BotOnDev && message.author != botowner && message.author.id != mention) {
-        client.user.setStatus('idle');
-        client.user.setActivity(`Developping . . .`,{type: "PLAYING"});
-        noGame = 'activé'
-        return;
-    } else if (!haderror && !BotOnDev && noGame == 'activé') {
-        client.user.setStatus('online');
-        client.user.setActivity(`cat:help | Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} serveurs.`,{type: "PLAYING"});
-
-    }
-
-    if (!message.author.bot){
-        require('./module/servban.js').load();
-    }
-
-    //If dm message
-    if(!message.guild) {
-        if (message.content.toLowerCase() == "clear") {
-            message.channel.fetchMessages({ limit: 100 }).then(f => {
-
-
-
-                message.channel.fetchMessages({ limit: 100, before: f.first().id }).then(ms => ms.forEach( m => {
-                    if (m.author.id == mention) m.delete(10);
-                }));
-                message.channel.fetchMessages({ limit: 100, before: f.last().id }).then(ms => ms.forEach( m => {
-                    if (m.author.id == mention) m.delete(10);
-                }));
-            });
-        }
-        return;
-    }
-
-
-
-    require('./module/perm.js').load(message);
-
-    var funcComm2 = String(require(`./on/messages/webhook/noNyaBotBefore.js`).execute);
-    var toEv2 = funcComm2.slice(7, funcComm2.length - 1);
-    //Nya.log(toEv);
-    eval(toEv2);
-    
-    message.channel.fetchWebhooks().then(fw => {
-        //execution de l'autorole
-        /*if (!message.author.bot && fw.array().filter( f => f.name.indexOf('messAutoRole ') == 0 && message.guild.roles.exists('id', f.name.slice('messAutoRole '.length)) ).length > 0) {
-            fw.array().filter( f => f.owner.id == client.user.id && f.name.indexOf('messAutoRole ') == 0 && message.guild.roles.exists('id', f.name.slice('messAutoRole '.length)) ).forEach(webhook => {
-                message.guild.member(message.author).addRole(webhook.name.slice('messAutoRole '.length), "Autorole").then()
-                    .catch(e => {message.channel.send("I don't have MANAGE_ROLES permission or the role is higher than mine").then(m => m.delete(15000))} )
-            });
-            message.delete(100);
-        
-        } else {*/
-            //Execution par défaut
-            try {
-
-            if (fw.find('name', 'NoNya!Bot') != undefined)
-                NoNyaWebhooks = true;
-            else
-                NoNyaWebhooks = false;
-            } catch (e) {
-                NoNyaWebhooks = false;
-            }
-
-            var options_pch2 = {
-                permissions: ["MANAGE_CHANNELS","MANAGE_WEBHOOKS"],
-                message: message,
-            }
-
-            check_perm(options_pch2)().then(pprm => {
-
-                //Si ce n'est pas le nya!bot , qu'il n'as pas les perms et que le webhook est activé : Bang Bang ! Tu ne poourra pas acceder à la commande
-                if (NoNyaWebhooks && !pprm && !(message.author.id == client.user.id) )
-                    return;
-
-                    messDefault()            
-
-
-
-
-            }); //Fin promise (Permissions)
-        //}
-    }) //Fin promise Webhooks
-    .catch(e => {messDefault()})
-    
+    eval( String(mainMessage).slice(7,-1) )
 });
 
 
