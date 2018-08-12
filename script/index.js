@@ -161,23 +161,22 @@ client.on('ready', async function() {
             //We are going to reload the last 10 messages (= create new message event) sended after the message "m" for each #nya-bot-vs (the nya!bot's messages wron't be resend
         
         
-        //We wait 1.5sec else the bot wron't be able to delete the messages
+        //We wait 1.5sec else the bot wron't be able to delete the messages (but it still can't :joy:
         await resolveAfter(1.5);
-        client.channels.array().filter(f => f.name.indexOf('nya-bot-vs') == 0).forEach(chann => {
-            //On vas get le 1ere message du nya!bot qui est avant m.id mais qui ne contient pas "reconnection"
-            client.channels.get("384415796798947329").fetchMessages({limit:3,before:m.id}).then(fv0 => {
+        //On vas get le 1ere message du nya!bot qui est avant m.id mais qui ne contient pas "reconnection"
+        client.channels.get("384415796798947329").fetchMessages({limit:100,before:m.id}).then(fv0 => {
+            var fv0Alias = fv0.array().filter(f => f.id != m.id).filter(f => f.content.indexOf("Nya!Bot est en marche") != -1 || f.content.indexOf("Reprise du nya!bot") != -1);
+            if (fv0Alias.length == 0) return;
+            else var owo = fv0Alias[0];
+            client.channels.array().filter(f => f.name.indexOf('nya-bot-vs') == 0).forEach(chann => {
                 
-                console.log(  fv0.array().filter(f => f.id != m.id).filter(f => f.content.toLowerCase() != "reconnection").length  );
-                /*
-                chann.fetchMessages({limit:100,before:m.id,after:owo.id}).then(fv1 => {
-                    fv1.array().filter(f => f.id != m.id).reverse.forEach(message => {
-                        eval("const patch =" + String(mainMessage) + ";patch()")
+                    chann.fetchMessages({limit:100,before:m.id,after:owo.id}).then(fv1 => {
+                        fv1.array().filter(f => f.id != m.id).reverse.forEach(message => {
+                            eval("const patch =" + String(mainMessage) + ";patch()")
+                        })
                     })
-                })
-                */
             })
         });
-    
     });
     client.user.setActivity(`cat:help | Nya!Bot est en marche, avec ${client.users.size} users, dans ${client.channels.size} salons et ${client.guilds.size} serveurs.`, {type: "PLAYING"});
 
