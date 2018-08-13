@@ -80,7 +80,7 @@ return EventEmitter = EventEmitter1, MyEmitter = MyEmitter1, myEmitter = myEmitt
     CanReloading = false,
     noGame = 'activé',
     VsPrefixs = [{name:'',UTC:0},{name:'english',UTC:0},{name:'nsfw',UTC:0},{name:'french',UTC:2},{name:'test',UTC:0}],
-    VSEmojies = VSEmojiesAlias
+    VSEmojies = VSEmojiesAlias,
     Discord = require('discord.js'),
     util = require('util'),
     client = new Discord.Client(),
