@@ -63,7 +63,8 @@ VSEmojiesAlias = [
     {name:":nya_blobcatDance:", code:"<a:blobcatDance:477077391567618068>"},
     {name:":nya_smookPeek:", code:"<a:smookPeek:477533289696198667>"},
     {name:":nya_blobJump:", code:"<a:blobJump:477533363230474263>"},
-    {name:":nya_blobDance:", code:"<a:blobDance:477533365956771841>"}
+    {name:":nya_blobDance:", code:"<a:blobDance:477533365956771841>"},
+    {name:":nya_blobSplatch:", code:"<a:blobSplatch:478535919268265986>"}
 ]
    
 /*key is the bot's token; mention is the bot's id*; logserv is the server for bot log*/
