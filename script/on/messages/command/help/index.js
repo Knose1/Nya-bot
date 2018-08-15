@@ -114,6 +114,14 @@ __Uniquement pour les **MODÉRATEURS DU BOT** :__ \n\
 \n\
 Les id sont marqués en bas des messages du VirtualServeur (VS)'
 }
+    
+    if (!args[0]) {
+        args[0] = ""
+    }
+    if (!args[1]) {
+        args[1] = ""
+    }
+
     //commande help
     if (!args[0]) {
         message.author.send(cmHelp.cUser, {split:true});
