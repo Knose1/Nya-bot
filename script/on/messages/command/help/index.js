@@ -155,5 +155,7 @@ Les id sont marqués en bas des messages du VirtualServeur (VS)'
     else {
         message.author.send("You typed a wrong help command");
     }
-
+    message.delete(500)
+        .then(msg => Nya.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
+        .catch(e => Nya.error(e,true));
 }
