@@ -30,7 +30,7 @@ exports.execute = (message, isVs) => {
                 )
             )
         {
-            message.channel.send(message.author+' utilisez -- ou // pour parler dans le vs');
+            message.channel.send(message.author+' utilisez -- ou // pour parler dans le vs').then(m => m.delete(15000));
             /*message.delete(500)
                     .then(msg => Nya.log(`Message supprimé, raison: Virtual channel; Auteur: ${msg.author}`))
                     .catch(Nya.error);*/
