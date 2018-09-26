@@ -115,7 +115,7 @@ var mainMessage = () => {
             //Execution par défaut
             try {
 
-            if (fw.find('name', 'NoNya!Bot') != undefined)
+            if (fw.find( (f) => {f == 'name'} , 'NoNya!Bot') != undefined)
                 NoNyaWebhooks = true;
             else
                 NoNyaWebhooks = false;
