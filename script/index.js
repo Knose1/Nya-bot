@@ -456,9 +456,10 @@ bot.on('message', message => {
 });
 
 bot.login(﻿process.env.TK2);*/
-
+/*
 const bt = new Discord.Client();
 bt.login(﻿process.env.BTFB_TOKEN);
 
 const bt2 = new Discord.Client();
 bt2.login(﻿process.env.TK3);
+*/
