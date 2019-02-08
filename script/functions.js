@@ -806,7 +806,7 @@ function f3(SGuild, allRolePrefix) {
 
 
 function f4(min,max) {
-    return Math.floor((Math.random() * (max - min)) + min);
+    return Math.floor((Math.random() * (max - min + 1)) + min);
 };
 exports.load = () => {
     return Nya = Nya1, resolveAfter = resolveAfter1, MongoFunctions = MongoFunctions1, Database__1 = f1, TestDatabase = f2, Database = f3, rand = f4, clean = clean1, fulllog = fulllog1, check_perm = check_perm1, animelist = animelist1, anime = anime1, Array = Array1, UTCDate = UTCDate1;
