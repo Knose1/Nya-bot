@@ -47,7 +47,10 @@ Mais la rencontre avec le directeur de l'académie, insatisfait du dénouement d
     
     .addTo(listAnime1);
 
-    
+
+
+
+   
 new anime()
     .setname('DARLING in the FRANXX')
     .setimage('http://img1.ak.crunchyroll.com/i/spire4/e8e3c09f8450c3d8a90a03e2198688f61515484130_full.jpg')
@@ -81,6 +84,9 @@ One day, a mysterious girl called Zero Two appears in front of Hiro. From her fa
     .setedFull(['https://youtu.be/rV8MLwYtX9M'])
     
     .addTo(listAnime1);
+
+
+
 
 
 new anime()
@@ -119,6 +125,9 @@ Ne sachant quoi répondre, notre héros choisit d'apporter avec lui cette déess
     .addTo(listAnime1);
 
 
+
+
+
 new anime()
     .setname('Violet Evergarden')
     .setimage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpflsIx4rPO2texPvrm3-4VfsczPGoqyS8FJkJy9kA9brzEgTV')
@@ -146,6 +155,9 @@ new anime()
     .setedFull(['https://www.youtube.com/watch?v=6R2fmqB31LE'])
     
     .addTo(listAnime1);
+
+
+
 
 
 new anime()
@@ -182,6 +194,9 @@ Dans un endroit que l'on surnomme l'arène, 128 participants vont devoir se batt
     .addTo(listAnime1);
  
 
+
+
+
 new anime()
     .setname(`Sanrio Boys // Sanrio Danshi (サンリオ男子 en Japonais)`)
     .setimage(`https://www.nautiljon.com/images/anime/00/76/mini/sanrio_danshi_6567.jpg?11521297809`)
@@ -201,6 +216,9 @@ new anime()
     .setedFull([`https://www.youtube.com/watch?v=tt_jLwMVNAs`])
     
     .addTo(listAnime1);
+
+
+
 
 //Il faut check la qualité des OP/ED ↓
 new anime()
@@ -222,6 +240,9 @@ new anime()
     .setedFull(['https://www.youtube.com/watch?v=ARykpIbUry4'])
     
     .addTo(listAnime1);
+
+
+
 
 
 new anime()
@@ -246,6 +267,9 @@ Finalement, l’Eglise Impériale commence à manifester son intérêt à possé
     
     .addTo(listAnime1);
 
+
+
+
 new anime()
     .setname('Hiiro no Kakera')
     .setimage('http://www.anime-ultime.net/images/img29364.jpg')
@@ -266,6 +290,8 @@ Le jour même où Tamaki arrive au village, elle se fait attaquer par d?étrange
     .setedFull([`https://www.youtube.com/watch?v=XHsTfwujRsA`,`https://www.youtube.com/watch?v=44TsjDV7dqQ`])
     
     .addTo(listAnime1);
+
+
 
 exports.load = () => {
   return listAnime = listAnime1.animes;
