@@ -17,7 +17,7 @@
 `cat:nya redirect <channel> <message>` Envoyer des messages en tant que bot dans d'autre channel **\*\*Bot owner only\*\***  
 
 `cat:cat` Met des images de chats mignions :cat:  
-`cat:cat size` Obtenire le nombre total d'images contenus dans cat:cat  
+`cat:cat size` Obtenir le nombre total d'images contenus dans cat:cat  
 `cat:cat share <url>` Permet de proposer une image à l'owner du bot  
 
 ## (English) Commands:
