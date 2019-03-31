@@ -101,8 +101,10 @@ Pour envoyer des images `----img:<url>`\n\
 \n\
 Pour envoyer des images avec du text: `--<message> --img:<url>`\n\
 \n\
+Pour changer son status: `--status <status>`\n\
 \n\
-(bien évidement vous remplacez les `<blablabla>` par leur valeur et vous retirer les <>)\n\
+\n\
+(bien évidement vous devez remplacer les `<blablabla>` par leur valeur et retirer les <>)\n\
 \n\
 -----------------------\n\
 \n\
