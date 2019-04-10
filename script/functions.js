@@ -552,7 +552,7 @@ function anime1(arg1) {
                     
                         } catch (err) {
                         
-                            reject(new Error("error in Permissions please check https://discord.js.org/#/docs/main/stable/class/Permissions?scrollTo=s-FLAGS\n"));
+                            reject(new Error("Permission(s) error please check https://discord.js.org/#/docs/main/stable/class/Permissions?scrollTo=s-FLAGS\n"));
 			
                         }
                   

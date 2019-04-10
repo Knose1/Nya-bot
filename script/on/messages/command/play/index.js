@@ -18,7 +18,7 @@ exports.execute = () => {
                 dispatcher.on('end', () => message.member.voiceChannel.leave())
                 dispatcher.on('speaking', (e) => {
                     if (!e) {
-                        message.member.voiceChannel.leave()
+                        // message.member.voiceChannel.leave()
                     }
                 })
                 message.channel.send("Now playing " + args[0])
