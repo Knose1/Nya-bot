@@ -44,8 +44,8 @@ __**Commandes bot owner:**__ \n\n\
     `cat:morpion join <id>` Permet de rejoindre une partie\n\
     `cat:morpion play <id> <position>` Permet de jouer lorsque c'est votre tour\
 ",
-    
-    
+
+
     cUser:"-----\n\
 __**Commandes:**__ \n\n\
     `cat:help new(vs)` Obtenir de l'aide sur la mise en place du Virtual Server\n\
@@ -79,15 +79,15 @@ __**Commandes:**__ \n\n\
     `cat:morpion join <id>` Permet de rejoindre une partie\n\
     `cat:morpion play <id> <position>` Permet de jouer lorsque c'est votre tour\
 ",
-    
-    
+
+
     newVs: `-----
 __**Virtual Server:**__ \n
     Pour obtenir le virtual server il vous suffie simplement de créer un channel appelé \`nya-bot-vs\`\n
     https://media.discordapp.net/attachments/407271018516971532/457159400722006024/unknown.png
 `,
-    
-    
+
+
     vs: '-----\n\
 __Commandes utilisable **UNIQUEMENT** dans le nya!bot vs :__ \n\
 \n\
@@ -116,7 +116,7 @@ __Uniquement pour les **MODÉRATEURS DU BOT** :__ \n\
 \n\
 Les id sont marqués en bas des messages du VirtualServeur (VS)'
 }
-    
+
     if (!args[0]) {
         args[0] = ""
     }
@@ -125,13 +125,17 @@ Les id sont marqués en bas des messages du VirtualServeur (VS)'
     }
 
     //commande help
-    if (!args[0]) {
+
+    if (message.author.id == botownerid && !args[0]) {
+        message.author.send(cmHelp.botOwner, {split:true});
+    }
+    else if (!args[0]) {
         message.author.send(cmHelp.cUser, {split:true});
     }
     else if (args[0].toLowerCase() == "vsemojis") {
         if (String(Number(args[1])) == NaN)
             args[1] = 1;
-        message.author.send(`__Page ${args[1]}:__\n\n ${VSEmojies.slice(20*(args[1] - 1), 20*args[1] - 1).map(m => `\\${m.name} ${m.code}`).join("\n")}`, {split:true}) 
+        message.author.send(`__Page ${args[1]}:__\n\n ${VSEmojies.slice(20*(args[1] - 1), 20*args[1] - 1).map(m => `\\${m.name} ${m.code}`).join("\n")}`, {split:true})
     }
     else if (args[0].toLowerCase() == 'new(vs)') {
         message.channel.send(cmHelp.newVs, {split:true})
@@ -150,10 +154,6 @@ Les id sont marqués en bas des messages du VirtualServeur (VS)'
         message.channel.send(cmHelp.cUser, {split:true});
     }
 
-    else if (message.author.id == botownerid && !args[0]) {
-        message.author.send(cmHelp.botOwner, {split:true});
-    }
-    
     else {
         message.author.send("You typed a wrong help command");
     }
