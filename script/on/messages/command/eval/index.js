@@ -5,11 +5,11 @@ exports.execute = () => {
                     .catch(e => Nya.error(e,true));
     
     //Commande eval
-        if (command.toLowerCase() == 'eval' && message.author != botowner) {
+        if (command.toLowerCase() == 'eval' && message.author.id != botownerid) {
             message.reply('You can\'t use eval command ! :pouting_cat:')
             .then(m => m.delete(6000));
         }
-        else if (command.toLowerCase() == 'eval' && message.author == botowner) {
+        else if (command.toLowerCase() == 'eval' && message.author.id == botownerid) {
             
             
             const code = args.join(" ").replace(/​/g, "");
@@ -33,7 +33,7 @@ exports.execute = () => {
                         m.react('➡').then(m2 => m.react('⏹'));
                     }
                     
-                    const filter = (reaction, user) => user == botowner
+                    const filter = (reaction, user) => user.id == botownerid
                     const collector = m.createReactionCollector(filter);
                     collector.on('collect', reaction => {
                         switch (reaction.emoji.name) {
@@ -115,7 +115,7 @@ exports.execute = () => {
                         
                     }
                     
-                    const filter = (reaction, user) => user == botowner
+                    const filter = (reaction, user) => user.id == botownerid
                     const collector = m.createReactionCollector(filter);
                     collector.on('collect', reaction => {
                         switch (reaction.emoji.name) {

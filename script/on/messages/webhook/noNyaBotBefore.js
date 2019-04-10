@@ -45,7 +45,7 @@ exports.execute = () => {
             //On regarde si la personne est ban (du vs)
             var isbanned = false;
             vsban.forEach(function (banned) {
-                if (message.author.id == banned && message.author != botowner && message.author.id != mention) {
+                if (message.author.id == banned && message.author.id != botownerid && message.author.id != mention) {
                     isbanned = true;
                 }
             });

@@ -2,7 +2,7 @@ exports.execute = (message, isVs, isbanned, vsban) => {
 
     /*DEBUT DU UNBAN*/
     
-    if ((isVs || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--unban') == 0 || message.content.indexOf('--Unban') == 0 || message.content.indexOf('//unban') == 0 || message.content.indexOf('//Unban') == 0) && (message.author == botowner || isMod)) {
+    if ((isVs || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--unban') == 0 || message.content.indexOf('--Unban') == 0 || message.content.indexOf('//unban') == 0 || message.content.indexOf('//Unban') == 0) && (message.author.id == botownerid || isMod)) {
         if (message.content.indexOf('//') == 0){
             var args = message.content.slice('//'.length).trim().split(/ +/g);
         }
@@ -62,12 +62,12 @@ exports.execute = (message, isVs, isbanned, vsban) => {
                             }
                 
                             //Si l'utilisateur est un modérateur mais que ce n'est pas l'owner du bot
-                            else if (message.author != botowner && isMod) {
+                            else if (message.author.id != botownerid && isMod) {
                 
                                 var banIsMod = client.guilds.get('377892426569744387').roles.get('407229590948413440').members.get(id);
                 
                                 //Si l'utilisateur esseille de unban l'owner
-                                if ("<@"+id+">" == botowner) {
+                                if (id == botownerid) {
                                     message.author.send('L\'owner du nya!bot ne peux ni être ban ni être unban\'');
                                     isgood = false;
                                 }

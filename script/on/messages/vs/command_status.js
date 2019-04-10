@@ -15,7 +15,7 @@ exports.execute = (message, isVs, Pfx) => {
         if (args[0]) {
             vsStatus[message.author.id] = args.join(" ")
             
-            if (message.author == botowner)
+            if (message.author.id == botownerid)
                 client.channels.get('461052318532763666').setTopic(args.join(" "))
             
             //On créer l'embed
@@ -33,7 +33,7 @@ exports.execute = (message, isVs, Pfx) => {
             allNya.forEach( n => n.send({embed}).then(d => d.delete(20000)) )
                 
         } else {
-            if (message.author == botowner && client.channels.get('461052318532763666').topic != "461052318532763666" && client.channels.get('461052318532763666').topic != null) {
+            if (message.author.id == botownerid && client.channels.get('461052318532763666').topic != "461052318532763666" && client.channels.get('461052318532763666').topic != null) {
                 
                 if (!vsStatus[message.author.id])
                     vsStatus[message.author.id] = client.channels.get('461052318532763666').topic;

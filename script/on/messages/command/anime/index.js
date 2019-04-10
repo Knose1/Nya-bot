@@ -56,20 +56,20 @@ exports.execute = () => {
         .then(m => {
             
             m.react('🇫🇷').then(() => m.react('🇬🇧').then( () => m.react("⏹") ) );
-            const filter = (reaction, user) => user == message.author || user == botowner || user.id == message.guild.ownerID
+            const filter = (reaction, user) => user == message.author || user.id == botownerid || user.id == message.guild.ownerID
             const collector = m.createReactionCollector(filter);
             collector.on('collect', reaction => {
                 switch (reaction.emoji.name) {
                     case '🇫🇷':
                         m.edit(embedfr);
                         try{reaction.remove(message.author)} catch (err) {}
-                        try{reaction.remove(botowner)} catch (err) {}
+                        try{reaction.remove(user)} catch (err) {}
                         try{reaction.remove(message.guild.owner)} catch (err) {}
                         break;
                     case '🇬🇧':
                         m.edit(embeden);
                         try{reaction.remove(message.author)} catch (err) {}
-                        try{reaction.remove(botowner)} catch (err) {}
+                        try{reaction.remove(user)} catch (err) {}
                         try{reaction.remove(message.guild.owner)} catch (err) {}
                         break;
                     case '⏹':
@@ -103,7 +103,7 @@ exports.execute = () => {
             if (Number(time_m) < 15000) {TIsOK = false}
             if (Number(time_m) < 360000 && nb_m > maxAnPurpose) {TIsOK = false}
             
-            if (TIsOK || message.author == botowner) {
+            if (TIsOK || message.author.id == botownerid) {
                 var embed = new Discord.RichEmbed()
                     .setTitle("Purpose Anime")
                     .setDescription(args.join(" "))
@@ -245,20 +245,20 @@ exports.execute = () => {
                         .then(m2 => {
                     
                             m2.react('🇫🇷').then(() => m2.react('🇬🇧').then( () => m2.react("⏹") ) );
-                            const filter2 = (reaction, user) => user == message.author || user == botowner || user.id == message.guild.ownerID
+                            const filter2 = (reaction, user) => user == message.author || user.id == botownerid || user.id == message.guild.ownerID
                             const collector2 = m2.createReactionCollector(filter2);
                             collector2.on('collect', reaction2 => {
                                 switch (reaction2.emoji.name) {
                                     case '🇫🇷':
                                         m2.edit(embedfr);
                                         try{reaction2.remove(message.author)} catch (err) {}
-                                        try{reaction2.remove(botowner)} catch (err) {}
+                                        try{reaction2.remove(user)} catch (err) {}
                                         try{reaction2.remove(message.guild.owner)} catch (err) {}
                                         break;
                                     case '🇬🇧':
                                         m2.edit(embeden);
                                         try{reaction2.remove(message.author)} catch (err) {}
-                                        try{reaction2.remove(botowner)} catch (err) {}
+                                        try{reaction2.remove(user)} catch (err) {}
                                         try{reaction2.remove(message.guild.owner)} catch (err) {}
                                         break;
                                     case '⏹':
@@ -380,20 +380,20 @@ exports.execute = () => {
             .then(m => {
 
                 m.react('🇫🇷').then(() => m.react('🇬🇧').then( () => m.react("⏹") ) );
-                const filter = (reaction, user) => user == message.author || user == botowner || user.id == message.guild.ownerID
+                const filter = (reaction, user) => user == message.author || user.id == botownerid || user.id == message.guild.ownerID
                 const collector = m.createReactionCollector(filter);
                 collector.on('collect', reaction => {
                     switch (reaction.emoji.name) {
                         case '🇫🇷':
                             m.edit(embedfr);
                             try{reaction.remove(message.author)} catch (err) {}
-                            try{reaction.remove(botowner)} catch (err) {}
+                            try{reaction.remove(user)} catch (err) {}
                             try{reaction.remove(message.guild.owner)} catch (err) {}
                             break;
                         case '🇬🇧':
                             m.edit(embeden);
                             try{reaction.remove(message.author)} catch (err) {}
-                            try{reaction.remove(botowner)} catch (err) {}
+                            try{reaction.remove(user)} catch (err) {}
                             try{reaction.remove(message.guild.owner)} catch (err) {}
                             break;
                         case '⏹':
