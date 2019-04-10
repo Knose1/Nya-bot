@@ -55,12 +55,12 @@ myEmitter.on('log', (log) => {
 
 var mainMessage = () => {
     //status check
-    if (haderror && message.author != botowner && message.author.id != mention) {
+    if (haderror && message.author.id != botownerid && message.author.id != mention) {
         client.user.setStatus('dnd');
         client.user.setActivity(`ERROR`,{type: "PLAYING"});
         noGame = 'activé'
         return;
-    } else if (BotOnDev && message.author != botowner && message.author.id != mention) {
+    } else if (BotOnDev && message.author.id != botownerid && message.author.id != mention) {
         client.user.setStatus('idle');
         client.user.setActivity(`Developping . . .`,{type: "PLAYING"});
         noGame = 'activé'
@@ -387,7 +387,7 @@ bot.on('message', message => {
                 }
             });
         
-        } if (message.author == botowner) {
+        } if (message.author.id == botownerid) {
         
             if(!message.guild) {
                 if (message.content.toLowerCase() == "clear") {
