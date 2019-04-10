@@ -18,7 +18,7 @@ exports.execute = () => {
                 }
                 connection.on('error', (e) => Nya.error(e,true))
                 dispatcher.on('error', (e) => {Nya.error(e,true); message.reply(`your link ${args[0]} must be wrong`) })
-                dispatcher.on('end', () => /*message.member.voiceChannel.leave()*/)
+                dispatcher.on('end', () => {/*message.member.voiceChannel.leave()*/})
                 dispatcher.on('speaking', (e) => {
                     if (!e) {
                         // message.member.voiceChannel.leave()
