@@ -75,7 +75,7 @@ exports.load = () => {
     key = ﻿process.env.TOKEN;
     mention = ﻿process.env.BOTMENTION;
     logserv = process.env.LOGSERV;
-    botownerid = 375378900802338818
+    botownerid = 375378900802338818;
     botowner = `<@${botownerid}>`;
     
     consoleChannel = "459999139028008980";

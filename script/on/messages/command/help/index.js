@@ -150,7 +150,7 @@ Les id sont marqués en bas des messages du VirtualServeur (VS)'
         message.channel.send(cmHelp.cUser, {split:true});
     }
 
-    else if (message.author == botowner && !args[0]) {
+    else if (message.author.id == botownerid && !args[0]) {
         message.author.send(cmHelp.botOwner, {split:true});
     }
     

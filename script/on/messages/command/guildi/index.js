@@ -3,7 +3,7 @@ exports.execute = () => {
         .then(msg => Nya.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
         .catch(e => Nya.error(e,true));
     //Commande GUILDI
-        if (message.author == botowner) {
+        if (message.author.id == botownerid) {
             var guild = client.guilds.get(args[0]);
             if (guild) {
                 if (guild.available) {

@@ -2,7 +2,7 @@ exports.execute = (message, isVs, isbanned, vsban) => {
 
     /*ON VAS BAN DES GENS !!! */
     
-    if ((isVs || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--ban') == 0 || message.content.indexOf('--Ban') == 0 || message.content.indexOf('//ban') == 0 || message.content.indexOf('//Ban') == 0) && (message.author == botowner || isMod)) {
+    if ((isVs || (message.guild.id == "377892426569744387" && message.channel.name == "nya-bot-vs-log")) && (message.content.indexOf('--ban') == 0 || message.content.indexOf('--Ban') == 0 || message.content.indexOf('//ban') == 0 || message.content.indexOf('//Ban') == 0) && (message.author.id == botownerid || isMod)) {
         if (message.content.indexOf('//') == 0){
             var args = message.content.slice('//'.length).trim().split(/ +/g);
         }
@@ -60,16 +60,16 @@ exports.execute = (message, isVs, isbanned, vsban) => {
                             }
                         
                             //Si l'utilisateur est un modérateur mais que ce n'est pas l'owner du bot
-                            else if (message.author != botowner && isMod) {
+                            else if (message.author.id != botownerid && isMod) {
                                 
                                 var banIsMod = client.guilds.get('377892426569744387').roles.get('407229590948413440').members.get(id);
                                 
-                                //Si l'utilisateur esseille de ban l'owner
-                                if ("<@"+id+">" == botowner) {
+                                //Si l'utilisateur essaye de ban l'owner
+                                if (id == botownerid) {
                                     message.author.send('L\'owner du nya!bot ne peux ni être ban ni être unban\'');
                                     isgood = false;
                                 }
-                                //Si l'utilisateur esseille de ban un modérateur
+                                //Si l'utilisateur essaye de ban un modérateur
                                 else if (banIsMod) {
                                     message.author.send(client.users.get(id).username+"#"+client.users.get(id).discriminator+'est un modérateur du nya!bot, vous ne pouvez pas le ban');
                                     isgood = false;

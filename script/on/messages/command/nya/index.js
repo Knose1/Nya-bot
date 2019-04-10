@@ -9,14 +9,14 @@ exports.execute = () => {
         `cat:nya <message>`")
             .then(msg => msg.delete(20000));
         }
-        else if (command == 'nya' && message.author == botowner && (args[0].toLowerCase() == 'owner' || args[0].toLowerCase() == 'strict')) {
+        else if (command == 'nya' && message.author.id == botownerid && (args[0].toLowerCase() == 'owner' || args[0].toLowerCase() == 'strict')) {
             args[0] = '';
             message.channel.send(args.join(' '));
             Nya.log('Message envoyé: '+args.join(' '));
             var channel = client.channels.get(logserv);
             channel.send('Message envoyé: '+args.join(' '));
         }
-        else if (command == 'nya' && message.author == botowner && (args[0].toLowerCase() == 'redirect' || args[0].toLowerCase() == 'rd')) {
+        else if (command == 'nya' && message.author.id == botownerid && (args[0].toLowerCase() == 'redirect' || args[0].toLowerCase() == 'rd')) {
             args[0] = '';
             var channel = client.channels.get(args[1]);
             var argchan = args[1];

@@ -2,7 +2,7 @@ exports.execute = () => {
     message.delete(500)
         .then(msg => Nya.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
         .catch(e => Nya.error(e,true));
-    if ((command.toLowerCase() == 'channelget' || command.toLowerCase() == 'cg') && message.author == botowner && args.length == 1) {
+    if ((command.toLowerCase() == 'channelget' || command.toLowerCase() == 'cg') && message.author.id == botownerid && args.length == 1) {
             var guild = client.guilds.get(args[0]);
             if (guild != undefined) {
                 var nyachannels = `__Serveur '${guild.name.replace(/`/g,"").replace(/_/g,"-")}' __:\n\

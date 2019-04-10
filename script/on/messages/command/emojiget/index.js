@@ -3,7 +3,7 @@ exports.execute = () => {
         .then(msg => Nya.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
         .catch(e => Nya.error(e,true));
     //Commande emojiget
-        if ((command.toLowerCase() == 'emojiget' || command.toLowerCase() == 'emg') && (isMod || message.author == botowner)) {
+        if ((command.toLowerCase() == 'emojiget' || command.toLowerCase() == 'emg') && (isMod || message.author.id == botownerid)) {
             
             let collect = false;
             message.channel.send(`\`Add a reaction to get emoji's name\``)

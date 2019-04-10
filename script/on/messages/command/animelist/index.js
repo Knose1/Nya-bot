@@ -4,7 +4,7 @@ exports.execute = () => {
         .catch(e => Nya.error(e,true));
     let availableSubcommands = ["delete","create","get"];
     
-    if (args[0] && message.author == botowner) {
+    if (args[0] && message.author.id == botownerid) {
         
         if (args[0].toLowerCase() == "add")
                 args[0] = "create";
