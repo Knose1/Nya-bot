@@ -69,35 +69,39 @@ VSEmojiesAlias = [
    
 /*key is the bot's token; mention is the bot's id*; logserv is the server for bot log*/
 exports.load = () => {
-return EventEmitter = EventEmitter1, MyEmitter = MyEmitter1, myEmitter = myEmitter1,
-    key = ﻿process.env.TOKEN,
-    mention = ﻿process.env.BOTMENTION,
-    logserv = process.env.LOGSERV,
-    botowner = process.env.BOTW,
-    consoleChannel = "459999139028008980",
-    errorChannel = "460024079261499392",
-    prefix ='cat:',
-    betaTest = 'on',
-    CanReloading = false,
-    noGame = 'activé',
-    VsPrefixs = [{name:'',UTC:0},{name:'english',UTC:0},{name:'nsfw',UTC:0},{name:'french',UTC:2},{name:'test',UTC:0}],
-    VSEmojies = VSEmojiesAlias,
-    Discord = require('discord.js'),
-    util = require('util'),
-    client = new Discord.Client(),
-    require('./functions.js').load(),
-    require('./on/messages/command/anime/anime.js').load(),
-    catimg = require('./on/messages/command/cat/images.js').load(3),
-    haderror = false,
-    BotOnDev = false,
-    maxAnPurpose = 8, //Nombre max de purpose en 1h parmis les 20 derniers messages
-    invite = 'https://discordapp.com/oauth2/authorize?client_id='+mention+'&scope=bot&permissions=604367937',
+    EventEmitter = EventEmitter1;
+    MyEmitter = MyEmitter1;
+    myEmitter = myEmitter1;
+    key = ﻿process.env.TOKEN;
+    mention = ﻿process.env.BOTMENTION;
+    logserv = process.env.LOGSERV;
+    botowner = process.env.BOTW;
+    ownerMention = <@botowner>;
+    
+    consoleChannel = "459999139028008980";
+    errorChannel = "460024079261499392";
+    prefix ='cat:';
+    betaTest = 'on';
+    CanReloading = false;
+    noGame = 'activé';
+    VsPrefixs = [{name:'',UTC:0},{name:'english',UTC:0},{name:'nsfw',UTC:0},{name:'french',UTC:2},{name:'test',UTC:0}];
+    VSEmojies = VSEmojiesAlias;
+    Discord = require('discord.js');
+    util = require('util');
+    client = new Discord.Client();
+    require('./functions.js').load();
+    require('./on/messages/command/anime/anime.js').load();
+    catimg = require('./on/messages/command/cat/images.js').load(3);
+    haderror = false;
+    BotOnDev = false;
+    maxAnPurpose = 8; //Nombre max de purpose en 1h parmis les 20 derniers messages
+    invite = 'https://discordapp.com/oauth2/authorize?client_id='+mention+'&scope=bot&permissions=604367937';
     MongoClient = require('mongodb').MongoClient, 
-    uri = process.env.MONGO_DB,
-    events = require('events'),
-    NoNyaWebhooks = "",
-    mpParties = [],
-    vsStatus = [],
-    ytdl = require('ytdl-core'),
+    uri = process.env.MONGO_DB;
+    events = require('events');
+    NoNyaWebhooks = "";
+    mpParties = [];
+    vsStatus = [];
+    ytdl = require('ytdl-core');
     { request } = require('graphql-request');
 }
