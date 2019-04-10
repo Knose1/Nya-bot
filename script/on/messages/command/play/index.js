@@ -7,7 +7,10 @@ exports.execute = () => {
             .then(connection => {     
                 const stream = require('stream');    
 
+                args[0] = args[0].replace(/\</g, "").replace(/\>/g, "");
+
                 if (args[0].indexOf("https://www.youtube.com/watch?v=") == 0 || args[0].indexOf("https://youtu.be/") == 0) {
+
                     var steamAudio = ytdl(args[0], { filter : 'audioonly' })
                     var dispatcher = connection.playStream(steamAudio,{ seek: 0, volume: 1 });
                 } else {
@@ -15,7 +18,7 @@ exports.execute = () => {
                 }
                 connection.on('error', (e) => Nya.error(e,true))
                 dispatcher.on('error', (e) => {Nya.error(e,true); message.reply(`your link ${args[0]} must be wrong`) })
-                dispatcher.on('end', () => message.member.voiceChannel.leave())
+                dispatcher.on('end', () => /*message.member.voiceChannel.leave()*/)
                 dispatcher.on('speaking', (e) => {
                     if (!e) {
                         // message.member.voiceChannel.leave()
