@@ -103,5 +103,5 @@ exports.load = () => {
     mpParties = [];
     vsStatus = [];
     ytdl = require('ytdl-core');
-    { request } = require('graphql-request');
+    request = require('graphql-request');
 }
