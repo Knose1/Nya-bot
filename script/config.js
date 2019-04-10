@@ -76,7 +76,7 @@ exports.load = () => {
     mention = ﻿process.env.BOTMENTION;
     logserv = process.env.LOGSERV;
     botowner = process.env.BOTW;
-    ownerMention = <@botowner>;
+    ownerMention = "<@" +botowner+ ">";
     
     consoleChannel = "459999139028008980";
     errorChannel = "460024079261499392";
