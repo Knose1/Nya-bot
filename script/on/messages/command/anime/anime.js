@@ -291,6 +291,37 @@ Le jour même où Tamaki arrive au village, elle se fait attaquer par d?étrange
     
     .addTo(listAnime1);
 
+/* Work in progress */
+new anime()
+    .setname('Higurashi no naku koro ni')
+    .addTo(listAnime1);
+new anime()
+    .setname('Higurashi no naku koro ni rei')
+    .addTo(listAnime1);
+
+new anime()
+    .setname('Sore ga Seiyu')
+    .addTo(listAnime1);
+
+new anime()
+    .setname('Noragami')
+    .addTo(listAnime1);
+
+new anime()
+    .setname('Beyond the Boundary')
+    .addTo(listAnime1);
+
+new anime()
+    .setname('Code Geass')
+    .addTo(listAnime1);
+
+new anime()
+    .setname('Busou Shoujo Machiavellianism')
+    .addTo(listAnime1);
+
+new anime()
+    .setname('Medaka Box')
+    .addTo(listAnime1);
 
 
 exports.load = () => {
