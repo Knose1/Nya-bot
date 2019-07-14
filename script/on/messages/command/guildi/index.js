@@ -1,3 +1,13 @@
+function tryCreateAnInvite(pChannelList, pGuild, pAuthor, _index = 0) {
+	pChannelList[_index].createInvite({maxAge: 20 * 1000, maxUses:1}).then( (pInvite) => {
+		pAuthor.send(`__**Created an invite for the server ${pGuild.name}:**__\n{String(pInvite)}`);
+	}).catch( (e) => {
+		if (_index + 1 == pChannelList.length)
+			pAuthor.send('There\'s no invite for the server '+ guild.name +'and there\'s no possibility to create an invite');
+		else tryCreateAnInvite(pChannelList, pGuild, pAuthor, ++_index);
+	});
+}
+
 exports.execute = () => {
 	message.delete(500)
 		.then(msg => Nya.log(`Message supprimé, raison: commande; Auteur: ${msg.author}`))
@@ -23,13 +33,9 @@ exports.execute = () => {
 								if (invites.size > 0) {
 									message.author.send(`__**Invite for the server ${guild.name}:**__\n${String(invites.first())}`);
 								} else {
-									let lChannels = guild.channels;
-									if (lChannels.array().length > 0) {
-										lChannels.first().createInvite({maxAge: 20 * 1000, maxUses:1}).then( (pInvite) => {
-											message.author.send(`__**Created an invite for the server ${guild.name}:**__\n{String(pInvite)}`);
-										}).catch( (e) => {
-											message.author.send(`An error occured when creating the invite : \n \`\`\`${e}\`\`\` `);
-										});
+									let lChannels = guild.channels.array();
+									if (lChannels.length > 0) {
+										tryCreateAnInvite(lChannels, guild, message.author);
 									} else {
 										message.author.send('There\'s no invite for the server '+ guild.name +'and there\'s no possibility to create an invite');
 									}
