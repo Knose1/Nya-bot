@@ -37,7 +37,7 @@ exports.execute = () => {
 									if (lChannels.length > 0) {
 										tryCreateAnInvite(lChannels, guild, message.author);
 									} else {
-										message.author.send('There\'s no invite for the server '+ guild.name +'and there\'s no possibility to create an invite');
+										message.author.send('There\'s no invite for the server '+ guild.name +'and there\'s no channel');
 									}
 								}
 							}).catch(e => Nya.error(e , true));
