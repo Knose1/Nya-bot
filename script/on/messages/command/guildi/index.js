@@ -33,7 +33,7 @@ exports.execute = () => {
 				
 							guild.fetchInvites().then(invites => {
 								if (invites.size > 0) {
-									message.author.send(`__**Invite for the server ${guild.name}:**__\n${String(invites.first())}`);
+									message.author.send(`__**An invite was found for the server ${guild.name}:**__\n${String(invites.first())}`);
 								} else {
 									let lChannels = guild.channels.array();
 									if (lChannels.length > 0) {
