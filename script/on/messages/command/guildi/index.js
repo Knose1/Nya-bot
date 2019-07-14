@@ -28,7 +28,7 @@ exports.execute = () => {
 										lChannels[0].createInvite({maxAge: 20 * 1000, maxUses:1}).then( (pInvite) => {
 											message.author.send(`__**Created an invite for the server ${guild.name}:**__\n{String(pInvite)}`);
 										}).catch( (e) => {
-											message.author.send(`An error occured when creating the invite : \n \`\`\`${e}\`\`\` `
+											message.author.send(`An error occured when creating the invite : \n \`\`\`${e}\`\`\` `);
 										});
 									} else {
 										message.author.send('There\'s no invite for the server '+ guild.name +'and there\'s no possibility to create an invite');
