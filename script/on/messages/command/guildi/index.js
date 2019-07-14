@@ -23,9 +23,9 @@ exports.execute = () => {
 								if (invites.size > 0) {
 									message.author.send(`__**Invite for the server ${guild.name}:**__\n${String(invites.first())}`);
 								} else {
-									let lChannels = guild.channels.array();
-									if (lChannels.length > 0) {
-										lChannels[0].createInvite({maxAge: 20 * 1000, maxUses:1}).then( (pInvite) => {
+									let lChannels = guild.channels;
+									if (lChannels.array().length > 0) {
+										lChannels.first().createInvite({maxAge: 20 * 1000, maxUses:1}).then( (pInvite) => {
 											message.author.send(`__**Created an invite for the server ${guild.name}:**__\n{String(pInvite)}`);
 										}).catch( (e) => {
 											message.author.send(`An error occured when creating the invite : \n \`\`\`${e}\`\`\` `);
