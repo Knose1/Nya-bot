@@ -27,6 +27,12 @@ exports.execute = async function(message, isVs, Pfx) {
             var words = message.content.slice('--'.length).trim().split(/ +/g);
         }
 
+        //On regarde s'il y a une invite discord dans l'embed
+        if (message.content.match(/discord.gg\/\w+/g)) {
+            message.author.send("`Sending discord invite in the VS is NOT ALLOWED !` ÒwÓ");
+            return;
+        }
+        
         //On regarde s'il y a une image à ajouter à l'embed
         var vsIsImage = false;
         var wordsIndex = -1;
