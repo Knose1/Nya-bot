@@ -29,7 +29,8 @@ exports.execute = async function(message, isVs, Pfx) {
 
         //On regarde s'il y a une invite discord dans l'embed
         if (message.content.match(/discord.gg\/\w+/g)) {
-            message.author.send("`Sending discord invite in the VS is NOT ALLOWED !` ÒwÓ");
+            message.author.send("`Sending discord invite in the VS is NOT ALLOWED !` ÒwÓ\nhttps://tenor.com/307I.gif");
+            message.delete(1);
             return;
         }
         
