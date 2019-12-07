@@ -16,6 +16,9 @@
     "opusscript":"",
     "ytdl-core":""
   },
+  "engines": {
+    "node": "6.4.1"
+  }
   "author": "knose1",
   "license": "GPL-3.0"
 }
